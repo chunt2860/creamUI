@@ -61,8 +61,9 @@ const secondList = generateArray(60);
 
 const typeRefs = ref([]) as Ref<RecycleScroller>;
 ctx.value = inject(timeInjectionKey, undefined);
+
 const globalValue = ref<string[]>(["", "", ""]);
-const confirmDisabled = computed(() => globalValue.value.filter((item) => item === "").length > 0);
+const confirmDisabled = computed<boolean>(() => globalValue.value.filter((item) => item === "").length > 0);
 
 const handleClick = (index: number, item: string) => {
   globalValue.value[index] = item;
@@ -81,7 +82,6 @@ const setDefault = () => {
   }
 };
 
-/** 设置当前时间 */
 const setNow = () => {
   const now = dayjs().format("HH:mm:ss");
   globalValue.value = now.split(":");
@@ -114,7 +114,7 @@ watch(
     if (!ctx.value?.modelValue) return;
 
     globalValue.value = ["", "", ""];
-    
+
     const arr = ctx.value?.modelValue.split(":");
     for (let i = 0; i < arr.length; i++) {
       const element = arr[i];
