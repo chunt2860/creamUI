@@ -83,6 +83,9 @@ $switchSizes: "small", "mini";
 }
 
 .#{$B}-disabled {
+  pointer-events: none;
+  cursor: default;
+
   @include css-var-from-global-rgb(("switch", "border"), ("gary", "1"));
   @include css-var-from-global-rgb(("switch", "bg"), ("gary", "1"));
   @include css-var-from-global-rgb(("switch", "inner-color"), ("gary", "8"));
@@ -94,9 +97,6 @@ $switchSizes: "small", "mini";
     @include css-var-from-global-rgb(("switch", "dot-bg"), ("gary", "0"));
     @include css-var-from-global-rgb(("switch", "icon-color"), ("gary", "7"));
   }
-
-  pointer-events: none;
-  cursor: default;
 }
 
 @each $size in $switchSizes {
