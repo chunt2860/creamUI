@@ -124,7 +124,7 @@
     }
 
     .#{$B}-perfix {
-      padding-right: calc(getCssVar("size-height", $size) / 10);
+      padding-right: calc(getCssVar("size-height", $size) / 8);
     }
 
     .#{$B}-suffix {
