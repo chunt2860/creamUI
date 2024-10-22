@@ -1,4 +1,4 @@
-import { PropType, Teleport, Transition, defineComponent, h, nextTick, ref, watch } from "vue";
+import { PropType, Teleport, Transition, defineComponent, h, nextTick, reactive, ref, watch } from "vue";
 import { getPosition, getPositionData, getWrapperPositionStyle, getWrapperSize } from "./core";
 import { TriggerPosition, TriggerType } from "./types";
 import { onClickOutside, useElementBounding, useEventListener, useThrottleFn, useWindowSize } from "@vueuse/core";
@@ -118,7 +118,7 @@ export default defineComponent({
      * @description Auto fix the position with window size.
      * @default false
      */
-    autoFitPosition: {
+    autoFixPosition: {
       type: Boolean,
       default: true,
     },
@@ -141,7 +141,7 @@ export default defineComponent({
       default: 20,
     },
   },
-  emits: ["update:modelValue"],
+  emits: ["update:modelValue", "popupVisible"],
   setup(props, { emit, slots }) {
     const { clsBlockName } = useNamespace("trigger");
 
@@ -176,7 +176,7 @@ export default defineComponent({
       const el = triggerRef.value?.children[0];
       const wrapperSize = getWrapperSize(wrapperRef.value);
 
-      const position = props.autoFitPosition
+      const position = props.autoFixPosition
         ? getPosition(
             props.position,
             windowSize,
@@ -199,16 +199,18 @@ export default defineComponent({
         "style",
         getWrapperPositionStyle(top, left, visible.value, props.autoFitWidth ? width : undefined)
       );
-
+    
       if (props.scrollToClose && visible.value) {
         setTimeout(() => {
           visible.value = false;
         }, props.scrollToCloseTime);
       }
     };
+
     const updateVisible = (val: boolean) => {
       visible.value = val;
       emit("update:modelValue", visible.value);
+      emit("popupVisible", visible.value);
     };
 
     const throttleResize = useThrottleFn(handleResize, props.throttleTime);
