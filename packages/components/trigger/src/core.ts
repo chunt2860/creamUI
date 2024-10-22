@@ -147,10 +147,12 @@ const getLeftPosition = (
   popupOffset: number,
   translate: number = 0
 ) => {
-  const baseLeft = left + translate;
-  const centerLeft = left + width / 2 - wrapperWidth / 2 + translate;
-  const leftWithPopup = left - wrapperWidth - popupOffset + translate;
-  const rightWithPopup = left + width + popupOffset + translate;
+  const containerRect = document.documentElement.getBoundingClientRect();
+
+  const baseLeft = left + translate - containerRect.left;
+  const centerLeft = left + width / 2 - wrapperWidth / 2 + translate - containerRect.left;
+  const leftWithPopup = left - wrapperWidth - popupOffset + translate - containerRect.left;
+  const rightWithPopup = left + width + popupOffset + translate - containerRect.left;
 
   return {
     top: centerLeft,
@@ -202,7 +204,7 @@ const getTopPosition = (
  */
 export const getWrapperSize = (el: Element): SizeInfo => {
   el.setAttribute("style", `display:block;opacity:0;visibility: hidden;`);
-  const { width, height } = el && el?.getBoundingClientRect();
+  const { width, height } = el && el.getBoundingClientRect();
 
   el.setAttribute("style", `display:none`);
   return { width, height };
