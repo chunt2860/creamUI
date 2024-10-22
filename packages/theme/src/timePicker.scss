@@ -1,0 +1,22 @@
+@use "mixins/mixins.scss" as *;
+
+@include b(timePicker) {
+  position: relative;
+
+  &-panel {
+    width: fit-content;
+    border-radius: 6px;
+
+    &-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+div[class*="trigger-wrapper"] {
+  .#{$B}-panel {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}

@@ -30,7 +30,8 @@
     "async-validator": "^4.2.5",
     "birdpaper-icon": "^0.1.0",
     "dayjs": "^1.11.3",
-    "radash": "^12.1.0"
+    "radash": "^12.1.0",
+    "vue-virtual-scroller": "2.0.0-beta.8"
   },
   "devDependencies": {
     "@pnpm/find-workspace-packages": "^4.0.16",

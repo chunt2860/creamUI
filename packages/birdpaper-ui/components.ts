@@ -18,7 +18,8 @@ import {
   Checkbox,
   CheckboxGroup,
   Switch,
-  VerifyCode
+  VerifyCode,
+  TimePicker
 } from "@birdpaper-ui/components";
 
 export default [
@@ -41,5 +42,6 @@ export default [
   Checkbox,
   CheckboxGroup,
   Switch,
-  VerifyCode
+  VerifyCode,
+  TimePicker
 ];

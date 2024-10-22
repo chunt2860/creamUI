@@ -32,6 +32,9 @@ importers:
       radash:
         specifier: ^12.1.0
         version: 12.1.0
+      vue-virtual-scroller:
+        specifier: 2.0.0-beta.8
+        version: 2.0.0-beta.8(vue@3.5.3)
     devDependencies:
       '@pnpm/find-workspace-packages':
         specifier: ^4.0.16
@@ -8894,6 +8897,10 @@ packages:
       yallist: 4.0.0
     dev: true
 
+  /mitt@2.1.0:
+    resolution: {integrity: sha512-ILj2TpLiysu2wkBbWjAmww7TkZb65aiQO+DkVdUTBpBXq+MHYiETENkKFMtsJZX1Lf4pe4QOrTSjIfUwN5lRdg==}
+    dev: false
+
   /mitt@3.0.1:
     resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
     dev: true
@@ -12049,6 +12056,22 @@ packages:
     dependencies:
       vue: 3.5.3(typescript@4.9.5)
 
+  /vue-observe-visibility@2.0.0-alpha.1(vue@3.5.3):
+    resolution: {integrity: sha512-flFbp/gs9pZniXR6fans8smv1kDScJ8RS7rEpMjhVabiKeq7Qz3D9+eGsypncjfIyyU84saU88XZ0zjbD6Gq/g==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      vue: 3.5.3(typescript@4.9.5)
+    dev: false
+
+  /vue-resize@2.0.0-alpha.1(vue@3.5.3):
+    resolution: {integrity: sha512-7+iqOueLU7uc9NrMfrzbG8hwMqchfVfSzpVlCMeJQe4pyibqyoifDNbKTZvwxZKDvGkB+PdFeKvnGZMoEb8esg==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      vue: 3.5.3(typescript@4.9.5)
+    dev: false
+
   /vue-router@4.4.0(vue@3.5.3):
     resolution: {integrity: sha512-HB+t2p611aIZraV2aPSRNXf0Z/oLZFrlygJm+sZbdJaW6lcFqEDQwnzUBXn+DApw+/QzDU/I9TeWx9izEjTmsA==}
     peerDependencies:
@@ -12079,6 +12102,17 @@ packages:
       semver: 7.6.3
       typescript: 5.4.2
     dev: true
+
+  /vue-virtual-scroller@2.0.0-beta.8(vue@3.5.3):
+    resolution: {integrity: sha512-b8/f5NQ5nIEBRTNi6GcPItE4s7kxNHw2AIHLtDp+2QvqdTjVN0FgONwX9cr53jWRgnu+HRLPaWDOR2JPI5MTfQ==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      mitt: 2.1.0
+      vue: 3.5.3(typescript@4.9.5)
+      vue-observe-visibility: 2.0.0-alpha.1(vue@3.5.3)
+      vue-resize: 2.0.0-alpha.1(vue@3.5.3)
+    dev: false
 
   /vue@3.5.3(typescript@4.9.5):
     resolution: {integrity: sha512-xvRbd0HpuLovYbOHXRHlSBsSvmUJbo0pzbkKTApWnQGf3/cu5Z39mQeA5cZdLRVIoNf3zI6MSoOgHUT5i2jO+Q==}

@@ -249,7 +249,9 @@ export default defineComponent({
       const children = slots.default?.() || [];
 
       return props.hideTrigger ? (
-        slots.content?.()
+        <div class={clsBlockName} ref={triggerRef}>
+          {slots.content?.()}
+        </div>
       ) : (
         <div class={clsBlockName} ref={triggerRef}>
           {h(children[0], {
