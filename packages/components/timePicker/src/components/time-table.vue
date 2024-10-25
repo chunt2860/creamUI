@@ -5,7 +5,7 @@
         <RecycleScroller
           listClass="time-col-scroller-list"
           listTag="ul"
-          :ref="(el) => (typeRefs[index] = el)"
+          :ref="(el) => (columnRefs[index] = el)"
           :class="`${clsBlockName}-time-col`"
           :items="items"
           :item-size="32"
@@ -43,7 +43,7 @@ import { RecycleScroller } from "vue-virtual-scroller";
 import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
 
 defineOptions({ name: "TimeTable" });
-const { clsBlockName } = useNamespace("timeTable");
+const { clsBlockName } = useNamespace("time-table");
 const ctx = ref<TimePickerContext>();
 
 function generateArray(len: number): string[] {
@@ -59,10 +59,11 @@ const hourList = generateArray(24);
 const minuteList = generateArray(60);
 const secondList = generateArray(60);
 
-const typeRefs = ref([]) as Ref<RecycleScroller>;
+const columnRefs = ref([]) as Ref<RecycleScroller>;
 ctx.value = inject(timeInjectionKey, undefined);
 
 const globalValue = ref<string[]>(["", "", ""]);
+
 const confirmDisabled = computed<boolean>(() => globalValue.value.filter((item) => item === "").length > 0);
 
 const handleClick = (index: number, item: string) => {
@@ -92,9 +93,7 @@ const setNow = () => {
   }
 };
 
-const scrollTo = (i: number, item: string = defaultValue) => {
-  typeRefs.value[i]?.scrollToItem(item);
-};
+const scrollTo = (i: number, item: string = defaultValue) => columnRefs.value[i]?.scrollToItem(item);
 
 const handleSelect = () => {
   if (!globalValue.value) return;
@@ -103,7 +102,7 @@ const handleSelect = () => {
 };
 
 const onVisible = (index: number) => {
-  if(globalValue.value[index]){
+  if (globalValue.value[index]) {
     scrollTo(index, globalValue.value[index]);
   }
 };

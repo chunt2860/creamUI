@@ -30,15 +30,6 @@ export const timePickerProps = {
   },
   /**
    * @type boolean
-   * @description Input is readonly or not.
-   * @default false
-   */
-  readonly: {
-    type: Boolean,
-    default: false,
-  },
-  /**
-   * @type boolean
    * @description Input is disabled or not.
    * @default false
    */

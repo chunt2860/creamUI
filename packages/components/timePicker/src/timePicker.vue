@@ -11,12 +11,12 @@
   >
     <bp-input
       ref="inpRef"
-      read-only
+      readonly
       v-model="model"
       :class="cls"
       :placeholder
       :disabled
-      :readonly
+      :clearable
       :size
       @input="onInput"
       @blur="onBlur"
