@@ -3,7 +3,7 @@
 @use "common/sizes" as *;
 @use "mixins/mixins.scss" as *;
 
-@include b(inputNumber) {
+@include b(input-number) {
   padding-right: 0;
 
   &:hover {

@@ -35,7 +35,7 @@ import { IconArrowDownSLine, IconArrowUpSLine } from "birdpaper-icon";
 import { useCounter, useToNumber } from "@vueuse/core";
 
 defineOptions({ name: "InputNumber" });
-const { clsBlockName } = useNamespace("inputNumber");
+const { clsBlockName } = useNamespace("input-number");
 
 const model = defineModel<number>();
 const stringValue = ref<string>("");

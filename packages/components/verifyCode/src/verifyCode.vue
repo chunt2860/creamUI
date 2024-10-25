@@ -27,7 +27,7 @@ import { VerifyCodeProps, verifyCodeProps } from "./props";
 import { getChildrenIndex } from "@birdpaper-ui/components/utils/dom";
 
 defineOptions({ name: "VerifyCode" });
-const { clsBlockName } = useNamespace("verifyCode");
+const { clsBlockName } = useNamespace("verify-code");
 
 const model = defineModel<string>({ default: "" });
 const props: VerifyCodeProps = defineProps(verifyCodeProps);

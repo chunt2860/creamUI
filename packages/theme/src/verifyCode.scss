@@ -4,7 +4,7 @@
 @use "mixins/function" as *;
 @use "mixins/mixins.scss" as *;
 
-@include b(verifyCode) {
+@include b(verify-code) {
   position: relative;
   display: flex;
   align-items: center;
