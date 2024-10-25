@@ -1,7 +1,7 @@
 @use "common/design" as *;
 @use "mixins/mixins.scss" as *;
 
-@include b(timeTable) {
+@include b(time-table) {
   width: fit-content;
   border-radius: 6px;
   border: $borderSize solid var(--bp-gary-3);
