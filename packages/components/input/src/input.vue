@@ -86,7 +86,7 @@ const innerSuffixContent = computed<string | Component>(() => {
 
 /** Handle action icon click */
 const handleActionIconClick = () => {
-  if (props.disabled || props.readonly) return;
+  if (props.disabled) return;
 
   if (props.type === "text" && props.clearable) return clear(true);
   if (props.type === "password" && props.showPassword) return triggerEye();
