@@ -1,0 +1,203 @@
+@use "common/design" as *;
+@use "mixins/var" as *;
+@use "mixins/function" as *;
+@use "mixins/mixins.scss" as *;
+
+@include b(date-table) {
+  // Placeholder cell
+  @include css-var-from-global-rgb(("date-table", "placeholder-text-color"), ("gary", 6));
+
+  // Week cell
+  @include css-var-from-global-rgb(("date-table", "week-text-color"), ("gary", 4));
+
+  // Option button
+  @include css-var-from-global-rgb(("date-table", "option-text-color"), ("gary", 6));
+  @include css-var-from-global-rgb(("date-table", "option-text-color-hover"), ("gary", 10));
+  @include css-var-from-global-rgb(("date-table", "option-bg-color"), ("gary", 0));
+  @include css-var-from-global-rgb(("date-table", "option-bg-color-hover"), ("gary", 1));
+
+  // Date cell
+  @include css-var-from-global-rgb(("date-table", "date-text-color"), ("gary", 10));
+  @include css-var-from-global-rgb(("date-table", "date-text-color-hover"), ("primary", 6));
+  @include css-var-from-global-rgb(("date-table", "date-text-color-active"), ("gary", 0));
+  @include css-var-from-global-rgb(("date-table", "date-bg-color"), ("gary", 0));
+  @include css-var-from-global-rgb(("date-table", "date-bg-color-hover"), ("gary", 1));
+  @include css-var-from-global-rgb(("date-table", "date-bg-color-active"), ("primary", 6));
+
+  width: fit-content;
+  border-radius: 8px;
+  border: $borderSize solid var(--bp-gary-2);
+  background-color: var(--bp-gary-0);
+  overflow: auto;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14px;
+    height: 48px;
+    border-bottom: $borderSize dashed var(--bp-gary-3);
+    border-width: $borderSize;
+
+    &-inner {
+      flex: 3;
+
+      &-year,
+      &-month {
+        color: rgba(getCssVar("date-table", "date-text-color"), 1);
+        font-size: 16px;
+        font-weight: bold;
+        padding: 4px 6px;
+        border-radius: 6px;
+        background-color: rgba(getCssVar("date-table", "date-bg-color"), 1);
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+          color: var(--bp-gary-10);
+          background-color: rgba(getCssVar("date-table", "date-bg-color-hover"), 1);
+          transition: all 0.2s;
+        }
+      }
+    }
+
+    &-option {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      svg[class*="-icon-"] {
+        padding: 4px;
+        border-radius: 50%;
+        fill: rgba(getCssVar("date-table", "option-text-color"), 1);
+        background-color: rgba(getCssVar("date-table", "option-bg-color"), 1);
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+          fill: rgba(getCssVar("date-table", "option-text-color-hover"), 1);
+          background-color: rgba(getCssVar("date-table", "option-bg-color-hover"), 1);
+          transition: all 0.2s;
+        }
+      }
+    }
+  }
+
+  &-week {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 14px;
+    margin-top: 10px;
+
+    &-inner {
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(getCssVar("date-table", "week-text-color"), 1);
+
+      &:not(:first-child) {
+        margin-left: 1px;
+      }
+
+      &:not(:last-child) {
+        margin-right: 2px;
+      }
+    }
+  }
+
+  &-body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 14px;
+    margin-bottom: 10px;
+
+    &-row {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+
+      &:not(:first-child) {
+        margin-top: 6px;
+      }
+    }
+
+    &-inner {
+      display: block;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      font-size: 14px;
+      cursor: pointer;
+
+      &:not(:first-child) {
+        margin-left: 1px;
+      }
+
+      &:not(:last-child) {
+        margin-right: 2px;
+      }
+    }
+
+    .day-cell-prev,
+    .day-cell-next {
+      color: rgba(getCssVar("date-table", "placeholder-text-color"), 1);
+      font-weight: 400;
+      border-radius: 50%;
+      
+      &:hover {
+        color: rgba(getCssVar("date-table", "date-text-color-hover"), 1);
+        background-color: rgba(getCssVar("date-table", "date-bg-color-hover"), 1);
+        transition: all 0.2s;
+      }
+    }
+
+    .day-cell-normal {
+      color: rgba(getCssVar("date-table", "date-text-color"), 1);
+      background-color: rgba(getCssVar("date-table", "date-bg-color"), 1);
+      font-weight: 500;
+      border-radius: 50%;
+      transition: all 0.2s;
+
+      &:hover {
+        color: rgba(getCssVar("date-table", "date-text-color-hover"), 1);
+        background-color: rgba(getCssVar("date-table", "date-bg-color-hover"), 1);
+        transition: all 0.2s;
+      }
+    }
+    
+    .to-day {
+      &::after {
+        content: "";
+        display: block;
+        position: relative;
+        left: 50%;
+        bottom: 4px;
+        width: 4px;
+        height: 4px;
+        margin-left: -2px;
+        border-radius: 4px;
+        background-color: var(--bp-primary-6);
+      }
+    }
+
+    .active {
+      background-color: rgba(getCssVar("date-table", "date-bg-color-active"), 1);
+      color: rgba(getCssVar("date-table", "date-text-color-active"), 1);
+    }
+  }
+
+  &-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    border-top: $borderSize solid var(--bp-gary-2);
+  }
+}

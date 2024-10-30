@@ -14,6 +14,7 @@ export * from "./link";
 export * from "./textarea";
 export * from "./verifyCode";
 export * from "./timePicker";
+export * from "./datePicker";
 export * from "./config-provider";
 
 export * from "./message";
