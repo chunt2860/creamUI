@@ -41,7 +41,7 @@ import pickerPanel from "./component/pickerPanel.vue";
 import { dateInjectionKey } from "./types";
 
 defineOptions({ name: "DatePicker" });
-const { clsBlockName } = useNamespace("datePicker");
+const { clsBlockName } = useNamespace("date-picker");
 
 const model = defineModel<string>({ default: "" });
 const props: DatePickerProps = defineProps(datePickerProps);

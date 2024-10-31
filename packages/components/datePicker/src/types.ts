@@ -8,7 +8,7 @@ export type DayType = "prev" | "normal" | "next";
 
 /** 日历中日期单元格 */
 export interface DayCell {
-  type?: DayType;
+  type: DayType;
   value: string;
   label?: string;
 }
