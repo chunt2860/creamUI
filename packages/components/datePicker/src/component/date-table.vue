@@ -59,15 +59,15 @@ import { DatePickerContext, DayCell, LangsType, PanelType, dateInjectionKey } fr
 import BpButton from "@birdpaper-ui/components/button/index";
 import { useDayJs } from "../core";
 
-const emits = defineEmits(["change-picker"]);
-
 defineOptions({ name: "DateTavke" });
 const { clsBlockName } = useNamespace("date-table");
 
-const cellCls = (cellType: string) => [`${clsBlockName}-body-inner`, `day-cell-${cellType}`];
+const emits = defineEmits(["change-picker"]);
+
 
 const ctx = ref<DatePickerContext>();
 ctx.value = inject(dateInjectionKey, undefined);
+const cellCls = (cellType: string) => [`${clsBlockName}-body-inner`, `day-cell-${cellType}`];
 
 const { toDay, current, currentMonth, currentYear, dates, setDates, changeMonth, changeYear, weeks, months } = useDayJs(
   ctx.value?.langs as LangsType,
@@ -76,7 +76,7 @@ const { toDay, current, currentMonth, currentYear, dates, setDates, changeMonth,
 
 const currentVal = ref(current.value && current.value.format("YYYY-MM-DD"));
 const currentTimeVal = ref("");
-setDates("YYYY-MM-DD");
+setDates();
 
 const timeTableRef = ref();
 const handleSelect = (date: DayCell | { value: string }) => {
@@ -103,7 +103,7 @@ const handleChange = (mode: "month" | "year", type: "prev" | "next", step: numbe
   let v = mode === "month" ? currentMonth.value : currentYear.value;
   v = type === "next" ? v + step : v - step;
   mode === "month" ? changeMonth(v) : changeYear(v);
-  setDates(ctx.value?.valueFormat || "--");
+  setDates();
 };
 
 const handleChangePicker = (typeName: PanelType, val: number) => {

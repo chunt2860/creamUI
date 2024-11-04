@@ -1,8 +1,9 @@
 import { DayCell, DayType, LangsType, MonthCell, YearCell } from "./types";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import localeData from "dayjs/plugin/localeData";
 import "dayjs/locale/zh-cn";
 import { computed, ref } from "vue";
+import { arrayTo2DArray } from "@birdpaper-ui/components/utils/array";
 
 export const useDayJs = (lang: LangsType, modelValue: string) => {
   dayjs.locale(lang);
@@ -17,32 +18,41 @@ export const useDayJs = (lang: LangsType, modelValue: string) => {
   const months = dayjs.monthsShort();
 
   const dates = ref<DayCell[][]>([[], [], [], [], [], []]);
-  const setDates = (valueFormat: string) => {
-    let sum = 0;
-    /** 当前月起始周N */
-    const firstDay = current.value.startOf("month").day() || 1;
-    /** 当前最后一天 */
-    const lastDate = current.value.endOf("month").date();
-    /** 当前月视图起始日期 */
-    const startDate = current.value.startOf("month").subtract(firstDay || 7, "day");
 
-    for (let row = 0; row < dates.value.length; row++) {
-      for (let col = 0; col < 7; col++) {
-        const value = startDate.add(sum, "day");
-        const label = value.date().toString();
+  /**
+   * 设置日期选择器的日期范围。
+   * 该函数计算当前月份的第一天和最后一天，并生成一个包含所有日期的二维数组。
+   * 每个日期根据其在月份中的位置被标记为 "prev"（上个月）、"next"（下个月）或 "normal"（当前月）。
+   * @returns 更新 dates 并返回。
+   */
+  const setDates = () => {
+    const start: Dayjs = current.value.startOf("month");
+    const end: Dayjs = current.value.endOf("month");
 
-        let type: DayType = "normal";
-        if (sum < firstDay) {
-          type = "prev";
-        }
-        if (sum - firstDay >= lastDate) {
-          type = "next";
-        }
+    /** 获取当前月份的第一天是星期几，如果第一天是星期日，则返回1，否则返回对应的星期数 */
+    const firstDateOfWeek: number = start.day() || 1;
 
-        dates.value[row][col] = { type, value: value.format("YYYY-MM-DD"), label };
-        sum++;
-      }
+    /** 当前日期所在月份的最后一天 */
+    const lastDate: number = end.date();
+
+    /** 计算并获取当前月份的第一天，并根据 firstDateOfWeek 或默认值 7 天进行偏移。 */
+    const startDateValue: Dayjs = start.subtract(firstDateOfWeek || 7, "day");
+
+    let cells: DayCell[] = [],
+      sum = 0;
+    for (let row = 0; row < 42; row++) {
+      const day = startDateValue.add(sum, "day");
+
+      cells.push({
+        type: sum < firstDateOfWeek ? "prev" : sum - firstDateOfWeek >= lastDate ? "next" : "normal",
+        label: day.date().toString(),
+        value: day.format("YYYY-MM-DD"),
+      });
+      sum++;
     }
+
+    dates.value = arrayTo2DArray(cells, 6, 7);
+    return dates.value;
   };
 
   const changeMonth = (m: number) => (current.value = current.value.month(m));
