@@ -100,9 +100,9 @@ const onTimeSelect = (time: string) => {
  * @param step 跨度
  */
 const handleChange = (mode: "month" | "year", type: "prev" | "next", step: number = 1) => {
-  let v = mode === "month" ? currentMonth.value : currentYear.value;
-  v = type === "next" ? v + step : v - step;
-  mode === "month" ? changeMonth(v) : changeYear(v);
+  const value = mode === "month" ? currentMonth.value : currentYear.value;
+  const newValue = type === "next" ? value + step : value - step;
+  (mode === "month" ? changeMonth : changeYear)(newValue);
   setDates();
 };
 
