@@ -34,7 +34,7 @@ export enum PanelType {
 
 export interface DatePickerContext {
   /** 绑定值 */
-  modelValue: string;
+  model: string;
   /** 语言类型 */
   langs: LangsType;
   /** 值格式 */

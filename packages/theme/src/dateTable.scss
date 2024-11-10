@@ -43,8 +43,7 @@
       border-bottom: $borderSize dashed var(--bp-gary-3);
       border-top-right-radius: 8px;
       font-size: 14px;
-      font-weight: bold;
-      color: var(--bp-gary-8);
+      color: var(--bp-gary-9);
     }
   }
 
@@ -149,7 +148,7 @@
 
     .day-cell-prev,
     .day-cell-next {
-      color: rgba(getCssVar("date-table", "placeholder-text-color"), 1);
+      color: rgba(getCssVar("date-table", "placeholder-text-color"), 0.6);
       font-weight: 400;
       border-radius: 50%;
 
@@ -209,5 +208,6 @@
     border: $borderSize solid var(--bp-gary-2);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    background-color: var(--bp-gary-0);
   }
 }

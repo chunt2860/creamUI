@@ -1,16 +1,16 @@
-import { DayCell, DayType, LangsType, MonthCell, YearCell } from "./types";
+import { DayCell, LangsType, MonthCell, YearCell } from "./types";
 import dayjs, { Dayjs } from "dayjs";
 import localeData from "dayjs/plugin/localeData";
 import "dayjs/locale/zh-cn";
 import { computed, ref } from "vue";
 import { arrayTo2DArray } from "@birdpaper-ui/components/utils/array";
 
-export const useDayJs = (lang: LangsType, modelValue: string) => {
+export const useDayJs = (lang: LangsType, model: string) => {
   dayjs.locale(lang);
   dayjs.extend(localeData);
 
-  const toDay = dayjs().format("YYYY-MM-DD");
-  const current = ref(!modelValue ? dayjs() : dayjs(modelValue));
+  const toDay: DayCell = { value: dayjs().format("YYYY-MM-DD"), label: "今天", type: "normal" };
+  const current = ref(!model ? dayjs() : dayjs(model));
   const currentMonth = computed(() => current.value.month());
   const currentYear = computed(() => current.value.year());
 

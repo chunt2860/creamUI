@@ -20,6 +20,7 @@ import {
   Switch,
   VerifyCode,
   TimePicker,
+  TimeTable,
   DatePicker
 } from "@birdpaper-ui/components";
 
@@ -45,5 +46,6 @@ export default [
   Switch,
   VerifyCode,
   TimePicker,
+  TimeTable,
   DatePicker
 ];

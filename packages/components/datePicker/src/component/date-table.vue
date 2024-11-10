@@ -1,54 +1,61 @@
 <template>
   <div :class="[clsBlockName, 'select-none']">
-    <div :class="`${clsBlockName}-header`">
-      <div :class="`${clsBlockName}-header-inner`">
-        <span
-          :class="`${clsBlockName}-header-inner-year`"
-          @click.stop="handleChangePicker(PanelType.Year, currentYear)"
-        >
-          {{ currentYear }}
-        </span>
-        <span
-          :class="`${clsBlockName}-header-inner-month`"
-          @click.stop="handleChangePicker(PanelType.Month, currentMonth)"
-        >
-          {{ months[currentMonth] }}
-        </span>
+    <div class="date-area">
+      <div :class="`${clsBlockName}-header`">
+        <div :class="`${clsBlockName}-header-inner`">
+          <span @click.stop="changePicker(PanelType.Year)">
+            {{ currentYear }}
+          </span>
+          <span @click.stop="changePicker(PanelType.Month)">
+            {{ months[currentMonth] }}
+          </span>
+        </div>
+        <div :class="`${clsBlockName}-header-option`">
+          <component v-for="v in options" :is="v.icon" size="22" @click="handleStep(v.step, v.type)" />
+        </div>
+        <!-- <div v-if="ctx?.showTime" class="time-header">
+          选择时间
+        </div> -->
       </div>
-      <div :class="`${clsBlockName}-header-option`">
-        <IconArrowLeftDoubleFill @click="handleChange('year', 'prev')" size="22" />
-        <IconArrowLeftSLine @click="handleChange('month', 'prev')" size="22" />
-        <IconArrowRightSLine @click="handleChange('month', 'next')" size="22" />
-        <IconArrowRightDoubleFill @click="handleChange('year', 'next')" size="22" />
-      </div>
-    </div>
-    <div :class="`${clsBlockName}-week`">
-      <span :class="`${clsBlockName}-week-inner`" v-for="v in weeks">{{ v }}</span>
-    </div>
-    <div :class="`${clsBlockName}-body`">
-      <div :class="`${clsBlockName}-body-row`" v-for="row in dates">
-        <span
-          v-for="col in row"
-          :class="[
-            ...cellCls(col.type),
-            { active: (ctx?.modelValue !== '' || ctx?.showTime) && currentVal === col.value },
-            { 'to-day': col.value === toDay },
-          ]"
-          @click="handleSelect(col)"
-        >
-          {{ col.label }}
-        </span>
+
+      <bp-space :size="2" :class="`${clsBlockName}-week`">
+        <span v-for="v in weeks" :class="`${clsBlockName}-week-inner`">{{ v }}</span>
+      </bp-space>
+
+      <div :class="`${clsBlockName}-body`">
+        <bp-space v-for="row in dates" :size="2" :class="`${clsBlockName}-body-row`">
+          <span v-for="col in row" :class="cellCls(col)" @click="handleSelect(col)">
+            {{ col.label }}
+          </span>
+        </bp-space>
       </div>
     </div>
-    <div v-if="!ctx?.showTime" :class="`${clsBlockName}-footer`">
-      <bp-button type="text" status="primary" @click="handleSelect({ value: toDay })"> 今天 </bp-button>
+
+    <div v-if="ctx?.showTime" class="time-area">
+      <div class="time-area-header">选择时间</div>
+      <time-table
+        v-if="ctx?.showTime"
+        ref="timeTableRef"
+        only-selector
+        :style="{ height: '270px' }"
+        @select="onTimeSelect"
+      />
     </div>
+  </div>
+
+  <div :class="`${clsBlockName}-footer`" :style="{ 'justify-content': ctx?.showTime ? 'space-between' : 'center' }">
+    <template v-if="ctx?.showTime">
+      <bp-button size="mini" status="gary" @click="setNow"> 此刻 </bp-button>
+      <bp-button type="normal" size="mini" status="primary" @click="confirmValue"> 确定 </bp-button>
+    </template>
+    <bp-button v-else type="text" status="primary" @click="handleSelect(toDay)"> 今天 </bp-button>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { useNamespace } from "@birdpaper-ui/hooks";
 import { ref, inject } from "vue";
+import type { Component } from "vue";
 import {
   IconArrowLeftSLine,
   IconArrowRightSLine,
@@ -57,6 +64,8 @@ import {
 } from "birdpaper-icon";
 import { DatePickerContext, DayCell, LangsType, PanelType, dateInjectionKey } from "../types";
 import BpButton from "@birdpaper-ui/components/button/index";
+import BpSpace from "@birdpaper-ui/components/space/index";
+import { TimeTable } from "@birdpaper-ui/components/timePicker/index";
 import { useDayJs } from "../core";
 
 defineOptions({ name: "DateTavke" });
@@ -64,63 +73,83 @@ const { clsBlockName } = useNamespace("date-table");
 
 const emits = defineEmits(["change-picker"]);
 
-
 const ctx = ref<DatePickerContext>();
 ctx.value = inject(dateInjectionKey, undefined);
-const cellCls = (cellType: string) => [`${clsBlockName}-body-inner`, `day-cell-${cellType}`];
+const cellCls = (cell: DayCell) => [
+  `${clsBlockName}-body-inner`,
+  `day-cell-${cell.type}`,
+  { active: (!!ctx.value?.model || ctx.value?.showTime) && currentVal.value === cell.value },
+  { "to-day": toDay.value === cell.value },
+];
 
 const { toDay, current, currentMonth, currentYear, dates, setDates, changeMonth, changeYear, weeks, months } = useDayJs(
   ctx.value?.langs as LangsType,
-  ctx.value?.modelValue as string
+  ctx.value?.model as string
 );
 
-const currentVal = ref(current.value && current.value.format("YYYY-MM-DD"));
+const currentVal = ref(ctx.value?.model ? current.value.format("YYYY-MM-DD") : "");
 const currentTimeVal = ref("");
 setDates();
 
 const timeTableRef = ref();
-const handleSelect = (date: DayCell | { value: string }) => {
+const handleSelect = (date: DayCell) => {
   currentVal.value = date.value;
-  if (ctx.value?.showTime) {
-    const time = timeTableRef.value.getTime();
-    currentTimeVal.value = time;
+
+  if (ctx.value?.showTime && !currentTimeVal.value) {
+    currentTimeVal.value = timeTableRef.value.getTime(true);
     return;
   }
+
   ctx.value?.onSelect(currentVal.value, {}, true);
 };
 
 const onTimeSelect = (time: string) => {
+  if (!currentVal.value) {
+    handleSelect(toDay);
+  }
   currentTimeVal.value = time;
 };
 
+const options: { icon: Component; step: "year" | "month"; type: "prev" | "next" }[] = [
+  { icon: IconArrowLeftDoubleFill, step: "year", type: "prev" },
+  { icon: IconArrowLeftSLine, step: "month", type: "prev" },
+  { icon: IconArrowRightSLine, step: "month", type: "next" },
+  { icon: IconArrowRightDoubleFill, step: "year", type: "next" },
+];
 /**
  * 月份/年份切换
  * @param mode 切换模式
  * @param type 类型
  * @param step 跨度
  */
-const handleChange = (mode: "month" | "year", type: "prev" | "next", step: number = 1) => {
+const handleStep = (mode: "month" | "year", type: "prev" | "next", step: number = 1) => {
   const value = mode === "month" ? currentMonth.value : currentYear.value;
   const newValue = type === "next" ? value + step : value - step;
   (mode === "month" ? changeMonth : changeYear)(newValue);
   setDates();
 };
 
-const handleChangePicker = (typeName: PanelType, val: number) => {
+/**
+ * Change picker panel.
+ * @param typeName PanelType
+ */
+const changePicker = (typeName: PanelType) => {
+  let val = currentYear.value;
+
+  if (typeName === PanelType.Month) {
+    val = currentMonth.value;
+  }
   emits("change-picker", typeName, val);
 };
 
-const getValue = () => {
+const confirmValue = () => {
   const val = `${currentVal.value} ${currentTimeVal.value}`;
   ctx.value?.onSelect(val, {}, true);
-
   return val;
 };
 
 const setNow = () => {
-  currentVal.value = current.value && current.value.format("YYYY-MM-DD");
-
-  timeTableRef.value.setNow();
-  currentTimeVal.value = timeTableRef.value.getTime();
+  currentVal.value = current.value.format("YYYY-MM-DD");
+  currentTimeVal.value = timeTableRef.value.getTime(true);
 };
 </script>

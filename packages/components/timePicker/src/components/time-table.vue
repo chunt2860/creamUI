@@ -49,6 +49,7 @@ const { clsBlockName } = useNamespace("time-table");
 const ctx = ref<TimePickerContext>();
 
 const props: TimeTableProps = defineProps(timeTableProps);
+const emits = defineEmits(["select"]);
 
 function generateArray(len: number): string[] {
   const result: string[] = [];
@@ -74,6 +75,7 @@ const handleClick = (index: number, item: string) => {
   globalValue.value[index] = item;
   scrollTo(index, item);
   setDefault();
+  emits("select", globalValue.value.join(":"));
 };
 
 const setDefault = () => {
@@ -95,6 +97,8 @@ const setNow = () => {
     const item = globalValue.value[i];
     scrollTo(i, item);
   }
+
+  return now;
 };
 
 const scrollTo = (i: number, item: string = defaultValue) => columnRefs.value[i]?.scrollToItem(item);
@@ -102,13 +106,22 @@ const scrollTo = (i: number, item: string = defaultValue) => columnRefs.value[i]
 const handleSelect = () => {
   if (!globalValue.value) return;
 
-  ctx.value?.onSelect(globalValue.value.join(":"));
+  const val  = globalValue.value.join(":");
+  ctx.value?.onSelect(val);
 };
 
 const onVisible = (index: number) => {
   if (globalValue.value[index]) {
     scrollTo(index, globalValue.value[index]);
   }
+};
+
+const getTime = (defaultNow: boolean = false) => {
+  if (defaultNow && !globalValue.value[0]) {
+    return setNow();
+  }
+
+  return globalValue.value.join(":");
 };
 
 watch(
@@ -128,4 +141,9 @@ watch(
     immediate: true,
   }
 );
+
+defineExpose({
+  globalValue,
+  getTime,
+});
 </script>

@@ -51,15 +51,14 @@ const cls = computed<string[] | {}[]>(() => [clsBlockName, `${clsBlockName}-${pr
 
 const showPopup = ref<boolean>(false);
 provide(dateInjectionKey, {
-  modelValue: model.value,
+  model: model as unknown as string,
   langs: props.langs,
   valueFormat: props.valueFormat,
   showTime: props.showTime,
   onSelect: (v: string, payload: any, closePopup = true) => {
-    // global_value.value = v;
+    model.value = v;
 
     if (closePopup) showPopup.value = false;
-    // emit("update:modelValue", dayjs(global_value.value).format(defaultFormatComputed.value));
   },
 });
 
