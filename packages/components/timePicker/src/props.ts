@@ -46,7 +46,7 @@ export const timePickerProps = {
     type: Boolean,
     default: false,
   },
-  /** 
+  /**
    * @type string
    * @description Value format.
    * @default "YYYY-MM-DD"
@@ -55,8 +55,8 @@ export const timePickerProps = {
     type: String,
     default: "YYYY-MM-DD",
   },
-  /** 
-   * @type string
+  /**
+   * @type boolean
    * @description Hide trigger or not.
    * @default false
    */
@@ -66,4 +66,17 @@ export const timePickerProps = {
   },
 } as const;
 
+export const timeTableProps = {
+  /**
+   * @type boolean
+   * @description Only show selector or not.
+   * @default false
+   */
+  onlySelector: {
+    type: Boolean,
+    default: false,
+  },
+} as const;
+
 export type TimePickerProps = ExtractPropTypes<typeof timePickerProps>;
+export type TimeTableProps = ExtractPropTypes<typeof timeTableProps>;

@@ -1,13 +1,13 @@
 <template>
-  <div :class="clsBlockName">
+  <div :class="[clsBlockName, { 'border-none': onlySelector }]">
     <div :class="`${clsBlockName}-body`">
       <template v-for="(items, index) in [hourList, minuteList, secondList]">
         <RecycleScroller
-          listClass="time-col-scroller-list"
+          list-class="time-col-scroller-list"
           listTag="ul"
           :ref="(el) => (columnRefs[index] = el)"
           :class="`${clsBlockName}-time-col`"
-          :items="items"
+          :items
           :item-size="32"
           @visible="onVisible(index)"
           v-slot="{ item }"
@@ -21,7 +21,8 @@
         </RecycleScroller>
       </template>
     </div>
-    <div :class="`${clsBlockName}-footer`">
+
+    <div v-if="!onlySelector" :class="`${clsBlockName}-footer`">
       <bp-button size="mini" @click="setNow">现在</bp-button>
       <bp-button :disabled="confirmDisabled" size="mini" type="normal" status="primary" @click="handleSelect">
         确认
@@ -37,6 +38,7 @@ import { computed, inject, ref, watch } from "vue";
 import type { Ref } from "vue";
 import dayjs from "dayjs";
 import { timeInjectionKey, TimePickerContext } from "../types";
+import { timeTableProps, TimeTableProps } from "../props";
 
 // https://github.com/Akryum/vue-virtual-scroller/blob/master/packages/vue-virtual-scroller/README.md#vue-virtual-scroller
 import { RecycleScroller } from "vue-virtual-scroller";
@@ -45,6 +47,8 @@ import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
 defineOptions({ name: "TimeTable" });
 const { clsBlockName } = useNamespace("time-table");
 const ctx = ref<TimePickerContext>();
+
+const props: TimeTableProps = defineProps(timeTableProps);
 
 function generateArray(len: number): string[] {
   const result: string[] = [];

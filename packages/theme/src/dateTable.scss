@@ -24,26 +24,45 @@
   @include css-var-from-global-rgb(("date-table", "date-bg-color-hover"), ("gary", 1));
   @include css-var-from-global-rgb(("date-table", "date-bg-color-active"), ("primary", 6));
 
-  width: fit-content;
-  border-radius: 8px;
-  border: $borderSize solid var(--bp-gary-2);
+  display: flex;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   background-color: var(--bp-gary-0);
-  overflow: auto;
+  border: $borderSize solid var(--bp-gary-2);
+  border-bottom: 0px;
+
+  .time-area {
+    border-left: $borderSize solid var(--bp-gary-2);
+
+    &-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 48px;
+      padding: 0 14px;
+      border-bottom: $borderSize dashed var(--bp-gary-3);
+      border-top-right-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      color: var(--bp-gary-8);
+    }
+  }
 
   &-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 14px;
+    width: 100%;
     height: 48px;
+    padding: 0 14px;
     border-bottom: $borderSize dashed var(--bp-gary-3);
-    border-width: $borderSize;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 
     &-inner {
       flex: 3;
 
-      &-year,
-      &-month {
+      span {
         color: rgba(getCssVar("date-table", "date-text-color"), 1);
         font-size: 16px;
         font-weight: bold;
@@ -88,10 +107,10 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 0 14px;
-    margin-top: 10px;
+    padding: 8px 14px 0 14px;
 
     &-inner {
+      display: block;
       width: 32px;
       height: 32px;
       line-height: 32px;
@@ -99,14 +118,6 @@
       font-size: 13px;
       font-weight: 400;
       color: rgba(getCssVar("date-table", "week-text-color"), 1);
-
-      &:not(:first-child) {
-        margin-left: 1px;
-      }
-
-      &:not(:last-child) {
-        margin-right: 2px;
-      }
     }
   }
 
@@ -114,8 +125,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 0 14px;
-    margin-bottom: 10px;
+    padding: 0 14px 8px 14px;
 
     &-row {
       display: flex;
@@ -135,14 +145,6 @@
       text-align: center;
       font-size: 14px;
       cursor: pointer;
-
-      &:not(:first-child) {
-        margin-left: 1px;
-      }
-
-      &:not(:last-child) {
-        margin-right: 2px;
-      }
     }
 
     .day-cell-prev,
@@ -150,7 +152,7 @@
       color: rgba(getCssVar("date-table", "placeholder-text-color"), 1);
       font-weight: 400;
       border-radius: 50%;
-      
+
       &:hover {
         color: rgba(getCssVar("date-table", "date-text-color-hover"), 1);
         background-color: rgba(getCssVar("date-table", "date-bg-color-hover"), 1);
@@ -171,7 +173,7 @@
         transition: all 0.2s;
       }
     }
-    
+
     .to-day {
       &::after {
         content: "";
@@ -188,16 +190,24 @@
     }
 
     .active {
-      background-color: rgba(getCssVar("date-table", "date-bg-color-active"), 1);
       color: rgba(getCssVar("date-table", "date-text-color-active"), 1);
+      background-color: rgba(getCssVar("date-table", "date-bg-color-active"), 1);
+
+      &:hover {
+        color: rgba(getCssVar("date-table", "date-text-color-active"), 1);
+        background-color: rgba(getCssVar("date-table", "date-bg-color-active"), 1);
+      }
     }
   }
 
   &-footer {
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: 40px;
-    border-top: $borderSize solid var(--bp-gary-2);
+    width: 100%;
+    padding: 0 8px;
+    height: 38px;
+    border: $borderSize solid var(--bp-gary-2);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 }
