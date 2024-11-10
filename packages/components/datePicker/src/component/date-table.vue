@@ -45,8 +45,8 @@
 
   <div :class="`${clsBlockName}-footer`" :style="{ 'justify-content': ctx?.showTime ? 'space-between' : 'center' }">
     <template v-if="ctx?.showTime">
-      <bp-button size="mini" status="gary" @click="setNow"> 此刻 </bp-button>
-      <bp-button type="normal" size="mini" status="primary" @click="confirmValue"> 确定 </bp-button>
+      <bp-button size="small" status="gary" @click="setNow"> 此刻 </bp-button>
+      <bp-button type="normal" size="small" status="primary" @click="confirmValue"> 确定 </bp-button>
     </template>
     <bp-button v-else type="text" status="primary" @click="handleSelect(toDay)"> 今天 </bp-button>
   </div>
@@ -67,6 +67,7 @@ import BpButton from "@birdpaper-ui/components/button/index";
 import BpSpace from "@birdpaper-ui/components/space/index";
 import { TimeTable } from "@birdpaper-ui/components/timePicker/index";
 import { useDayJs } from "../core";
+import dayjs from "dayjs";
 
 defineOptions({ name: "DateTavke" });
 const { clsBlockName } = useNamespace("date-table");
@@ -95,8 +96,8 @@ const timeTableRef = ref();
 const handleSelect = (date: DayCell) => {
   currentVal.value = date.value;
 
-  if (ctx.value?.showTime && !currentTimeVal.value) {
-    currentTimeVal.value = timeTableRef.value.getTime(true);
+  if (ctx.value?.showTime) {
+    !currentTimeVal.value && (currentTimeVal.value = timeTableRef.value.getTime(true));
     return;
   }
 
@@ -108,6 +109,12 @@ const onTimeSelect = (time: string) => {
     handleSelect(toDay);
   }
   currentTimeVal.value = time;
+};
+
+/** Set current time (in `show-time` mode) */
+const setNow = () => {
+  currentVal.value = current.value.format("YYYY-MM-DD");
+  currentTimeVal.value = timeTableRef.value.getTime(true);
 };
 
 const options: { icon: Component; step: "year" | "month"; type: "prev" | "next" }[] = [
@@ -143,13 +150,8 @@ const changePicker = (typeName: PanelType) => {
 };
 
 const confirmValue = () => {
-  const val = `${currentVal.value} ${currentTimeVal.value}`;
+  const val = dayjs(`${currentVal.value} ${currentTimeVal.value}`).format(ctx.value?.valueFormat);
   ctx.value?.onSelect(val, {}, true);
   return val;
-};
-
-const setNow = () => {
-  currentVal.value = current.value.format("YYYY-MM-DD");
-  currentTimeVal.value = timeTableRef.value.getTime(true);
 };
 </script>
