@@ -13,9 +13,6 @@
         <div :class="`${clsBlockName}-header-option`">
           <component v-for="v in options" :is="v.icon" size="22" @click="handleStep(v.step, v.type)" />
         </div>
-        <!-- <div v-if="ctx?.showTime" class="time-header">
-          选择时间
-        </div> -->
       </div>
 
       <bp-space :size="2" :class="`${clsBlockName}-week`">
@@ -69,7 +66,7 @@ import { TimeTable } from "@birdpaper-ui/components/timePicker/index";
 import { useDayJs } from "../core";
 import dayjs from "dayjs";
 
-defineOptions({ name: "DateTavke" });
+defineOptions({ name: "DateTable" });
 const { clsBlockName } = useNamespace("date-table");
 
 const emits = defineEmits(["change-picker"]);
@@ -79,16 +76,16 @@ ctx.value = inject(dateInjectionKey, undefined);
 const cellCls = (cell: DayCell) => [
   `${clsBlockName}-body-inner`,
   `day-cell-${cell.type}`,
-  { active: (!!ctx.value?.model || ctx.value?.showTime) && currentVal.value === cell.value },
+  { active: (!!ctx.value!.model || ctx.value!.showTime) && currentVal.value === cell.value },
   { "to-day": toDay.value === cell.value },
 ];
 
 const { toDay, current, currentMonth, currentYear, dates, setDates, changeMonth, changeYear, weeks, months } = useDayJs(
-  ctx.value?.langs as LangsType,
-  ctx.value?.model as string
+  ctx.value!.langs,
+  ctx.value!.model
 );
 
-const currentVal = ref(ctx.value?.model ? current.value.format("YYYY-MM-DD") : "");
+const currentVal = ref(ctx.value!.model ? current.value.format("YYYY-MM-DD") : "");
 const currentTimeVal = ref("");
 setDates();
 
@@ -96,12 +93,12 @@ const timeTableRef = ref();
 const handleSelect = (date: DayCell) => {
   currentVal.value = date.value;
 
-  if (ctx.value?.showTime) {
+  if (ctx.value!.showTime) {
     !currentTimeVal.value && (currentTimeVal.value = timeTableRef.value.getTime(true));
     return;
   }
 
-  ctx.value?.onSelect(currentVal.value, {}, true);
+  ctx.value!.onSelect(currentVal.value, {}, true);
 };
 
 const onTimeSelect = (time: string) => {
@@ -114,7 +111,7 @@ const onTimeSelect = (time: string) => {
 /** Set current time (in `show-time` mode) */
 const setNow = () => {
   currentVal.value = current.value.format("YYYY-MM-DD");
-  currentTimeVal.value = timeTableRef.value.getTime(true);
+  currentTimeVal.value = timeTableRef.value.setNow();
 };
 
 const options: { icon: Component; step: "year" | "month"; type: "prev" | "next" }[] = [
@@ -150,8 +147,8 @@ const changePicker = (typeName: PanelType) => {
 };
 
 const confirmValue = () => {
-  const val = dayjs(`${currentVal.value} ${currentTimeVal.value}`).format(ctx.value?.valueFormat);
-  ctx.value?.onSelect(val, {}, true);
+  const val = dayjs(`${currentVal.value} ${currentTimeVal.value}`).format(ctx.value!.valueFormat);
+  ctx.value!.onSelect(val, {}, true);
   return val;
 };
 </script>

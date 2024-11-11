@@ -145,5 +145,6 @@ watch(
 defineExpose({
   globalValue,
   getTime,
+  setNow
 });
 </script>

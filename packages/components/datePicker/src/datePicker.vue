@@ -37,7 +37,7 @@ import BpTrigger from "@birdpaper-ui/components/trigger/index";
 import { computed, provide, ref } from "vue";
 import { datePickerProps, DatePickerProps } from "./props";
 import { IconCalendarLine } from "birdpaper-icon";
-import pickerPanel from "./component/pickerPanel.vue";
+import pickerPanel from "./component/picker-panel.vue";
 import { dateInjectionKey } from "./types";
 
 defineOptions({ name: "DatePicker" });

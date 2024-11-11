@@ -1,6 +1,7 @@
 @use "common/design" as *;
 @use "mixins/mixins.scss" as *;
 @use "./dateTable.scss";
+@use "./monthTable.scss";
 
 @include b(datePicker) {
   position: relative;
