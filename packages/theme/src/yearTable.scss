@@ -113,6 +113,14 @@
         background-color: rgba(getCssVar("year-table", "year-bg-color-active"), 1);
         transition: all 0.2s;
       }
+
+      &:hover{
+        .#{$B}-year-cell-inner {
+          color: rgba(getCssVar("year-table", "year-text-color-active"), 1);
+          background-color: rgba(getCssVar("year-table", "year-bg-color-active"), 1);
+          transition: all 0.2s;
+        }
+      }
     }
 
     .to-year {

@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { useNamespace } from "@birdpaper-ui/hooks";
-import { inject, ref } from "vue";
+import { inject, PropType, ref } from "vue";
 import dateTable from "./date-table.vue";
 import monthTable from "./month-table.vue";
 import yearTable from "./year-table.vue";
@@ -19,7 +19,7 @@ const { clsBlockName } = useNamespace("datePicker-panel");
 
 const props = defineProps({
   type: {
-    type: String,
+    type: String as PropType<PanelType>,
     default: "date",
   },
 });
@@ -36,6 +36,9 @@ ctx.value = inject(dateInjectionKey, undefined);
 
 const tableRef = ref();
 const onChangePicker = (typeName: PanelType) => {
+  if(props.type === 'year') return;
+  if(props.type === 'month' && typeName === 'date') return;
+
   currentTable.value = typeName;
 };
 </script>

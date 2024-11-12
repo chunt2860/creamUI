@@ -2,7 +2,7 @@
   <div :class="clsBlockName">
     <div :class="`${clsBlockName}-header`">
       <div :class="`${clsBlockName}-header-inner`">
-        <span @click.stop="handleChangePicker(PanelType.Year)">
+        <span @click.stop="handleChangePicker('year')">
           {{ currentYear }}
         </span>
       </div>
@@ -17,7 +17,7 @@
         :class="[
           `${clsBlockName}-month-cell`,
           { active: !!ctx!.model && currentVal === col.value },
-          { 'to-month': currentVal === col.value },
+          { 'to-month':  col.value ===`${dayjs(toDay.value).year()}-${dayjs(toDay.value).month()+1}`},
         ]"
         @click.stop="handleSelect(col)"
       >
@@ -31,6 +31,7 @@
 import { useNamespace } from "@birdpaper-ui/hooks";
 import { ref, inject } from "vue";
 import type { Component } from "vue";
+import dayjs from "dayjs";
 import { DatePickerContext, MonthCell, PanelType, dateInjectionKey } from "../types";
 import { useDayJs } from "../core";
 import { IconArrowLeftDoubleFill, IconArrowRightDoubleFill } from "birdpaper-icon";

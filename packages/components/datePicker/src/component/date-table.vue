@@ -3,10 +3,10 @@
     <div class="date-area">
       <div :class="`${clsBlockName}-header`">
         <div :class="`${clsBlockName}-header-inner`">
-          <span @click.stop="changePicker(PanelType.Year)">
+          <span @click.stop="changePicker('year')">
             {{ currentYear }}
           </span>
-          <span @click.stop="changePicker(PanelType.Month)">
+          <span @click.stop="changePicker('month')">
             {{ months[currentMonth] }}
           </span>
         </div>
@@ -142,7 +142,7 @@ const handleStep = (mode: "month" | "year", type: "prev" | "next", step: number 
 const changePicker = (typeName: PanelType) => {
   let val = currentYear.value;
 
-  if (typeName === PanelType.Month) {
+  if (typeName === 'month') {
     val = currentMonth.value;
   }
   emits("change-picker", typeName, val);

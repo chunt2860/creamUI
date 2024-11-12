@@ -26,11 +26,7 @@ export interface YearCell {
 }
 
 /** 日历面板类型 */
-export enum PanelType {
-  Date = "date",
-  Month = "month",
-  Year = "year",
-}
+export type PanelType = "date" | "month" | "year";
 
 export interface DatePickerContext {
   /** 绑定值 */

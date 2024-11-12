@@ -122,6 +122,14 @@
         background-color: rgba(getCssVar("month-table", "month-bg-color-active"), 1);
         transition: all 0.2s;
       }
+
+      &:hover{
+        .#{$B}-month-cell-inner {
+          color: rgba(getCssVar("month-table", "month-text-color-active"), 1);
+          background-color: rgba(getCssVar("month-table", "month-bg-color-active"), 1);
+          transition: all 0.2s;
+        }
+      }
     }
 
     .to-month {
