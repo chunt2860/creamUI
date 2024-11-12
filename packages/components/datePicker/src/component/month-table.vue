@@ -10,14 +10,14 @@
         <component v-for="v in options" :is="v.icon" size="22" @click="handleChange(v.type)" />
       </div>
     </div>
-    
+
     <div :class="`${clsBlockName}-body`">
       <div
-        v-for="(col, colIndex) in monthCell"
+        v-for="col in monthCell"
         :class="[
           `${clsBlockName}-month-cell`,
-          { active: currentVal === col.value },
-          { 'to-month': currentVal !== col.value && colIndex === dayjs(toDay.value).month() },
+          { active: !!ctx!.model && currentVal === col.value },
+          { 'to-month': currentVal === col.value },
         ]"
         @click.stop="handleSelect(col)"
       >
@@ -31,7 +31,6 @@
 import { useNamespace } from "@birdpaper-ui/hooks";
 import { ref, inject } from "vue";
 import type { Component } from "vue";
-import dayjs from "dayjs";
 import { DatePickerContext, MonthCell, PanelType, dateInjectionKey } from "../types";
 import { useDayJs } from "../core";
 import { IconArrowLeftDoubleFill, IconArrowRightDoubleFill } from "birdpaper-icon";
@@ -49,7 +48,7 @@ const { toDay, current, currentYear, monthCell, setMonthCell, changeYear } = use
   ctx.value!.model
 );
 const currentVal = ref(current.value && current.value.format(ctx.value!.valueFormat));
-setMonthCell(ctx.value!.valueFormat);
+setMonthCell();
 
 const options: { icon: Component; type: "prev" | "next" }[] = [
   { icon: IconArrowLeftDoubleFill, type: "prev" },
@@ -59,7 +58,7 @@ const handleChange = (type: "prev" | "next", step: number = 1) => {
   let val = currentYear.value;
   val = type === "next" ? val + step : val - step;
   changeYear(val);
-  setMonthCell(ctx.value!.valueFormat);
+  setMonthCell();
 };
 
 const handleSelect = (date: MonthCell) => {

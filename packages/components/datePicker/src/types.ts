@@ -21,7 +21,7 @@ export interface MonthCell {
 
 /** 日历中的年份单元格 */
 export interface YearCell {
-  value: string;
+  value: number;
   label?: string;
 }
 
@@ -40,7 +40,7 @@ export interface DatePickerContext {
   /** 值格式 */
   valueFormat: string;
   /** 是否显示时间选择器 */
-  showTime: boolean;
+  showTime?: boolean;
   /** 选择后触发 */
   onSelect: (value: string, payload: object, closePopup: boolean) => void;
 }

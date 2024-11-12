@@ -90,7 +90,6 @@
         width: 52px;
         color: rgba(getCssVar("year-table", "year-text-color"), 1);
         background-color: rgba(getCssVar("year-table", "year-bg-color"), 1);
-        line-height: 26px;
         font-size: 14px;
         font-weight: 500;
         border-radius: 6px;
@@ -121,7 +120,7 @@
         content: "";
         display: block;
         position: absolute;
-        bottom: -2px;
+        bottom: 0;
         width: 4px;
         height: 4px;
         margin-left: -2px;

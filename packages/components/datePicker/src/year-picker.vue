@@ -25,7 +25,7 @@
       </template>
     </bp-input>
     <template #content>
-      <picker-panel />
+      <picker-panel type="year" />
     </template>
   </bp-trigger>
 </template>
@@ -35,16 +35,16 @@ import { useNamespace } from "@birdpaper-ui/hooks";
 import BpInput from "@birdpaper-ui/components/input/index";
 import BpTrigger from "@birdpaper-ui/components/trigger/index";
 import { computed, provide, ref } from "vue";
-import { datePickerProps, DatePickerProps } from "./props";
+import { commonPickerProps, YearPickerProps, yearPickerProps } from "./props";
 import { IconCalendarLine } from "birdpaper-icon";
 import pickerPanel from "./component/picker-panel.vue";
 import { dateInjectionKey } from "./types";
 
-defineOptions({ name: "DatePicker" });
+defineOptions({ name: "YearPicker" });
 const { clsBlockName } = useNamespace("date-picker");
 
 const model = defineModel<string>({ default: "" });
-const props: DatePickerProps = defineProps(datePickerProps);
+const props: YearPickerProps = defineProps({ ...commonPickerProps, ...yearPickerProps });
 const emits = defineEmits(["input", "blur"]);
 
 const cls = computed<string[] | {}[]>(() => [clsBlockName, `${clsBlockName}-${props.size}`]);
@@ -54,7 +54,6 @@ provide(dateInjectionKey, {
   model: model as unknown as string,
   langs: props.langs,
   valueFormat: props.valueFormat,
-  showTime: props.showTime,
   onSelect: (v: string, payload: any, closePopup = true) => {
     model.value = v;
 

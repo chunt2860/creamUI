@@ -2,7 +2,7 @@ import { InputSize } from "@birdpaper-ui/components/input/src/types";
 import { ExtractPropTypes, PropType } from "vue";
 import { LangsType } from "./types";
 
-export const datePickerProps = {
+export const commonPickerProps = {
   /**
    * @type string
    * @description The input name.
@@ -49,6 +49,27 @@ export const datePickerProps = {
   },
   /**
    * @type string
+   * @description Hide trigger or not.
+   * @default false
+   */
+  hideTrigger: {
+    type: Boolean,
+    default: false,
+  },
+  /**
+   * @type string
+   * @description Language.
+   * @default "zh-cn"
+   */
+  langs: {
+    type: String as PropType<LangsType>,
+    default: "zh-cn",
+  },
+};
+
+export const datePickerProps = {
+  /**
+   * @type string
    * @description Value format.
    * @default "YYYY-MM-DD"
    */
@@ -57,19 +78,40 @@ export const datePickerProps = {
     default: "YYYY-MM-DD",
   },
   /**
-   * @type string
-   * @description Hide trigger or not.
+   * @type boolean
+   * @description Show time or not.
    * @default false
    */
-  hideTrigger: {
-    type: Boolean,
-    default: false,
-  },
-  langs: { type: String as PropType<LangsType>, default: "zh-cn" },
   showTime: {
     type: Boolean,
     default: false,
   },
 } as const;
 
-export type DatePickerProps = ExtractPropTypes<typeof datePickerProps>;
+export const yearPickerProps = {
+  /**
+   * @type string
+   * @description Value format.
+   * @default "YYYY"
+   */
+  valueFormat: {
+    type: String,
+    default: "YYYY",
+  },
+} as const;
+
+export const monthPickerProps = {
+  /**
+   * @type string
+   * @description Value format.
+   * @default "YYYY-MM"
+   */
+  valueFormat: {
+    type: String,
+    default: "YYYY-MM",
+  },
+} as const;
+
+export type DatePickerProps = ExtractPropTypes<typeof commonPickerProps & typeof datePickerProps>;
+export type YearPickerProps = ExtractPropTypes<typeof commonPickerProps & typeof yearPickerProps>;
+export type MonthPickerProps = ExtractPropTypes<typeof commonPickerProps & typeof monthPickerProps>;

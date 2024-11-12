@@ -17,7 +17,14 @@ import { dateInjectionKey, DatePickerContext, PanelType } from "../types";
 defineOptions({ name: "DatePickerPanel" });
 const { clsBlockName } = useNamespace("datePicker-panel");
 
-const currentTable = ref<string>("year");
+const props = defineProps({
+  type: {
+    type: String,
+    default: "date",
+  },
+});
+
+const currentTable = ref<string>(props.type);
 const tableMap = {
   date: dateTable,
   month: monthTable,

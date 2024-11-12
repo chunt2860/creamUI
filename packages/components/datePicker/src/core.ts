@@ -59,13 +59,13 @@ export const useDayJs = (lang: LangsType, model: string) => {
   const changeYear = (y: number) => (current.value = current.value.year(y));
 
   const monthCell = ref<MonthCell[]>([]);
-  const setMonthCell = (valueFormat: string) => {
+  const setMonthCell = () => {
     for (let i = 0; i < months.length; i++) {
       const label = months[i];
       const value = current.value.month(i);
 
       monthCell.value[i] = {
-        value: value.format(valueFormat),
+        value: value.format("YYYY-MM"),
         label,
       };
     }
@@ -73,13 +73,13 @@ export const useDayJs = (lang: LangsType, model: string) => {
 
   const yearCell = ref<YearCell[]>([]);
   const firstYear = ref<number>(current.value.subtract(5, "year").year());
-  const setYearCell = (valueFormat: string) => {
+  const setYearCell = () => {
     for (let i = 1; i < 13; i++) {
-      const value = current.value.year(firstYear.value + i);
+      const value = current.value.year(firstYear.value + i).year();
 
       yearCell.value[i - 1] = {
-        value: value.format(valueFormat),
-        label: value.year() + "",
+        value,
+        label: value.toString(),
       };
     }
   };

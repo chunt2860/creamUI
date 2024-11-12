@@ -21,7 +21,9 @@ import {
   VerifyCode,
   TimePicker,
   TimeTable,
-  DatePicker
+  DatePicker,
+  YearPicker,
+  MonthPicker
 } from "@birdpaper-ui/components";
 
 export default [
@@ -47,5 +49,7 @@ export default [
   VerifyCode,
   TimePicker,
   TimeTable,
-  DatePicker
+  DatePicker,
+  YearPicker,
+  MonthPicker
 ];
