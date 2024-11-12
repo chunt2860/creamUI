@@ -92,6 +92,8 @@ setDates();
 const timeTableRef = ref();
 const handleSelect = (date: DayCell) => {
   currentVal.value = date.value;
+  current.value = dayjs(currentVal.value);
+  setDates();
 
   if (ctx.value!.showTime) {
     !currentTimeVal.value && (currentTimeVal.value = timeTableRef.value.getTime(true));

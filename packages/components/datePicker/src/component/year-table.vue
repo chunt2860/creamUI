@@ -2,13 +2,13 @@
   <div :class="clsBlockName">
     <div :class="`${clsBlockName}-header`">
       <div :class="`${clsBlockName}-header-inner`">
-        <span :class="`${clsBlockName}-header-inner-year`"> {{ firstYear }} - {{ firstYear + 12 }}</span>
+        <span> {{ firstYear }} - {{ firstYear + 12 }}</span>
       </div>
       <div :class="`${clsBlockName}-header-option`">
-        <IconArrowLeftDoubleFill @click="handleChange('prev')" size="20px" />
-        <IconArrowRightDoubleFill @click="handleChange('next')" size="20px" />
+        <component v-for="v in options" :is="v.icon" size="22" @click="handleChange(v.type)" />
       </div>
     </div>
+    
     <div :class="`${clsBlockName}-body`">
       <div
         v-for="col in yearCell"
@@ -28,6 +28,7 @@
 <script lang="ts" setup>
 import { useNamespace } from "@birdpaper-ui/hooks";
 import { ref, inject } from "vue";
+import type { Component } from "vue";
 import { DatePickerContext, YearCell, dateInjectionKey } from "../types";
 import dayjs from "dayjs";
 import { useDayJs } from "../core";
@@ -46,6 +47,10 @@ const currentVal = ref(current.value && current.value.format(ctx.value!.valueFor
 
 setYearCell(ctx.value!.valueFormat);
 
+const options: { icon: Component; type: "prev" | "next" }[] = [
+  { icon: IconArrowLeftDoubleFill, type: "prev" },
+  { icon: IconArrowRightDoubleFill, type: "next" },
+];
 const handleChange = (type: "prev" | "next", step: number = 12) => {
   let val = firstYear.value;
   firstYear.value = type === "next" ? val + step : val - step;

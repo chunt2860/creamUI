@@ -1,0 +1,133 @@
+@use "common/design" as *;
+@use "mixins/var" as *;
+@use "mixins/function" as *;
+@use "mixins/mixins.scss" as *;
+
+@include b(year-table) {
+  // Option button
+  @include css-var-from-global-rgb(("year-table", "option-text-color"), ("gary", 6));
+  @include css-var-from-global-rgb(("year-table", "option-text-color-hover"), ("gary", 10));
+  @include css-var-from-global-rgb(("year-table", "option-bg-color"), ("gary", 0));
+  @include css-var-from-global-rgb(("year-table", "option-bg-color-hover"), ("gary", 1));
+
+  // Date cell
+  @include css-var-from-global-rgb(("year-table", "year-text-color"), ("gary", 10));
+  @include css-var-from-global-rgb(("year-table", "year-text-color-hover"), ("primary", 6));
+  @include css-var-from-global-rgb(("year-table", "year-text-color-active"), ("gary", 0));
+  @include css-var-from-global-rgb(("year-table", "year-bg-color"), ("gary", 0));
+  @include css-var-from-global-rgb(("year-table", "year-bg-color-hover"), ("gary", 1));
+  @include css-var-from-global-rgb(("year-table", "year-bg-color-active"), ("primary", 6));
+
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  border-radius: 8px;
+  background-color: var(--bp-gary-0);
+  border: $borderSize solid var(--bp-gary-2);
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    border-bottom: $borderSize dashed var(--bp-gary-3);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+
+    &-inner {
+      flex: 3;
+
+      span {
+        color: rgba(getCssVar("year-table", "year-text-color"), 1);
+        font-size: 16px;
+        font-weight: bold;
+        padding: 4px 6px;
+        border-radius: 6px;
+        background-color: rgba(getCssVar("year-table", "year-bg-color"), 1);
+      }
+    }
+
+    &-option {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      svg[class*="-icon-"] {
+        padding: 4px;
+        border-radius: 50%;
+        fill: rgba(getCssVar("year-table", "option-text-color"), 1);
+        background-color: rgba(getCssVar("year-table", "option-bg-color"), 1);
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+          fill: rgba(getCssVar("year-table", "option-text-color-hover"), 1);
+          background-color: rgba(getCssVar("year-table", "option-bg-color-hover"), 1);
+          transition: all 0.2s;
+        }
+      }
+    }
+  }
+
+  &-body {
+    padding: 16px 12px;
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    grid-gap: 10px 0;
+
+    .#{$B}-year-cell {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      cursor: pointer;
+
+      &-inner {
+        width: 52px;
+        color: rgba(getCssVar("year-table", "year-text-color"), 1);
+        background-color: rgba(getCssVar("year-table", "year-bg-color"), 1);
+        line-height: 26px;
+        font-size: 14px;
+        font-weight: 500;
+        border-radius: 6px;
+        line-height: 2;
+        text-align: center;
+        transition: all 0.2s;
+      }
+
+      &:hover {
+        .#{$B}-year-cell-inner {
+          color: rgba(getCssVar("year-table", "year-text-color-hover"), 1);
+          background-color: rgba(getCssVar("year-table", "year-bg-color-hover"), 1);
+          transition: all 0.2s;
+        }
+      }
+    }
+
+    .active {
+      .#{$B}-year-cell-inner {
+        color: rgba(getCssVar("year-table", "year-text-color-active"), 1);
+        background-color: rgba(getCssVar("year-table", "year-bg-color-active"), 1);
+        transition: all 0.2s;
+      }
+    }
+
+    .to-year {
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: -2px;
+        width: 4px;
+        height: 4px;
+        margin-left: -2px;
+        border-radius: 4px;
+        background-color: rgba(getCssVar("year-table", "year-bg-color-active"), 1);
+      }
+    }
+  }
+}
