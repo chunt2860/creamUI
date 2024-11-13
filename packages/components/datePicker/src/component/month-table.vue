@@ -1,15 +1,13 @@
 <template>
   <div :class="clsBlockName">
-    <div class="picker-table-header">
-      <div :class="`picker-table-header-inner`">
-        <span @click.stop="handleChangePicker('year')">
-          {{ currentYear }}
-        </span>
-      </div>
-      <div :class="`picker-table-header-option`">
+    <table-header>
+      <template #inner>
+        <span @click.stop="handleChangePicker('year')" v-text="currentYear" />
+      </template>
+      <template #option>
         <component v-for="v in options" :is="v.icon" size="22" @click="handleChange(v.type)" />
-      </div>
-    </div>
+      </template>
+    </table-header>
 
     <div :class="`${clsBlockName}-body`">
       <div v-for="col in monthCell" :class="cellCls(col)" @click.stop="handleSelect(col)">
@@ -25,6 +23,7 @@ import { ref, inject } from "vue";
 import type { Component } from "vue";
 import dayjs from "dayjs";
 import { DatePickerContext, MonthCell, PanelType, dateInjectionKey } from "../types";
+import tableHeader from "./table-header.vue";
 import { useDayJs } from "../core";
 import { IconArrowLeftDoubleFill, IconArrowRightDoubleFill } from "birdpaper-icon";
 

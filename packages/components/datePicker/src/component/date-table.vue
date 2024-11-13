@@ -1,19 +1,15 @@
 <template>
   <div :class="[clsBlockName, 'select-none']">
     <div class="date-area">
-      <div class="picker-table-header">
-        <div :class="`picker-table-header-inner`">
-          <span @click.stop="changePicker('year')">
-            {{ currentYear }}
-          </span>
-          <span @click.stop="changePicker('month')">
-            {{ months[currentMonth] }}
-          </span>
-        </div>
-        <div :class="`picker-table-header-option`">
+      <table-header>
+        <template #inner>
+          <span @click.stop="changePicker('year')" v-text="currentYear" />
+          <span @click.stop="changePicker('month')" v-text="months[currentMonth]" />
+        </template>
+        <template #option>
           <component v-for="v in options" :is="v.icon" size="22" @click="handleStep(v.step, v.type)" />
-        </div>
-      </div>
+        </template>
+      </table-header>
 
       <bp-space :size="2" :class="`${clsBlockName}-week`">
         <span v-for="v in weeks" :class="`${clsBlockName}-week-inner`">{{ v }}</span>
@@ -59,7 +55,8 @@ import {
   IconArrowLeftDoubleFill,
   IconArrowRightDoubleFill,
 } from "birdpaper-icon";
-import { DatePickerContext, DayCell, LangsType, PanelType, dateInjectionKey } from "../types";
+import { DatePickerContext, DayCell, PanelType, dateInjectionKey } from "../types";
+import tableHeader from "./table-header.vue";
 import BpButton from "@birdpaper-ui/components/button/index";
 import BpSpace from "@birdpaper-ui/components/space/index";
 import { TimeTable } from "@birdpaper-ui/components/timePicker/index";
@@ -142,7 +139,7 @@ const handleStep = (mode: "month" | "year", type: "prev" | "next", step: number 
 const changePicker = (typeName: PanelType) => {
   let val = currentYear.value;
 
-  if (typeName === 'month') {
+  if (typeName === "month") {
     val = currentMonth.value;
   }
   emits("change-picker", typeName, val);

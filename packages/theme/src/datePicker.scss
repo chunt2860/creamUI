@@ -9,7 +9,7 @@
 $borderRadius: 8px;
 
 $headerHeight: 48px;
-$headerPadding:  0 14px;
+$headerPadding: 0 14px;
 @mixin picker-table-header {
   // Header
   @include css-var-from-global-rgb(("date-picker", "header-text-color"), ("gary", 10));
@@ -90,7 +90,7 @@ $headerPadding:  0 14px;
       justify-content: center;
       flex-direction: column;
 
-      .picker-table-header {
+      .#{$namespace}-picker-table-header {
         @include picker-table-header;
       }
     }

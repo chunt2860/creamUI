@@ -1,13 +1,13 @@
 <template>
   <div :class="clsBlockName">
-      <div class="picker-table-header">
-        <div :class="`picker-table-header-inner`">
+    <table-header>
+      <template #inner>
         <span> {{ firstYear + 1 }} - {{ firstYear + 12 }}</span>
-      </div>
-      <div :class="`picker-table-header-option`">
+      </template>
+      <template #option>
         <component v-for="v in options" :is="v.icon" size="22" @click="handleChange(v.type)" />
-      </div>
-    </div>
+      </template>
+    </table-header>
 
     <div :class="`${clsBlockName}-body`">
       <div v-for="col in yearCell" :class="cellCls(col)" @click.stop="handleSelect(col)">
@@ -23,6 +23,7 @@ import { ref, inject } from "vue";
 import type { Component } from "vue";
 import { DatePickerContext, YearCell, dateInjectionKey } from "../types";
 import dayjs from "dayjs";
+import tableHeader from "./table-header.vue";
 import { useDayJs } from "../core";
 import { IconArrowLeftDoubleFill, IconArrowRightDoubleFill } from "birdpaper-icon";
 
