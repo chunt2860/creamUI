@@ -1,26 +1,18 @@
 <template>
   <div :class="clsBlockName">
-    <div :class="`${clsBlockName}-header`">
-      <div :class="`${clsBlockName}-header-inner`">
+    <div class="picker-table-header">
+      <div :class="`picker-table-header-inner`">
         <span @click.stop="handleChangePicker('year')">
           {{ currentYear }}
         </span>
       </div>
-      <div :class="`${clsBlockName}-header-option`">
+      <div :class="`picker-table-header-option`">
         <component v-for="v in options" :is="v.icon" size="22" @click="handleChange(v.type)" />
       </div>
     </div>
 
     <div :class="`${clsBlockName}-body`">
-      <div
-        v-for="col in monthCell"
-        :class="[
-          `${clsBlockName}-month-cell`,
-          { active: !!ctx!.model && currentVal === col.value },
-          { 'to-month':  col.value ===`${dayjs(toDay.value).year()}-${dayjs(toDay.value).month()+1}`},
-        ]"
-        @click.stop="handleSelect(col)"
-      >
+      <div v-for="col in monthCell" :class="cellCls(col)" @click.stop="handleSelect(col)">
         <span :class="[`${clsBlockName}-month-cell-inner`]">{{ col.label }}</span>
       </div>
     </div>
@@ -43,6 +35,11 @@ const emits = defineEmits(["change-picker"]);
 
 const ctx = ref<DatePickerContext>();
 ctx.value = inject(dateInjectionKey, undefined);
+const cellCls = (cell: MonthCell) => [
+  `${clsBlockName}-month-cell`,
+  { active: !!ctx.value!.model && currentVal.value === cell.value },
+  { "to-month": cell.value === `${dayjs(toDay.value).year()}-${dayjs(toDay.value).month() + 1}` },
+];
 
 const { toDay, current, currentYear, monthCell, setMonthCell, changeYear } = useDayJs(
   ctx.value!.langs,

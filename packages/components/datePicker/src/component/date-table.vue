@@ -1,8 +1,8 @@
 <template>
   <div :class="[clsBlockName, 'select-none']">
     <div class="date-area">
-      <div :class="`${clsBlockName}-header`">
-        <div :class="`${clsBlockName}-header-inner`">
+      <div class="picker-table-header">
+        <div :class="`picker-table-header-inner`">
           <span @click.stop="changePicker('year')">
             {{ currentYear }}
           </span>
@@ -10,7 +10,7 @@
             {{ months[currentMonth] }}
           </span>
         </div>
-        <div :class="`${clsBlockName}-header-option`">
+        <div :class="`picker-table-header-option`">
           <component v-for="v in options" :is="v.icon" size="22" @click="handleStep(v.step, v.type)" />
         </div>
       </div>

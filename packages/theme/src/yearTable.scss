@@ -1,15 +1,9 @@
 @use "common/design" as *;
 @use "mixins/var" as *;
 @use "mixins/function" as *;
-@use "mixins/mixins.scss" as *;
+@use "mixins/mixins" as *;
 
 @include b(year-table) {
-  // Option button
-  @include css-var-from-global-rgb(("year-table", "option-text-color"), ("gary", 6));
-  @include css-var-from-global-rgb(("year-table", "option-text-color-hover"), ("gary", 10));
-  @include css-var-from-global-rgb(("year-table", "option-bg-color"), ("gary", 0));
-  @include css-var-from-global-rgb(("year-table", "option-bg-color-hover"), ("gary", 1));
-
   // Date cell
   @include css-var-from-global-rgb(("year-table", "year-text-color"), ("gary", 10));
   @include css-var-from-global-rgb(("year-table", "year-text-color-hover"), ("primary", 6));
@@ -24,53 +18,6 @@
   border-radius: 8px;
   background-color: var(--bp-gary-0);
   border: $borderSize solid var(--bp-gary-2);
-
-  &-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 48px;
-    padding: 0 14px;
-    border-bottom: $borderSize dashed var(--bp-gary-3);
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-
-    &-inner {
-      flex: 3;
-
-      span {
-        color: rgba(getCssVar("year-table", "year-text-color"), 1);
-        font-size: 16px;
-        font-weight: bold;
-        padding: 4px 6px;
-        border-radius: 6px;
-        background-color: rgba(getCssVar("year-table", "year-bg-color"), 1);
-      }
-    }
-
-    &-option {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      svg[class*="-icon-"] {
-        padding: 4px;
-        border-radius: 50%;
-        fill: rgba(getCssVar("year-table", "option-text-color"), 1);
-        background-color: rgba(getCssVar("year-table", "option-bg-color"), 1);
-        cursor: pointer;
-        transition: all 0.2s;
-
-        &:hover {
-          fill: rgba(getCssVar("year-table", "option-text-color-hover"), 1);
-          background-color: rgba(getCssVar("year-table", "option-bg-color-hover"), 1);
-          transition: all 0.2s;
-        }
-      }
-    }
-  }
 
   &-body {
     padding: 16px 12px;

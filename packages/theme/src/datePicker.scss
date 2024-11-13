@@ -1,21 +1,98 @@
 @use "common/design" as *;
-@use "mixins/mixins.scss" as *;
-@use "./dateTable.scss";
-@use "./monthTable.scss";
-@use "./yearTable.scss";
+@use "mixins/var" as *;
+@use "mixins/function" as *;
+@use "mixins/mixins" as *;
+@use "./dateTable";
+@use "./monthTable";
+@use "./yearTable";
 
-@include b(datePicker) {
+$borderRadius: 8px;
+
+$headerHeight: 48px;
+$headerPadding:  0 14px;
+@mixin picker-table-header {
+  // Header
+  @include css-var-from-global-rgb(("date-picker", "header-text-color"), ("gary", 10));
+  @include css-var-from-global-rgb(("date-picker", "header-text-color-hover"), ("primary", 6));
+  @include css-var-from-global-rgb(("date-picker", "header-bg-color"), ("gary", 0));
+  @include css-var-from-global-rgb(("date-picker", "header-bg-color-hover"), ("gary", 1));
+
+  // Option button
+  @include css-var-from-global-rgb(("date-picker", "option-text-color"), ("gary", 6));
+  @include css-var-from-global-rgb(("date-picker", "option-text-color-hover"), ("gary", 10));
+  @include css-var-from-global-rgb(("date-picker", "option-bg-color"), ("gary", 0));
+  @include css-var-from-global-rgb(("date-picker", "option-bg-color-hover"), ("gary", 1));
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: $headerHeight;
+  padding: $headerPadding;
+  border-bottom: $borderSize dashed var(--bp-gary-3);
+  border-top-left-radius: $borderRadius;
+  border-top-right-radius: $borderRadius;
+
+  &-inner {
+    flex: 3;
+
+    span {
+      color: rgba(getCssVar("date-picker", "header-text-color"), 1);
+      font-size: 16px;
+      font-weight: bold;
+      padding: 4px 6px;
+      border-radius: 6px;
+      background-color: rgba(getCssVar("date-picker", "header-bg-color"), 1);
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        color: rgba(getCssVar("date-picker", "header-text-color-hover"), 1);
+        background-color: rgba(getCssVar("date-picker", "header-bg-color-hover"), 1);
+        transition: all 0.2s;
+      }
+    }
+  }
+
+  &-option {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    svg[class*="-icon-"] {
+      padding: 4px;
+      border-radius: 50%;
+      fill: rgba(getCssVar("date-picker", "option-text-color"), 1);
+      background-color: rgba(getCssVar("date-picker", "option-bg-color"), 1);
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        fill: rgba(getCssVar("date-picker", "option-text-color-hover"), 1);
+        background-color: rgba(getCssVar("date-picker", "option-bg-color-hover"), 1);
+        transition: all 0.2s;
+      }
+    }
+  }
+}
+
+@include b(date-picker) {
   position: relative;
 
   &-panel {
     width: fit-content;
-    border-radius: 8px;
+    border-radius: $borderRadius;
 
     &-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
+
+      .picker-table-header {
+        @include picker-table-header;
+      }
     }
   }
 }

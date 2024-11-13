@@ -15,7 +15,7 @@ import yearTable from "./year-table.vue";
 import { dateInjectionKey, DatePickerContext, PanelType } from "../types";
 
 defineOptions({ name: "DatePickerPanel" });
-const { clsBlockName } = useNamespace("datePicker-panel");
+const { clsBlockName } = useNamespace("date-picker-panel");
 
 const props = defineProps({
   type: {

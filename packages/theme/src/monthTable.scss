@@ -4,12 +4,6 @@
 @use "mixins/mixins.scss" as *;
 
 @include b(month-table) {
-  // Option button
-  @include css-var-from-global-rgb(("month-table", "option-text-color"), ("gary", 6));
-  @include css-var-from-global-rgb(("month-table", "option-text-color-hover"), ("gary", 10));
-  @include css-var-from-global-rgb(("month-table", "option-bg-color"), ("gary", 0));
-  @include css-var-from-global-rgb(("month-table", "option-bg-color-hover"), ("gary", 1));
-
   // Date cell
   @include css-var-from-global-rgb(("month-table", "month-text-color"), ("gary", 10));
   @include css-var-from-global-rgb(("month-table", "month-text-color-hover"), ("primary", 6));
@@ -24,61 +18,6 @@
   border-radius: 8px;
   background-color: var(--bp-gary-0);
   border: $borderSize solid var(--bp-gary-2);
-
-  &-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 48px;
-    padding: 0 14px;
-    border-bottom: $borderSize dashed var(--bp-gary-3);
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-
-    &-inner {
-      flex: 3;
-
-      span {
-        color: rgba(getCssVar("month-table", "month-text-color"), 1);
-        font-size: 16px;
-        font-weight: bold;
-        padding: 4px 6px;
-        border-radius: 6px;
-        background-color: rgba(getCssVar("month-table", "month-bg-color"), 1);
-        cursor: pointer;
-        transition: all 0.2s;
-
-        &:hover {
-          color: rgba(getCssVar("month-table", "month-text-color-hover"), 1);
-          background-color: rgba(getCssVar("month-table", "month-bg-color-hover"), 1);
-          transition: all 0.2s;
-        }
-      }
-    }
-
-    &-option {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      svg[class*="-icon-"] {
-        padding: 4px;
-        border-radius: 50%;
-        fill: rgba(getCssVar("month-table", "option-text-color"), 1);
-        background-color: rgba(getCssVar("month-table", "option-bg-color"), 1);
-        cursor: pointer;
-        transition: all 0.2s;
-
-        &:hover {
-          fill: rgba(getCssVar("month-table", "option-text-color-hover"), 1);
-          background-color: rgba(getCssVar("month-table", "option-bg-color-hover"), 1);
-          transition: all 0.2s;
-        }
-      }
-    }
-  }
 
   &-body {
     padding: 16px 12px;
@@ -137,7 +76,7 @@
         content: "";
         display: block;
         position: absolute;
-        bottom: -2px;
+        bottom: 0;
         width: 4px;
         height: 4px;
         margin-left: -2px;
