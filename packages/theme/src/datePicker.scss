@@ -6,10 +6,6 @@
 @use "./monthTable";
 @use "./yearTable";
 
-$borderRadius: 8px;
-
-$headerHeight: 48px;
-$headerPadding: 0 14px;
 @mixin picker-table-header {
   // Header
   @include css-var-from-global-rgb(("date-picker", "header-text-color"), ("gary", 10));
@@ -27,11 +23,11 @@ $headerPadding: 0 14px;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: $headerHeight;
-  padding: $headerPadding;
-  border-bottom: $borderSize dashed var(--bp-gary-3);
-  border-top-left-radius: $borderRadius;
-  border-top-right-radius: $borderRadius;
+  height: $date-picker-header-height;
+  padding: $date-picker-header-padding;
+  border-bottom: $borderSize dashed $date-picker-border-color;
+  border-top-left-radius: $date-picker-border-radius;
+  border-top-right-radius: $date-picker-border-radius;
 
   &-inner {
     flex: 3;
@@ -43,6 +39,11 @@ $headerPadding: 0 14px;
       padding: 4px 6px;
       border-radius: 6px;
       background-color: rgba(getCssVar("date-picker", "header-bg-color"), 1);
+    }
+  }
+
+  .allow-click {
+    span{
       cursor: pointer;
       transition: all 0.2s;
 
@@ -52,6 +53,7 @@ $headerPadding: 0 14px;
         transition: all 0.2s;
       }
     }
+
   }
 
   &-option {
@@ -82,7 +84,7 @@ $headerPadding: 0 14px;
 
   &-panel {
     width: fit-content;
-    border-radius: $borderRadius;
+    border-radius: $date-picker-border-radius;
 
     &-wrapper {
       display: flex;

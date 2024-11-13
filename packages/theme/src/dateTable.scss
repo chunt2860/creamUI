@@ -19,33 +19,31 @@
   @include css-var-from-global-rgb(("date-table", "date-bg-color-active"), ("primary", 6));
 
   display: flex;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  background-color: var(--bp-gary-0);
-  border: $borderSize solid var(--bp-gary-2);
+  border-top-left-radius: $date-picker-border-radius;
+  border-top-right-radius: $date-picker-border-radius;
+  background-color: $date-picker-bg;
+  border: $borderSize solid $date-picker-border-color;
   border-bottom: 0px;
 
   .time-area {
-    border-left: $borderSize solid var(--bp-gary-2);
+    border-left: $borderSize solid $date-picker-border-color;
 
     &-header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 48px;
-      padding: 0 14px;
-      border-bottom: $borderSize solid var(--bp-gary-2);
-      border-top-right-radius: 8px;
-      font-size: 14px;
-      color: var(--bp-gary-9);
+      @include flex(row, center, center) {
+        height: $date-picker-header-height;
+        padding: $date-picker-header-padding;
+        border-bottom: $borderSize solid $date-picker-border-color;
+        border-top-right-radius: $date-picker-border-radius;
+        font-size: 14px;
+        color: var(--bp-gary-9);
+      }
     }
   }
 
   &-week {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 8px 14px 0 14px;
+    @include flex(row, center, space-around) {
+      padding: 8px 14px 0 14px;
+    }
 
     &-inner {
       display: block;
@@ -60,15 +58,14 @@
   }
 
   &-body {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 0 14px 8px 14px;
+    @include flex(column, center, center) {
+      padding: 0 14px 8px 14px;
+    }
 
     &-row {
-      display: flex;
-      justify-content: space-around;
-      width: 100%;
+      @include flex(row, center, space-around) {
+        width: 100%;
+      }
 
       &:not(:first-child) {
         margin-top: 6px;
@@ -139,14 +136,14 @@
   }
 
   &-footer {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 0 10px;
-    height: 48px;
-    border: $borderSize solid var(--bp-gary-2);
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    background-color: var(--bp-gary-0);
+    @include flex(row, center, center) {
+      width: 100%;
+      padding: 0 10px;
+      height: 48px;
+      border: $borderSize solid var(--bp-gary-2);
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      background-color: var(--bp-gary-0);
+    }
   }
 }

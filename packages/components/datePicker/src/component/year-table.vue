@@ -1,6 +1,6 @@
 <template>
   <div :class="clsBlockName">
-    <table-header>
+    <table-header :inner-allow-click="false">
       <template #inner>
         <span> {{ firstYear + 1 }} - {{ firstYear + 12 }}</span>
       </template>

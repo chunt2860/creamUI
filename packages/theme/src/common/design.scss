@@ -1,3 +1,11 @@
 $namespace: "bp" !default;
 
 $borderSize: 0.5px;
+
+/** Components design variables **/
+// DatePicker
+$date-picker-bg: var(--bp-gary-0);
+$date-picker-border-radius: 8px;
+$date-picker-border-color: var(--bp-gary-3);
+$date-picker-header-height: 48px;
+$date-picker-header-padding: 0 14px;

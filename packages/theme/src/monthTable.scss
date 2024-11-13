@@ -3,6 +3,8 @@
 @use "mixins/function" as *;
 @use "mixins/mixins.scss" as *;
 
+$date-picker-month-table-width: 260px;
+
 @include b(month-table) {
   // Date cell
   @include css-var-from-global-rgb(("month-table", "month-text-color"), ("gary", 10));
@@ -12,12 +14,13 @@
   @include css-var-from-global-rgb(("month-table", "month-bg-color-hover"), ("gary", 1));
   @include css-var-from-global-rgb(("month-table", "month-bg-color-active"), ("primary", 6));
 
-  display: flex;
-  flex-direction: column;
-  width: 260px;
-  border-radius: 8px;
-  background-color: var(--bp-gary-0);
-  border: $borderSize solid var(--bp-gary-2);
+
+  @include flex(column, center, stretch) {
+    width: $date-picker-month-table-width;
+    border-radius: $date-picker-border-radius;
+    background-color: $date-picker-bg;
+    border: $borderSize solid $date-picker-border-color;
+  }
 
   &-body {
     padding: 16px 12px;
@@ -26,12 +29,10 @@
     grid-gap: 10px 0;
 
     .#{$B}-month-cell {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      cursor: pointer;
+      @include flex(column, center, center) {
+        position: relative;
+        cursor: pointer;
+      }
 
       &-inner {
         width: 46px;
