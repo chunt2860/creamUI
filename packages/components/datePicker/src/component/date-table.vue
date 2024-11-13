@@ -109,7 +109,7 @@ const onTimeSelect = (time: string) => {
 
 /** Set current time (in `show-time` mode) */
 const setNow = () => {
-  currentVal.value = current.value.format("YYYY-MM-DD");
+  currentVal.value = toDay.value;
   currentTimeVal.value = timeTableRef.value.setNow();
 };
 

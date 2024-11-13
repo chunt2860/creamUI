@@ -54,10 +54,9 @@ provide(dateInjectionKey, {
   model: model as unknown as string,
   langs: props.langs,
   valueFormat: props.valueFormat,
-  onSelect: (v: string, payload: any, closePopup = true) => {
+  onSelect: (v: string) => {
     model.value = v;
-
-    if (closePopup) showPopup.value = false;
+    showPopup.value = false;
   },
 });
 
