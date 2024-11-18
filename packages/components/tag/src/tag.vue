@@ -4,7 +4,7 @@
       <component :class="`${clsBlockName}-icon`" :is="icon" v-if="icon" size="16" />
       <slot />
     </div>
-    <IconCloseLine :class="`${clsBlockName}-close`" v-if="closeable" size="16" />
+    <IconCloseLine :class="`${clsBlockName}-close`" v-if="closeable" size="16" @click="handleClose" />
   </div>
 </template>
 
@@ -18,8 +18,14 @@ defineOptions({ name: "Tag" });
 const { clsBlockName } = useNamespace("tag");
 
 const props: TagProps = defineProps(tagProps);
+const emits = defineEmits(["close"]);
 
 const cls = computed(() => {
   return [clsBlockName, `${clsBlockName}-${props.status}`, props.border && `${clsBlockName}-border`];
 });
+
+const handleClose = () => {
+  if (!props.closeable) return;
+  emits("close");
+};
 </script>
