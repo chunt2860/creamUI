@@ -1,0 +1,56 @@
+@use "common/design" as *;
+@use "mixins/var" as *;
+@use "mixins/function" as *;
+@use "mixins/mixins" as *;
+
+@include b(tag) {
+  @include flex(row, center, center) {
+    background-color: rgba(getCssVar("tag", "bg-color"), 1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    max-width: 180px;
+    box-sizing: border-box;
+    height: 24px;
+    cursor: pointer;
+
+    &-content {
+      @include flex(row, center, center) {
+        font-size: 12px;
+        font-weight: 400;
+        color: rgba(getCssVar("tag", "text-color"), 1);
+        line-height: 1.2;
+      }
+    }
+
+    .#{$B}-icon {
+      fill: rgba(getCssVar("tag", "text-color"), 1);
+      margin-right: 2px;
+      padding: 1px;
+    }
+
+    .#{$B}-close {
+      fill: rgba(getCssVar("tag", "icon-color"), 0.8);
+      margin-left: 6px;
+      border-radius: 50%;
+      padding: 1px;
+
+      &:hover {
+        background-color: rgba(getCssVar("tag", "icon-color"), 0.2);
+      }
+    }
+  }
+}
+
+.#{$B}-border {
+  border: $borderSize solid rgba(getCssVar("tag", "text-color"), 1);
+}
+
+$status: "gary", "primary", "success", "warning", "danger";
+
+@each $item in $status {
+  .#{$B}-#{$item} {
+    @include css-var-from-global-rgb(("tag", "bg-color"), ($item, "1"));
+    @include css-var-from-global-rgb(("tag", "text-color"), ($item, if($item == "gary", "10", "7")));
+    @include css-var-from-global-rgb(("tag", "icon-color"), ($item, if($item == "gary", "10", "7")));
+  }
+}

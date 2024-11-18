@@ -23,7 +23,8 @@ import {
   TimeTable,
   DatePicker,
   YearPicker,
-  MonthPicker
+  MonthPicker,
+  Tag
 } from "@birdpaper-ui/components";
 
 export default [
@@ -51,5 +52,6 @@ export default [
   TimeTable,
   DatePicker,
   YearPicker,
-  MonthPicker
+  MonthPicker,
+  Tag
 ];
