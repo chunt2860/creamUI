@@ -11,8 +11,7 @@
     max-width: 180px;
     box-sizing: border-box;
     height: 24px;
-    cursor: pointer;
-
+    
     &-content {
       @include flex(row, center, center) {
         font-size: 12px;
@@ -21,18 +20,19 @@
         line-height: 1.2;
       }
     }
-
+    
     .#{$B}-icon {
       fill: rgba(getCssVar("tag", "text-color"), 1);
       margin-right: 2px;
       padding: 1px;
     }
-
+    
     .#{$B}-close {
       fill: rgba(getCssVar("tag", "icon-color"), 0.8);
       margin-left: 6px;
       border-radius: 50%;
       padding: 1px;
+      cursor: pointer;
 
       &:hover {
         background-color: rgba(getCssVar("tag", "icon-color"), 0.2);

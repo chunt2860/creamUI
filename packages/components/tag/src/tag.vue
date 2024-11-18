@@ -21,7 +21,7 @@ const props: TagProps = defineProps(tagProps);
 const emits = defineEmits(["close"]);
 
 const cls = computed(() => {
-  return [clsBlockName, `${clsBlockName}-${props.status}`, props.border && `${clsBlockName}-border`];
+  return [clsBlockName, "select-none", `${clsBlockName}-${props.status}`, props.border && `${clsBlockName}-border`];
 });
 
 const handleClose = () => {
