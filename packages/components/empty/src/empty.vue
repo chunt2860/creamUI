@@ -4,8 +4,9 @@
       <div v-if="!slots.image?.()">
         <IconInbox2Line size="28" />
       </div>
-      <slot v-else name="image" />
+      <slot name="image" />
     </div>
+    
     <div :class="`${clsBlockName}-content`">
       {{ content }}
     </div>

@@ -42,7 +42,7 @@ export const tableProps = {
    */
   emptyText: {
     type: String,
-    default: "No Data",
+    default: "暂无数据",
   },
 } as const;
 
