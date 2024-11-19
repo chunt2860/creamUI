@@ -26,8 +26,7 @@
     <template #content>
       <ul :class="`${clsBlockName}-content select-none`">
         <slot v-if="hasOptions"></slot>
-
-        <div v-else :class="`${clsBlockName}-empty`">Empty.</div>
+        <bp-empty v-else />
       </ul>
     </template>
   </bp-trigger>
@@ -36,6 +35,7 @@
 <script setup lang="ts">
 import BpInput from "@birdpaper-ui/components/input/index";
 import BpTrigger from "@birdpaper-ui/components/trigger/index";
+import BpEmpty from "@birdpaper-ui/components/empty/index";
 import { useNamespace } from "@birdpaper-ui/hooks";
 import { SelectProps, selectProps } from "./props";
 import { selectInjectionKey, SelectOption, SelectValue } from "./types";

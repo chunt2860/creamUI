@@ -11,8 +11,7 @@
             <td :colspan="columns.length">
               <slot name="empty"></slot>
               <div :class="`${clsBlockName}-body-tbody-empty`" v-if="!slots.empty?.()">
-                <IconInbox2Line size="24px" />
-                {{ emptyText }}
+                <bp-empty :content="emptyText"></bp-empty>
               </div>
             </td>
           </tr>
@@ -29,6 +28,7 @@
 <script setup lang="ts">
 import { useNamespace } from "@birdpaper-ui/hooks";
 import { TableProps, tableProps } from "./props";
+import BpEmpty from "@birdpaper-ui/components/empty/index";
 import tableHeader from "./components/table-header.vue";
 import tableBody from "./components/table-body.jsx";
 import { useTableCore } from "./core";
