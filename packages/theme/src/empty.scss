@@ -1,0 +1,29 @@
+@use "common/design" as *;
+@use "mixins/function" as *;
+@use "mixins/var" as *;
+@use "mixins/mixins" as *;
+
+@include b(empty) {
+  @include css-var-from-global-rgb(("empty", "color"), ("gary", "4"));
+
+  @include flex(column, center, center) {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+
+    &-image {
+      margin-bottom: 6px;
+
+      svg[class*="-icon-"] {
+        fill: rgba(getCssVar("empty", "color"), 1);
+      }
+    }
+
+    &-content {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(getCssVar("empty", "color"), 1);
+    }
+  }
+}

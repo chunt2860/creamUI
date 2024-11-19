@@ -17,5 +17,6 @@ export * from "./timePicker";
 export * from "./datePicker";
 export * from "./config-provider";
 export * from "./tag";
+export * from "./empty";
 
 export * from "./message";
