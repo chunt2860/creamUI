@@ -1,7 +1,7 @@
-@use "common/extend.scss" as *;
 @use "mixins/var" as *;
 @use "mixins/function" as *;
 @use "mixins/mixins.scss" as *;
+@use "common/sizes" as *;
 
 @include b(pagination) {
   position: relative;
@@ -16,20 +16,14 @@
     .#{$B}-item {
       @include flex(row, center, center);
       list-style: none;
-      height: 32px;
       margin: 0;
       cursor: pointer;
-
-      &:not(:first-child) {
-        margin-left: 10px;
-      }
 
       svg[class*="-icon-"] {
         fill: var(--bp-gary-8);
       }
 
       .page-text {
-        font-size: 12px;
         color: var(--bp-gary-8);
         font-weight: normal;
       }
@@ -47,12 +41,9 @@
 .#{$B}-prev,
 .#{$B}-next,
 .#{$B}-pager {
-  min-width: 32px;
-  border-radius: 6px;
   fill: var(--bp-gary-8);
   color: var(--bp-gary-8);
   font-weight: normal;
-  font-size: 12px;
   transition: all 0.2s ease;
 
   &:hover {
@@ -61,10 +52,44 @@
   }
 }
 
-.#{$B}-jumper {
-  div[class*="input-number"] {
-    min-width: 48px;
-    width: 48px;
-    margin: 0 8px;
+@each $size in $sizes {
+  .#{$B}-#{$size} {
+    .#{$B}-item {
+      height: getCssVar("size-height", $size);
+
+      &:not(:first-child) {
+        margin-left: calc(getCssVar("size-padding", $size) / 2);
+      }
+
+      .page-text {
+        font-size: calc(getCssVar("size-font-size", $size) - 2px);
+      }
+    }
+
+    .#{$B}-prev,
+    .#{$B}-next,
+    .#{$B}-pager {
+      font-size: calc(getCssVar("size-font-size", $size) - 2px);
+      border-radius: getCssVar("size-border-radius", $size);
+      min-width: getCssVar("size-height", $size);
+    }
+
+    .#{$B}-prev,
+    .#{$B}-next {
+      padding: 0 calc(getCssVar("size-padding", $size) / 3);
+    }
+
+    .#{$B}-jumper {
+      div[class*="input-number"] {
+        min-width: calc(getCssVar("size-height", $size) * 1.6);
+        width: calc(getCssVar("size-height", $size) * 1.6);
+      }
+    }
+
+    .#{$B}-jumper {
+      div[class*="input-number"] {
+        margin: 0 calc(getCssVar("size-padding", $size) / 2);
+      }
+    }
   }
 }

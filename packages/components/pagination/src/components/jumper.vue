@@ -1,15 +1,17 @@
 <template>
-  <li :class="[`${clsBlockName}`, extraClass]">
+  <li :class="cls">
     <span v-if="text.prefix" class="page-text">{{ text.prefix }}</span>
-    <bp-input-number :min="1" :precision="0" hide-button v-model="val" @blur="handleBlur"></bp-input-number>
+    <bp-input-number :min="1" :precision="0" :disabled :size hide-button v-model="val"
+      @blur="handleBlur"></bp-input-number>
     <span v-if="text.suffix" class="page-text">{{ text.suffix }}</span>
   </li>
 </template>
 
 <script setup lang="ts">
+import { InputSize } from "@birdpaper-ui/components/input/src/types";
 import BpInputNumber from "@birdpaper-ui/components/inputNumber/index";
 import { useNamespace } from "@birdpaper-ui/hooks";
-import { reactive, ref, watchEffect } from "vue";
+import { computed, PropType, reactive, ref, watchEffect } from "vue";
 
 const props = defineProps({
   /**
@@ -18,6 +20,18 @@ const props = defineProps({
    * @default 1
    */
   currentPage: { type: Number, default: 1 },
+  /**
+   * @type InputSize
+   * @description Pagination sizes.
+   * @default default
+   */
+  size: { type: String as PropType<InputSize>, default: "default" },
+  /**
+  * @type Boolean
+  * @description: Whether the button is disabled.
+  * @default false
+  */
+  disabled: { type: Boolean, default: false },
   /**
    * @type Number
    * @description: The total pages.
@@ -42,6 +56,7 @@ const emits = defineEmits<{
 }>();
 
 const { clsBlockName } = useNamespace("pagination-jumper");
+const cls = computed(() => [clsBlockName, props.extraClass]);
 
 const paramsStr = "{jumper}";
 const val = ref<number | ''>('');

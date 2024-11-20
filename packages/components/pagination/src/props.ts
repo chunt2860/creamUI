@@ -1,4 +1,5 @@
-import { ExtractPropTypes } from "vue";
+import { InputSize } from "@birdpaper-ui/components/input/src/types";
+import { ExtractPropTypes, PropType } from "vue";
 
 export const paginationProps = {
   /**
@@ -13,6 +14,15 @@ export const paginationProps = {
    * @default false
    */
   disabled: { type: Boolean, default: false },
+  /**
+   * @type InputSize
+   * @description Pagination sizes.
+   * @default default
+   */
+  size: {
+    type: String as PropType<InputSize>,
+    default: "default",
+  },
   /**
    * @type number
    * @description The total number of.

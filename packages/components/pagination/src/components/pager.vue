@@ -1,10 +1,7 @@
 <template>
-  <li
-    v-for="(item, index) in pageList"
-    :key="`page-item-${index}`"
-    :class="[`${clsBlockName}`, item.index === currentPage ? `${clsBlockName}-active` : '', extraClass]"
-    @click="onClick(item.index)"
-  >
+  <li v-for="(item, index) in pageList" :key="`page-item-${index}`"
+    :class="[...cls, item.index === currentPage ? `${clsBlockName}-active` : '', extraClass]"
+    @click="onClick(item.index)">
     <span v-if="item.type === 'number'">{{ item.index }}</span>
     <IconMoreFill v-else />
   </li>
@@ -13,7 +10,7 @@
 <script setup lang="ts">
 import { useNamespace } from "@birdpaper-ui/hooks/src/use-namespace";
 import { IconMoreFill } from "birdpaper-icon";
-import { ref, watchEffect } from "vue";
+import { computed, ref, watchEffect } from "vue";
 
 const { clsBlockName } = useNamespace("pagination-pager");
 
@@ -46,6 +43,8 @@ const props = defineProps({
 const emits = defineEmits<{
   (e: "click", pageNum: number): void;
 }>();
+
+const cls = computed(() => [clsBlockName, props.extraClass]);
 
 const pageList = ref<any[]>([]);
 

@@ -7,6 +7,7 @@
 <script setup lang="ts">
 import { ref, watchEffect } from "vue";
 import { useNamespace } from "@birdpaper-ui/hooks";
+
 const props = defineProps({
   /**
    * @type Number

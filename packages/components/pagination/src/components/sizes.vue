@@ -1,6 +1,6 @@
 <template>
-  <li :class="`${clsBlockName}-sizes ${extraClass}`">
-    <bp-select v-model="val" style="width: 100px" @change="onChange">
+  <li :class="cls">
+    <bp-select v-model="val" style="width: 100px" :disabled :size @change="onChange">
       <bp-option v-for="v in list" :value="v.value">{{ v.label }}</bp-option>
     </bp-select>
   </li>
@@ -9,8 +9,9 @@
 <script setup lang="ts">
 import BpSelect from "@birdpaper-ui/components/select/index";
 import BpOption from "@birdpaper-ui/components/select/src/components/option.vue";
-import { PropType, ref, watchEffect } from "vue";
+import { computed, PropType, ref, watchEffect } from "vue";
 import { useNamespace } from "@birdpaper-ui/hooks";
+import { InputSize } from "@birdpaper-ui/components/input/src/types";
 
 const { clsBlockName } = useNamespace("pagination-sizes");
 
@@ -21,6 +22,18 @@ const props = defineProps({
    * @default 10
    */
   currentSize: { type: Number, default: "" },
+  /**
+   * @type InputSize
+   * @description Pagination sizes.
+   * @default default
+   */
+  size: { type: String as PropType<InputSize>, default: "default" },
+  /**
+   * @type Boolean
+   * @description: Whether the button is disabled.
+   * @default false
+   */
+  disabled: { type: Boolean, default: false },
   /**
    * @type Array
    * @description: The sizes list.
@@ -44,6 +57,8 @@ const props = defineProps({
 const emits = defineEmits<{
   (e: "change", size: number): void;
 }>();
+
+const cls = computed(() => [clsBlockName, props.extraClass]);
 
 const val = ref(props.currentSize || props.sizesList[0] || 10);
 const paramsStr = "{value}";

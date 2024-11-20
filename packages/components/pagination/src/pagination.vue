@@ -1,8 +1,8 @@
 <template>
-  <div :class="[`${clsBlockName}`, 'select-none']">
+  <div :class="cls">
     <ul :class="`${clsBlockName}-container`">
       <template v-for="item in componentsList">
-        <component :extraClass="`${clsBlockName}-item`" v-bind="item.bind" :is="item.component"
+        <component :extraClass="`${clsBlockName}-item ${clsBlockName}-${size}`" v-bind="item.bind" :is="item.component"
           @[item.eventName]="item.event"></component>
       </template>
     </ul>
@@ -30,6 +30,10 @@ const emits = defineEmits<{
   (e: "size-change", pageSize: number): void;
 }>();
 const layoutMap = { prev, next, pager, sizes, jumper, total };
+
+const cls = computed(() => {
+  return [clsBlockName, `${clsBlockName}-${props.size}`, 'select-none'];
+});
 
 const currentPage = ref<number>(props.current || 1);
 const currentPageSize = ref<number>(props.pageSize || 10);
@@ -127,6 +131,7 @@ const pagerComponents = computed(() => {
 const sizesComponents = computed(() => {
   return {
     bind: {
+      size: props.size,
       currentSize: currentPageSize.value,
       sizesList: props.sizesList,
       tmpString: props.sizesTmpString,
@@ -142,6 +147,7 @@ const sizesComponents = computed(() => {
 const jumperComponents = computed(() => {
   return {
     bind: {
+      size: props.size,
       pages: totalPages.value,
       currentPage: currentPage.value,
       tmpString: props.jumperTmpString,
