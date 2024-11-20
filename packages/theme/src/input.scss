@@ -89,38 +89,24 @@
 }
 
 .#{$B}-disabled {
+  opacity: 0.6;
   pointer-events: none;
   cursor: default;
-
-  .#{$B}-inner {
-    color: var(--bp-gary-4);
-
-    &::placeholder {
-      color: var(--bp-gary-3);
-    }
-  }
-
-  svg[class*="-icon-"] {
-    fill: var(--bp-gary-3);
-  }
-
-  .#{$B}-suffix {
-    .suffix-content {
-      color: var(--bp-gary-3);
-    }
-  }
 }
 
 @each $size in $sizes {
   .#{$B}-#{$size} {
     height: getCssVar("size-height", $size);
     border-radius: getCssVar("size-border-radius", $size);
-    font-size: getCssVar("size-font-size", $size);
     padding: 0 calc(getCssVar("size-height", $size) / 4);
 
     svg[class*="-icon-"] {
       width: calc(getCssVar("size-height", $size) / 1.9) !important;
       height: calc(getCssVar("size-height", $size) / 1.9) !important;
+    }
+
+    .#{$B}-inner {
+      font-size: getCssVar("size-font-size", $size);
     }
 
     .#{$B}-perfix {
