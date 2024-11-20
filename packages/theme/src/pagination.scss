@@ -52,6 +52,13 @@
   }
 }
 
+.#{$B}-prev-disabled,
+.#{$B}-next-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: default;
+}
+
 @each $size in $sizes {
   .#{$B}-#{$size} {
     .#{$B}-item {
@@ -83,12 +90,13 @@
       div[class*="input-number"] {
         min-width: calc(getCssVar("size-height", $size) * 1.6);
         width: calc(getCssVar("size-height", $size) * 1.6);
+        margin: 0 calc(getCssVar("size-padding", $size) / 2);
       }
     }
 
-    .#{$B}-jumper {
-      div[class*="input-number"] {
-        margin: 0 calc(getCssVar("size-padding", $size) / 2);
+    .#{$B}-sizes {
+      div[class*="-select"] {
+        width: calc(getCssVar("size-height", $size) * 3.3);
       }
     }
   }

@@ -118,6 +118,7 @@ const pagerComponents = computed(() => {
     bind: {
       pages: totalPages.value,
       maxPager: props.maxPager,
+      disabled: props.disabled,
       currentPage: currentPage.value,
     },
     eventName: "click",
@@ -132,6 +133,7 @@ const sizesComponents = computed(() => {
   return {
     bind: {
       size: props.size,
+      disabled: props.disabled,
       currentSize: currentPageSize.value,
       sizesList: props.sizesList,
       tmpString: props.sizesTmpString,
@@ -148,6 +150,7 @@ const jumperComponents = computed(() => {
   return {
     bind: {
       size: props.size,
+      disabled: props.disabled,
       pages: totalPages.value,
       currentPage: currentPage.value,
       tmpString: props.jumperTmpString,

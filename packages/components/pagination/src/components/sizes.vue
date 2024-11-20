@@ -1,6 +1,6 @@
 <template>
   <li :class="cls">
-    <bp-select v-model="val" style="width: 100px" :disabled :size @change="onChange">
+    <bp-select v-model="val" :disabled :size @change="onChange">
       <bp-option v-for="v in list" :value="v.value">{{ v.label }}</bp-option>
     </bp-select>
   </li>

@@ -28,6 +28,12 @@ const props = defineProps({
    */
   pages: { type: Number, default: 0 },
   /**
+   * @type Boolean
+   * @description: Whether the button is disabled.
+   * @default false
+   */
+  disabled: { type: Boolean, default: false },
+  /**
    * @type Number
    * @description: The maximum number of pages displayed.
    * @default 0
@@ -49,6 +55,7 @@ const cls = computed(() => [clsBlockName, props.extraClass]);
 const pageList = ref<any[]>([]);
 
 const onClick = (pageNum: number) => {
+  if (props.disabled) return;
   emits("click", pageNum);
 };
 
