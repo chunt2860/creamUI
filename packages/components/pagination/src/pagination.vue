@@ -19,6 +19,7 @@ import { PaginationProps, paginationProps } from "./props";
 import prev from "./components/prev.vue";
 import next from "./components/next.vue";
 import pager from "./components/pager.vue";
+import sizes from "./components/sizes.vue";
 import { computed, ref, watchEffect } from "vue";
 import { PageinationComponent } from "./types";
 
@@ -30,7 +31,7 @@ const emits = defineEmits<{
   (e: "change", page: number): void;
   (e: "size-change", pageSize: number): void;
 }>();
-const layoutMap = { prev, next, pager };
+const layoutMap = { prev, next, pager, sizes };
 
 const currentPage = ref<number>(props.current || 1);
 const currentPageSize = ref<number>(props.pageSize || 10);
@@ -69,7 +70,7 @@ const componentsList = computed<PageinationComponent[]>(() => {
       next: nextComponents.value,
       pager: pagerComponents.value,
       // jumper: jumperComponents.value,
-      // sizes: sizesComponents.value,
+      sizes: sizesComponents.value,
     };
 
     list.map((name) => {
@@ -121,6 +122,21 @@ const pagerComponents = computed(() => {
     event: (page: number) => {
       const pages = setPage("page", page);
       emits("change", pages);
+    },
+  };
+});
+
+const sizesComponents = computed(() => {
+  return {
+    bind: {
+      currentSize: currentPageSize.value,
+      sizesList: props.sizesList,
+      tmpString: props.sizesTmpString,
+    },
+    eventName: "change",
+    event: (size: number) => {
+      const sizes = sizeSizes(size);
+      emits("size-change", sizes);
     },
   };
 });
