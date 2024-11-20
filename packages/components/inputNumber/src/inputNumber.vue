@@ -1,23 +1,10 @@
 <template>
-  <!-- <div>{{ stringValue }} <bp-button @click="handleStep">TEST</bp-button></div> -->
-  <bp-input
-    ref="inpRef"
-    v-model="stringValue"
-    :class="cls"
-    :placeholder
-    :disabled
-    :readonly
-    :size
-    @input="onInput"
-    @blur="onBlur"
-  >
+  <bp-input ref="inpRef" v-model="stringValue" :class="cls" :placeholder :disabled :readonly :size @input="onInput"
+    @blur="onBlur">
     <template #suffix v-if="!hideButton && !disabled">
       <div :class="`${clsBlockName}-step`">
-        <div
-          v-for="v in btnList"
-          :class="[{ disabled: v.disabled }, `${clsBlockName}-step-item`]"
-          @click="handleStep(v.type)"
-        >
+        <div v-for="v in btnList" :class="[{ disabled: v.disabled }, `${clsBlockName}-step-item`]"
+          @click="handleStep(v.type)">
           <component :is="v.component"></component>
         </div>
       </div>
@@ -27,7 +14,7 @@
 
 <script setup lang="ts">
 import { useNamespace } from "@birdpaper-ui/hooks";
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import type { Component } from "vue";
 import BpInput from "@birdpaper-ui/components/input/index";
 import { inputNumberProps, InputNumberProps } from "./props";
@@ -37,7 +24,7 @@ import { useCounter, useToNumber } from "@vueuse/core";
 defineOptions({ name: "InputNumber" });
 const { clsBlockName } = useNamespace("input-number");
 
-const model = defineModel<number>();
+const model = defineModel<number | ''>({ default: '' });
 const stringValue = ref<string>("");
 
 const props: InputNumberProps = defineProps(inputNumberProps);
@@ -66,7 +53,7 @@ const handleStep = (type: "up" | "down") => {
   if (props.hideButton || !props.step) return;
   inpRef.value?.focus();
 
-  set(model.value ?? 0);
+  set(useToNumber(model.value ?? 0, { nanToZero: true }).value);
   const step = props.step;
   type === "up" ? inc(step) : dec(step);
 
@@ -94,6 +81,11 @@ const inpRef = ref();
 const focus = () => inpRef.value?.focus();
 const blur = () => inpRef.value?.blur();
 const onBlur = () => {
+  if (model.value === '') {
+    stringValue.value = getStringValue()
+    return emits("blur");
+  };
+
   stringValue.value =
     set(
       useToNumber(stringValue.value, {
@@ -120,7 +112,9 @@ const onInput = (e: Event) => {
   }
 };
 
-stringValue.value = getStringValue();
+watch(() => model.value, () => {
+  stringValue.value = getStringValue();
+}, { immediate: true });
 
 defineExpose({
   focus,
