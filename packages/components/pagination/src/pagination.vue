@@ -17,6 +17,7 @@ import next from "./components/next.vue";
 import pager from "./components/pager.vue";
 import sizes from "./components/sizes.vue";
 import jumper from "./components/jumper.vue";
+import total from "./components/total.vue";
 import { computed, ref, watchEffect } from "vue";
 import { PageinationComponent } from "./types";
 
@@ -28,7 +29,7 @@ const emits = defineEmits<{
   (e: "change", page: number): void;
   (e: "size-change", pageSize: number): void;
 }>();
-const layoutMap = { prev, next, pager, sizes, jumper };
+const layoutMap = { prev, next, pager, sizes, jumper, total };
 
 const currentPage = ref<number>(props.current || 1);
 const currentPageSize = ref<number>(props.pageSize || 10);
@@ -62,7 +63,7 @@ const componentsList = computed<PageinationComponent[]>(() => {
 
     const components: PageinationComponent[] = [];
     const componentMap = {
-      // total: totalComponents.value,
+      total: totalComponents.value,
       prev: prevComponents.value,
       next: nextComponents.value,
       pager: pagerComponents.value,
@@ -149,6 +150,15 @@ const jumperComponents = computed(() => {
     event: (page: number) => {
       const pages = setPage("page", page);
       emits("change", pages);
+    },
+  };
+});
+
+const totalComponents = computed(() => {
+  return {
+    bind: {
+      value: props.total,
+      tmpString: props.totalTmpString,
     },
   };
 });
