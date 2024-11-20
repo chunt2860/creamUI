@@ -25,7 +25,8 @@ import {
   YearPicker,
   MonthPicker,
   Tag,
-  Empty
+  Empty,
+  Pagination
 } from "@birdpaper-ui/components";
 
 export default [
@@ -55,5 +56,6 @@ export default [
   YearPicker,
   MonthPicker,
   Tag,
-  Empty
+  Empty,
+  Pagination
 ];

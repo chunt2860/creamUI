@@ -1,7 +1,7 @@
 ## 基础用法
 
-<demo-block src="tooltip/basic">
+<demo-block src="pagination/basic">
 
-<<< @/example/tooltip/basic.vue
+<<< @/example/pagination/basic.vue
 
 </demo-block>
