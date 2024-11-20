@@ -60,3 +60,11 @@
     transition: all 0.2s ease;
   }
 }
+
+.#{$B}-jumper {
+  div[class*="input-number"] {
+    min-width: 48px;
+    width: 48px;
+    margin: 0 4px;
+  }
+}

@@ -6,7 +6,7 @@ export const paginationProps = {
    * @description The layout config.
    * @default "prev, pager, next"
    */
-  layout: { type: String, default: "prev, pager, next, sizes" },
+  layout: { type: String, default: "prev, pager, next, sizes, jumper" },
   /**
    * @type boolean
    * @description Whether to disable the pagination.
