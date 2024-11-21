@@ -52,6 +52,9 @@ const model = defineModel<SelectValue>({ default: "" });
 const labelModel = ref<string>("");
 
 const props: SelectProps = defineProps(selectProps);
+const emits = defineEmits<{
+  (e: "change", value: SelectValue): void;
+}>();
 const slots = useSlots();
 
 const isOpen = ref<boolean>(false);
@@ -80,7 +83,7 @@ provide(selectInjectionKey, {
   onSelect: (v: SelectValue, payload: SelectOption) => {
     model.value = v;
     labelModel.value = payload.label;
-
+    emits("change", v);
     isOpen.value = false;
   },
 });
