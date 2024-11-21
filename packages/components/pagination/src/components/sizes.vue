@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import BpSelect from "@birdpaper-ui/components/select/index";
+import BpSelect, { SelectValue } from "@birdpaper-ui/components/select/index";
 import BpOption from "@birdpaper-ui/components/select/src/components/option.vue";
 import { computed, PropType, ref, watchEffect } from "vue";
 import { useNamespace } from "@birdpaper-ui/hooks";
@@ -64,8 +64,8 @@ const val = ref(props.currentSize || props.sizesList[0] || 10);
 const paramsStr = "{value}";
 const list = ref<{ label: string; value: number }[]>([]);
 
-const onChange = (v: number) => {
-  emits("change", v);
+const onChange = (v: SelectValue) => {
+  emits("change", Number(v));
 };
 
 watchEffect(() => {

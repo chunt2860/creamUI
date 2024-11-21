@@ -47,7 +47,7 @@ const setPage = (type: "prev" | "next" | "page", pageNum?: number) => {
   return currentPage.value;
 };
 
-const sizeSizes = (pageSizes: number) => {
+const setSizes = (pageSizes: number) => {
   currentPageSize.value = pageSizes;
   return currentPageSize.value;
 };
@@ -140,7 +140,7 @@ const sizesComponents = computed(() => {
     },
     eventName: "change",
     event: (size: number) => {
-      const sizes = sizeSizes(size);
+      const sizes = setSizes(size);
       emits("size-change", sizes);
     },
   };
