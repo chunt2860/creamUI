@@ -3,6 +3,10 @@ $namespace: "bp" !default;
 $borderSize: 0.5px;
 
 /** Components design variables **/
+// Avatar
+$avatarDefaultBg: var(--bp-gary-1);
+$avatarDefaultColor: var(--bp-gary-10);
+
 // DatePicker
 $date-picker-bg: var(--bp-gary-0);
 $date-picker-border-radius: 8px;

@@ -1,0 +1,47 @@
+@use "common/design" as *;
+@use "mixins/var" as *;
+@use "mixins/function" as *;
+@use "mixins/mixins" as *;
+@use "common/sizes" as *;
+
+@include b(avatar) {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  font-size: 14px;
+  background-color: $avatarDefaultBg;
+  color: $avatarDefaultColor;
+  fill: $avatarDefaultColor;
+
+  &-inner {
+    position: absolute;
+    left: 50%;
+    font-weight: 500;
+    line-height: 1;
+    transform: translate(-50%);
+    transform-origin: 0 center;
+    color: inherit;
+
+    svg[class*="-icon-"] {
+      fill: inherit;
+    }
+  }
+
+  &-image {
+    border-radius: inherit;
+  }
+}
+
+@each $size in $sizes {
+  .#{$B}-#{$size} {
+    width: getCssVar("size-height", $size);
+    height: getCssVar("size-height", $size);
+    border-radius: getCssVar("size-border-radius", $size);
+  }
+}
+
+.#{$B}-circle {
+  border-radius: 50%;
+}
