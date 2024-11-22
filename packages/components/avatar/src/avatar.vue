@@ -4,8 +4,14 @@
       <slot />
     </div>
 
-    <!-- TODO: BpImage -->
-    <img v-if="props.imageUrl" :src="props.imageUrl" :class="`${clsBlockName}-image`">
+    <bp-image v-if="props.imageUrl" :src="props.imageUrl" :class="`${clsBlockName}-image`">
+      <template #loading>
+        <slot name="loading" />
+      </template>
+      <template #error>
+        <slot name="error" />
+      </template>
+    </bp-image>
   </div>
 </template>
 
@@ -13,6 +19,7 @@
 import { useNamespace } from '@birdpaper-ui/hooks';
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import { AvatarProps, avatarProps } from './props';
+import BpImage from '@birdpaper-ui/components/image/index';
 import { isNumber, isString } from 'radash';
 
 defineOptions({ name: "Avatar" });

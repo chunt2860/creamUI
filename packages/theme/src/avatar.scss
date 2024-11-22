@@ -39,6 +39,12 @@
     width: getCssVar("size-height", $size);
     height: getCssVar("size-height", $size);
     border-radius: getCssVar("size-border-radius", $size);
+
+    .#{$B}-image {
+      width: getCssVar("size-height", $size);
+      height: getCssVar("size-height", $size);
+      min-height: getCssVar("size-height", $size);
+    }
   }
 }
 
