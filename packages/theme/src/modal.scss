@@ -16,7 +16,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(var(--bp-gary-10-rgb), 0.3);
+    background-color: rgba(29, 33, 41, .6);
     z-index: 2000;
   }
 
@@ -41,9 +41,9 @@
   }
 
   &-header {
-    @include flex(row, flex-start, center);
     position: relative;
     height: 48px;
+    line-height: 48px;
     border-bottom: $borderSize solid var(--bp-gary-2);
     padding: 0 16px;
 
