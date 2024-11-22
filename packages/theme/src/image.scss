@@ -1,0 +1,52 @@
+@use "mixins/mixins" as *;
+
+@include b(image) {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+
+  img {
+    display: block;
+    vertical-align: middle;
+    opacity: 1;
+    transition: opacity 0.2s;
+    max-width: 100%;
+  }
+
+  &-placeholder {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    @include flex(row, center, center);
+    min-height: 100px;
+  }
+
+  &-loading {
+    @include flex(column, center, center) {
+      width: 100%;
+      min-height: 100px;
+      background-color: var(--bp-primary-1);
+      color: var(--bp-gary-5);
+      font-size: 13px;
+
+      svg[class*="-icon-"] {
+        fill: var(--bp-gary-5);
+      }
+    }
+  }
+
+  &-error {
+    @include flex(column, center, center);
+    width: 100%;
+    min-height: 100px;
+    background-color: var(--bp-primary-1);
+    color: var(--bp-gary-5);
+    font-size: 13px;
+
+    svg[class*="-icon-"] {
+      fill: var(--bp-gary-5);
+    }
+  }
+}

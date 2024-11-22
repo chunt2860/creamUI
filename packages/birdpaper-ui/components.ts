@@ -27,7 +27,8 @@ import {
   Tag,
   Empty,
   Pagination,
-  Avatar
+  Avatar,
+  Image,
 } from "@birdpaper-ui/components";
 
 export default [
@@ -59,5 +60,6 @@ export default [
   Tag,
   Empty,
   Pagination,
-  Avatar
+  Avatar,
+  Image,
 ];
