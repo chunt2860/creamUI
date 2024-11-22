@@ -1,9 +1,39 @@
 <template>
-  <bp-space>
-    <bp-image lazy src="https://picx.zhimg.com/v2-a9b29e1361cabefd12376d7a7b1634cd_r.jpg">
-      <template #error>
-        加载错误
-      </template>
-    </bp-image>
-  </bp-space>
+  <div class="demo-area">
+    <div class="fit-item" v-for="fit in fitTypes">
+      <p>{{ fit }}</p>
+      <bp-image
+        width="80px"
+        height="80px"
+        :fit
+        src="https://cos.birdpaper.design/birdpaper-ui/v2/image-demo/img_1.jpg?imageMogr2/thumbnail/!80p"
+      >
+      </bp-image>
+    </div>
+  </div>
 </template>
+
+<script setup lang="ts">
+const fitTypes = ["contain", "cover", "fill", "none", "scale-down"];
+</script>
+
+<style lang="scss" scoped>
+.demo-area {
+  display: flex;
+  .fit-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+      color: #8c8c8c;
+      font-size: 13px;
+    }
+
+    &:not(:first-child){
+      border-left: 1px solid #f0f0f0;
+    }
+  }
+}
+</style>
