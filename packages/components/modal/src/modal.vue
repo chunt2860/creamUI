@@ -15,12 +15,11 @@
             <slot name="header">
               <span :class="`${clsBlockName}-header-title`">{{ title }}</span>
             </slot>
-            <!-- <span v-if="!hideClose" :class="`${clsBlockName}-header-close`" @click="handleClose" >关闭</span> -->
             <IconCloseFill v-if="!hideClose" :class="`${clsBlockName}-header-close`" size="20" @click="handleClose" />
           </div>
 
           <div :class="`${clsBlockName}-body`">
-            <slot></slot>
+            <slot />
           </div>
 
           <div v-if="!hideFooter" :class="`${clsBlockName}-footer`">
@@ -52,8 +51,8 @@ const emit = defineEmits(['cancel', 'confirm']);
 
 const modalStyle = computed(() => ({
   width: typeof props.width === 'number' ? `${props.width}px` : props.width,
-  marginTop: props.top,
-  marginBottom: props.bottom
+  marginTop: props.fullscreen ? 0 : props.top,
+  marginBottom: props.fullscreen ? 0 : props.bottom
 }));
 
 const handleClose = () => {

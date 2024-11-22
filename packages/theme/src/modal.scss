@@ -30,13 +30,12 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 20px;
     pointer-events: none;
 
     .#{$namespace}-modal {
       pointer-events: auto;
-      max-width: 90%;
-      max-height: calc(100vh - 40px);
+      max-width: 100%;
+      max-height: 100vh;
       overflow-y: auto;
     }
   }
@@ -102,19 +101,25 @@
   }
 
   &-body {
-    padding: 20px;
+    padding: 16px;
     color: var(--bp-gary-8);
+    overflow: auto;
   }
 
   &-footer {
     padding: 16px;
     border-top: $borderSize solid var(--bp-gary-2);
     text-align: right;
+    margin-top: auto;
+    flex-shrink: 0;
   }
 
   &.is-fullscreen {
+    display: inline-flex;
+    flex-direction: column;
+    box-sizing: border-box;
     width: 100% !important;
-    height: 100vh;
+    height: 100%;
     margin: 0;
     border-radius: 0;
   }

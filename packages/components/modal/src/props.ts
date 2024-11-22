@@ -11,15 +11,6 @@ export const modalProps = {
     default: "",
   },
   /**
-   * @type string
-   * @description Title alignment.
-   * @default center
-   */
-  titleAlign: {
-    type: String as PropType<"left" | "center" | "right">,
-    default: "center",
-  },
-  /**
    * @type string | number
    * @description Modal width.
    * @default "50%"
