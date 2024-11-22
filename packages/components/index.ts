@@ -22,3 +22,4 @@ export * from "./pagination";
 export * from "./avatar";
 export * from "./image";
 export * from "./message";
+export * from "./modal";

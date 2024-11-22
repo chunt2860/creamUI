@@ -29,6 +29,7 @@ import {
   Pagination,
   Avatar,
   Image,
+  Modal,
 } from "@birdpaper-ui/components";
 
 export default [
@@ -62,4 +63,5 @@ export default [
   Pagination,
   Avatar,
   Image,
+  Modal,
 ];
