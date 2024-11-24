@@ -1,0 +1,43 @@
+@use "common/extend.scss" as *;
+@use "mixins/var" as *;
+@use "mixins/function" as *;
+@use "mixins/mixins.scss" as *;
+
+@include b(spin) {
+  position: relative;
+  display: inline-block;
+
+  &-spinner {
+    @include flex(column, center, center);
+    z-index: 12;
+
+    .spin-icon {
+      @include spin(1.2s);
+      fill: var(--bp-primary-6);
+    }
+  }
+
+  &-text {
+    margin-top: 8px;
+    color: var(--bp-primary-6);
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  &-mask {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 11;
+    background-color: rgba(var(--bp-gary-0-rgb), 0.6);
+
+    .#{$B}-spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
