@@ -1,3 +1,3 @@
 <template>
-  <bp-spin />
+  <bp-spin description="Loading..."></bp-spin>
 </template>

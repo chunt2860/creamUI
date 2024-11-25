@@ -5,7 +5,7 @@ export type SpinSize = "small" | "default" | "large";
 export const spinProps = {
   /**
    * @type boolean
-   * @description Whether to show the loading state.
+   * @description Whether to show the loading state(Only when in the container).
    * @default true
    */
   spinning: {
@@ -26,15 +26,6 @@ export const spinProps = {
       return typeof val === "object";
     },
     default: 1,
-  },
-  /**
-   * @type SpinSize
-   * @description The size of the loading indicator.
-   * @default default
-   */
-  size: {
-    type: String as PropType<SpinSize>,
-    default: "default",
   },
   /**
    * @type string
