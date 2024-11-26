@@ -25,3 +25,4 @@ export * from "./message";
 export * from "./modal";
 export * from "./spin";
 export * from "./drawer";
+export * from "./popconfirm";

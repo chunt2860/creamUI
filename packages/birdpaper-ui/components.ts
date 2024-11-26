@@ -32,6 +32,7 @@ import {
   Modal,
   Spin,
   Drawer,
+  Popconfirm, 
 } from "@birdpaper-ui/components";
 
 export default [
@@ -68,4 +69,5 @@ export default [
   Modal,
   Spin,
   Drawer,
+  Popconfirm,
 ];

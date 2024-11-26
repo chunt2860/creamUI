@@ -1,0 +1,61 @@
+@use "mixins/var" as *;
+@use "common/design" as *;
+@use "mixins/function" as *;
+@use "mixins/mixins.scss" as *;
+
+@include b(popconfirm) {
+  &-slot {
+    position: relative;
+    display: inline-block;
+  }
+
+  &-inner {
+    min-width: 200px;
+    max-width: 400px;
+    background-color: var(--bp-gary-0);
+    border: $borderSize solid var(--bp-gary-2);
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 12px 10px;
+    z-index: 99;
+    transition: all 0.2s;
+
+    &-content {
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+    }
+  }
+  
+  &-icon {
+    margin-right: 4px;
+
+    svg[class*="icon-information-fill"] {
+      fill: var(--bp-primary-6);
+    }
+
+    svg[class*="icon-checkbox-circle-fill"] {
+      fill: var(--bp-success-6);
+    }
+
+    svg[class*="icon-close-circle-fill"] {
+      fill: var(--bp-danger-6);
+    }
+
+    svg[class*="icon-error-warning-fill"] {
+      fill: var(--bp-warning-6);
+    }
+  }
+
+  &-text {
+    font-size: 13px;
+    color: var(--bp-gary-10);
+    font-weight: normal;
+    letter-spacing: 0.2px;
+  }
+
+  &-footer {
+    margin-top: 12px;
+    text-align: right;
+  }
+}
