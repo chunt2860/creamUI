@@ -1,0 +1,66 @@
+@use "mixins/var" as *;
+@use "common/design" as *;
+@use "mixins/function" as *;
+@use "mixins/mixins.scss" as *;
+
+@include b(form) {
+  &-item {
+    position: relative;
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+
+    &-label {
+      display: inline-flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      padding-right: 12px;
+      line-height: 32px;
+      font-size: 14px;
+      color: var(--bp-gary-8);
+    }
+
+    &-content {
+      flex: 1;
+      min-width: 0;
+      position: relative;
+
+      &-inner {
+        @include flex(column, center, flex-start);
+        min-height: 32px;
+        line-height: 32px;
+      }
+
+      &-error {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-height: 20px;
+        color: var(--bp-danger-6);
+        font-size: 12px;
+        line-height: 20px;
+      }
+    }
+
+    &-label-right {
+      flex-direction: row;
+    }
+
+    &-label-left {
+      flex-direction: row;
+
+      .#{$B}-item-label {
+        justify-content: flex-start;
+      }
+    }
+
+    &-label-top {
+      flex-direction: column;
+
+      .#{$B}-item-label {
+        justify-content: flex-start;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

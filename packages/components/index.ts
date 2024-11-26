@@ -26,3 +26,4 @@ export * from "./modal";
 export * from "./spin";
 export * from "./drawer";
 export * from "./popconfirm";
+export * from "./form";
