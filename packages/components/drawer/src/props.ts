@@ -21,6 +21,15 @@ export const drawerProps = {
   },
   /**
    * @type string
+   * @description Drawer height.
+   * @default "360px"
+   */
+  height: {
+    type: String,
+    default: "360px",
+  },
+  /**
+   * @type string
    * @description Drawer placement.
    * @default "right"
    */

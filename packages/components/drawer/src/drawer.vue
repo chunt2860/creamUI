@@ -5,7 +5,8 @@
     </transition>
 
     <transition :name="`slide-${placement}`">
-      <div ref="drawerRef" v-show="model" :class="[`${clsBlockName}`, `${clsBlockName}-${placement}`]">
+      <div ref="drawerRef" v-show="model" :class="[`${clsBlockName}`, `${clsBlockName}-${placement}`]"
+        :style="drawerStyle">
         <div :class="`${clsBlockName}-header`">
           <slot name="header">
             <span :class="`${clsBlockName}-header-title`">{{ title }}</span>
@@ -34,7 +35,7 @@
 import { useNamespace } from '@birdpaper-ui/hooks';
 import { DrawerProps, drawerProps } from './props';
 import { onClickOutside, useScrollLock } from '@vueuse/core'
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 defineOptions({ name: "Drawer" });
 const { clsBlockName } = useNamespace("drawer");
@@ -49,7 +50,18 @@ const isScrollLocked = useScrollLock(window.document.body);
 onClickOutside(drawerRef, () => {
   if (!props.maskClosable) return;
   return handleCancel();
-})
+});
+
+const drawerStyle = computed(() => {
+  if (props.placement === 'up' || props.placement === 'down') {
+    return {
+      height: typeof props.height === 'number' ? `${props.height}px` : props.height,
+    }
+  }
+  return {
+    width: typeof props.width === 'number' ? `${props.width}px` : props.width,
+  }
+});
 
 const handleClose = () => {
   model.value = false;

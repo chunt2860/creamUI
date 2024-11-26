@@ -56,7 +56,7 @@ const isScrollLocked = useScrollLock(window.document.body);
 onClickOutside(modalRef, () => {
   if (!props.maskClosable) return;
   return handleCancel();
-})
+});
 
 const modalStyle = computed(() => ({
   width: typeof props.width === 'number' ? `${props.width}px` : props.width,
