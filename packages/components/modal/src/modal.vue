@@ -5,7 +5,7 @@
     </transition>
 
     <transition name="modal-zoom">
-      <div v-show="model" :class="`${clsBlockName}-container`">
+      <div ref="modalRef" v-show="model" :class="`${clsBlockName}-container`">
         <div :class="[
           `${clsBlockName}`,
           { 'is-fullscreen': fullscreen },
@@ -38,9 +38,10 @@
 
 <script lang="ts" setup>
 import { useNamespace } from '@birdpaper-ui/hooks';
-import { computed } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { ModalProps, modalProps } from './props';
 import { IconCloseFill } from 'birdpaper-icon';
+import { onClickOutside, useScrollLock } from '@vueuse/core';
 
 defineOptions({ name: 'Modal' });
 const { clsBlockName } = useNamespace("modal");
@@ -48,6 +49,14 @@ const { clsBlockName } = useNamespace("modal");
 const model = defineModel({ default: false });
 const props: ModalProps = defineProps(modalProps);
 const emit = defineEmits(['cancel', 'confirm']);
+
+const modalRef = ref(null);
+const isScrollLocked = useScrollLock(window.document.body);
+
+onClickOutside(modalRef, () => {
+  if (!props.maskClosable) return;
+  return handleCancel();
+})
 
 const modalStyle = computed(() => ({
   width: typeof props.width === 'number' ? `${props.width}px` : props.width,
@@ -73,4 +82,8 @@ const handleConfirm = async () => {
     emit('confirm');
   }
 };
+
+watch(model, (value) => {
+  isScrollLocked.value = value;
+})
 </script>

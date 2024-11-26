@@ -33,8 +33,8 @@
 <script setup lang="ts">
 import { useNamespace } from '@birdpaper-ui/hooks';
 import { DrawerProps, drawerProps } from './props';
-import { onClickOutside } from '@vueuse/core'
-import { ref } from 'vue';
+import { onClickOutside, useScrollLock } from '@vueuse/core'
+import { ref, watch } from 'vue';
 
 defineOptions({ name: "Drawer" });
 const { clsBlockName } = useNamespace("drawer");
@@ -43,7 +43,8 @@ const model = defineModel<boolean>({ type: Boolean, required: true });
 const props: DrawerProps = defineProps(drawerProps);
 const emit = defineEmits(['cancel', 'confirm']);
 
-const drawerRef = ref(null)
+const drawerRef = ref(null);
+const isScrollLocked = useScrollLock(window.document.body);
 
 onClickOutside(drawerRef, () => {
   if (!props.maskClosable) return;
@@ -68,4 +69,8 @@ const handleConfirm = async () => {
     emit('confirm');
   }
 };
+
+watch(model, (value) => {
+  isScrollLocked.value = value;
+})
 </script>

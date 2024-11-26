@@ -48,6 +48,15 @@ export const modalProps = {
   },
   /**
    * @type boolean
+   * @description Whether to close the modal when clicking the mask.
+   * @default true
+   */
+  maskClosable: {
+    type: Boolean,
+    default: true,
+  },
+  /**
+   * @type boolean
    * @description Whether to hide the footer.
    * @default false
    */
