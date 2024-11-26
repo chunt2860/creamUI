@@ -31,6 +31,7 @@ import {
   Image,
   Modal,
   Spin,
+  Drawer,
 } from "@birdpaper-ui/components";
 
 export default [
@@ -66,4 +67,5 @@ export default [
   Image,
   Modal,
   Spin,
+  Drawer,
 ];
