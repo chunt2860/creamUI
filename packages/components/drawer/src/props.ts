@@ -74,15 +74,6 @@ export const drawerProps = {
     default: true,
   },
   /**
-   * @type boolean
-   * @description Whether the confirm button is loading.
-   * @default false
-   */
-  okLoading: {
-    type: Boolean,
-    default: false,
-  },
-  /**
    * @type string
    * @description The text of the confirm button.
    * @default "确认"
@@ -103,11 +94,9 @@ export const drawerProps = {
   /**
    * @type function
    * @description The callback function before the confirm button is clicked.
-   * @default () => true
    */
   onBeforeOk: {
     type: Function,
-    default: () => true,
   },
 } as const;
 

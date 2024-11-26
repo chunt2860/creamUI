@@ -73,13 +73,24 @@ const handleCancel = () => {
   emit('cancel');
 };
 
+const okLoading = ref<boolean>(false);
 const handleConfirm = async () => {
-  if (props.okLoading) return;
-
-  const canClose = await props.onBeforeOk();
-  if (canClose) {
+  if (!props.onBeforeOk) {
     model.value = false;
-    emit('confirm');
+    return emit("confirm");
+  }
+
+  try {
+    okLoading.value = true;
+    const canClose = await props.onBeforeOk();
+    if (canClose) {
+      model.value = false;
+      emit("confirm");
+    }
+  } catch (error) {
+    console.log("[ Modal - onBeforeOk error]", error);
+  } finally {
+    okLoading.value = false;
   }
 };
 

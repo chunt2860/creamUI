@@ -83,15 +83,6 @@ export const modalProps = {
     default: false,
   },
   /**
-   * @type boolean
-   * @description Whether the confirm button is loading.
-   * @default false
-   */
-  okLoading: {
-    type: Boolean,
-    default: false,
-  },
-  /**
    * @type string
    * @description Confirm button content.
    * @default "确认"
@@ -112,11 +103,9 @@ export const modalProps = {
   /**
    * @type Function
    * @description Callback function before confirming.
-   * @default () => true
    */
   onBeforeOk: {
     type: Function as PropType<() => boolean>,
-    default: () => true,
   },
 } as const;
 
