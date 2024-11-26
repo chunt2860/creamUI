@@ -4,8 +4,8 @@
       <div v-show="model" :class="`${clsBlockName}-wrapper`"></div>
     </transition>
 
-    <transition name="slide-right">
-      <div v-show="model" :class="clsBlockName">
+    <transition :name="`slide-${placement}`">
+      <div ref="drawerRef" v-show="model" :class="[`${clsBlockName}`, `${clsBlockName}-${placement}`]">
         <div :class="`${clsBlockName}-header`">
           <slot name="header">
             <span :class="`${clsBlockName}-header-title`">{{ title }}</span>
@@ -33,12 +33,22 @@
 <script setup lang="ts">
 import { useNamespace } from '@birdpaper-ui/hooks';
 import { DrawerProps, drawerProps } from './props';
+import { onClickOutside } from '@vueuse/core'
+import { ref } from 'vue';
+
 defineOptions({ name: "Drawer" });
 const { clsBlockName } = useNamespace("drawer");
 
 const model = defineModel<boolean>({ type: Boolean, required: true });
 const props: DrawerProps = defineProps(drawerProps);
 const emit = defineEmits(['cancel', 'confirm']);
+
+const drawerRef = ref(null)
+
+onClickOutside(drawerRef, () => {
+  if (!props.maskClosable) return;
+  return handleCancel();
+})
 
 const handleClose = () => {
   model.value = false;
