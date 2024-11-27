@@ -104,7 +104,7 @@ importers:
         version: 4.9.5
       unocss:
         specifier: ^0.61.7
-        version: 0.61.7(postcss@8.4.44)(vite@5.3.5)
+        version: 0.61.7(postcss@8.4.47)(vite@5.3.5)
       unplugin-vue-macros:
         specifier: ^2.7.11
         version: 2.10.0(@vueuse/core@10.11.0)(esbuild@0.21.5)(typescript@4.9.5)(vite@5.3.5)(vue@3.5.3)
@@ -141,10 +141,10 @@ importers:
     devDependencies:
       '@nolebase/vitepress-plugin-enhanced-readabilities':
         specifier: ^2.3.0
-        version: 2.3.0(@algolia/client-search@4.24.0)(@types/node@18.19.42)(async-validator@4.2.5)(postcss@8.4.44)(sass@1.77.8)(search-insights@2.15.0)(typescript@4.9.5)
+        version: 2.3.0(@algolia/client-search@4.24.0)(@types/node@18.19.42)(async-validator@4.2.5)(postcss@8.4.47)(sass@1.77.8)(search-insights@2.15.0)(typescript@4.9.5)
       vitepress:
         specifier: ^1.4.1
-        version: 1.4.1(@algolia/client-search@4.24.0)(@types/node@18.19.42)(async-validator@4.2.5)(less@4.2.0)(postcss@8.4.44)(sass@1.77.8)(search-insights@2.15.0)(typescript@4.9.5)
+        version: 1.4.1(@algolia/client-search@4.24.0)(@types/node@18.19.42)(async-validator@4.2.5)(less@4.2.0)(postcss@8.4.47)(sass@1.77.8)(search-insights@2.15.0)(typescript@4.9.5)
 
   packages/birdpaper-ui:
     dependencies:
@@ -1383,12 +1383,12 @@ packages:
       fastq: 1.17.1
     dev: true
 
-  /@nolebase/ui@2.3.0(@algolia/client-search@4.24.0)(@types/node@18.19.42)(async-validator@4.2.5)(postcss@8.4.44)(sass@1.77.8)(search-insights@2.15.0)(typescript@4.9.5):
+  /@nolebase/ui@2.3.0(@algolia/client-search@4.24.0)(@types/node@18.19.42)(async-validator@4.2.5)(postcss@8.4.47)(sass@1.77.8)(search-insights@2.15.0)(typescript@4.9.5):
     resolution: {integrity: sha512-bRr4btjjKhmFfbFVzf545cXEu0i+Ggen/QoQOxrbakeuCW6tx9lHClXj4ssIcwjDqsGgx01DCeKpKasPRPCvdA==}
     dependencies:
       '@iconify-json/octicon': 1.1.56
       less: 4.2.0
-      vitepress: 1.4.1(@algolia/client-search@4.24.0)(@types/node@18.19.42)(async-validator@4.2.5)(less@4.2.0)(postcss@8.4.44)(sass@1.77.8)(search-insights@2.15.0)(typescript@4.9.5)
+      vitepress: 1.4.1(@algolia/client-search@4.24.0)(@types/node@18.19.42)(async-validator@4.2.5)(less@4.2.0)(postcss@8.4.47)(sass@1.77.8)(search-insights@2.15.0)(typescript@4.9.5)
       vue: 3.5.3(typescript@4.9.5)
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -1420,14 +1420,14 @@ packages:
       - universal-cookie
     dev: true
 
-  /@nolebase/vitepress-plugin-enhanced-readabilities@2.3.0(@algolia/client-search@4.24.0)(@types/node@18.19.42)(async-validator@4.2.5)(postcss@8.4.44)(sass@1.77.8)(search-insights@2.15.0)(typescript@4.9.5):
+  /@nolebase/vitepress-plugin-enhanced-readabilities@2.3.0(@algolia/client-search@4.24.0)(@types/node@18.19.42)(async-validator@4.2.5)(postcss@8.4.47)(sass@1.77.8)(search-insights@2.15.0)(typescript@4.9.5):
     resolution: {integrity: sha512-98TtG7yHioNbN5MxXLlY7mN4yFAi5uPN6Qo+KiJVSBaX2a5w8PXLKesk2NXBzbYhYprDwyCB5yOB9fQyJZT10w==}
     dependencies:
       '@iconify-json/carbon': 1.1.36
       '@iconify-json/icon-park-outline': 1.1.15
-      '@nolebase/ui': 2.3.0(@algolia/client-search@4.24.0)(@types/node@18.19.42)(async-validator@4.2.5)(postcss@8.4.44)(sass@1.77.8)(search-insights@2.15.0)(typescript@4.9.5)
+      '@nolebase/ui': 2.3.0(@algolia/client-search@4.24.0)(@types/node@18.19.42)(async-validator@4.2.5)(postcss@8.4.47)(sass@1.77.8)(search-insights@2.15.0)(typescript@4.9.5)
       less: 4.2.0
-      vitepress: 1.4.1(@algolia/client-search@4.24.0)(@types/node@18.19.42)(async-validator@4.2.5)(less@4.2.0)(postcss@8.4.44)(sass@1.77.8)(search-insights@2.15.0)(typescript@4.9.5)
+      vitepress: 1.4.1(@algolia/client-search@4.24.0)(@types/node@18.19.42)(async-validator@4.2.5)(less@4.2.0)(postcss@8.4.47)(sass@1.77.8)(search-insights@2.15.0)(typescript@4.9.5)
     transitivePeerDependencies:
       - '@algolia/client-search'
       - '@types/node'
@@ -3164,7 +3164,7 @@ packages:
       sirv: 2.0.4
     dev: true
 
-  /@unocss/postcss@0.61.7(postcss@8.4.44):
+  /@unocss/postcss@0.61.7(postcss@8.4.47):
     resolution: {integrity: sha512-1qKBuNxwDR8vjb/g9A6C5ezhg9X2QHB46+f+J8+4FWEwGgCR8PZHmJ9C5HPUTreLQrdCtsKCHe4eWnGPBN0Ikw==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -3176,7 +3176,7 @@ packages:
       css-tree: 2.3.1
       fast-glob: 3.3.2
       magic-string: 0.30.11
-      postcss: 8.4.44
+      postcss: 8.4.47
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -10472,10 +10472,11 @@ packages:
   /sass@1.77.8:
     resolution: {integrity: sha512-4UHg6prsrycW20fqLGPShtEvo/WyHRVRHwOP4DzkUrObWoWI05QBSfzU71TVB7PFaL104TwNaHpjlWXAZbQiNQ==}
     engines: {node: '>=14.0.0'}
+    hasBin: true
     dependencies:
       chokidar: 3.6.0
       immutable: 4.3.7
-      source-map-js: 1.2.0
+      source-map-js: 1.2.1
     dev: true
 
   /sax@1.4.1:
@@ -11576,7 +11577,7 @@ packages:
     engines: {node: '>= 10.0.0'}
     dev: true
 
-  /unocss@0.61.7(postcss@8.4.44)(vite@5.3.5):
+  /unocss@0.61.7(postcss@8.4.47)(vite@5.3.5):
     resolution: {integrity: sha512-Xlq1+pHjBafpLvo3lidD5bmJin1LZj4UqhSHHCl5sBkWkXKZPKlABgco2+d6u8+PBxqFtX+4pOzuj67sixvs2Q==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -11592,7 +11593,7 @@ packages:
       '@unocss/cli': 0.61.7
       '@unocss/core': 0.61.7
       '@unocss/extractor-arbitrary-variants': 0.61.7
-      '@unocss/postcss': 0.61.7(postcss@8.4.44)
+      '@unocss/postcss': 0.61.7(postcss@8.4.47)
       '@unocss/preset-attributify': 0.61.7
       '@unocss/preset-icons': 0.61.7
       '@unocss/preset-mini': 0.61.7
@@ -11997,7 +11998,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitepress@1.4.1(@algolia/client-search@4.24.0)(@types/node@18.19.42)(async-validator@4.2.5)(less@4.2.0)(postcss@8.4.44)(sass@1.77.8)(search-insights@2.15.0)(typescript@4.9.5):
+  /vitepress@1.4.1(@algolia/client-search@4.24.0)(@types/node@18.19.42)(async-validator@4.2.5)(less@4.2.0)(postcss@8.4.47)(sass@1.77.8)(search-insights@2.15.0)(typescript@4.9.5):
     resolution: {integrity: sha512-C2rQ7PMlDVqgsaHOa0uJtgGGWaGv74QMaGL62lxKbtFkYtosJB5HAfZ8+pEbfzzvLemYaYwaiQdFLBlexK2sFw==}
     hasBin: true
     peerDependencies:
@@ -12023,7 +12024,7 @@ packages:
       focus-trap: 7.6.0
       mark.js: 8.11.1
       minisearch: 7.1.0
-      postcss: 8.4.44
+      postcss: 8.4.47
       shiki: 1.22.0
       vite: 5.4.10(@types/node@18.19.42)(less@4.2.0)(sass@1.77.8)
       vue: 3.5.12(typescript@4.9.5)
