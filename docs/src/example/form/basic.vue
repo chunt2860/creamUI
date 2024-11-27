@@ -1,16 +1,16 @@
 <template>
-  <bp-form ref="formRef" :model="form" label-position="right" :rules="rules">
+  <bp-form ref="formRef" :model="form" label-position="top" :rules="rules">
     <bp-form-item label="ID" field="id">
-      <bp-input size="large" v-model="form.id"  style="width: 320px;"/>
+      <bp-input v-model="form.id" placeholder="请输入" style="width: 320px;" />
     </bp-form-item>
     <bp-form-item label="Name" field="name">
-      <bp-input size="large" v-model="form.name"  style="width: 320px;"/>
+      <bp-input v-model="form.name" style="width: 320px;" />
     </bp-form-item>
     <bp-form-item label="Description" field="description">
-      <bp-textarea v-model="form.description"  style="width: 320px;"/>
+      <bp-textarea v-model="form.description" style="width: 320px;" />
     </bp-form-item>
     <bp-form-item label="Number" field="number">
-      <bp-input-number v-model="form.number"  style="width: 320px;"/>
+      <bp-input-number v-model="form.number" style="width: 320px;" />
     </bp-form-item>
     <bp-form-item label="Sex" field="sex">
       <bp-radio-group v-model="form.sex" style="width: 320px;">
@@ -26,10 +26,10 @@
       </bp-checkbox-group>
     </bp-form-item>
     <bp-form-item label="Is Student" field="isStudent">
-      <bp-switch v-model="form.isStudent"  style="width: 320px;"/>
+      <bp-switch v-model="form.isStudent" style="width: 320px;" />
     </bp-form-item>
     <bp-form-item label="Time" field="createTime">
-      <bp-date-picker v-model="form.createTime"  style="width: 320px;"/>
+      <bp-date-picker v-model="form.createTime" style="width: 320px;" />
     </bp-form-item>
     <bp-form-item>
       <bp-button type="normal" status="primary" @click="validate">Submit</bp-button>
