@@ -64,6 +64,7 @@
 
       &-icon {
         margin-right: 6px;
+        @include flex(row, center, center);
 
         svg[class*="-icon-"] {
           fill: rgba(getCssVar("message", "icon-color"), 1);
