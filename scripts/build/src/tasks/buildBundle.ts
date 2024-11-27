@@ -5,16 +5,15 @@ import { compRoot, distPkgRoot } from "../paths";
 import { build } from "vite";
 
 export async function buildBundle() {
+  const UnoCSS = (await import("unocss/vite")).default;
+
   const name = "BirdpaperUI";
   const entryFileName = "birdpaper-ui";
 
-  const fileName = (format: string) =>
-    `${entryFileName}.${
-      format === "es" ? "mjs" : format === "cjs" ? "cjs" : "js"
-    }`;
+  const fileName = (format: string) => `${entryFileName}.${format === "es" ? "mjs" : format === "cjs" ? "cjs" : "js"}`;
 
   return await build({
-    plugins: [vue(), vueJsx()],
+    plugins: [vue(), vueJsx(), UnoCSS()],
     build: {
       outDir: join(distPkgRoot, "dist"),
       emptyOutDir: true,

@@ -8,9 +8,11 @@ export async function buildTheme() {
   const sass = gulpSass(dartSass);
   const outDir = join(distPkgRoot, "theme");
 
-  return gulp
-    .src(`${themeRoot}/**/*.scss`)
-    .pipe(sass.sync().on('error', sass.logError))
-    .pipe(gulp.dest(outDir))
-    .on('end', () => console.log('Theme build completed'));
+  await new Promise((resolve) => {
+    gulp
+      .src(`${themeRoot}/**/*.scss`)
+      .pipe(sass.sync().on("error", sass.logError))
+      .pipe(gulp.dest(outDir))
+      .on("end", resolve);
+  });
 }

@@ -7,6 +7,8 @@ import { build } from "vite";
 import dts from "vite-plugin-dts";
 
 export async function buildModules() {
+  const UnoCSS = (await import("unocss/vite")).default;
+
   const files = await glob("**/*.{ts,vue}", {
     cwd: bpUIRoot,
     absolute: true,
@@ -35,7 +37,7 @@ export async function buildModules() {
       },
       chunkSizeWarningLimit: 10000,
       rollupOptions: {
-        external: ["vue", "birdpaper-icon", "@vueuse/components", "@vueuse/core", "radash"],
+        external: ["vue", "birdpaper-icon", "@vueuse/components", "@vueuse/core", "radash", "unocss"],
         input: files,
         output: [
           {
@@ -61,6 +63,7 @@ export async function buildModules() {
       }),
       vue(),
       vueJsx(),
+      UnoCSS(),
     ],
   });
 }
