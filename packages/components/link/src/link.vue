@@ -1,5 +1,5 @@
 <template>
-  <a :class="cls" :href :disabled="isDisabled" :target>
+  <a :class="[cls, disabled && `${clsBlockName}-disabled`]" :href :target>
     <span v-if="linkIcon || loading" :class="iconCls">
       <component :is="linkIcon" :class="iconInnerCls" size="14"></component>
     </span>
@@ -21,7 +21,7 @@ const { clsBlockName } = useNamespace("link");
 
 const props: LinkProps = defineProps(linkProps);
 
-const isDisabled = computed<boolean>(() => props.disabled || !!props.loading);
+const disabled = computed<boolean>(() => props.disabled || !!props.loading);
 
 const cls = computed(() => [clsBlockName, `${clsBlockName}-${props.status}`]);
 const innerCls = computed(() => [`${clsBlockName}-inner`, { "pl-1": props.loading }]);

@@ -48,7 +48,7 @@
     }
   }
 
-  &[disabled="true"] {
+  &-disabled {
     pointer-events: none;
     cursor: default;
 
