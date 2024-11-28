@@ -1,5 +1,5 @@
 <template>
-  <bp-trigger v-model="model" :position :popup-offset="10" auto-fit-width update-at-scroll>
+  <bp-trigger v-model="model" :position :popup-offset="10" update-at-scroll>
     <div :class="`${clsBlockName}-slot`">
       <slot></slot>
     </div>
@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import BpTrigger from "@birdpaper-ui/components/trigger/index";
-import { useNamespace } from '@birdpaper-ui/hooks';
+import { useNamespace } from "@birdpaper-ui/hooks";
 import { PopconfirmProps, popconfirmProps } from "./props";
 import { IconCheckboxCircleFill, IconCloseCircleFill, IconErrorWarningFill, IconInformationFill } from "birdpaper-icon";
 import { ref } from "vue";
