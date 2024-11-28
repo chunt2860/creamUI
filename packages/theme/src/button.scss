@@ -122,7 +122,6 @@ $shapes: "square", "round", "circle";
 @each $size in $sizes {
   @each $shape in $shapes {
     .#{$B}-#{$size}-#{$shape} {
-      width: auto;
       height: getCssVar("size-height", $size);
       min-width: getCssVar("size-height", $size);
       min-height: getCssVar("size-height", $size);
