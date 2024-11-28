@@ -11,24 +11,26 @@
           { 'is-fullscreen': fullscreen },
           { 'is-center': center }
         ]" :style="modalStyle">
-          <div :class="`${clsBlockName}-header`">
-            <slot name="header">
-              <span :class="`${clsBlockName}-header-title`">{{ title }}</span>
-            </slot>
-            <IconCloseFill v-if="!hideClose" :class="`${clsBlockName}-header-close`" size="20" @click="handleClose" />
-          </div>
+          <div class="modal-inner">
+            <div :class="`${clsBlockName}-header`">
+              <slot name="header">
+                <span :class="`${clsBlockName}-header-title`">{{ title }}</span>
+              </slot>
+              <IconCloseFill v-if="!hideClose" :class="`${clsBlockName}-header-close`" size="20" @click="handleClose" />
+            </div>
 
-          <div :class="`${clsBlockName}-body`">
-            <slot />
-          </div>
+            <div :class="`${clsBlockName}-body`">
+              <slot />
+            </div>
 
-          <div v-if="!hideFooter" :class="`${clsBlockName}-footer`">
-            <slot name="footer">
-              <bp-button @click="handleCancel">{{ cancleText }}</bp-button>
-              <bp-button status="primary" type="normal" :loading="okLoading" @click="handleConfirm">
-                {{ okText }}
-              </bp-button>
-            </slot>
+            <div v-if="!hideFooter" :class="`${clsBlockName}-footer`">
+              <slot name="footer">
+                <bp-button @click="handleCancel">{{ cancleText }}</bp-button>
+                <bp-button status="primary" type="normal" :loading="okLoading" @click="handleConfirm">
+                  {{ okText }}
+                </bp-button>
+              </slot>
+            </div>
           </div>
         </div>
       </div>

@@ -1,3 +1,3 @@
 <template>
-  <bp-spin description="Loading..."></bp-spin>
+  <bp-spin :spinning="false" description="Loading..." ></bp-spin>
 </template>
