@@ -12,6 +12,7 @@ import eventTable from "./components/event-table.vue";
 import slotTable from "./components/slot-table.vue";
 import methodTable from "./components/method-table.vue";
 import { useClipboard } from "@vueuse/core";
+import { Message } from "@birdpaper-ui/components/message";
 
 const name = "api-block";
 const props = defineProps({
@@ -26,9 +27,12 @@ const tableComponent = {
   method: methodTable,
 };
 
-const { text, copy, copied, isSupported } = useClipboard()
+const { text, copy, copied, isSupported } = useClipboard();
 const handleCopy = (text: string) => {
-  // TODO: Message tip.
+  if (!isSupported) {
+    return Message.error("当前浏览器不支持复制");
+  }
   copy(text);
+  return Message.success("复制成功");
 };
 </script>

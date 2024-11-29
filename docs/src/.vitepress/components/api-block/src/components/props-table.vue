@@ -15,9 +15,16 @@
       </bp-table-column>
       <bp-table-column title="类型" data-index="type" width="200">
         <template #cell="{ record }">
-          <span class="type-inner" v-for="v in record.type">
-            {{ v }}
-          </span>
+          <div class="type-inner-wrap">
+            <span class="type-inner" v-for="v in record.type">
+              {{ v }}
+            </span>
+            <bp-tooltip v-if="record.optional" :content="record.optional.join(' | ')">
+              <span class="icon-wrap">
+                <IconInformationLine size="14" />
+              </span>
+            </bp-tooltip>
+          </div>
         </template>
       </bp-table-column>
       <bp-table-column title="默认值" data-index="default">

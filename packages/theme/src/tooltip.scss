@@ -1,6 +1,8 @@
 @use "mixins/mixins.scss" as *;
 
 @include b(tooltip) {
+  display: inline-flex;
+  
   &-inner {
     position: relative;
     display: inline-grid;
