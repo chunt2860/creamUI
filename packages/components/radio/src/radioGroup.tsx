@@ -79,7 +79,7 @@ export default defineComponent({
         <div class={cls.value}>
           {children.map((child, index) => {
             const radio = Object.assign({}, child);
-            radio.props = child.props && mergeProps(child.props, { ...props });
+            radio.props = child.props ? mergeProps(child.props, { ...props }) : { ...props };
 
             return (
               <Fragment key={child.key ?? `item-${index}`}>

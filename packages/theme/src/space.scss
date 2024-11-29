@@ -2,6 +2,7 @@
 
 @include b(space) {
   display: inline-flex;
+  width: 100%;
 
   &-item {
     &:first-child {
