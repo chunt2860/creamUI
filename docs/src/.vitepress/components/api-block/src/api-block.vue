@@ -1,6 +1,6 @@
 <template>
   <div :class="name">
-    <component :is="tableComponent[type]" :data @copy="handleCopy"></component>
+    <component :is="tableComponent[type]" :data :lang @copy="handleCopy"></component>
   </div>
 </template>
 
@@ -13,11 +13,13 @@ import slotTable from "./components/slot-table.vue";
 import methodTable from "./components/method-table.vue";
 import { useClipboard } from "@vueuse/core";
 import { Message } from "@birdpaper-ui/components/message";
+import { locales } from "../../locales";
 
 const name = "api-block";
 const props = defineProps({
   type: { type: String as PropType<ApiType>, default: "prop" },
   data: { type: Array as PropType<PropItem[]>, default: () => [] },
+  lang: { type: String as PropType<"zh-CN" | "en">, default: "zh-CN" },
 });
 
 const tableComponent = {
@@ -27,12 +29,12 @@ const tableComponent = {
   method: methodTable,
 };
 
-const { text, copy, copied, isSupported } = useClipboard();
+const { copy, isSupported } = useClipboard();
 const handleCopy = (text: string) => {
   if (!isSupported) {
-    return Message.error("当前浏览器不支持复制");
+    return Message.error(locales[props.lang].COPY_ERROR);
   }
   copy(text);
-  return Message.success("复制成功");
+  return Message.success(locales[props.lang].COPY_SUCCESS);
 };
 </script>
