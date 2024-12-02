@@ -57,6 +57,15 @@ export const modalProps = {
   },
   /**
    * @type boolean
+   * @description Whether to hide the header.
+   * @default false
+   */
+  hideHeader: {
+    type: Boolean,
+    default: false,
+  },
+  /**
+   * @type boolean
    * @description Whether to hide the footer.
    * @default false
    */

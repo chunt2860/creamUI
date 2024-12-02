@@ -12,7 +12,7 @@
           { 'is-center': center }
         ]" :style="modalStyle">
           <div class="modal-inner">
-            <div :class="`${clsBlockName}-header`">
+            <div :class="`${clsBlockName}-header`" v-if="!hideHeader">
               <slot name="header">
                 <span :class="`${clsBlockName}-header-title`">{{ title }}</span>
               </slot>
