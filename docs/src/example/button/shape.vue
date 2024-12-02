@@ -1,5 +1,5 @@
 <template>
-  <bp-button shape="square" type="normal" status="primary">主要按钮</bp-button>
-  <bp-button shape="round" type="normal" status="primary">主要按钮</bp-button>
-  <bp-button shape="circle" type="dashed" status="primary">主要按钮</bp-button>
+  <bp-button shape="square" status="primary">矩形</bp-button>
+  <bp-button shape="round" status="primary">椭圆</bp-button>
+  <bp-button shape="circle" status="primary">圆</bp-button>
 </template>

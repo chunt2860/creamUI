@@ -1,37 +1,30 @@
 <template>
-  <bp-button status="gary" type="secondary">Gary</bp-button>
-  <bp-button status="gary" type="normal">Gary</bp-button>
-  <bp-button status="gary" type="plain">Gary</bp-button>
-  <bp-button status="gary" type="dashed">Gary</bp-button>
-  <bp-button status="gary" type="text">Gary</bp-button>
-  <br />
-  <bp-button status="primary" type="secondary">Primary</bp-button>
-  <bp-button status="primary" type="normal">Primary</bp-button>
-  <bp-button status="primary" type="plain">Primary</bp-button>
-  <bp-button status="primary" type="dashed">Primary</bp-button>
-  <bp-button status="primary" type="text">Primary</bp-button>
-  <br />
-  <bp-button status="success" type="secondary">Success</bp-button>
-  <bp-button status="success" type="normal">Success</bp-button>
-  <bp-button status="success" type="plain">Success</bp-button>
-  <bp-button status="success" type="dashed">Success</bp-button>
-  <bp-button status="success" type="text">Success</bp-button>
-  <br />
-  <bp-button status="warning" type="secondary">Warning</bp-button>
-  <bp-button status="warning" type="normal">Warning</bp-button>
-  <bp-button status="warning" type="plain">Warning</bp-button>
-  <bp-button status="warning" type="dashed">Warning</bp-button>
-  <bp-button status="warning" type="text">Warning</bp-button>
-  <br />
-  <bp-button status="danger" type="secondary">Danger</bp-button>
-  <bp-button status="danger" type="normal">Danger</bp-button>
-  <bp-button status="danger" type="plain">Danger</bp-button>
-  <bp-button status="danger" type="dashed">Danger</bp-button>
-  <bp-button status="danger" type="text">Danger</bp-button>
+  <div class="button-demo">
+    <template v-for="status in buttonStatus" :key="status.value">
+      <div class="button-row">
+        <bp-button v-for="type in buttonTypes" :key="type" :status="status.value" :type>
+          {{ status.name }}
+        </bp-button>
+      </div>
+    </template>
+  </div>
 </template>
 
+<script setup lang="ts">
+const buttonStatus = [
+  { name: "灰度", value: "gary" },
+  { name: "主色", value: "primary" },
+  { name: "成功", value: "success" },
+  { name: "警示", value: "warning" },
+  { name: "危险", value: "danger" },
+] as const;
+const buttonTypes = ["secondary", "normal", "plain", "dashed", "text"] as const;
+</script>
+
 <style lang="scss" scoped>
-.bp-button {
-  margin-bottom: 8px;
+.button-demo {
+  .button-row {
+    margin-bottom: 8px;
+  }
 }
 </style>

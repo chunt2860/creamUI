@@ -1,8 +1,8 @@
 <template>
-  <bp-button :icon="IconSearch2Line" type="normal" status="primary">Search</bp-button>
-  <bp-button :icon="IconShareFill" type="plain" status="primary">Share</bp-button>
-  <bp-button :icon="IconDeleteBin6Line" type="dashed" status="danger">Confirm Delete</bp-button>
-  <bp-button :icon="IconUploadCloud2Line" type="text" status="primary">Upload</bp-button>
+  <bp-button :icon="IconSearch2Line" type="normal" status="primary">搜索</bp-button>
+  <bp-button :icon="IconDeleteBin6Line" type="plain" status="danger">确认删除</bp-button>
+  <bp-button :icon="IconShareFill" type="plain" status="primary"></bp-button>
+  <bp-button :icon="IconUploadCloud2Line" type="text" status="primary">上传</bp-button>
 </template>
 
 <script setup lang="ts">
