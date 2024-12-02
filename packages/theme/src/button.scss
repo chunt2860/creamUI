@@ -153,10 +153,6 @@ $shapes: "square", "round", "circle";
     margin: 0;
   }
 
-  &-full {
-    width: 100%;
-  }
-
   .#{$B} {
     &:first-child {
       border-top-right-radius: 0;

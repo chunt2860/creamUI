@@ -23,7 +23,7 @@ export default defineComponent({
       type: String as PropType<ButtonStatus>,
       default: "gary",
     },
-    full: {
+    disabled: {
       type: Boolean,
       default: false,
     },
@@ -33,7 +33,6 @@ export default defineComponent({
 
     const cls = computed(() => {
       let clsName = [clsBlockName];
-      if (props.full) clsName.push(`${clsBlockName}-full`);
 
       return clsName;
     });

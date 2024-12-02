@@ -51,8 +51,17 @@
 
 ## 图标按钮
 
+通过 `icon` 属性设置按钮的图标，增强视觉吸引力，提升按钮信息传达效率，节省空间。
 <demo-block src="button/icon">
 
 <<< @/example/button/icon.vue
+
+</demo-block>
+
+## 按钮组
+将相关按钮组合在一起，以便更有效的布局和管理操作，简化页面结构。
+<demo-block src="button/group">
+
+<<< @/example/button/group.vue
 
 </demo-block>
