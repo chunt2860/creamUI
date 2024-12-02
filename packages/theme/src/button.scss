@@ -11,7 +11,7 @@
   justify-content: center;
   outline: 0;
   white-space: nowrap;
-  font-weight: 400;
+  font-weight: $fontWeight;
   line-height: 1;
   color: rgba(getCssVar("button", "text-color"), 1);
   background-color: rgba(getCssVar("button", "bg-color"), 1);
@@ -88,13 +88,13 @@
   }
 
   &[disabled] {
-    filter: saturate(0.98) opacity(0.8) contrast(0.98);
+    opacity: .6;
     pointer-events: none;
     cursor: default;
   }
 
   & + & {
-    margin-left: 10px;
+    margin-left: $defaultMargin;
   }
 
   .button-icon {

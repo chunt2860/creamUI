@@ -3,6 +3,10 @@ $namespace: "bp" !default;
 $borderSize: 0.5px;
 
 /** Components design variables **/
+// Button
+$defaultMargin: 10px;
+$fontWeight: 400;
+
 // Avatar
 $avatarDefaultBg: var(--bp-gary-1);
 $avatarDefaultColor: var(--bp-gary-10);
