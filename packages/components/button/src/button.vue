@@ -45,12 +45,14 @@ const cls = computed(() => [
   clsBlockName,
   `${clsBlockName}-${props.size}-${props.shape}`,
   `${clsBlockName}-${props.status}-${props.type}`,
-  { "is-full": props.full, "p-0": !hasDefaultSlot.value },
+  { "is-full": props.full, "p-0": !hasDefaultSlot.value, "no-padding": !hasDefaultSlot.value },
   "select-none",
 ]);
 const innerCls = computed(() => [`${clsBlockName}-inner`, { "pl-4": props.loading }]);
 const iconCls = computed(() => ["button-icon", hasDefaultSlot.value ? "mr-1" : "m-0"]);
-const iconInnerCls = computed(() => [{ "bp-icon-loading": props.loading, absolute: hasDefaultSlot.value && props.loading }]);
+const iconInnerCls = computed(() => [
+  { "bp-icon-loading": props.loading, absolute: hasDefaultSlot.value && props.loading },
+]);
 
 const onClick = () => {
   if (isDisabled.value) return;

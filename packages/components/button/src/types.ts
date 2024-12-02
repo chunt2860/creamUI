@@ -1,12 +1,12 @@
 import { Component } from "vue";
 
 /**
- * @description 按钮类型 Button type，普通-normal、次要-secondary、线框-plain、虚线-dashed、文本-text
+ * @description 按钮类型 Button type，常规-normal、次要-secondary、线框-plain、虚线-dashed、文本-text
  */
 export declare type ButtonType = "secondary" | "normal" | "plain" | "dashed" | "text";
 
 /**
- * @description 按钮状态 Button status，灰度-gary、主要-primary、成功-success、警示-warning、危险-danger
+ * @description 按钮状态 Button status，灰度-gary、主色-primary、成功-success、警示-warning、危险-danger
  */
 export declare type ButtonStatus = "gary" | "primary" | "success" | "warning" | "danger";
 
