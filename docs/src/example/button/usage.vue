@@ -7,7 +7,7 @@
     </template>
     <template #config>
       <div class="config-item">
-        <bp-input v-model="cfg.content" placeholder="Content"></bp-input>
+        <bp-input v-model="cfg.content" size="small" placeholder="Content"></bp-input>
       </div>
       <div class="config-item">
         <label>Full</label>
@@ -16,6 +16,10 @@
       <div class="config-item">
         <label>Disabled</label>
         <bp-switch size="mini" v-model="cfg.disabled"></bp-switch>
+      </div>
+      <div class="config-item">
+        <label>Loading</label>
+        <bp-switch size="mini" v-model="cfg.loading"></bp-switch>
       </div>
       <div class="config-item">
         <label>Shape</label>
@@ -63,9 +67,10 @@ import { ref } from "vue";
 import usageBlock from "../../.vitepress/components/usage-block/src/usage-block.vue";
 
 const cfg = ref({
-  content: "Button",
+  content: "Submit",
   full: false,
   disabled: false,
+  loading: false,
   shape: "square",
   status: "primary",
   type: "normal",

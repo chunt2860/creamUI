@@ -4,7 +4,7 @@
       <component :is="demoComponent"></component>
     </div>
     <div :class="`${name}-footer`">
-      <demo-option v-model="showCode"></demo-option>
+      <demo-option v-model="showCode" :src></demo-option>
     </div>
 
     <div :class="[`${name}-code`]">
@@ -21,7 +21,6 @@ import demoOption from "./demo-option.vue";
 
 const name = "demo-block";
 const props = defineProps({
-  // Demo src path
   src: { type: String },
 });
 
