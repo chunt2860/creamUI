@@ -31,20 +31,20 @@ export const modalProps = {
   /**
    * @type string
    * @description Modal top.
-   * @default "20vh"
+   * @default "0"
    */
   top: {
     type: String,
-    default: "20vh",
+    default: "0",
   },
   /**
    * @type string
    * @description Modal bottom.
-   * @default "20vh"
+   * @default "0"
    */
   bottom: {
     type: String,
-    default: "20vh",
+    default: "0",
   },
   /**
    * @type boolean

@@ -13,6 +13,7 @@ import BirdpaperIcon from "birdpaper-icon";
 import DemoBlock from "../components/demo-block";
 import DocTabs from "../components/doc-tabs";
 import ApiBlock from "../components/api-block";
+import UsageBlock from "../components/usage-block";
 
 import "uno.css";
 import "../../style/index.scss";
@@ -28,5 +29,6 @@ export default {
     ctx.app.component("demo-block", DemoBlock);
     ctx.app.component("doc-tabs", DocTabs);
     ctx.app.component("api-block", ApiBlock);
+    ctx.app.component("usage-block", UsageBlock);
   },
 };

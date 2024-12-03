@@ -1,3 +1,8 @@
+<script lang="ts">
+import Usage from "../../example/button/usage.vue";
+</script>
+<Usage />
+
 ## 基础用法
 
 支持 5 种按钮类型，分别是 `normal` - <b>常规（默认）</b>，`secondary` - <b>次要</b>，`plain` - <b>线框</b>，`dashed` - <b>虚线</b>，`text` - <b>文本</b>，以满足多样化设计与功能需求。
@@ -59,6 +64,7 @@
 </demo-block>
 
 ## 按钮组
+
 将相关按钮组合在一起，以便更有效的布局和管理操作，简化页面结构。
 <demo-block src="button/group">
 

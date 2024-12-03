@@ -32,6 +32,7 @@ const showCode = ref<boolean>(false);
 const demoComponent = ref();
 
 /** Glob */
+// @ts-ignore
 const exampleGlob = import.meta.glob(`../../../../example/**/*.vue`);
 
 /**
