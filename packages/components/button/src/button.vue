@@ -27,7 +27,10 @@ const slots = useSlots();
 const isDisabled = computed<boolean>(() => props.disabled || !!props.loading);
 
 /** Default Slots. */
-const hasDefaultSlot = computed<boolean>(() => !!slots?.default?.()[0]);
+const hasDefaultSlot = computed<boolean>(() => {
+  if(props.shape === 'circle' && props.loading) return false;
+  return !!slots?.default?.()[0];
+});
 
 // Icons.
 /** Default loading icon map. */
