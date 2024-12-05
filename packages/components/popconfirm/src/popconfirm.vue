@@ -16,8 +16,8 @@
         </div>
 
         <div :class="`${clsBlockName}-footer`">
-          <bp-button @click="handleCancle" size="mini">{{ cancleText }}</bp-button>
-          <bp-button @click="handleOk" :loading="okLoading" size="mini" type="normal" status="primary">
+          <bp-button @click="handleCancle" size="mini" status="gary" type="plain">{{ cancleText }}</bp-button>
+          <bp-button @click="handleOk" :loading="okLoading" size="mini" type="normal" :status="btnStatus[type]">
             {{ okText }}
           </bp-button>
         </div>
@@ -45,6 +45,12 @@ const iconType = {
   success: IconCheckboxCircleFill,
   error: IconCloseCircleFill,
   warning: IconErrorWarningFill,
+};
+const btnStatus = {
+  info: "primary",
+  success: "success",
+  error: "danger",
+  warning: "warnign",
 };
 
 const handleCancle = () => {

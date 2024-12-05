@@ -1,1 +1,1 @@
-export type PopconfirmType = "info" | "success" | "warning" | "danger";
+export type PopconfirmType = "info" | "success" | "warning" | "error";
