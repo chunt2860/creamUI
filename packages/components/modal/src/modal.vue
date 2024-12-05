@@ -1,16 +1,12 @@
 <template>
   <teleport to="body">
     <transition name="modal-fade">
-      <div v-show="model" :class="`${clsBlockName}-wrapper`"></div>
+      <div v-show="model" :class="`${clsBlockName}-wrapper`" @click="handleMaskClick"></div>
     </transition>
 
     <transition name="modal-zoom">
       <div ref="modalRef" v-show="model" :class="`${clsBlockName}-container`">
-        <div :class="[
-          `${clsBlockName}`,
-          { 'is-fullscreen': fullscreen },
-          { 'is-center': center }
-        ]" :style="modalStyle">
+        <div :class="[`${clsBlockName}`, { 'is-fullscreen': fullscreen }, { 'is-center': center }]" :style="modalStyle">
           <div class="modal-inner">
             <div :class="`${clsBlockName}-header`" v-if="!hideHeader">
               <slot name="header">
@@ -39,31 +35,31 @@
 </template>
 
 <script lang="ts" setup>
-import { useNamespace } from '@birdpaper-ui/hooks';
-import { computed, ref, watch } from 'vue';
-import { ModalProps, modalProps } from './props';
-import { IconCloseFill } from 'birdpaper-icon';
-import { onClickOutside, useScrollLock } from '@vueuse/core';
+import { useNamespace } from "@birdpaper-ui/hooks";
+import { computed, ref, watch } from "vue";
+import { ModalProps, modalProps } from "./props";
+import { IconCloseFill } from "birdpaper-icon";
+import { useScrollLock } from "@vueuse/core";
 
-defineOptions({ name: 'Modal' });
+defineOptions({ name: "Modal" });
 const { clsBlockName } = useNamespace("modal");
 
 const model = defineModel({ default: false });
 const props: ModalProps = defineProps(modalProps);
-const emit = defineEmits(['cancel', 'confirm']);
+const emit = defineEmits(["cancel", "confirm"]);
 
 const modalRef = ref(null);
 const isScrollLocked = useScrollLock(window.document.body);
 
-onClickOutside(modalRef, () => {
+const handleMaskClick = ()=>{
   if (!props.maskClosable) return;
   return handleCancel();
-});
+}
 
 const modalStyle = computed(() => ({
-  width: typeof props.width === 'number' ? `${props.width}px` : props.width,
+  width: typeof props.width === "number" ? `${props.width}px` : props.width,
   marginTop: props.fullscreen ? 0 : props.top,
-  marginBottom: props.fullscreen ? 0 : props.bottom
+  marginBottom: props.fullscreen ? 0 : props.bottom,
 }));
 
 const handleClose = () => {
@@ -72,7 +68,7 @@ const handleClose = () => {
 
 const handleCancel = () => {
   model.value = false;
-  emit('cancel');
+  emit("cancel");
 };
 
 const okLoading = ref<boolean>(false);
@@ -98,5 +94,5 @@ const handleConfirm = async () => {
 
 watch(model, (value) => {
   isScrollLocked.value = value;
-})
+});
 </script>

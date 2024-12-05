@@ -1,12 +1,16 @@
 <template>
   <teleport to="body">
     <transition name="modal-fade">
-      <div v-show="model" :class="`${clsBlockName}-wrapper`"></div>
+      <div v-show="model" :class="`${clsBlockName}-wrapper`" @click="handleMaskClick"></div>
     </transition>
 
     <transition :name="`slide-${placement}`">
-      <div ref="drawerRef" v-show="model" :class="[`${clsBlockName}`, `${clsBlockName}-${placement}`]"
-        :style="drawerStyle">
+      <div
+        ref="drawerRef"
+        v-show="model"
+        :class="[`${clsBlockName}`, `${clsBlockName}-${placement}`]"
+        :style="drawerStyle"
+      >
         <div :class="`${clsBlockName}-header`">
           <slot name="header">
             <span :class="`${clsBlockName}-header-title`">{{ title }}</span>
@@ -32,35 +36,35 @@
 </template>
 
 <script setup lang="ts">
-import { useNamespace } from '@birdpaper-ui/hooks';
-import { DrawerProps, drawerProps } from './props';
-import { onClickOutside, useScrollLock } from '@vueuse/core'
-import { computed, ref, watch } from 'vue';
+import { useNamespace } from "@birdpaper-ui/hooks";
+import { DrawerProps, drawerProps } from "./props";
+import { onClickOutside, useScrollLock } from "@vueuse/core";
+import { computed, ref, watch } from "vue";
 
 defineOptions({ name: "Drawer" });
 const { clsBlockName } = useNamespace("drawer");
 
 const model = defineModel<boolean>({ type: Boolean, required: true });
 const props: DrawerProps = defineProps(drawerProps);
-const emit = defineEmits(['cancel', 'confirm']);
+const emit = defineEmits(["cancel", "confirm"]);
 
 const drawerRef = ref(null);
 const isScrollLocked = useScrollLock(window.document.body);
 
-onClickOutside(drawerRef, () => {
+const handleMaskClick = () => {
   if (!props.maskClosable) return;
   return handleCancel();
-});
+};
 
 const drawerStyle = computed(() => {
-  if (props.placement === 'up' || props.placement === 'down') {
+  if (props.placement === "up" || props.placement === "down") {
     return {
-      height: typeof props.height === 'number' ? `${props.height}px` : props.height,
-    }
+      height: typeof props.height === "number" ? `${props.height}px` : props.height,
+    };
   }
   return {
-    width: typeof props.width === 'number' ? `${props.width}px` : props.width,
-  }
+    width: typeof props.width === "number" ? `${props.width}px` : props.width,
+  };
 });
 
 const handleClose = () => {
@@ -69,7 +73,7 @@ const handleClose = () => {
 
 const handleCancel = () => {
   model.value = false;
-  emit('cancel');
+  emit("cancel");
 };
 
 const okLoading = ref<boolean>(false);
@@ -95,5 +99,5 @@ const handleConfirm = async () => {
 
 watch(model, (value) => {
   isScrollLocked.value = value;
-})
+});
 </script>
