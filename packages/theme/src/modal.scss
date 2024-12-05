@@ -25,7 +25,7 @@
     bottom: 0;
     left: 0;
     background-color: rgba(29, 33, 41, 0.6);
-    z-index: 2000;
+    z-index: var(--z-index-modal);
   }
 
   &-container {
@@ -34,13 +34,13 @@
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 2001;
     display: flex;
     justify-content: center;
     align-items: center;
     pointer-events: none;
     padding: 50px 0;
     overflow: auto;
+    z-index: var(--z-index-modal);
   }
 
   &-header {

@@ -2,6 +2,7 @@
 
 @include b(tooltip) {
   display: inline-flex;
+  z-index: var(--z-index-tooltip);
   
   &-inner {
     position: relative;

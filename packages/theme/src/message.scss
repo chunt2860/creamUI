@@ -13,7 +13,7 @@
   align-items: center;
   flex-direction: column;
   pointer-events: none;
-  z-index: 1010;
+  z-index: var(--z-index-message);
 }
 
 .--bp-message-top {
@@ -60,7 +60,7 @@
       pointer-events: all;
       border: $borderSize solid rgba(getCssVar("message", "border-color"), 1);
       background: rgba(getCssVar("message", "bg-color"), 1);
-      box-shadow: 0 4px 12px rgba(getCssVar("message", "box-shadow"), 0.6);
+      box-shadow: 0 4px 12px rgba(getCssVar("message", "box-shadow"), 0.3);
 
       &-icon {
         margin-right: 6px;
