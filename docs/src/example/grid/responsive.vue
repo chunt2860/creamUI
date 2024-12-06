@@ -20,10 +20,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 36px;
+    height: 38px;
     color: #fff;
     font-size: 12px;
     text-align: center;
+    font-weight: 600;
   }
 
   .bp-col:nth-child(2n) {

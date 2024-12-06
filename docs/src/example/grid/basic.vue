@@ -2,7 +2,7 @@
   <div class="demo-row" v-for="row in demoList">
     <bp-row>
       <bp-col v-for="col in row" :span="col">
-        <div class="demo">col - {{ col }}</div>
+        <div class="demo">Col - {{ col }}</div>
       </bp-col>
     </bp-row>
   </div>
@@ -24,9 +24,10 @@ const demoList = [[24], [12, 12], [8, 8, 8], [6, 6, 6, 6], [4, 4, 4, 4, 4, 4]];
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 36px;
+    height: 38px;
     color: #fff;
     font-size: 12px;
+    font-weight: 600;
     text-align: center;
   }
 

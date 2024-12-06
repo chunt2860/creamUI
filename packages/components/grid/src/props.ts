@@ -48,15 +48,30 @@ export const colProps = {
     type: Number,
     default: 0,
   },
-  // <768px 响应式栅格数或者栅格属性对象
+  /**
+   * @type ColResponsive
+   * @description <768px Responsive config.
+   */
   xs: { type: [Object, Number] as PropType<ColResponsive> },
-  // ≥768px 响应式栅格数或者栅格属性对象
+  /**
+   * @type ColResponsive
+   * @description ≥768px Responsive config.
+   */
   sm: { type: [Object, Number] as PropType<ColResponsive> },
-  // ≥992px 响应式栅格数或者栅格属性对象
+  /**
+   * @type ColResponsive
+   * @description ≥992px Responsive config.
+   */
   md: { type: [Object, Number] as PropType<ColResponsive> },
-  // ≥1200px 响应式栅格数或者栅格属性对象
+  /**
+   * @type ColResponsive
+   * @description ≥1200px Responsive config.
+   */
   lg: { type: [Object, Number] as PropType<ColResponsive> },
-  // ≥1920px 响应式栅格数或者栅格属性对象
+  /**
+   * @type ColResponsive
+   * @description ≥1920px Responsive config.
+   */
   xl: { type: [Object, Number] as PropType<ColResponsive> },
 } as const;
 

@@ -25,11 +25,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 36px;
+    height: 38px;
     color: #fff;
     font-size: 12px;
     background-color: #1677ff;
     text-align: center;
+    font-weight: 600;
   }
 }
 </style>
