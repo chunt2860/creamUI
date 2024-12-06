@@ -1,4 +1,4 @@
-import { EventItem, PropItem, SlotItem } from "../../.vitepress/components/api-block/src/types";
+import { PropItem } from "../../.vitepress/components/api-block/src/types";
 
 export const rowProps: PropItem[] = [
   {
