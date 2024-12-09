@@ -1,8 +1,8 @@
 <template>
   <bp-space>
-    <bp-input v-model="txt" clearable placeholder="请输入内容"></bp-input>
-    <bp-input readonly v-model="txt" placeholder="请输入内容"></bp-input>
-    <bp-input disabled v-model="txt" placeholder="请输入内容"></bp-input>
+    <bp-input v-model="txt" clearable placeholder="请输入内容" />
+    <bp-input readonly v-model="txt" placeholder="请输入内容" />
+    <bp-input disabled v-model="txt" placeholder="请输入内容" />
   </bp-space>
 </template>
 

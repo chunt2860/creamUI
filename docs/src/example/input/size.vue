@@ -6,7 +6,7 @@
     <bp-radio value="large">大型</bp-radio>
   </bp-radio-group>
 
-  <bp-input style="width: 240px" :size clearable placeholder="请输入内容"></bp-input>
+  <bp-input style="width: 240px" :size clearable placeholder="请输入内容" />
 </template>
 
 <script setup lang="ts">
