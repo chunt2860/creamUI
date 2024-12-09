@@ -1,7 +1,9 @@
 <template>
   <div :class="cls" @click.stop="focus">
-    <div :class="`${clsBlockName}-perfix select-none`" v-if="slots.perfix">
-      <slot name="perfix"></slot>
+    <div :class="`${clsBlockName}-prefix select-none`" v-if="slots.prefix">
+      <span class="prefix-content">
+        <slot name="prefix" />
+      </span>
     </div>
     <input
       ref="inpRef"
@@ -70,7 +72,7 @@ const innerActionIcon = computed<Component>(() => {
     return !isEyeOpen.value ? IconEyeCloseFill : IconEyeFill;
   }
 
-  if (props.clearable) {
+  if (props.clearable && !props.readonly) {
     return IconCloseLine;
   }
 
@@ -88,7 +90,7 @@ const innerSuffixContent = computed<string | Component>(() => {
 const handleActionIconClick = () => {
   if (props.disabled) return;
 
-  if (props.type === "text" && props.clearable) return clear(true);
+  if (props.type === "text" && props.clearable && !props.readonly) return clear(true);
   if (props.type === "password" && props.showPassword) return triggerEye();
 };
 

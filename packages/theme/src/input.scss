@@ -52,7 +52,8 @@
     fill: var(--bp-gary-6);
   }
 
-  &-suffix {
+  &-suffix,
+  &-prefix {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,12 +80,19 @@
       }
     }
 
-    .suffix-content {
+    .suffix-content,
+    .prefix-content {
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--bp-gary-6);
     }
+  }
+
+  &-prefix {
+    flex: auto 0 0;
+    margin-right: 2px;
+    margin-left: 0px;
   }
 }
 
@@ -109,8 +117,12 @@
       font-size: getCssVar("size-font-size", $size);
     }
 
-    .#{$B}-perfix {
-      padding-right: calc(getCssVar("size-height", $size) / 8);
+    .#{$B}-prefix {
+      .prefix-content {
+        height: getCssVar("size-height", $size);
+        padding-right: calc(getCssVar("size-height", $size) / 10);
+        font-size: 12px;
+      }
     }
 
     .#{$B}-suffix {
