@@ -91,14 +91,14 @@ const clear = (autoFocus: boolean = false) => {
 const inpRef = ref<HTMLInputElement>();
 const focus = () => inpRef.value?.focus();
 const blur = () => inpRef.value?.blur();
-const onFocus = () => emits("focus");
-const onBlur = () => emits("blur");
-const onKeypress = () => emits("keypress");
-const onKeyup = () => emits("keyup");
+const onFocus = (e: Event) => emits("focus", e);
+const onBlur = (e: Event) => emits("blur", e);
+const onKeypress = (e: Event) => emits("keypress", e);
+const onKeyup = (e: Event) => emits("keyup", e);
 
 const onInput = (e: Event) => {
   model.value = (e.target as HTMLInputElement).value;
-  emits("input");
+  emits("input", { e, value: model.value });
 };
 
 defineExpose({
