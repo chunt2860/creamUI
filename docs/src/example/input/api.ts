@@ -29,7 +29,7 @@ export const inputEvents: EventItem[] = [
 ];
 
 export const inputSlots: SlotItem[] = [
-  { name: "perfix", remark: "头部元素" },
+  { name: "prefix", remark: "头部元素" },
   { name: "suffix", remark: "尾部元素" },
 ];
 
