@@ -40,7 +40,7 @@ export const inputProps = {
   /**
    * @type number
    * @description Maximum input length, null indicates no limit.
-   * @default 0
+   * @default null
    */
   maxlength: {
     type: Number,
