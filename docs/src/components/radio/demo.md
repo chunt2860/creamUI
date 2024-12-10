@@ -1,3 +1,8 @@
+<script lang="ts">
+import Usage from "../../example/radio/usage.vue";
+</script>
+<Usage />
+
 ## 基础用法
 
 单选框的基本用法
