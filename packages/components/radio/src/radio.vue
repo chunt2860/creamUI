@@ -21,6 +21,7 @@ const { clsBlockName } = useNamespace("radio");
 
 const model = defineModel<RadioValue>({ default: false });
 const props: RadioProps = defineProps(radioProps);
+const emits = defineEmits(["change"]);
 
 const cls = computed(() => [
   clsBlockName,
@@ -36,6 +37,7 @@ const handleInput = () => {
 
   if (model.value !== props.value) {
     model.value = props.value;
+    emits("change", model.value);
   }
 };
 const isCheck = computed(() => model.value === props.value);
