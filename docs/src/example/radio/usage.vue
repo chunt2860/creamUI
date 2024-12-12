@@ -54,7 +54,7 @@ const groupCfg = ref({
   type: "Radio",
   size: "default",
 });
-const optionList = ref(["option 1"]);
+const optionList = ref(["option 1", "option 2"]);
 
 const handleAdd = () => optionList.value.push("");
 </script>
