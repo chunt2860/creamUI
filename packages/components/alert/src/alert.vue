@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div :class="`${clsBlockName}-content`">
+    <div v-if="slots.content || props.content" :class="`${clsBlockName}-content`">
       <slot name="content" />
       <template v-if="!slots.content">
         {{ props.content }}
