@@ -1,9 +1,15 @@
 <template>
-  <div :class="cls">
+  <div v-if="visible" :class="cls">
     <div :class="`${clsBlockName}-inner`">
       <div :class="`${clsBlockName}-inner-title`">
-        <component :is="icon" size="16"></component>
+        <component v-if="!hideIcon" :is="icon" size="16"></component>
         {{ props.title }}
+      </div>
+      <div v-if="showClose" :class="`${clsBlockName}-inner-close`" @click="handleClose">
+        <slot name="close" />
+        <template v-if="!slots.close">
+          <IconCloseFill size="16" />
+        </template>
       </div>
     </div>
 
@@ -19,8 +25,14 @@
 <script setup lang="ts">
 import { useNamespace } from "@birdpaper-ui/hooks";
 import { alertProps, AlertProps } from "./props";
-import { IconInformationFill, IconCheckboxCircleFill, IconErrorWarningFill, IconCloseCircleFill } from "birdpaper-icon";
-import { computed, useSlots } from "vue";
+import {
+  IconCloseFill,
+  IconInformationFill,
+  IconCheckboxCircleFill,
+  IconErrorWarningFill,
+  IconCloseCircleFill,
+} from "birdpaper-icon";
+import { computed, ref, useSlots } from "vue";
 
 defineOptions({ name: "Alert" });
 const { clsBlockName } = useNamespace("alert");
@@ -31,7 +43,7 @@ const slots = useSlots();
 const cls = computed(() => [
   clsBlockName,
   `${clsBlockName}-${props.status}`,
-  { [`${clsBlockName}-no-border`]: props.noBorder },
+  { [`${clsBlockName}-hide-border`]: props.hideBorder },
 ]);
 
 const statusIcon = {
@@ -44,4 +56,7 @@ const icon = computed(() => {
   if (props.icon) return props.icon;
   return statusIcon[props.status];
 });
+
+const visible = ref(true);
+const handleClose = () => (visible.value = false);
 </script>

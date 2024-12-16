@@ -40,7 +40,25 @@ export const alertProps = {
    * @description Whether to show a border.
    * @default false
    */
-  noBorder: {
+  hideBorder: {
+    type: Boolean,
+    default: false,
+  },
+  /**
+   * @type Boolean
+   * @description Whether to hide the icon.
+   * @default false
+   */
+  hideIcon: {
+    type: Boolean,
+    default: false,
+  },
+  /**
+   * @type Boolean
+   * @description Whether to show a close button.
+   * @default false
+   */
+  showClose: {
     type: Boolean,
     default: false,
   },
