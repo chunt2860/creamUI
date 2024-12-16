@@ -21,7 +21,7 @@
 
             <div v-if="!hideFooter" :class="`${clsBlockName}-footer`">
               <slot name="footer">
-                <bp-button @click="handleCancel">{{ cancleText }}</bp-button>
+                <bp-button @click="handleCancel" type="secondary" status="gary">{{ cancleText }}</bp-button>
                 <bp-button status="primary" type="normal" :loading="okLoading" @click="handleConfirm">
                   {{ okText }}
                 </bp-button>
