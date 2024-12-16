@@ -36,6 +36,7 @@ import {
   Popconfirm,
   Form,
   FormItem,
+  Alert
 } from "@birdpaper-ui/components";
 
 export default [
@@ -76,4 +77,5 @@ export default [
   Popconfirm,
   Form,
   FormItem,
+  Alert
 ];

@@ -27,3 +27,4 @@ export * from "./spin";
 export * from "./drawer";
 export * from "./popconfirm";
 export * from "./form";
+export * from "./alert";

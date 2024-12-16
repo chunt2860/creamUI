@@ -1,0 +1,51 @@
+@use "mixins/var" as *;
+@use "common/design" as *;
+@use "mixins/function" as *;
+@use "mixins/mixins.scss" as *;
+
+@include b(alert) {
+  @include flex(column, flex-start, flex-start);
+  background-color: getCssVar("alert", "bg-color");
+  border: $borderSize solid getCssVar("alert", "border-color");
+  border-radius: 8px;
+  padding: 10px 15px;
+  box-sizing: border-box;
+
+  &-inner {
+    &-title {
+      @include flex(row, flex-start, center);
+      font-size: 14px;
+      font-weight: 500;
+
+      svg[class*="-icon-"] {
+        margin-right: 6px;
+        fill: getCssVar("alert", "icon-color");
+      }
+    }
+  }
+
+  &-content {
+    margin-top: 6px;
+    font-size: 14px;
+  }
+}
+
+.#{$B}-no-border {
+  border: none;
+}
+
+$status: "info", "success", "warning", "danger";
+
+@each $item in $status {
+  .#{$B}-#{$item} {
+    @if $item == "info" {
+      @include css-var-from-global(("alert", "bg-color"), ("gary", "1"));
+      @include css-var-from-global(("alert", "border-color"), ("gary", "2"));
+      @include css-var-from-global(("alert", "icon-color"), ("gary", "8"));
+    } @else {
+      @include css-var-from-global(("alert", "bg-color"), ($item, "1"));
+      @include css-var-from-global(("alert", "border-color"), ($item, "3"));
+      @include css-var-from-global(("alert", "icon-color"), ($item, "6"));
+    }
+  }
+}
