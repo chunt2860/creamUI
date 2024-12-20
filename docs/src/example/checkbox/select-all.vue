@@ -9,29 +9,30 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const val = ref<string[]>([]);
-const indeterminate = ref(false);
 const options = ["选项一", "选项二", "选项三", "选项四"];
 
+/**
+ * 处理复选框选择的更改事件。
+ * @param {string[]} e - 选中的复选框值数组。
+ *
+ * 如果数组为空，将 `isSelectAll` 设置为 false。
+ * 如果数组长度等于选项总数，将 `indeterminate` 设置为 false。
+ * 否则，将 `indeterminate` 设置为 true。
+ */
 const isSelectAll = ref(false);
-const onSelectAllChange = (v: boolean) => {
-  if (!v) {
-    val.value = [];
-    return;
-  }
-
-  val.value = [...options];
-};
-
+const indeterminate = ref(false);
 const onChange = (e: string[]) => {
   if (!e.length) return (isSelectAll.value = false);
 
   isSelectAll.value = true;
-  if (e.length === options.length) {
-    indeterminate.value = false;
-    return;
-  }
+  if (e.length === options.length) return (indeterminate.value = false);
 
   indeterminate.value = true;
+};
+
+const val = ref<string[]>([]);
+const onSelectAllChange = (v: boolean) => {
+  if (!v) return (val.value = []);
+  val.value = [...options];
 };
 </script>

@@ -9,7 +9,7 @@
 
 ## 复选框组
 
-通过 `checkbox-group` 实现复选框组，通过数组收集勾选选项。
+通过 `checkbox-group` 实现复选框组，通过数组收集勾选选项，支持两种布局方式，分别是 <b>`vertical`</b> 和 <b>`horizontal`（默认）</b>。
 <demo-block src="checkbox/group">
 
 <<< @/example/checkbox/group.vue
@@ -25,9 +25,9 @@
 
 </demo-block>
 
-## 全选
+## 不确定状态
 
-在 `checkbox-group` 中，可以设置 `max` 以限制勾选数量
+在全选的场景下，你可以通过 `indeterminate` 属性设置复选框的不确定状态。
 <demo-block src="checkbox/select-all">
 
 <<< @/example/checkbox/select-all.vue
