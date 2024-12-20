@@ -14,11 +14,11 @@ export const checkboxProps = {
   /**
    * @type CheckboxValue
    * @description Checkbox value.
-   * @default false
+   * @default true
    */
   value: {
     type: [String, Number, Boolean] as PropType<CheckboxValue>,
-    default: false,
+    default: true,
   },
   /**
    * @type boolean

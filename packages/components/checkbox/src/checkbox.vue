@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { useNamespace } from "@birdpaper-ui/hooks";
-import { computed } from "vue";
+import { computed, nextTick } from "vue";
 import { CheckboxValue } from "./types";
 import { CheckboxProps, checkboxProps } from "./props";
 import { IconCheckLine, IconSubtractLine } from "birdpaper-icon";
@@ -25,7 +25,7 @@ import { IconCheckLine, IconSubtractLine } from "birdpaper-icon";
 defineOptions({ name: "Checkbox" });
 const { clsBlockName } = useNamespace("checkbox");
 
-const model = defineModel<CheckboxValue | CheckboxValue[]>({ default: "" });
+const model = defineModel<CheckboxValue | CheckboxValue[]>({ default: false });
 const props: CheckboxProps = defineProps(checkboxProps);
 const emits = defineEmits(["change"]);
 
@@ -55,7 +55,7 @@ const handleClick = () => {
     return emits("change", model.value);
   }
 
-  model.value = isCheck.value ? "" : props.value;
-  return emits("change", model.value);
+  model.value = isCheck.value ? false : true;
+  nextTick(() => emits("change", model.value));
 };
 </script>

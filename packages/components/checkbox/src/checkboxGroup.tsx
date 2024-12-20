@@ -67,8 +67,8 @@ export default defineComponent({
               <Fragment key={child.key ?? `item-${index}`}>
                 {h(checkbox, {
                   modelValue: props.modelValue,
-                  onChange(e: CheckboxValue) {
-                    emit("change", e);
+                  onChange() {
+                    emit("change", props.modelValue);
                   },
                 })}
               </Fragment>

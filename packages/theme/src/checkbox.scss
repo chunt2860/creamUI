@@ -94,6 +94,10 @@
     line-height: unset;
     transition: all 0.2s;
   }
+
+  & + & {
+    margin-left: $defaultMargin;
+  }
 }
 
 .#{$B}-disabled {
@@ -107,23 +111,19 @@
 }
 
 .#{$B}-group {
-  display: inline-flex;
+  display: flex;
 
   &-vertical {
     flex-direction: column;
 
-    .#{$B} {
-      &:not(:first-child) {
-        margin-top: 16px;
-      }
+    .#{$B} + .#{$B} {
+      margin: 10px 0 0 0;
     }
   }
 
   &-horizontal {
-    .#{$B} {
-      &:not(:first-child) {
-        margin-left: 20px;
-      }
+    .#{$B} + .#{$B} {
+      margin: 0 0 0 16px;
     }
   }
 }
