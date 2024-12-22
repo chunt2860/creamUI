@@ -9,7 +9,7 @@
 
 ## 复选框组
 
-通过 `checkbox-group` 实现复选框组，通过数组收集勾选选项，支持两种布局方式，分别是 <b>`vertical`</b> 和 <b>`horizontal`（默认）</b>。
+通过 `checkbox-group` 实现复选框组，通过数组收集勾选选项，支持两种布局方式，分别是 `vertical` 和 `horizontal`（默认）。
 <demo-block src="checkbox/group">
 
 <<< @/example/checkbox/group.vue
