@@ -38,7 +38,7 @@
 
   <div :class="`${clsBlockName}-footer`" :style="{ 'justify-content': ctx?.showTime ? 'space-between' : 'center' }">
     <template v-if="ctx?.showTime">
-      <bp-button size="small" status="gary" @click="setNow"> 此刻 </bp-button>
+      <bp-button size="small" status="gary" type="secondary" @click="setNow"> 此刻 </bp-button>
       <bp-button type="normal" size="small" status="primary" @click="confirmValue"> 确定 </bp-button>
     </template>
     <bp-button v-else type="text" status="primary" @click="handleSelect(toDay)"> 今天 </bp-button>

@@ -38,6 +38,10 @@
         color: var(--bp-gary-9);
       }
     }
+
+    .#{$namespace}-time-table {
+      border: none;
+    }
   }
 
   &-week {
