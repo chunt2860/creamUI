@@ -1,3 +1,8 @@
+<script lang="ts">
+import Usage from "../../example/switch/usage.vue";
+</script>
+<Usage />
+
 ## 基础用法
 
 开关的基础用法。
