@@ -1,10 +1,10 @@
 import { InjectionKey } from "vue";
 
-export declare type SelectValue = string | number;
+export declare type SelectValue = string | number | boolean;
 
 export class SelectOption {
   label: string = "";
-  value: SelectValue = '';
+  value: SelectValue = "";
 }
 
 export interface SelectContext {

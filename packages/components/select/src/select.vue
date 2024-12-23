@@ -100,7 +100,7 @@ watchEffect(() => {
       valueMap[item.props?.value] = item.props?.label || item?.children?.["default"]?.()[0].children;
     }
 
-    labelModel.value = valueMap[model.value] || model.value;
+    labelModel.value = valueMap[model.value as string] || model.value;
   } catch (error) {
     return {};
   }

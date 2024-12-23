@@ -57,7 +57,7 @@ export const optionProps = {
    * @requires
    */
   value: {
-    type: [Number, String] as PropType<SelectValue>,
+    type: [Number, String, Boolean] as PropType<SelectValue>,
     default: "",
     require: true,
   },

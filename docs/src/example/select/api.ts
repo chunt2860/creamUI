@@ -1,7 +1,7 @@
 import { EventItem, PropItem } from "../../.vitepress/components/api-block/src/types";
 
 export const selectProps: PropItem[] = [
-  { name: "v-model", remark: "绑定值", type: ["SelectValue"], optional: ["Number", "String"] },
+  { name: "v-model", remark: "绑定值", type: ["SelectValue"], optional: ["Number", "String", "Boolean"] },
   { name: "name", remark: "选择器名称", type: ["String"] },
   { name: "placeholder", remark: "占位文本", type: ["String"] },
   {
@@ -16,7 +16,7 @@ export const selectProps: PropItem[] = [
 ];
 
 export const optionProps: PropItem[] = [
-  { name: "value", remark: "绑定值", type: ["SelectValue"], optional: ["Number", "String"] },
+  { name: "value", remark: "绑定值", type: ["SelectValue"], optional: ["Number", "String", "Boolean"] },
   { name: "label", remark: "显示文本", type: ["String"] },
   { name: "disabled", remark: "是否禁用", type: ["Boolean"], default: "false" },
 ];
