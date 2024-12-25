@@ -1,5 +1,5 @@
 <template>
-  <bp-year-picker v-model="val" style="width: 200px" placeholder="请选择"> </bp-year-picker>
+  <bp-year-picker v-model="val" style="width: 200px" placeholder="请选择" />
 </template>
 
 <script setup lang="ts">

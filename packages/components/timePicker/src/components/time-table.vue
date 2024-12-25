@@ -23,7 +23,7 @@
     </div>
 
     <div v-if="!onlySelector" :class="`${clsBlockName}-footer`">
-      <bp-button size="mini" @click="setNow">现在</bp-button>
+      <bp-button size="mini" status="gary" type="secondary" @click="setNow">现在</bp-button>
       <bp-button :disabled="confirmDisabled" size="mini" type="normal" status="primary" @click="handleSelect">
         确认
       </bp-button>
@@ -106,7 +106,7 @@ const scrollTo = (i: number, item: string = defaultValue) => columnRefs.value[i]
 const handleSelect = () => {
   if (!globalValue.value) return;
 
-  const val  = globalValue.value.join(":");
+  const val = globalValue.value.join(":");
   ctx.value?.onSelect(val);
 };
 
@@ -145,6 +145,6 @@ watch(
 defineExpose({
   globalValue,
   getTime,
-  setNow
+  setNow,
 });
 </script>
