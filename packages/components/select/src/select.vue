@@ -10,7 +10,7 @@
   >
     <bp-input
       v-model="labelModel"
-      read-only
+      readonly
       :size
       :disabled
       :placeholder="placeholder"
