@@ -7,6 +7,15 @@
 
 </demo-block>
 
+## 仅面板
+
+通过开启 `hide-trigger` 属性直接展示选择面板。
+<demo-block src="datePicker/panel">
+
+<<< @/example/datePicker/panel.vue
+
+</demo-block>
+
 ## 选择时间
 
 通过开启 `show-time` 属性以支持时间选择。
@@ -31,14 +40,5 @@
 <demo-block src="datePicker/year">
 
 <<< @/example/datePicker/year.vue
-
-</demo-block>
-
-## 仅面板
-
-通过开启 `hide-trigger` 属性直接展示选择面板。
-<demo-block src="datePicker/panel">
-
-<<< @/example/datePicker/panel.vue
 
 </demo-block>
