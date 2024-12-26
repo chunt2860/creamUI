@@ -27,7 +27,7 @@
           </div>
         </template>
       </bp-table-column>
-      <bp-table-column :title="locales[lang].PROPS_TABLE.DEFAULT" data-index="default">
+      <bp-table-column :title="locales[lang].PROPS_TABLE.DEFAULT" data-index="default" minWidth="120">
         <template #cell="{ record }">
           <span class="default-inner">
             {{ record.default || "-" }}

@@ -8,18 +8,7 @@
     position="bottom-left"
     update-at-scroll
   >
-    <bp-input
-      ref="inpRef"
-      readonly
-      v-model="model"
-      :class="cls"
-      :placeholder
-      :disabled
-      :clearable
-      :size
-      @input="onInput"
-      @blur="onBlur"
-    >
+    <bp-input ref="inpRef" readonly v-model="model" :name :class="cls" :placeholder :disabled :clearable :size>
       <template #suffix>
         <IconCalendarLine />
       </template>
@@ -45,7 +34,6 @@ const { clsBlockName } = useNamespace("date-picker");
 
 const model = defineModel<string>({ default: "" });
 const props: DatePickerProps = defineProps({ ...commonPickerProps, ...datePickerProps });
-const emits = defineEmits(["input", "blur"]);
 
 const cls = computed<string[] | {}[]>(() => [clsBlockName, `${clsBlockName}-${props.size}`]);
 
@@ -61,7 +49,4 @@ provide(dateInjectionKey, {
     if (closePopup) showPopup.value = false;
   },
 });
-
-const onInput = () => emits("input");
-const onBlur = () => emits("blur");
 </script>
