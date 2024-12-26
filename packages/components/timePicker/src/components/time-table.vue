@@ -124,6 +124,15 @@ const getTime = (defaultNow: boolean = false) => {
   return globalValue.value.join(":");
 };
 
+const setTime = (val: string) => {
+  globalValue.value = val.split(":");
+
+  for (let i = 0; i < globalValue.value.length; i++) {
+    const item = globalValue.value[i];
+    scrollTo(i, item);
+  }
+};
+
 watch(
   () => ctx.value?.modelValue,
   () => {
@@ -145,6 +154,7 @@ watch(
 defineExpose({
   globalValue,
   getTime,
+  setTime,
   setNow,
 });
 </script>

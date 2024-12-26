@@ -44,7 +44,6 @@ defineOptions({ name: "DatePicker" });
 const { clsBlockName } = useNamespace("date-picker");
 
 const model = defineModel<string>({ default: "" });
-// const props: DatePickerProps = defineProps(datePickerProps);
 const props: DatePickerProps = defineProps({ ...commonPickerProps, ...datePickerProps });
 const emits = defineEmits(["input", "blur"]);
 

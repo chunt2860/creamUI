@@ -47,7 +47,7 @@
 
 <script lang="ts" setup>
 import { useNamespace } from "@birdpaper-ui/hooks";
-import { ref, inject } from "vue";
+import { ref, inject, onMounted } from "vue";
 import type { Component } from "vue";
 import {
   IconArrowLeftSLine,
@@ -83,7 +83,7 @@ const { toDay, current, currentMonth, currentYear, dates, setDates, changeMonth,
 );
 
 const currentVal = ref(ctx.value!.model ? current.value.format("YYYY-MM-DD") : "");
-const currentTimeVal = ref("");
+const currentTimeVal = ref(ctx.value!.model && ctx.value?.showTime ? current.value.format("HH:mm:ss") : "");
 setDates();
 
 const timeTableRef = ref();
@@ -150,4 +150,10 @@ const confirmValue = () => {
   ctx.value!.onSelect(val, {}, true);
   return val;
 };
+
+onMounted(() => {
+  if (currentTimeVal.value) {
+    timeTableRef.value && timeTableRef.value.setTime(currentTimeVal.value);
+  }
+});
 </script>
