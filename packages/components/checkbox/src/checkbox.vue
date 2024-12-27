@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { useNamespace } from "@birdpaper-ui/hooks";
-import { computed, nextTick, ref } from "vue";
+import { computed, nextTick, ref, watch } from "vue";
 import { CheckboxValue } from "./types";
 import { CheckboxProps, checkboxProps } from "./props";
 import { IconCheckLine, IconSubtractLine } from "birdpaper-icon";
@@ -61,7 +61,14 @@ const handleClick = () => {
   }
 
   model.value = isCheck.value ? false : true;
-  upadteCheck();
+  nextTick(() => upadteCheck());
   nextTick(() => emits("change", model.value));
 };
+
+watch(
+  () => model.value,
+  () => {
+    upadteCheck();
+  }
+);
 </script>

@@ -4,7 +4,7 @@
 
     <span :class="radioCls"></span>
 
-    <span :class="labelCls">
+    <span :class="labelCls" v-if="slots?.default?.()">
       <slot></slot>
     </span>
   </label>
@@ -19,8 +19,9 @@ import { RadioValue } from "./types";
 defineOptions({ name: "Radio" });
 const { clsBlockName } = useNamespace("radio");
 
-const model = defineModel<RadioValue>({ default: false });
+const model = defineModel<RadioValue>({ default: '' });
 const props: RadioProps = defineProps(radioProps);
+const slots = defineSlots();
 const emits = defineEmits(["change"]);
 
 const cls = computed(() => [
