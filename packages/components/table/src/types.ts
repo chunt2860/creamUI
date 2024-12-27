@@ -6,3 +6,7 @@ export interface ColumnsItem {
   minWidth?: number;
   align: "left" | "center" | "right";
 }
+
+export interface TableRowSelection {
+  type: "checkbox" | "radio";
+}

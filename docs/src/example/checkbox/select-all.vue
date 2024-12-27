@@ -1,5 +1,7 @@
 <template>
-  <bp-checkbox v-model="isSelectAll" :indeterminate @change="onSelectAllChange">全选</bp-checkbox>
+  <bp-space>
+    <bp-checkbox v-model="isSelectAll" :indeterminate @change="onSelectAllChange">全选</bp-checkbox>
+  </bp-space>
 
   <bp-checkbox-group v-model="val" style="margin-top: 20px" @change="onChange">
     <bp-checkbox v-for="v in options" :value="v">{{ v }}</bp-checkbox>

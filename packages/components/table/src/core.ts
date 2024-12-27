@@ -1,5 +1,5 @@
 import { ref, useSlots } from "vue";
-import { ColumnsItem } from "./types";
+import { ColumnsItem, TableRowSelection } from "./types";
 import { getAllElements } from "@birdpaper-ui/components/utils/dom";
 
 export const useTableCore = () => {
@@ -34,7 +34,7 @@ export const useTableCore = () => {
    * @description Get columns from slot.
    * @returns ColumnsItem[]
    */
-  const getColumnsBySlot = (): ColumnsItem[] => {
+  const getColumnsBySlot = (rowSelection: TableRowSelection): ColumnsItem[] => {
     if (!slots.columns?.()) return [];
 
     const children = getAllElements(slots.columns?.(), true).filter((item) => {
@@ -48,6 +48,16 @@ export const useTableCore = () => {
     cols = [];
     for (let i = 0; i < children.length; i++) {
       cols.push(children[i]?.props as ColumnsItem);
+    }
+
+    if (rowSelection?.type) {
+      cols.unshift({
+        type: rowSelection.type,
+        width: 46,
+        align: "center",
+      });
+
+      _remainder_col++;
     }
 
     return cols;

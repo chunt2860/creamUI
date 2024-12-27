@@ -1,6 +1,6 @@
 <template>
   <td :class="cls">
-    <template v-if="!hasCustomCell">
+    <template v-if="!hasCustomCell && dataIndex">
       {{ dataIndex && record[dataIndex] }}
     </template>
 
@@ -21,6 +21,6 @@ const { clsBlockName } = useNamespace("table-column");
 const props: TableColumnProps = defineProps(tableColumnProps);
 const slots = useSlots();
 
-const cls = computed<string[]>(() => [clsBlockName]);
+const cls = computed<string[]>(() => [clsBlockName, `${clsBlockName}-${props.align}`]);
 const hasCustomCell = computed(() => !!slots?.cell);
 </script>

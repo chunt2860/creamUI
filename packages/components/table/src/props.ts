@@ -1,5 +1,5 @@
 import { ExtractPropTypes, PropType } from "vue";
-import { ColumnsItem } from "./types";
+import { ColumnsItem, TableRowSelection } from "./types";
 
 export const tableProps = {
   /**
@@ -43,6 +43,15 @@ export const tableProps = {
   emptyText: {
     type: String,
     default: "暂无数据",
+  },
+  /**
+   * @type TableRowSelection
+   * @description The table selection config.
+   * @default null
+   */
+  rowSelection: {
+    type: Object as PropType<TableRowSelection>,
+    default: () => null,
   },
 } as const;
 

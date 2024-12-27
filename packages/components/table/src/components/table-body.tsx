@@ -21,11 +21,13 @@ export default defineComponent({
             return (
               <tr key={rowIndex}>
                 {children.map((child, childIndex) => {
-                  const { dataIndex = childIndex } = child?.props as TableColumnProps;
+                  const props = child?.props as TableColumnProps;
                   const column = Object.assign({}, child);
                   column.props = mergeProps(child.props as VNodeProps, { record, rowIndex });
 
-                  return <Fragment key={`table-column-${rowIndex}-${dataIndex}`}>{column}</Fragment>;
+                  return (
+                    <Fragment key={`table-column-${rowIndex}-${props?.dataIndex || childIndex}`}>{column}</Fragment>
+                  );
                 })}
               </tr>
             );

@@ -1,5 +1,13 @@
 <template>
-  <bp-table :data="list" border stripe>
+  <bp-table
+    :data="list"
+    border
+    stripe
+    row-key="seat"
+    :row-selection="rowSelection"
+    v-model:selectedKeys="selectedKeys"
+    v-model:selectedKey="selectedKey"
+  >
     <template #columns>
       <bp-table-column title="座号" data-index="seat" :width="100">
         <template #cell="{ record }">
@@ -14,6 +22,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+
 const list = [
   { seat: "1", name: "李小颖", results: "522", ranking: "4" },
   { seat: "15", name: "杜小浩", results: "462", ranking: "18" },
@@ -24,4 +34,11 @@ const list = [
   { seat: "46", name: "木小亦", results: "409", ranking: "40" },
   { seat: "43", name: "邹小辉", results: "293", ranking: "53" },
 ];
+
+const selectedKey = ref("");
+const selectedKeys = ref([]);
+const rowSelection = {
+  type: "radio",
+  // type: "checkbox",
+};
 </script>
