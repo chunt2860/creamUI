@@ -92,6 +92,18 @@
         font-size: 14px;
         padding: 10px 12px;
       }
+
+      .#{$B}-column-left {
+        text-align: left;
+      }
+
+      .#{$B}-column-center {
+        text-align: center;
+      }
+
+      .#{$B}-column-right {
+        text-align: right;
+      }
     }
   }
 

@@ -10,11 +10,12 @@
   @include css-var-from-global-rgb(("checkbox", "label-color"), ("gary", "8"));
   @include css-var-from-global-rgb(("checkbox", "label-color-hover"), ("gary", "10"));
 
+  @include flex(row, center, center);
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: flex-start;
+  // display: flex;
+  // align-items: center;
+  // flex-direction: row;
+  // justify-content: flex-start;
   cursor: pointer;
 
   &:hover {
@@ -112,6 +113,7 @@
 
 .#{$B}-group {
   display: flex;
+  align-items: flex-start;
 
   &-vertical {
     flex-direction: column;

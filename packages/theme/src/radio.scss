@@ -11,11 +11,8 @@
   @include css-var-from-global-rgb(("radio", "label-color"), ("gary", "8"));
   @include css-var-from-global-rgb(("radio", "label-color-hover"), ("gary", "10"));
 
+  @include flex(row, center, center);
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: flex-start;
   cursor: pointer;
 
   &:hover {
