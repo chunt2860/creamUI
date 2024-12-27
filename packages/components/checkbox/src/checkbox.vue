@@ -9,7 +9,7 @@
       </template>
     </span>
 
-    <span :class="`${clsBlockName}-label`">
+    <span :class="`${clsBlockName}-label`" v-if="slots?.default?.()">
       <slot></slot>
     </span>
   </div>
@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { useNamespace } from "@birdpaper-ui/hooks";
-import { computed, nextTick } from "vue";
+import { computed, nextTick, ref } from "vue";
 import { CheckboxValue } from "./types";
 import { CheckboxProps, checkboxProps } from "./props";
 import { IconCheckLine, IconSubtractLine } from "birdpaper-icon";
@@ -27,17 +27,20 @@ const { clsBlockName } = useNamespace("checkbox");
 
 const model = defineModel<CheckboxValue | CheckboxValue[]>({ default: false });
 const props: CheckboxProps = defineProps(checkboxProps);
+const slots = defineSlots();
 const emits = defineEmits(["change"]);
 
 const cls = computed(() => [clsBlockName, "select-none", props.disabled && `${clsBlockName}-disabled`]);
 
-const isCheck = computed(() => {
+const isCheck = ref(false);
+const upadteCheck = () => {
   if (Array.isArray(model.value)) {
-    return model.value.includes(props.value);
+    isCheck.value = model.value.includes(props.value);
+    return;
   }
 
-  return model.value === props.value;
-});
+  isCheck.value = model.value === props.value;
+};
 
 const handleClick = () => {
   if (props.disabled) return;
@@ -46,16 +49,19 @@ const handleClick = () => {
     const index = model.value.indexOf(props.value);
     if (index !== -1) {
       model.value.splice(index, 1);
+      upadteCheck();
       return emits("change", model.value);
     }
 
     if (props.max !== 0 && props.max <= model.value.length) return;
 
     model.value.push(props.value);
+    upadteCheck();
     return emits("change", model.value);
   }
 
   model.value = isCheck.value ? false : true;
+  upadteCheck();
   nextTick(() => emits("change", model.value));
 };
 </script>
