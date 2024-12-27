@@ -1,6 +1,7 @@
 import { Component, ExtractPropTypes, PropType } from "vue";
 import { LinkStatus } from "./types";
 import { ButtonLoadingIcon } from "@birdpaper-ui/components/button/src/types";
+import { InputSize } from "@birdpaper-ui/components/input/src/types";
 
 export const linkProps = {
   /**
@@ -40,6 +41,15 @@ export const linkProps = {
       return typeof val === "object";
     },
     default: 1,
+  },
+  /**
+   * @type InputSize
+   * @description Link sizes.
+   * @default default
+   */
+  size: {
+    type: String as PropType<InputSize>,
+    default: "default",
   },
   /**
    * @type Component

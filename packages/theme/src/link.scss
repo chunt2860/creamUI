@@ -1,4 +1,5 @@
 @use "mixins/var" as *;
+@use "common/sizes" as *;
 @use "mixins/function" as *;
 @use "mixins/mixins.scss" as *;
 
@@ -72,5 +73,13 @@ $status: "gary", "primary", "success", "warning", "danger";
     @include css-var-from-global-rgb(("link", "active-color"), ($item, 7));
     @include css-var-from-global-rgb(("link", "visited-color"), ($item, 7));
     @include css-var-from-global-rgb(("link", "disabled-color"), ($item, 4));
+  }
+}
+
+@each $size in $sizes {
+  .#{$B}-#{$size} {
+    .#{$B}-inner {
+      font-size: getCssVar("size-font-size", $size);
+    }
   }
 }
