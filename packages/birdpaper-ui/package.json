@@ -1,6 +1,6 @@
 {
   "name": "birdpaper-ui",
-  "version": "3.0.0-alpha.22",
+  "version": "3.0.0-alpha.23",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

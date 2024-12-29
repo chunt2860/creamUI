@@ -2,7 +2,6 @@
   <bp-table
     :data="list"
     border
-    stripe
     row-key="seat"
     :row-selection="rowSelection"
     v-model:selectedKeys="selectedKeys"
@@ -14,9 +13,9 @@
           <span style="font-weight: bold">{{ record.seat }}</span>
         </template>
       </bp-table-column>
-      <bp-table-column title="姓名" data-index="name"> </bp-table-column>
-      <bp-table-column title="成绩" data-index="results" />
-      <bp-table-column title="班级排名" data-index="ranking" />
+      <bp-table-column title="姓名" data-index="name" />
+      <bp-table-column title="成绩" data-index="results" :width="100" />
+      <bp-table-column title="班级排名" data-index="ranking" :width="100" />
     </template>
   </bp-table>
 </template>

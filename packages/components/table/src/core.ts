@@ -106,23 +106,7 @@ export const useTableCore = () => {
    */
   function getWidthList() {
     let width_list: number[] = [];
-
     let adapt_width: number = getAdaptWidth();
-
-    /**
-     * 当表格中含有设置最小宽度的列时，需要挨个比较自适应宽是否小于最小宽度
-     * 如果小于，则重新设置各个值并重新计算自适应宽度
-     */
-    if (_min_width_list.length) {
-      _min_width_list.map((item, index) => {
-        if (adapt_width > item) {
-          _fixed_width += item;
-          _remainder_col--;
-          _min_width_list.splice(index, 1);
-          adapt_width = getAdaptWidth();
-        }
-      });
-    }
 
     for (let i = 0; i < cols.length; i++) {
       const { width, minWidth } = cols[i];
