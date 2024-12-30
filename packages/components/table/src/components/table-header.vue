@@ -34,7 +34,11 @@ const emits = defineEmits<{
 }>();
 
 const thClass = (item: ColumnsItem) => {
-  return [`text-${item.align || "left"}`];
+  return {
+    left: "text-align-left!",
+    center: "text-align-center!",
+    right: "text-align-right!",
+  }[item.align || "left"];
 };
 
 const isSelectAll = ref(false);
