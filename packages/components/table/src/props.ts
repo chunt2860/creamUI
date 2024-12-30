@@ -1,4 +1,4 @@
-import { ExtractPropTypes, PropType } from "vue";
+import { Component, ExtractPropTypes, PropType } from "vue";
 import { ColumnsItem, TableRowSelection } from "./types";
 
 export const tableProps = {
@@ -35,6 +35,36 @@ export const tableProps = {
    * @default "id"
    */
   rowKey: { type: String, default: "id" },
+  /**
+   * @type boolean
+   * @description Loading or not.
+   * @default false
+   */
+  loading: { type: Boolean, default: false },
+  /**
+   * @type number | Component
+   * @description The default icon number which 1-5 or icon component.
+   * @default 1
+   */
+  spinIcon: {
+    type: [Number, Object] as PropType<number | Component>,
+    validator: (val: unknown) => {
+      if (typeof val === "number") {
+        return [1, 2, 3, 4, 5].includes(val);
+      }
+      return typeof val === "object";
+    },
+    default: 1,
+  },
+  /**
+   * @type string
+   * @description The text of the loading indicator.
+   * @default ''
+   */
+  description: {
+    type: String,
+    default: "",
+  },
   /**
    * @type string
    * @description The text when data is empty.

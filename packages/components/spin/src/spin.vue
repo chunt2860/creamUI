@@ -1,6 +1,6 @@
 <template>
   <div :class="cls">
-    <Spinner v-if="!slots.default?.()" :icon="spinIcon" :description="description" />
+    <Spinner v-if="!slots.default?.({})" :icon="spinIcon" :description="description" />
 
     <transition name="fade">
       <div :class="`${clsBlockName}-mask`" v-if="spinning">
