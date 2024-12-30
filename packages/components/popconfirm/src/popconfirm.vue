@@ -50,7 +50,7 @@ const btnStatus = {
   info: "primary",
   success: "success",
   error: "danger",
-  warning: "warnign",
+  warning: "warning",
 };
 
 const handleCancle = () => {
