@@ -38,7 +38,7 @@
 <script setup lang="ts">
 import { useNamespace } from "@birdpaper-ui/hooks";
 import { DrawerProps, drawerProps } from "./props";
-import { onClickOutside, useScrollLock } from "@vueuse/core";
+import { useScrollLock } from "@vueuse/core";
 import { computed, ref, watch } from "vue";
 
 defineOptions({ name: "Drawer" });

@@ -21,7 +21,7 @@
       @input="onInput"
       @blur="onBlur"
     >
-      <template #perfix>
+      <template #prefix>
         <IconTimeLine />
       </template>
     </bp-input>
