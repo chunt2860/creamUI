@@ -2,6 +2,7 @@
   <div :class="[clsBlockName, labelPositionClass]">
     <label v-if="label" :class="`${clsBlockName}-label`" :style="labelStyle">
       {{ label }}
+      {{ showColon ? ":" : "" }}
     </label>
     <div :class="`${clsBlockName}-content`">
       <div :class="`${clsBlockName}-content-inner`">
@@ -20,21 +21,21 @@
 import { useNamespace } from "@birdpaper-ui/hooks";
 import { computed, inject, onMounted, onBeforeUnmount, ref, watch, PropType } from "vue";
 import { FormItemProps, formItemProps } from "../props";
-import type { FormContext, FormItemContext } from '../types';
+import type { FormContext, FormItemContext } from "../types";
 
 defineOptions({ name: "FormItem" });
 const { clsBlockName } = useNamespace("form-item");
 
 const props: FormItemProps = defineProps(formItemProps);
 
-const formContext = inject<FormContext>('formContext');
-const errorMessage = ref('');
+const formContext = inject<FormContext>("formContext");
+const errorMessage = ref("");
 
 watch(
   () => props.field && formContext?.model[props.field],
   () => {
     if (errorMessage.value) {
-      errorMessage.value = '';
+      errorMessage.value = "";
     }
   }
 );
@@ -46,7 +47,7 @@ const formItemContext: FormItemContext = {
     return {};
   },
   clearValidate: () => {
-    errorMessage.value = '';
+    errorMessage.value = "";
   },
   updateError: (error: string) => {
     errorMessage.value = error;
@@ -59,7 +60,7 @@ const formItemContext: FormItemContext = {
       return formContext.rules[props.field];
     }
     return undefined;
-  }
+  },
 };
 
 onMounted(() => {
@@ -76,15 +77,18 @@ onBeforeUnmount(() => {
 
 const labelStyle = computed(() => {
   if (!formContext) return {};
+  if (props.width) {
+    return {
+      width: typeof props.width === "number" ? `${props.width}px` : props.width,
+    };
+  }
   return {
-    width: typeof formContext.labelWidth === 'number'
-      ? `${formContext.labelWidth}px`
-      : formContext.labelWidth
+    width: typeof formContext.labelWidth === "number" ? `${formContext.labelWidth}px` : formContext.labelWidth,
   };
 });
 
 const labelPositionClass = computed(() => {
-  if (!formContext) return '';
+  if (!formContext) return "";
   return `${clsBlockName}-label-${formContext.labelPosition}`;
 });
 </script>

@@ -44,7 +44,7 @@ export const formProps = {
   layout: {
     type: String as PropType<"vertical" | "inline">,
     default: "vertical",
-  }
+  },
 } as const;
 
 export const formItemProps = {
@@ -65,6 +65,22 @@ export const formItemProps = {
   field: {
     type: String,
     default: "",
+  },
+  /**
+   * @type [String, Number]
+   * @description Label width.
+   */
+  width: {
+    type: [String, Number] as PropType<string | number>,
+  },
+  /**
+   * @type Boolean
+   * @description Whether to show the colon after the label.
+   * @default false
+   */
+  showColon: {
+    type: Boolean,
+    default: true,
   },
   /**
    * @type Object
