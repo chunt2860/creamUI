@@ -80,7 +80,7 @@ export const formItemProps = {
    */
   showColon: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   /**
    * @type Object
