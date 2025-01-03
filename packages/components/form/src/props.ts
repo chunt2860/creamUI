@@ -36,6 +36,15 @@ export const formProps = {
     type: String as PropType<"right" | "left" | "top">,
     default: "right",
   },
+  /**
+   * @type String
+   * @description Form layout.
+   * @default "vertical"
+   */
+  layout: {
+    type: String as PropType<"vertical" | "inline">,
+    default: "vertical",
+  }
 } as const;
 
 export const formItemProps = {

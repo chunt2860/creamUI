@@ -1,5 +1,5 @@
 <template>
-  <bp-form ref="formRef" :model="form" label-position="top" :rules="rules">
+  <bp-form ref="formRef" :model="form" label-position="right" :rules="rules">
     <bp-form-item label="ID" field="id">
       <bp-input v-model="form.id" placeholder="请输入" style="width: 320px;" />
     </bp-form-item>

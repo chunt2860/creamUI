@@ -4,11 +4,28 @@
 @use "mixins/mixins.scss" as *;
 
 @include b(form) {
+  &-inline {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .#{$B}-item {
+      width: max-content;
+      margin-bottom: 0;
+    }
+  }
+
+  &-vertical {
+    .#{$B}-item {
+      margin-bottom: 20px;
+    }
+  }
+
   &-item {
     position: relative;
     display: flex;
     width: 100%;
-    margin-bottom: 20px;
 
     &-label {
       display: inline-flex;
@@ -21,9 +38,9 @@
     }
 
     &-content {
+      position: relative;
       flex: 1;
       min-width: 0;
-      position: relative;
 
       &-inner {
         @include flex(column, center, flex-start);
