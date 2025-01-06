@@ -8,7 +8,10 @@ const config: import("vitepress").UserConfig = {
   locales,
   head,
   themeConfig: {
-    logo: "https://cos.birdpaper.design/birdpaper-ui/v2/public/birdpaper-ui_logo_text.svg",
+    logo: {
+      dark: "https://cos.birdpaper.design/birdpaper-ui/v3/logo/logo-white.svg",
+      light: "https://cos.birdpaper.design/birdpaper-ui/v3/logo/logo-black.svg",
+    },
     siteTitle: false,
     outline: "deep",
     socialLinks: [

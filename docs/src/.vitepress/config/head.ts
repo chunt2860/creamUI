@@ -5,7 +5,7 @@ export const head: HeadConfig[] = [
     "link",
     {
       rel: "shortcut icon",
-      href: "https://cos.birdpaper.design/birdpaper-ui/v2/public/favicon.ico",
+      href: "https://cos.birdpaper.design/birdpaper-ui/v3/logo/logo-icon.ico",
       type: "image/x-icon",
     },
   ],
