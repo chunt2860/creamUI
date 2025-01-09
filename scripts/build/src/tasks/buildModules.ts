@@ -10,7 +10,7 @@ export async function buildModules() {
   const UnoCSS = (await import("unocss/vite")).default;
 
   const files = await glob("**/*.{ts,vue}", {
-    cwd: bpUIRoot,
+    cwd: compRoot,
     absolute: true,
     onlyFiles: true,
     ignore: ["node_modules/**/*", "env.d.ts"],
@@ -57,6 +57,7 @@ export async function buildModules() {
     },
     plugins: [
       dts({
+        root: bpUIRoot,
         exclude: ["node_modules"],
         outDir: join(distPkgRoot, "types"),
         insertTypesEntry: true,
