@@ -1,4 +1,4 @@
-import { PropType, Teleport, Transition, defineComponent, h, nextTick, reactive, ref, watch } from "vue";
+import { PropType, Teleport, Transition, defineComponent, h, nextTick, onMounted, reactive, ref, watch } from "vue";
 import { getPosition, getPositionData, getWrapperPositionStyle, getWrapperSize } from "./core";
 import { TriggerPosition, TriggerType } from "./types";
 import { onClickOutside, useElementBounding, useEventListener, useThrottleFn, useWindowSize } from "@vueuse/core";
@@ -199,7 +199,7 @@ export default defineComponent({
         "style",
         getWrapperPositionStyle(top, left, visible.value, props.autoFitWidth ? width : undefined)
       );
-    
+
       if (props.scrollToClose && visible.value) {
         setTimeout(() => {
           visible.value = false;
@@ -216,7 +216,6 @@ export default defineComponent({
     const throttleResize = useThrottleFn(handleResize, props.throttleTime);
     const init = () => {
       useEventListener(window, "resize", throttleResize);
-      // useEventListener(window, "scroll", throttleResize);
 
       nextTick(() => {
         if (props.updateAtScroll) {
@@ -228,7 +227,10 @@ export default defineComponent({
         }
       });
     };
-    init();
+
+    onMounted(() => {
+      nextTick(() => init());
+    });
 
     onClickOutside(
       wrapperRef,

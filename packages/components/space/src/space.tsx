@@ -1,4 +1,4 @@
-import { defineComponent, Fragment, h, PropType } from "vue";
+import { defineComponent, Fragment, h, PropType, Comment } from "vue";
 import { useNamespace } from "@birdpaper-ui/hooks";
 import { SizeType, SpaceType } from "./types";
 import { getAllElements } from "@birdpaper-ui/components/utils/dom";

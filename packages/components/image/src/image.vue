@@ -21,10 +21,10 @@
 </template>
 
 <script lang="ts" setup>
-import { useNamespace } from '@birdpaper-ui/hooks';
-import { computed, ref, onMounted, onBeforeUnmount, watch } from 'vue';
-import { imageProps, ImageProps } from './props';
-import { IconImage2Line, IconErrorWarningLine } from 'birdpaper-icon';
+import { useNamespace } from "@birdpaper-ui/hooks";
+import { computed, ref, onMounted, onBeforeUnmount, watch, nextTick } from "vue";
+import { imageProps, ImageProps } from "./props";
+import { IconImage2Line, IconErrorWarningLine } from "birdpaper-icon";
 
 defineOptions({ name: "Image" });
 const { clsBlockName } = useNamespace("image");
@@ -40,7 +40,7 @@ let observer: IntersectionObserver | null = null;
 
 const containerStyle = computed(() => {
   const style: Record<string, string> = {};
-  style.width = props.width || '100%';
+  style.width = props.width || "100%";
 
   if (props.height) {
     style.height = props.height;
@@ -52,11 +52,11 @@ const containerStyle = computed(() => {
 const imageStyle = computed(() => {
   const style: Record<string, string | number> = {
     objectFit: props.fit,
-    width: '100%',
+    width: "100%",
   };
 
   if (props.height) {
-    style.height = '100%';
+    style.height = "100%";
   }
 
   return style;
@@ -75,14 +75,14 @@ const cls = computed(() => {
     {
       [`${clsBlockName}-loading`]: loading.value,
       [`${clsBlockName}-error`]: isError.value,
-    }
+    },
   ];
 });
 
 const handleLoad = (event: Event) => {
   loading.value = false;
   isError.value = false;
-  emits('load', event);
+  emits("load", event);
 };
 
 const handleError = (event: Event) => {
@@ -91,7 +91,7 @@ const handleError = (event: Event) => {
   if (props.fallback) {
     (event.target as HTMLImageElement).src = props.fallback;
   }
-  emits('error', event);
+  emits("error", event);
 };
 
 const setupLazyLoad = () => {
@@ -109,7 +109,7 @@ const setupLazyLoad = () => {
     },
     {
       root: null,
-      rootMargin: '50px',
+      rootMargin: "50px",
       threshold: 0,
     }
   );
@@ -124,9 +124,12 @@ const resetImage = () => {
   isError.value = false;
 };
 
-watch(() => props.src, () => {
-  resetImage();
-});
+watch(
+  () => props.src,
+  () => {
+    resetImage();
+  }
+);
 
 watch(isInView, (val) => {
   if (val) {
@@ -135,11 +138,13 @@ watch(isInView, (val) => {
 });
 
 onMounted(() => {
-  if (window.IntersectionObserver) {
-    setupLazyLoad();
-    return;
-  }
-  isInView.value = true;
+  nextTick(() => {
+    if (window.IntersectionObserver) {
+      setupLazyLoad();
+      return;
+    }
+    isInView.value = true;
+  });
 });
 
 onBeforeUnmount(() => {

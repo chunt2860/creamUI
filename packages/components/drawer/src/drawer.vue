@@ -39,7 +39,7 @@
 import { useNamespace } from "@birdpaper-ui/hooks";
 import { DrawerProps, drawerProps } from "./props";
 import { useScrollLock } from "@vueuse/core";
-import { computed, ref, watch } from "vue";
+import { computed, onMounted, reactive, ref, watch } from "vue";
 
 defineOptions({ name: "Drawer" });
 const { clsBlockName } = useNamespace("drawer");
@@ -49,7 +49,13 @@ const props: DrawerProps = defineProps(drawerProps);
 const emit = defineEmits(["cancel", "confirm"]);
 
 const drawerRef = ref(null);
-const isScrollLocked = useScrollLock(window.document.body);
+const drawerInstance = reactive({
+  isScrollLocked: ref(),
+});
+
+onMounted(() => {
+  drawerInstance.isScrollLocked = useScrollLock(() => window.document.body);
+});
 
 const handleMaskClick = () => {
   if (!props.maskClosable) return;
@@ -98,6 +104,6 @@ const handleConfirm = async () => {
 };
 
 watch(model, (value) => {
-  isScrollLocked.value = value;
+  drawerInstance.isScrollLocked = value;
 });
 </script>

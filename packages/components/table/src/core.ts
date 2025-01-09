@@ -1,4 +1,4 @@
-import { ref, useSlots } from "vue";
+import { ref, useSlots, Comment } from "vue";
 import { ColumnsItem, TableRowSelection } from "./types";
 import { getAllElements } from "@birdpaper-ui/components/utils/dom";
 
@@ -41,6 +41,7 @@ export const useTableCore = () => {
       if (typeof item.type === "symbol") {
         return false;
       }
+      // @ts-ignore
       return item.type !== Comment;
     });
     if (children.length === 0) return [];

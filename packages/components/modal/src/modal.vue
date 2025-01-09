@@ -36,7 +36,7 @@
 
 <script lang="ts" setup>
 import { useNamespace } from "@birdpaper-ui/hooks";
-import { computed, ref, watch } from "vue";
+import { computed, ref, watch, onMounted, reactive } from "vue";
 import { ModalProps, modalProps } from "./props";
 import { IconCloseFill } from "birdpaper-icon";
 import { useScrollLock } from "@vueuse/core";
@@ -49,12 +49,18 @@ const props: ModalProps = defineProps(modalProps);
 const emit = defineEmits(["cancel", "confirm"]);
 
 const modalRef = ref(null);
-const isScrollLocked = useScrollLock(window.document.body);
+const modalInstance = reactive({
+  isScrollLocked: ref(),
+});
 
-const handleMaskClick = ()=>{
+onMounted(() => {
+  modalInstance.isScrollLocked = useScrollLock(() => window.document.body);
+});
+
+const handleMaskClick = () => {
   if (!props.maskClosable) return;
   return handleCancel();
-}
+};
 
 const modalStyle = computed(() => ({
   width: typeof props.width === "number" ? `${props.width}px` : props.width,
@@ -93,6 +99,6 @@ const handleConfirm = async () => {
 };
 
 watch(model, (value) => {
-  isScrollLocked.value = value;
+  modalInstance.isScrollLocked = value;
 });
 </script>
