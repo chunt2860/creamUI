@@ -2,7 +2,7 @@ import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import glob from "fast-glob";
 import { join } from "path";
-import { bpUIRoot, distPkgRoot } from "../paths";
+import { bpUIRoot, compRoot, distPkgRoot } from "../paths";
 import { build } from "vite";
 import dts from "vite-plugin-dts";
 
@@ -18,7 +18,7 @@ export async function buildModules() {
 
   const preserveConfig = {
     preserveModules: true,
-    preserveModulesRoot: bpUIRoot,
+    preserveModulesRoot: compRoot,
   };
 
   return await build({
