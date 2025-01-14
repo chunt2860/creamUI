@@ -1,7 +1,7 @@
 <template>
   <button :class="cls" :type="attrType" :disabled="isDisabled" @click="onClick">
     <div v-if="btnIcon || loading" :class="iconCls">
-      <component :is="btnIcon" :class="iconInnerCls" size="14"></component>
+      <component :is="btnIcon" spin :class="iconInnerCls" size="14"></component>
     </div>
     <span v-if="hasDefaultSlot" :class="innerCls">
       <slot />
@@ -28,8 +28,8 @@ const isDisabled = computed<boolean>(() => props.disabled || !!props.loading);
 
 /** Default Slots. */
 const hasDefaultSlot = computed<boolean>(() => {
-  if(props.shape === 'circle' && props.loading) return false;
-  return !!slots?.default?.()[0];
+  if (props.shape === "circle" && props.loading) return false;
+  return !!slots?.default?.({})[0];
 });
 
 // Icons.

@@ -20,20 +20,10 @@
     "paths": {
       "@birdpaper-ui/*": ["packages/*"]
     },
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals", "birdpaper-icon/global"],
   },
   "include": [
-    "packages/birdpaper-ui/**/*.ts",
-    "packages/birdpaper-ui/**/*.d.ts",
-    "packages/birdpaper-ui/**/*.tsx",
-    "packages/birdpaper-ui/**/*.vue",
-    "packages/components/**/*.ts",
-    "packages/components/**/*.d.ts",
-    "packages/components/**/*.tsx",
-    "packages/components/**/*.vue",
-    "global.d.ts",
-    "env.d.ts"
+    "packages/**/*",
   ],
-  // 指定不需要被编译的目录
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist", "**/*.js"]
 }

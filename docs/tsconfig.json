@@ -11,7 +11,7 @@
       "@birdpaper-ui/*": ["packages/*"]
     },
     "resolveJsonModule": true,
-    "types": ["vite/client", "vitepress", "../global.d.ts"],
+    "types": ["vite/client", "vitepress", "../global.d.ts", "birdpaper-icon/global"],
     "strict": true,
     "strictNullChecks": true,
     "noUnusedLocals": true,
