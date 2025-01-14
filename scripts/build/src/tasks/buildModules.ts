@@ -2,7 +2,7 @@ import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import glob from "fast-glob";
 import { join } from "path";
-import { bpUIRoot, compRoot, distPkgRoot } from "../paths";
+import { bpUIRoot, distPkgRoot } from "../paths";
 import { build } from "vite";
 import dts from "vite-plugin-dts";
 
@@ -10,7 +10,7 @@ export async function buildModules() {
   const UnoCSS = (await import("unocss/vite")).default;
 
   const files = await glob("**/*.{ts,vue}", {
-    cwd: compRoot,
+    cwd: bpUIRoot,
     absolute: true,
     onlyFiles: true,
     ignore: ["node_modules/**/*", "env.d.ts"],
@@ -18,7 +18,7 @@ export async function buildModules() {
 
   const preserveConfig = {
     preserveModules: true,
-    preserveModulesRoot: compRoot,
+    preserveModulesRoot: bpUIRoot,
   };
 
   return await build({
@@ -26,6 +26,7 @@ export async function buildModules() {
       drop: ["debugger"],
       pure: ["console.log"],
     },
+    base: ".",
     build: {
       target: "modules",
       emptyOutDir: true,
@@ -44,12 +45,14 @@ export async function buildModules() {
             format: "es",
             dir: join(distPkgRoot, "es"),
             entryFileNames: "[name].mjs",
+            exports: "named",
             ...preserveConfig,
           },
           {
             format: "cjs",
             dir: join(distPkgRoot, "lib"),
             entryFileNames: "[name].cjs",
+            exports: "named",
             ...preserveConfig,
           },
         ],

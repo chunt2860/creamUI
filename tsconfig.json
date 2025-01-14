@@ -20,7 +20,6 @@
     "paths": {
       "@birdpaper-ui/*": ["packages/*"]
     },
-    "types": ["vitest/globals", "birdpaper-icon/global"],
   },
   "include": [
     "packages/**/*",
