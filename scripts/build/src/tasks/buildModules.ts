@@ -15,7 +15,6 @@ export async function buildModules() {
     onlyFiles: true,
     ignore: ["node_modules/**/*", "env.d.ts"],
   });
-
   const preserveConfig = {
     preserveModules: true,
     preserveModulesRoot: bpUIRoot,
@@ -26,7 +25,6 @@ export async function buildModules() {
       drop: ["debugger"],
       pure: ["console.log"],
     },
-    base: ".",
     build: {
       target: "modules",
       emptyOutDir: true,
@@ -67,7 +65,9 @@ export async function buildModules() {
       }),
       vue(),
       vueJsx(),
-      UnoCSS(),
+      UnoCSS({
+        mode: "vue-scoped",
+      }),
     ],
   });
 }
