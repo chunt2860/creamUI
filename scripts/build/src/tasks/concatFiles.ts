@@ -26,8 +26,7 @@ export async function concatFiles() {
 
   await new Promise((resolve) => {
     gulp
-     
-    .src([`${outDir}/src/index.css`, `${distPkgRoot}/es/style.css`])
+      .src([`${outDir}/src/index.css`, `${distPkgRoot}/es/style.css`])
       .pipe(sass.sync())
       .pipe(concat("index.css"))
       .pipe(gulp.dest(cssDir))

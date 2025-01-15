@@ -1,7 +1,7 @@
 <template>
   <button :class="cls" :type="attrType" :disabled="isDisabled" @click="onClick">
     <div v-if="btnIcon || loading" :class="iconCls">
-      <component :is="btnIcon" spin :class="iconInnerCls" size="14"></component>
+      <component :is="btnIcon" :class="iconInnerCls" size="14"></component>
     </div>
     <span v-if="hasDefaultSlot" :class="innerCls">
       <slot />

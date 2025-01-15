@@ -62,7 +62,6 @@
   ],
   "dependencies": {
     "dayjs": "^1.11.3",
-    "birdpaper-icon": "1.0.0-beat.3",
     "radash": "^12.1.0",
     "@vueuse/components": "^11.1.0",
     "@vueuse/core": "^10.11.0"

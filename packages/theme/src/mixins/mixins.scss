@@ -1,6 +1,7 @@
 @use "../common/design" as *;
 @use "../common/animation.scss" as *;
 
+$B: null;
 @mixin b($block) {
   $B: $namespace + "-" + $block !global;
 

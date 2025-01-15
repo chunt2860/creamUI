@@ -24,8 +24,8 @@ importers:
         specifier: ^4.2.5
         version: 4.2.5
       birdpaper-icon:
-        specifier: 1.0.0-beat.3
-        version: 1.0.0-beat.3(vue@3.5.13)
+        specifier: 1.0.0-beat.4
+        version: 1.0.0-beat.4(vue@3.5.13)
       dayjs:
         specifier: ^1.11.3
         version: 1.11.13
@@ -166,9 +166,6 @@ importers:
       '@vueuse/core':
         specifier: ^10.11.0
         version: 10.11.1(vue@3.5.13)
-      birdpaper-icon:
-        specifier: 1.0.0-beat.3
-        version: 1.0.0-beat.3(vue@3.5.13)
       dayjs:
         specifier: ^1.11.3
         version: 1.11.13
@@ -5714,8 +5711,8 @@ packages:
     dev: true
     optional: true
 
-  /birdpaper-icon@1.0.0-beat.3(vue@3.5.13):
-    resolution: {integrity: sha512-pacbDnqeOi1Tpc+NrB8+y7jRv0f7A7yh1kno0xnUyFxiKJdiRTTPgeUlVjQS2fhwGuMa8/ivT0RR/uMSa9p1SA==}
+  /birdpaper-icon@1.0.0-beat.4(vue@3.5.13):
+    resolution: {integrity: sha512-hI/ZTvz0eMb+491Cuwalq8JO3bDwo2FiQeM43qZuLV71DONLkRLN/4xVjMl2gKGVlLujEh8n2cDn91xBoc0fng==}
     dependencies:
       '@vueuse/components': 11.3.0(vue@3.5.13)
       '@vueuse/core': 10.11.1(vue@3.5.13)

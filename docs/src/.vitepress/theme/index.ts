@@ -8,6 +8,7 @@ import BirdpaperUI from "birdpaper-ui/index.ts";
 import "@birdpaper-ui/theme/src/index.scss";
 
 import BirdpaperIcon from "birdpaper-icon";
+import "birdpaper-icon/dist/index.css";
 
 // Document internal component.
 import DemoBlock from "../components/demo-block";
