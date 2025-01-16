@@ -1,6 +1,6 @@
 {
   "name": "birdpaper-ui",
-  "version": "3.0.0-alpha.31",
+  "version": "3.0.0-alpha.32",
   "description": "",
   "keywords": [],
   "author": "",
@@ -64,7 +64,8 @@
     "dayjs": "^1.11.3",
     "radash": "^12.1.0",
     "@vueuse/components": "^11.1.0",
-    "@vueuse/core": "^10.11.0"
+    "@vueuse/core": "^10.11.0",
+    "birdpaper-icon": "1.0.0-beat.4"
   },
   "devDependencies": {
     "vue": "^3.5.3"

@@ -67,7 +67,7 @@ const inpType = computed<InputType>(() => (props.type === "text" ? "text" : isEy
 const isEyeOpen = ref<boolean>(true);
 
 /** Inner action icon. */
-const innerActionIcon = computed<Component>(() => {
+const innerActionIcon = computed<Component | null>(() => {
   if (props.type === "password" && props.showPassword) {
     return !isEyeOpen.value ? IconEyeCloseFill : IconEyeFill;
   }
