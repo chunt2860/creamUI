@@ -13,6 +13,13 @@ export async function buildBundle() {
   const fileName = (format: string) => `${entryFileName}.${format === "es" ? "mjs" : format === "cjs" ? "cjs" : "js"}`;
 
   return await build({
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler',
+        },
+      },
+    },
     plugins: [vue(), vueJsx(), UnoCSS()],
     build: {
       outDir: join(distPkgRoot, "dist"),

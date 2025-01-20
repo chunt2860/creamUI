@@ -90,7 +90,7 @@ provide(selectInjectionKey, {
 
 watchEffect(() => {
   try {
-    const children = getAllElements(slots.default?.(), true).filter((item) => get(item, "type.name") === "Option");
+    const children = getAllElements(slots.default?.({}), true).filter((item) => get(item, "type.name") === "Option");
     hasOptions.value = children.length !== 0;
 
     if (!model.value) return;

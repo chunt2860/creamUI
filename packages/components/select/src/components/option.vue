@@ -1,7 +1,7 @@
 <template>
   <li :class="cls" @click="handleClick">
     <span :class="`${clsBlockName}-inner`">
-      <slot v-if="slots.default?.()" />
+      <slot v-if="slots.default?.({})" />
       <template v-else>{{ label }}</template>
     </span>
   </li>
@@ -33,7 +33,7 @@ const cls = computed(() => {
 const init = () => {
   ctx.value = inject(selectInjectionKey, undefined);
 
-  option.value.label = props.label || (slots.default?.()[0].children as string);
+  option.value.label = props.label || (slots.default?.({})[0].children as string);
   option.value.value = props.value;
 };
 

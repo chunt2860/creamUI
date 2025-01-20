@@ -5,6 +5,13 @@ export default async () => {
   const UnoCSS = (await import("unocss/vite")).default;
 
   return defineConfig({
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler',
+        },
+      },
+    },
     plugins: [vueJsx(), UnoCSS() as PluginOption],
     optimizeDeps: {
       exclude: [

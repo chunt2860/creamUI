@@ -41,6 +41,6 @@ const setGutter = (els?: VNode[]) => {
 };
 
 onMounted(() => {
-  nextTick(() => setGutter(slots?.default?.()));
+  nextTick(() => setGutter(slots?.default?.({})));
 });
 </script>

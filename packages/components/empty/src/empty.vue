@@ -1,7 +1,7 @@
 <template>
   <div :class="`${clsBlockName}`">
     <div :class="`${clsBlockName}-image`">
-      <div v-if="!slots.image?.()">
+      <div v-if="!slots.image?.({})">
         <IconInbox2Line size="28" />
       </div>
       <slot name="image" />

@@ -5,7 +5,7 @@ import { cpFile, cpFolder } from "../utils";
 export const copyFiles = async () => {
   /** Files to be copied. */
   const files: string[][] = [
-    [join(distPkgRoot, "theme/src/index.css"), join(distPkgRoot, "/dist/index.css")],
+    [join(distPkgRoot, "theme/index.css"), join(distPkgRoot, "/dist/index.css")],
     [join(bpUIRoot, "package.json"), join(distPkgRoot, "package.json")],
     [join(projRoot, "global.d.ts"), join(distPkgRoot, "global.d.ts")],
     [join(projRoot, "README.md"), join(distPkgRoot, "README.md")],

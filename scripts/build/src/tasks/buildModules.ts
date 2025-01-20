@@ -21,6 +21,13 @@ export async function buildModules() {
   };
 
   return await build({
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler',
+        },
+      },
+    },
     esbuild: {
       drop: ["debugger"],
       pure: ["console.log"],

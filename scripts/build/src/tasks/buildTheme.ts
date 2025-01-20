@@ -1,18 +1,39 @@
-import gulpSass from "gulp-sass";
-import gulp from "gulp";
-import dartSass from "sass";
 import { distPkgRoot, themeRoot } from "../paths";
-import { join } from "path";
+import { build } from "vite";
+import { resolve } from "path";
+import glob from "fast-glob";
 
 export async function buildTheme() {
-  const sass = gulpSass(dartSass);
-  const outDir = join(distPkgRoot, "theme");
+  const files = await glob("**/*.scss", {
+    cwd: themeRoot,
+    absolute: true,
+    onlyFiles: true,
+  });
 
-  await new Promise((resolve) => {
-    gulp
-      .src(`${themeRoot}/**/*.scss`)
-      .pipe(sass.sync().on("error", sass.logError))
-      .pipe(gulp.dest(outDir))
-      .on("end", resolve);
+  if (files.length === 0) {
+    throw new Error(`No .scss files found in ${themeRoot}`);
+  }
+  const outDir = resolve(distPkgRoot, "theme");
+
+  await build({
+    root: themeRoot,
+    build: {
+      outDir,
+      emptyOutDir: true,
+      rollupOptions: {
+        input: files,
+        output: {
+          dir: outDir,
+          assetFileNames: "[name][extname]",
+        },
+      },
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: "modern-compiler",
+        },
+      },
+    },
   });
 }
