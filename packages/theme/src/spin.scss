@@ -7,10 +7,6 @@
   position: relative;
   display: inline-block;
 
-  &:has(.#{$B}-mask) {
-    width: 100%;
-  }
-
   &-spinner {
     @include flex(column, center, center);
     z-index: 12;
@@ -44,4 +40,8 @@
       transform: translate(-50%, -50%);
     }
   }
+}
+
+.spin-has-content {
+  width: 100%;
 }
