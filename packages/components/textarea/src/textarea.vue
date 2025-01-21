@@ -19,7 +19,7 @@
       @keyup="onKeyup"
     />
 
-    <div :class="`${clsBlockName}-suffix select-none`" v-if="innerActionIcon || slots.suffix">
+    <div :class="`${clsBlockName}-suffix select-none`" v-if="innerActionIcon || innerSuffixContent || slots.suffix">
       <div :class="`${clsBlockName}-suffix-inner`" v-if="!slots.suffix">
         <component
           v-if="innerActionIcon && !!model"
@@ -68,7 +68,7 @@ const innerActionIcon = computed<Component>(() => {
 /** Inner suffix content. */
 const innerSuffixContent = computed<string | Component>(() => {
   if (props.maxlength && props.showLimit) {
-    return `${String(model.value).length}/${props.maxlength}`;
+    return `${String(model.value ?? "").length}/${props.maxlength}`;
   }
   return "";
 });
