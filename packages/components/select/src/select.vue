@@ -93,7 +93,7 @@ watchEffect(() => {
     const children = getAllElements(slots.default?.({}), true).filter((item) => get(item, "type.name") === "Option");
     hasOptions.value = children.length !== 0;
 
-    if (!model.value) {
+    if (model.value === null || model.value === undefined || model.value === "") {
       labelModel.value = "";
       return;
     }

@@ -62,7 +62,7 @@ export const switchProps = {
    * @default () => true
    */
   onBeforeOk: {
-    type: Function as PropType<() => boolean>,
+    type: Function as PropType<() => boolean | Promise<boolean>>,
     default: () => true,
   },
 };

@@ -96,7 +96,7 @@ export const drawerProps = {
    * @description The callback function before the confirm button is clicked.
    */
   onBeforeOk: {
-    type: Function,
+    type: Function as PropType<() => boolean | Promise<boolean>>,
   },
 } as const;
 

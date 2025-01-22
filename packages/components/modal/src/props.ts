@@ -114,7 +114,7 @@ export const modalProps = {
    * @description Callback function before confirming.
    */
   onBeforeOk: {
-    type: Function as PropType<() => boolean>,
+    type: Function as PropType<() => boolean | Promise<boolean>>,
   },
 } as const;
 
