@@ -33,7 +33,7 @@
   &-header {
     &-thead {
       display: table-header-group;
-      width: 100%;
+      // width: 100%;
       border-bottom: $borderSize solid var(--bp-gary-2);
 
       tr {
@@ -57,6 +57,8 @@
   }
 
   &-body {
+    width: max-content;
+
     &-tbody {
       tr {
         &:nth-child(n) {
