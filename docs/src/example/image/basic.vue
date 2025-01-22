@@ -31,7 +31,7 @@ const fitTypes = ["contain", "cover", "fill", "none", "scale-down"];
       font-size: 13px;
     }
 
-    &:not(:first-child){
+    &:not(:first-child) {
       border-left: 1px solid #f0f0f0;
     }
   }

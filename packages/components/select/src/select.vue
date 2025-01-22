@@ -93,7 +93,10 @@ watchEffect(() => {
     const children = getAllElements(slots.default?.({}), true).filter((item) => get(item, "type.name") === "Option");
     hasOptions.value = children.length !== 0;
 
-    if (!model.value) return;
+    if (!model.value) {
+      labelModel.value = "";
+      return;
+    }
 
     let valueMap = {};
     for (const item of children) {
