@@ -5,6 +5,8 @@
   position: relative;
   width: 100%;
   box-sizing: border-box;
+  display: block;
+  border-collapse: collapse;
 
   & {
     table {
@@ -116,9 +118,14 @@
 
   &-border {
     tr {
-      td,
-      th {
+      td {
         &:not(:nth-child(-n + 2)) {
+          border-left: $borderSize solid var(--bp-gary-2);
+        }
+      }
+
+      th {
+        &:not(:first-child) {
           border-left: $borderSize solid var(--bp-gary-2);
         }
       }
