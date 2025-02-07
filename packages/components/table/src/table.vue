@@ -18,7 +18,7 @@
             </tr>
           </tbody>
 
-          <table-body v-else :data="data" :row-key="rowKey">
+          <table-body v-else :data="data" :row-key="rowKey" :cols="columns" :height>
             <table-column align="center" v-if="!!rowSelection">
               <template #cell="{ record }">
                 <bp-checkbox

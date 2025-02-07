@@ -33,7 +33,6 @@
   &-header {
     &-thead {
       display: table-header-group;
-      // width: 100%;
       border-bottom: $borderSize solid var(--bp-gary-2);
 
       tr {
@@ -60,7 +59,13 @@
     width: max-content;
 
     &-tbody {
+      display: block;
+      overflow-y: auto;
+
       tr {
+        display: table;
+        width: 100%;
+
         &:nth-child(n) {
           background-color: var(--bp-gary-0);
           border-bottom: $borderSize solid var(--bp-gary-2);
@@ -113,7 +118,7 @@
     tr {
       td,
       th {
-        &:not(:first-child) {
+        &:not(:nth-child(-n + 2)) {
           border-left: $borderSize solid var(--bp-gary-2);
         }
       }
