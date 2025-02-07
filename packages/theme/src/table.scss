@@ -5,13 +5,13 @@
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  display: block;
-  border-collapse: collapse;
 
   & {
     table {
       margin: 0;
       padding: 0;
+      display: block;
+      border-collapse: collapse;
 
       th,
       td {
