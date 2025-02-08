@@ -6,22 +6,37 @@
 
     <transition name="modal-zoom">
       <div ref="modalRef" v-show="model" :class="`${clsBlockName}-container`">
-        <div :class="[`${clsBlockName}`, { 'is-fullscreen': fullscreen }, { 'is-center': center }]" :style="modalStyle">
+        <div
+          :class="[
+            `${clsBlockName}`,
+            { 'is-fullscreen': fullscreen },
+            { 'is-center': center },
+            { 'modal-show-border': showBorder },
+          ]"
+          :style="modalStyle"
+        >
           <div class="modal-inner">
-            <div :class="`${clsBlockName}-header`" v-if="!hideHeader">
+            <div :class="`${clsBlockName}-header`" v-if="!hideHeader && title">
               <slot name="header">
-                <span :class="`${clsBlockName}-header-title`">{{ title }}</span>
+                <span :class="`${clsBlockName}-header-title`">
+                  <component v-if="type" :is="iconType[type]" :class="`icon-${type}`" size="20px"></component>
+                  {{ title }}
+                </span>
               </slot>
               <IconCloseFill v-if="!hideClose" :class="`${clsBlockName}-header-close`" size="20" @click="handleClose" />
             </div>
 
             <div :class="`${clsBlockName}-body`">
-              <slot />
+              <slot>
+                {{ content }}
+              </slot>
             </div>
 
             <div v-if="!hideFooter" :class="`${clsBlockName}-footer`">
               <slot name="footer">
-                <bp-button @click="handleCancel" type="secondary" status="gary">{{ cancleText }}</bp-button>
+                <bp-button v-if="!hideCancle" @click="handleCancel" type="secondary" status="gary">
+                  {{ cancleText }}
+                </bp-button>
                 <bp-button status="primary" type="normal" :loading="okLoading" @click="handleConfirm">
                   {{ okText }}
                 </bp-button>
@@ -36,10 +51,17 @@
 
 <script lang="ts" setup>
 import { useNamespace } from "@birdpaper-ui/hooks";
+import BpButton from "@birdpaper-ui/components/button";
 import { computed, ref, watch, onMounted, reactive } from "vue";
 import { ModalProps, modalProps } from "./props";
-import { IconCloseFill } from "birdpaper-icon";
 import { useScrollLock } from "@vueuse/core";
+import {
+  IconCloseFill,
+  IconCheckboxCircleFill,
+  IconCloseCircleFill,
+  IconErrorWarningFill,
+  IconInformationFill,
+} from "birdpaper-icon";
 
 defineOptions({ name: "Modal" });
 const { clsBlockName } = useNamespace("modal");
@@ -55,7 +77,19 @@ const modalInstance = reactive({
 
 onMounted(() => {
   modalInstance.isScrollLocked = useScrollLock(() => window.document.body);
+
+  if (props.isMethod) {
+    model.value = true;
+  }
 });
+
+const iconType = {
+  success: IconCheckboxCircleFill,
+  error: IconCloseCircleFill,
+  warning: IconErrorWarningFill,
+  info: IconInformationFill,
+  confirm: IconErrorWarningFill,
+};
 
 const handleMaskClick = () => {
   if (!props.maskClosable) return;

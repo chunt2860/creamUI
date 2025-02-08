@@ -47,13 +47,34 @@
     position: relative;
     height: 48px;
     line-height: 48px;
-    border-bottom: $borderSize solid var(--bp-gary-2);
     padding: 0 16px;
 
     &-title {
+      @include flex(row, flex-start, center);
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--bp-gary-9);
+
+      svg[class*="-icon-"] {
+        margin-right: 4px;
+      }
+
+      .icon-info {
+        fill: var(--bp-primary-6);
+      }
+
+      .icon-success {
+        fill: var(--bp-success-6);
+      }
+
+      .icon-error {
+        fill: var(--bp-danger-6);
+      }
+
+      .icon-warning,
+      .icon-confirm {
+        fill: var(--bp-warning-6);
+      }
     }
 
     &-close {
@@ -82,13 +103,12 @@
     flex: 1;
     padding: 16px;
     color: var(--bp-gary-8);
-    min-height: 100px;
+    min-height: 80px;
     overflow-y: auto;
   }
 
   &-footer {
     padding: 16px;
-    border-top: $borderSize solid var(--bp-gary-2);
     text-align: right;
     margin-top: auto;
     flex-shrink: 0;
@@ -112,9 +132,23 @@
   &.is-center {
     text-align: center;
 
-    .#{$namespace}-modal-header,
-    .#{$namespace}-modal-footer {
+    .#{$B}-header,
+    .#{$B}-footer {
       text-align: center;
+    }
+
+    .#{$B}-header-title {
+      justify-content: center;
+    }
+  }
+
+  &.modal-show-border {
+    .#{$B}-header {
+      border-bottom: $borderSize solid var(--bp-gary-2);
+    }
+
+    .#{$B}-footer {
+      border-top: $borderSize solid var(--bp-gary-2);
     }
   }
 }

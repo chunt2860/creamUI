@@ -1,12 +1,29 @@
 import type { ExtractPropTypes, PropType } from "vue";
+import { ModalType } from "./types";
 
 export const modalProps = {
+  /**
+   * @type boolean
+   * @description Whether to use the method.
+   * @default false
+   */
+  isMethod: {
+    type: Boolean,
+    default: false,
+  },
+  type: {
+    type: String as PropType<ModalType>,
+  },
   /**
    * @type string
    * @description Title.
    * @default ""
    */
   title: {
+    type: String,
+    default: "",
+  },
+  content: {
     type: String,
     default: "",
   },
@@ -27,6 +44,15 @@ export const modalProps = {
   center: {
     type: Boolean,
     default: false,
+  },
+  /**
+   * @type boolean
+   * @description Whether to show the border.
+   * @default true
+   */
+  showBorder: {
+    type: Boolean,
+    default: true,
   },
   /**
    * @type string
@@ -108,6 +134,10 @@ export const modalProps = {
   cancleText: {
     type: String,
     default: "取消",
+  },
+  hideCancle: {
+    type: Boolean,
+    default: false,
   },
   /**
    * @type Function
