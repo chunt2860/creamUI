@@ -2,6 +2,7 @@
   <bp-trigger
     v-model="isOpen"
     transition="fade-dropdown"
+    :trigger
     :class="clsBlockName"
     :popup-offset="10"
     auto-fit-width

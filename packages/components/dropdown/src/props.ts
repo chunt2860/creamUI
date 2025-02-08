@@ -1,4 +1,4 @@
-import { TriggerPosition } from "@birdpaper-ui/components/trigger/src/types";
+import { TriggerPosition, TriggerType } from "@birdpaper-ui/components/trigger/src/types";
 import { ExtractPropTypes, PropType } from "vue";
 import { DoptionValue } from "./types";
 
@@ -11,6 +11,10 @@ export const dropdownProps = {
   position: {
     type: String as PropType<TriggerPosition>,
     default: "bottom",
+  },
+  trigger: {
+    type: String as PropType<TriggerType>,
+    default: "click",
   },
 } as const;
 
