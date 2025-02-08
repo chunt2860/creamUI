@@ -37,6 +37,8 @@ import {
   Trigger,
   VerifyCode,
   YearPicker,
+  Dropdown,
+  Doption,
 } from "@birdpaper-ui/components";
 
 export default [
@@ -78,4 +80,6 @@ export default [
   Trigger,
   VerifyCode,
   YearPicker,
+  Dropdown,
+  Doption,
 ];

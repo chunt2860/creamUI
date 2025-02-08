@@ -17,13 +17,14 @@ export const sidebar = {
     { text: "参与贡献", link: "/develop/pr" },
   ],
 
-  "/components/": [ {
-    text: "开始",
-    items: [
-      { text: "目录", link: "/components/catalog" },
-      { text: "全局配置", link: "/components/config" },
-    ],
-  },
+  "/components/": [
+    {
+      text: "开始",
+      items: [
+        { text: "目录", link: "/components/catalog" },
+        { text: "全局配置", link: "/components/config" },
+      ],
+    },
     {
       text: "基础",
       items: [
@@ -62,17 +63,23 @@ export const sidebar = {
       ],
     },
     {
+      text: "导航",
+      items: [
+        { text: "链接 <span>Link</span>", link: "/components/link" },
+        { text: "分页 <span>Pagination</span>", link: "/components/pagination" },
+        { text: "下拉菜单 <span>Dropdown</span>", link: "/components/dropdown" },
+      ],
+    },
+    {
       text: "展示",
       items: [
-        { text: "头像 <span>Avatar</span>", link: "/components/avatar/" },
-        { text: "分页 <span>Pagination</span>", link: "/components/pagination/" },
-        { text: "表格 <span>Table</span>", link: "/components/table/" },
-        { text: "标签 <span>Tag</span>", link: "/components/tag/" },
-        { text: "链接 <span>Link</span>", link: "/components/link/" },
-        { text: "图片 <span>Image</span>", link: "/components/image/" },
-        { text: "空状态 <span>Empty</span>", link: "/components/empty/" },
-        { text: "加载中 <span>Spin</span>", link: "/components/spin/" },
-        { text: "文字气泡 <span>Tooltip</span>", link: "/components/tooltip/" },
+        { text: "头像 <span>Avatar</span>", link: "/components/avatar" },
+        { text: "表格 <span>Table</span>", link: "/components/table" },
+        { text: "标签 <span>Tag</span>", link: "/components/tag" },
+        { text: "图片 <span>Image</span>", link: "/components/image" },
+        { text: "空状态 <span>Empty</span>", link: "/components/empty" },
+        { text: "加载中 <span>Spin</span>", link: "/components/spin" },
+        { text: "文字气泡 <span>Tooltip</span>", link: "/components/tooltip" },
       ],
     },
     {
