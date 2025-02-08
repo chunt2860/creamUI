@@ -19,7 +19,12 @@
             <div :class="`${clsBlockName}-header`" v-if="!hideHeader && title">
               <slot name="header">
                 <span :class="`${clsBlockName}-header-title`">
-                  <component v-if="type" :is="iconType[type]" :class="`icon-${type}`" size="20px"></component>
+                  <component
+                    v-if="type && !hideTitleIcon"
+                    :is="iconType[type]"
+                    :class="`icon-${type}`"
+                    size="18px"
+                  ></component>
                   {{ title }}
                 </span>
               </slot>
@@ -34,10 +39,10 @@
 
             <div v-if="!hideFooter" :class="`${clsBlockName}-footer`">
               <slot name="footer">
-                <bp-button v-if="!hideCancle" @click="handleCancel" type="secondary" status="gary">
+                <bp-button v-if="!hideCancle" v-bind="cancleBtnProps" @click="handleCancel">
                   {{ cancleText }}
                 </bp-button>
-                <bp-button status="primary" type="normal" :loading="okLoading" @click="handleConfirm">
+                <bp-button v-bind="okBtnProps" :loading="okLoading" @click="handleConfirm">
                   {{ okText }}
                 </bp-button>
               </slot>

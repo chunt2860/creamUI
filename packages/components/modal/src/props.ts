@@ -1,5 +1,7 @@
 import type { ExtractPropTypes, PropType } from "vue";
 import { ModalType } from "./types";
+import { ButtonProps } from "@birdpaper-ui/birdpaper-ui";
+import { stat } from "fs";
 
 export const modalProps = {
   /**
@@ -11,6 +13,11 @@ export const modalProps = {
     type: Boolean,
     default: false,
   },
+  /**
+   * @type string
+   * @description Modal type.
+   * @default "info"
+   */
   type: {
     type: String as PropType<ModalType>,
   },
@@ -23,9 +30,12 @@ export const modalProps = {
     type: String,
     default: "",
   },
+  /**
+   * @type string
+   * @description Content.
+   */
   content: {
     type: String,
-    default: "",
   },
   /**
    * @type string | number
@@ -127,6 +137,17 @@ export const modalProps = {
     default: "确认",
   },
   /**
+   * @type Object
+   * @description Confirm button props.
+   */
+  okBtnProps: {
+    type: Object as PropType<ButtonProps>,
+    default: () => ({
+      type: "normal",
+      status: "primary",
+    }),
+  },
+  /**
    * @type string
    * @description Cancel button content.
    * @default "取消"
@@ -135,7 +156,32 @@ export const modalProps = {
     type: String,
     default: "取消",
   },
+  /**
+   * @type Object
+   * @description Cancel button props
+   */
+  cancleBtnProps: {
+    type: Object as PropType<ButtonProps>,
+    default: () => ({
+      type: "secondary",
+      status: "gary",
+    }),
+  },
+  /**
+   * @type boolean
+   * @description Whether to hide the cancel button.
+   * @default false
+   */
   hideCancle: {
+    type: Boolean,
+    default: false,
+  },
+  /**
+   * @type boolean
+   * @description Whether to hide the title icon.
+   * @default false
+   */
+  hideTitleIcon: {
     type: Boolean,
     default: false,
   },
