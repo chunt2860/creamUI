@@ -13,6 +13,7 @@
 .#{$B}-content {
   min-height: 36px;
   max-height: 320px;
+  min-width: 63px;
   padding: 6px 0;
   background-color: var(--bp-gary-0);
   border: 0.5px solid var(--bp-gary-2);

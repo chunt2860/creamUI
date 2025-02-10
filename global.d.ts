@@ -37,6 +37,7 @@ declare module "vue" {
     BpTrigger: typeof import("birdpaper-ui")["Trigger"];
     BpVerifyCode: typeof import("birdpaper-ui")["VerifyCode"];
     BpYearPicker: typeof import("birdpaper-ui")["YearPicker"];
+    BpDropdown: typeof import("birdpaper-ui")["Dropdown"];
   }
 }
 
