@@ -1,9 +1,10 @@
+@use "common/design.scss" as *;
 @use "mixins/mixins.scss" as *;
 
 @include b(tooltip) {
   display: inline-flex;
   z-index: var(--z-index-tooltip);
-  
+
   &-inner {
     position: relative;
     display: inline-grid;
@@ -15,8 +16,6 @@
     display: block;
     width: fit-content;
     border-radius: 6px;
-    background-color: var(--bp-gary-10);
-    color: var(--bp-gary-0);
     max-width: 344px;
     padding: 6px 10px;
     font-size: 13px;
@@ -26,15 +25,39 @@
     text-align: justify;
   }
 
+  &-dark {
+    background-color: var(--bp-gary-10);
+    border: $borderSize solid var(--bp-gary-10);
+    color: var(--bp-gary-0);
+  }
+
+  &-light {
+    background-color: var(--bp-gary-0);
+    border: $borderSize solid var(--bp-gary-3);
+    color: var(--bp-gary-9);
+  }
+
   &-triangle {
     position: absolute;
-    bottom: -4px;
+    bottom: -5px;
     left: 50%;
     width: 0;
     height: 0;
-    border-top: 5px solid var(--bp-gary-9);
     border-right: 5px solid transparent;
     border-left: 5px solid transparent;
     transform: translateX(-50%);
+
+    &.#{$B}-triangle-dark {
+      border-top: 5px solid var(--bp-gary-10);
+    }
+
+    &.#{$B}-triangle-light {
+      border-top: 5px solid var(--bp-gary-3);
+    }
+
+    &.#{$B}-triangle-second {
+      bottom: -4.5px;
+      border-top: 5px solid var(--bp-gary-0);
+    }
   }
 }

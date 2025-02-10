@@ -13,14 +13,15 @@
     </div>
 
     <template #content>
-      <div :class="`${clsBlockName}-content`">
+      <div :class="`${clsBlockName}-content ${clsBlockName}-${props.theme}`">
         <template v-if="!slots.content">
           {{ content }}
         </template>
         <slot name="content"></slot>
       </div>
 
-      <div :class="`${clsBlockName}-triangle`"></div>
+      <div :class="`${clsBlockName}-triangle ${clsBlockName}-triangle-${props.theme}`"></div>
+      <div v-if="theme === 'light'" :class="`${clsBlockName}-triangle ${clsBlockName}-triangle-second`"></div>
     </template>
   </bp-trigger>
 </template>
@@ -29,13 +30,17 @@
 import BpTrigger from "@birdpaper-ui/components/trigger/index";
 import { useNamespace } from "@birdpaper-ui/hooks";
 import { TooltipProps, tooltipProps } from "./props";
-import { ref, useSlots } from "vue";
+import { ref, useSlots, computed } from "vue";
 
 defineOptions({ name: "Tooltip" });
 const { clsBlockName } = useNamespace("tooltip");
 
 const props: TooltipProps = defineProps(tooltipProps);
 const slots = useSlots();
+
+const cls = computed(() => {
+  return [clsBlockName, props.theme && `${clsBlockName}-${props.theme}`];
+});
 
 const isOpen = ref<boolean>(false);
 </script>

@@ -14,6 +14,12 @@ export const tooltipProps = {
    * @default "hover"
    */
   trigger: { type: String as PropType<TriggerType>, default: "hover" },
+  /**
+   * @type string
+   * @description The theme of the tooltip.
+   * @default "dark"
+   */
+  theme: { type: String, default: "dark" },
 };
 
 export type TooltipProps = ExtractPropTypes<typeof tooltipProps>;

@@ -3,11 +3,14 @@ declare module "vue" {
     BpAlert: typeof import("birdpaper-ui")["Alert"];
     BpAvatar: typeof import("birdpaper-ui")["Avatar"];
     BpButton: typeof import("birdpaper-ui")["Button"];
+    BpButtonGroup: typeof import("birdpaper-ui")["ButtonGroup"];
     BpCheckbox: typeof import("birdpaper-ui")["Checkbox"];
     BpCheckboxGroup: typeof import("birdpaper-ui")["CheckboxGroup"];
     BpCol: typeof import("birdpaper-ui")["Col"];
     BpDatePicker: typeof import("birdpaper-ui")["DatePicker"];
+    BpDoption: typeof import("birdpaper-ui")["Doption"];
     BpDrawer: typeof import("birdpaper-ui")["Drawer"];
+    BpDropdown: typeof import("birdpaper-ui")["Dropdown"];
     BpEmpty: typeof import("birdpaper-ui")["Empty"];
     BpForm: typeof import("birdpaper-ui")["Form"];
     BpFormItem: typeof import("birdpaper-ui")["FormItem"];
@@ -37,7 +40,6 @@ declare module "vue" {
     BpTrigger: typeof import("birdpaper-ui")["Trigger"];
     BpVerifyCode: typeof import("birdpaper-ui")["VerifyCode"];
     BpYearPicker: typeof import("birdpaper-ui")["YearPicker"];
-    BpDropdown: typeof import("birdpaper-ui")["Dropdown"];
   }
 }
 
