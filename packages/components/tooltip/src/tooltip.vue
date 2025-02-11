@@ -30,17 +30,13 @@
 import BpTrigger from "@birdpaper-ui/components/trigger/index";
 import { useNamespace } from "@birdpaper-ui/hooks";
 import { TooltipProps, tooltipProps } from "./props";
-import { ref, useSlots, computed } from "vue";
+import { ref, useSlots } from "vue";
 
 defineOptions({ name: "Tooltip" });
 const { clsBlockName } = useNamespace("tooltip");
 
 const props: TooltipProps = defineProps(tooltipProps);
 const slots = useSlots();
-
-const cls = computed(() => {
-  return [clsBlockName, props.theme && `${clsBlockName}-${props.theme}`];
-});
 
 const isOpen = ref<boolean>(false);
 </script>
