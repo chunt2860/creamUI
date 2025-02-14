@@ -26,9 +26,10 @@ export interface YearCell {
 }
 
 /** 日历面板类型 */
-export type PanelType = "date" | "month" | "year";
+export type PanelType = "date" | "month" | "year" | "range";
 
 export interface DatePickerContext {
+  type: PanelType;
   /** 绑定值 */
   model: string;
   /** 语言类型 */
@@ -41,3 +42,18 @@ export interface DatePickerContext {
   onSelect: (value: string, payload: object, closePopup: boolean) => void;
 }
 export const dateInjectionKey: InjectionKey<DatePickerContext> = Symbol("DatePickerCtxKey");
+
+export interface RangePickerContext {
+  type: PanelType;
+  /** 绑定值 */
+  model: string[];
+  /** 语言类型 */
+  langs: LangsType;
+  /** 值格式 */
+  valueFormat: string;
+  /** 是否显示时间选择器 */
+  showTime?: boolean;
+  /** 选择后触发 */
+  onSelect: (value: string, payload: object, closePopup: boolean) => void;
+}
+export const rangeInjectionKey: InjectionKey<RangePickerContext> = Symbol("RangePickerCtxKey");

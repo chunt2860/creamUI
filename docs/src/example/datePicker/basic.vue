@@ -1,8 +1,10 @@
 <template>
-  <bp-date-picker v-model="val" style="width: 200px" placeholder="请选择" />
+  {{ val }}
+  <!-- <bp-date-picker v-model="val" style="width: 200px" placeholder="请选择" /> -->
+  <bp-range-picker v-model="val" style="width: 200px" placeholder="请选择" />
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-const val = ref();
+const val = ref([]);
 </script>

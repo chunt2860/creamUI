@@ -6,8 +6,8 @@
           <span @click.stop="changePicker('year')" v-text="currentYear" />
           <span @click.stop="changePicker('month')" v-text="months[currentMonth]" />
         </template>
-        <template #option>
-          <component v-for="v in options" :is="v.icon" size="22" @click="handleStep(v.step, v.type)" />
+        <template #option="{ optionList }">
+          <component v-for="v in optionList" :is="v.icon" size="22" @click="handleStep(v.step, v.type)" />
         </template>
       </table-header>
 
@@ -48,13 +48,6 @@
 <script lang="ts" setup>
 import { useNamespace } from "@birdpaper-ui/hooks";
 import { ref, inject, onMounted } from "vue";
-import type { Component } from "vue";
-import {
-  IconArrowLeftSLine,
-  IconArrowRightSLine,
-  IconArrowLeftDoubleFill,
-  IconArrowRightDoubleFill,
-} from "birdpaper-icon";
 import { DatePickerContext, DayCell, PanelType, dateInjectionKey } from "../types";
 import tableHeader from "./table-header.vue";
 import BpButton from "@birdpaper-ui/components/button/index";
@@ -113,12 +106,6 @@ const setNow = () => {
   currentTimeVal.value = timeTableRef.value.setNow();
 };
 
-const options: { icon: Component; step: "year" | "month"; type: "prev" | "next" }[] = [
-  { icon: IconArrowLeftDoubleFill, step: "year", type: "prev" },
-  { icon: IconArrowLeftSLine, step: "month", type: "prev" },
-  { icon: IconArrowRightSLine, step: "month", type: "next" },
-  { icon: IconArrowRightDoubleFill, step: "year", type: "next" },
-];
 /**
  * 月份/年份切换
  * @param mode 切换模式

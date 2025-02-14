@@ -30,8 +30,6 @@
   border-top-right-radius: $date-picker-border-radius;
 
   &-inner {
-    flex: 3;
-
     span {
       color: rgba(getCssVar("date-picker", "header-text-color"), 1);
       font-size: 16px;
@@ -57,7 +55,6 @@
   }
 
   &-option {
-    flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;

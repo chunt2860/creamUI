@@ -25,9 +25,11 @@ export const useDayJs = (lang: LangsType, model: string) => {
    * 每个日期根据其在月份中的位置被标记为 "prev"（上个月）、"next"（下个月）或 "normal"（当前月）。
    * @returns 更新 dates 并返回。
    */
-  const setDates = () => {
-    const start: Dayjs = current.value.startOf("month");
-    const end: Dayjs = current.value.endOf("month");
+  const setDates = (val?: Dayjs) => {
+    const time = val ?? current.value;
+
+    const start: Dayjs = time.startOf("month");
+    const end: Dayjs = time.endOf("month");
 
     /** 获取当前月份的第一天是星期几，如果第一天是星期日，则返回1，否则返回对应的星期数 */
     const firstDateOfWeek: number = start.day() || 1;
@@ -53,6 +55,10 @@ export const useDayJs = (lang: LangsType, model: string) => {
 
     dates.value = arrayTo2DArray(cells, 6, 7);
     return dates.value;
+  };
+
+  const setRangeDates = (begin: Dayjs, end: Dayjs) => {
+    return [setDates(begin), setDates(end)];
   };
 
   const changeMonth = (m: number) => (current.value = current.value.month(m));
@@ -100,5 +106,6 @@ export const useDayJs = (lang: LangsType, model: string) => {
     yearCell,
     firstYear,
     setYearCell,
+    setRangeDates,
   };
 };

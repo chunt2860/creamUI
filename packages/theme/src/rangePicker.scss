@@ -1,0 +1,229 @@
+@use "common/design" as *;
+@use "mixins/var" as *;
+@use "mixins/function" as *;
+@use "mixins/mixins" as *;
+
+@include b(range-picker) {
+  position: relative;
+
+  &-inner {
+    @include flex(row, center, center);
+    background-color: var(--bp-gary-1);
+    border: $borderSize solid var(--bp-gary-1);
+    border-radius: 6px;
+    width: max-content;
+    height: 24px;
+    padding: 0 calc(24px / 4);
+    transition: all 0.2s ease;
+
+    &:focus-within {
+      background-color: var(--bp-gary-0);
+      border: $borderSize solid var(--bp-primary-6);
+      transition: all 0.2s ease;
+
+      input {
+        background-color: var(--bp-gary-0);
+        transition: all 0.2s ease;
+      }
+    }
+
+    .split {
+      font-size: 12px;
+      color: var(--bp-gary-6);
+      margin: 0 8px;
+    }
+
+    input {
+      background-color: var(--bp-gary-1);
+      font-size: 13px;
+      color: var(--bp-gary-10);
+      letter-spacing: 0.2px;
+      transition: all 0.2s ease;
+
+      &::placeholder {
+        color: var(--bp-gary-5);
+      }
+    }
+  }
+
+  &-suffix {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100px;
+    flex: 0 0 auto;
+    margin-left: 2px;
+
+    svg[class*="-icon-"] {
+      padding: calc(24px / 20);
+      fill: var(--bp-gary-6);
+    }
+  }
+
+  &-panel {
+    width: fit-content;
+    border-radius: $date-picker-border-radius;
+
+    &-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+}
+
+div[class*="trigger-wrapper"] {
+  .#{$B}-panel {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.#{$namespace}-range-table {
+  // Placeholder cell
+  @include css-var-from-global-rgb(("ranger-table", "placeholder-text-color"), ("gary", 6));
+
+  // Week cell
+  @include css-var-from-global-rgb(("ranger-table", "week-text-color"), ("gary", 4));
+
+  // Date cell
+  @include css-var-from-global-rgb(("ranger-table", "date-text-color"), ("gary", 10));
+  @include css-var-from-global-rgb(("ranger-table", "date-text-color-hover"), ("primary", 6));
+  @include css-var-from-global-rgb(("ranger-table", "date-text-color-active"), ("gary", 0));
+  @include css-var-from-global-rgb(("ranger-table", "date-bg-color"), ("gary", 0));
+  @include css-var-from-global-rgb(("ranger-table", "date-bg-color-hover"), ("gary", 1));
+  @include css-var-from-global-rgb(("ranger-table", "date-bg-color-active"), ("primary", 6));
+
+  @include css-var-from-global-rgb(("ranger-table", "date-bg-color-range"), ("primary", 1));
+
+  width: 552px;
+  display: flex;
+  border-radius: $date-picker-border-radius;
+  background-color: $date-picker-bg;
+  border: $borderSize solid $date-picker-border-color;
+
+  &-area {
+    width: 100%;
+  }
+
+  &-week {
+    @include flex(row, space-around, center) {
+      padding: 8px 14px 0 14px;
+    }
+
+    &-inner {
+      display: block;
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(getCssVar("ranger-table", "week-text-color"), 1);
+    }
+  }
+
+  &-body {
+    @include flex(column, center, center) {
+      padding: 0 14px 8px 14px;
+    }
+
+    &-row {
+      @include flex(row, space-around, center) {
+        width: 100%;
+      }
+
+      &:not(:first-child) {
+        margin-top: 6px;
+      }
+    }
+
+    .day-cell-prev,
+    .day-cell-next {
+      .#{$namespace}-range-table-body-inner {
+        color: rgba(getCssVar("ranger-table", "placeholder-text-color"), 0.6);
+        font-weight: 400;
+        border-radius: 50%;
+      }
+
+      .#{$namespace}-range-table-body-inner {
+        &:hover {
+          color: rgba(getCssVar("ranger-table", "date-text-color-hover"), 1);
+          background-color: rgba(getCssVar("ranger-table", "date-bg-color-hover"), 1);
+        }
+      }
+    }
+
+    .day-cell-normal {
+      .#{$namespace}-range-table-body-inner {
+        color: rgba(getCssVar("ranger-table", "date-text-color"), 1);
+        background-color: rgba(getCssVar("ranger-table", "date-bg-color"), 1);
+        font-weight: 500;
+        border-radius: 50%;
+      }
+
+      .#{$namespace}-range-table-body-inner {
+        &:hover {
+          color: rgba(getCssVar("ranger-table", "date-text-color-hover"), 1);
+          background-color: rgba(getCssVar("ranger-table", "date-bg-color-hover"), 1);
+        }
+      }
+    }
+
+    .active {
+      .#{$namespace}-range-table-body-inner {
+        border-radius: 50%;
+        color: rgba(getCssVar("ranger-table", "date-text-color-active"), 1);
+        background-color: rgba(getCssVar("ranger-table", "date-bg-color-active"), 1);
+
+        &:hover {
+          color: rgba(getCssVar("ranger-table", "date-text-color-active"), 1);
+          background-color: rgba(getCssVar("ranger-table", "date-bg-color-active"), 1);
+        }
+      }
+    }
+
+    .range {
+      color: rgba(getCssVar("ranger-table", "date-text-color-range"), 1);
+      background-color: rgba(getCssVar("ranger-table", "date-bg-color-range"), 1);
+
+      .#{$namespace}-range-table-body-inner {
+        background-color: rgba(getCssVar("ranger-table", "date-bg-color-range"), 1);
+      }
+    }
+
+    .range-start {
+      color: rgba(getCssVar("ranger-table", "date-text-color-range"), 1);
+      background-color: rgba(getCssVar("ranger-table", "date-bg-color-range"), 1);
+      border-top-left-radius: 50%;
+      border-bottom-left-radius: 50%;
+      @extend .active;
+    }
+
+    .range-end {
+      color: rgba(getCssVar("ranger-table", "date-text-color-range"), 1);
+      background-color: rgba(getCssVar("ranger-table", "date-bg-color-range"), 1);
+      border-top-right-radius: 50%;
+      border-bottom-right-radius: 50%;
+      @extend .active;
+    }
+
+
+    &-cell {
+      @include flex(row, center, center) {
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+      }
+    }
+
+    &-inner {
+      display: block;
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      text-align: center;
+      font-size: 14px;
+    }
+  }
+}

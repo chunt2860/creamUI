@@ -37,7 +37,7 @@ import BpTrigger from "@birdpaper-ui/components/trigger/index";
 import { computed, provide, ref } from "vue";
 import { commonPickerProps, YearPickerProps, yearPickerProps } from "./props";
 import { IconCalendarLine } from "birdpaper-icon";
-import pickerPanel from "./component/picker-panel.vue";
+import pickerPanel from "./components/picker-panel.vue";
 import { dateInjectionKey } from "./types";
 
 defineOptions({ name: "YearPicker" });
@@ -51,6 +51,7 @@ const cls = computed<string[] | {}[]>(() => [clsBlockName, `${clsBlockName}-${pr
 
 const showPopup = ref<boolean>(false);
 provide(dateInjectionKey, {
+  type: "date",
   model: model as unknown as string,
   langs: props.langs,
   valueFormat: props.valueFormat,

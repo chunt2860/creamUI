@@ -12,6 +12,7 @@ import { inject, PropType, ref } from "vue";
 import dateTable from "./date-table.vue";
 import monthTable from "./month-table.vue";
 import yearTable from "./year-table.vue";
+import rangeTable from "./range-table/index.vue";
 import { dateInjectionKey, DatePickerContext, PanelType } from "../types";
 
 defineOptions({ name: "DatePickerPanel" });
@@ -29,6 +30,7 @@ const tableMap = {
   date: dateTable,
   month: monthTable,
   year: yearTable,
+  range: rangeTable,
 };
 
 const ctx = ref<DatePickerContext>();
@@ -36,8 +38,8 @@ ctx.value = inject(dateInjectionKey, undefined);
 
 const tableRef = ref();
 const onChangePicker = (typeName: PanelType) => {
-  if(props.type === 'year') return;
-  if(props.type === 'month' && typeName === 'date') return;
+  if (props.type === "year") return;
+  if (props.type === "month" && typeName === "date") return;
 
   currentTable.value = typeName;
 };
