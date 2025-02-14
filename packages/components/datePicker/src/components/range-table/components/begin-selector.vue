@@ -55,25 +55,21 @@ if (!beginModel.value) {
 }
 
 const cellCls = (cell: DayCell) => {
-  const isRange =
-    cell.type === "normal" &&
-    beginModel.value &&
-    hoverDate.value &&
-    hoverDate.value.value >= cell.value &&
-    beginModel.value <= cell.value;
+  const rangeDate = endModel.value || hoverDate.value?.value;
+  const isInRange = (start: string, end: string, value: string) => start <= value && value <= end;
 
-  const isRangeStart = beginModel.value === cell.value && hoverDate.value;
-  const isRangeEnd = hoverDate.value?.value === cell.value && hoverDate.value.value > beginModel.value;
+  const isRange =
+    cell.type === "normal" && beginModel.value && rangeDate && isInRange(beginModel.value, rangeDate, cell.value);
+  const isRangeStart = beginModel.value === cell.value && rangeDate && cell.type === "normal";
+  const isRangeEnd = rangeDate === cell.value && rangeDate > beginModel.value && cell.type === "normal";
 
   return [
     `${props.clsBlockName}-body-cell`,
     `day-cell-${cell.type}`,
-    { active: beginModel.value === cell.value },
+    { active: beginModel.value === cell.value && cell.type === "normal" },
     { "range-start": isRangeStart },
     { "range-end": isRangeEnd },
-    {
-      range: isRange && !isRangeStart && !isRangeEnd,
-    },
+    { range: isRange && !isRangeStart && !isRangeEnd },
   ];
 };
 
@@ -92,6 +88,15 @@ const handleStep = (mode: "month" | "year", type: "prev" | "next", step: number 
 };
 
 const handleSelect = (date: DayCell) => {
+  if (beginModel.value && endModel.value) {
+    beginModel.value = date.value;
+    endModel.value = "";
+    return;
+  }
+  if (beginModel.value) {
+    endModel.value = date.value;
+    return;
+  }
   beginModel.value = date.value;
 };
 

@@ -56,20 +56,24 @@ if (!endModel.value) {
   setDates();
 }
 
-const cellCls = (cell: DayCell) => [
-  `${props.clsBlockName}-body-cell`,
-  `day-cell-${cell.type}`,
-  { active: endModel.value === cell.value },
-  { "range-start": endModel.value === cell.value && hoverDate.value },
-  {
-    range:
-      cell.type === "normal" &&
-      endModel.value &&
-      hoverDate.value &&
-      hoverDate.value.value >= cell.value &&
-      endModel.value <= cell.value,
-  },
-];
+const cellCls = (cell: DayCell) => {
+  const rangeDate = endModel.value || hoverDate.value?.value;
+  const isInRange = (start: string, end: string, value: string) => start <= value && value <= end;
+
+  const isRange =
+    cell.type === "normal" && beginModel.value && rangeDate && isInRange(beginModel.value, rangeDate, cell.value);
+  const isRangeStart = beginModel.value === cell.value && rangeDate && cell.type === "normal";
+  const isRangeEnd = rangeDate === cell.value && rangeDate > beginModel.value && cell.type === "normal";
+
+  return [
+    `${props.clsBlockName}-body-cell`,
+    `day-cell-${cell.type}`,
+    { active: beginModel.value === cell.value && cell.type === "normal" },
+    { "range-start": isRangeStart },
+    { "range-end": isRangeEnd },
+    { range: isRange && !isRangeStart && !isRangeEnd },
+  ];
+};
 
 /**
  * 月份/年份切换
@@ -86,13 +90,25 @@ const handleStep = (mode: "month" | "year", type: "prev" | "next", step: number 
 };
 
 const handleSelect = (date: DayCell) => {
-  endModel.value = date.value;
+  if (beginModel.value && endModel.value) {
+    beginModel.value = date.value;
+    endModel.value = "";
+    return;
+  }
+  if (beginModel.value) {
+    endModel.value = date.value;
+    return;
+  }
+  beginModel.value = date.value;
 };
 
 const hoverDate = ref<DayCell | null>(null);
 const handleHover = (date?: DayCell) => {
-  // if (!date.value) return;
-  // hoverDate.value = date;
+  if (!date || !beginModel.value) {
+    hoverDate.value = null;
+    return;
+  }
+  hoverDate.value = date;
 };
 
 defineExpose({
