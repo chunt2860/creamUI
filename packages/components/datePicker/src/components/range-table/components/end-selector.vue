@@ -44,6 +44,7 @@ const props = defineProps({
 });
 const emits = defineEmits<{
   (e: "on-step"): void;
+  (e: "on-hover", date?: DayCell): void;
 }>();
 
 const { current, setDates, dates, weeks, currentYear, currentMonth, months, changeMonth, changeYear } = useDayJs(
@@ -53,8 +54,9 @@ const { current, setDates, dates, weeks, currentYear, currentMonth, months, chan
 
 if (!endModel.value) {
   current.value = dayjs(current.value).add(1, "month");
-  setDates();
 }
+
+setDates(dayjs(endModel.value || undefined));
 
 const cellCls = (cell: DayCell) => {
   const rangeDate = endModel.value || hoverDate.value?.value;
@@ -106,9 +108,11 @@ const hoverDate = ref<DayCell | null>(null);
 const handleHover = (date?: DayCell) => {
   if (!date || !beginModel.value) {
     hoverDate.value = null;
+    emits("on-hover");
     return;
   }
   hoverDate.value = date;
+  emits("on-hover", date);
 };
 
 defineExpose({

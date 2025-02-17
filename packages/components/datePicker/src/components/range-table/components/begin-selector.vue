@@ -33,6 +33,7 @@ import tableHeader from "../../table-header.vue";
 import { ref, type PropType } from "vue";
 import { useDayJs } from "../../../core";
 import { DayCell, LangsType } from "../../../types";
+import dayjs from "dayjs";
 
 const beginModel = defineModel<string>("begin", { default: "" });
 const endModel = defineModel<string>("end", { default: "" });
@@ -50,9 +51,7 @@ const { setDates, dates, weeks, currentYear, currentMonth, months, changeMonth, 
   beginModel.value
 );
 
-if (!beginModel.value) {
-  setDates();
-}
+setDates(dayjs(beginModel.value || undefined));
 
 const cellCls = (cell: DayCell) => {
   const rangeDate = endModel.value || hoverDate.value?.value;
@@ -110,6 +109,7 @@ const handleHover = (date?: DayCell) => {
 };
 
 defineExpose({
+  hoverDate,
   year: currentYear,
   month: currentMonth,
 });

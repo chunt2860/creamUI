@@ -21,6 +21,7 @@
         :option-slice="endOptionSlice"
         :langs="ctx!.langs"
         @on-step="onStep"
+        @on-hover="onEndHover"
       />
     </div>
   </div>
@@ -31,14 +32,10 @@ import { useNamespace } from "@birdpaper-ui/hooks";
 import { ref, inject } from "vue";
 import beginSelector from "./components/begin-selector.vue";
 import endSelector from "./components/end-selector.vue";
-import { PanelType, RangePickerContext, rangeInjectionKey } from "../../types";
+import { DayCell, RangePickerContext, rangeInjectionKey } from "../../types";
 
 defineOptions({ name: "RangeTable" });
 const { clsBlockName } = useNamespace("range-table");
-
-const emits = defineEmits<{
-  (e: "on-step"): void;
-}>();
 
 const ctx = ref<RangePickerContext>();
 ctx.value = inject(rangeInjectionKey, undefined);
@@ -69,5 +66,9 @@ const onStep = () => {
     beginOptionSlice.value = monthDifference <= 12 ? 3 : 4;
     endOptionSlice.value = monthDifference <= 12 ? -3 : -4;
   }
+};
+
+const onEndHover = (date?: DayCell) => {
+  beginSelectorRef.value.hoverDate = date;
 };
 </script>
