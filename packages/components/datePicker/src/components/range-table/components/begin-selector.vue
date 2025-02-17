@@ -51,7 +51,7 @@ const { setDates, dates, weeks, currentYear, currentMonth, months, changeMonth, 
   beginModel.value
 );
 
-setDates(dayjs(beginModel.value || undefined));
+setDates(beginModel.value ? dayjs(beginModel.value) : undefined);
 
 const cellCls = (cell: DayCell) => {
   const rangeDate = endModel.value || hoverDate.value?.value;
