@@ -112,6 +112,72 @@ export const monthPickerProps = {
   },
 } as const;
 
+export const rangePickerProps = {
+  /**
+   * @type string
+   * @description The input name.
+   * @default ""
+   */
+  name: {
+    type: String,
+  },
+  /**
+   * @type string[]
+   * @description Placeholder text content.
+   * @default ["",""]
+   */
+  placeholder: {
+    type: Array as PropType<string[]>,
+    default: ["", ""],
+  },
+  /**
+   * @type InputSize
+   * @description Input sizes.
+   * @default default
+   */
+  size: {
+    type: String as PropType<InputSize>,
+    default: "default",
+  },
+  /**
+   * @type boolean
+   * @description Input is disabled or not.
+   * @default false
+   */
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  /**
+   * @type boolean
+   * @description Clearable or not.
+   * @default false
+   */
+  clearable: {
+    type: Boolean,
+    default: false,
+  },
+  /**
+   * @type string
+   * @description Hide trigger or not.
+   * @default false
+   */
+  hideTrigger: {
+    type: Boolean,
+    default: false,
+  },
+  /**
+   * @type string
+   * @description Language.
+   * @default "zh-cn"
+   */
+  langs: {
+    type: String as PropType<LangsType>,
+    default: "zh-cn",
+  },
+};
+
 export type DatePickerProps = ExtractPropTypes<typeof commonPickerProps & typeof datePickerProps>;
 export type YearPickerProps = ExtractPropTypes<typeof commonPickerProps & typeof yearPickerProps>;
 export type MonthPickerProps = ExtractPropTypes<typeof commonPickerProps & typeof monthPickerProps>;
+export type RangePickerProps = ExtractPropTypes<typeof rangePickerProps>;

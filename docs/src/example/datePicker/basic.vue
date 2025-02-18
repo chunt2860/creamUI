@@ -1,7 +1,7 @@
 <template>
   {{ val }}
   <!-- <bp-date-picker v-model="val" style="width: 200px" placeholder="请选择" /> -->
-  <bp-range-picker v-model="val" style="width: 200px" placeholder="请选择" />
+  <bp-range-picker v-model="val" style="width: 200px" :placeholder="['请选择', '请选择2']" />
 </template>
 
 <script setup lang="ts">

@@ -8,9 +8,9 @@
     update-at-scroll
   >
     <div :class="`${clsBlockName}-inner`">
-      <input placeholder="开始时间" />
+      <input :placeholder="placeholder[0]" />
       <div class="split">-</div>
-      <input placeholder="结束时间" />
+      <input :placeholder="placeholder[1]" />
       <div :class="`${clsBlockName}-suffix`">
         <IconCalendarLine />
       </div>
@@ -27,11 +27,13 @@ import BpTrigger from "@birdpaper-ui/components/trigger/index";
 import pickerPanel from "./components/picker-panel.vue";
 import { ref, provide } from "vue";
 import { rangeInjectionKey } from "./types";
+import { RangePickerProps, rangePickerProps } from "./props";
 
 defineOptions({ name: "RangePicker" });
 const { clsBlockName } = useNamespace("range-picker");
 
 const model = defineModel<string[]>({ default: [] });
+const props: RangePickerProps = defineProps({ ...rangePickerProps });
 
 const showPopup = ref<boolean>(false);
 provide(rangeInjectionKey, {
