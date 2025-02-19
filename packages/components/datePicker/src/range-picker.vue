@@ -2,15 +2,19 @@
   <bp-trigger
     v-model="showPopup"
     transition="fade-dropdown"
-    hide-trigger
+    :hideTrigger
+    :disabled
     :popup-offset="10"
     position="bottom-left"
     update-at-scroll
   >
-    <div :class="`${clsBlockName}-inner`">
-      <input :placeholder="placeholder[0]" />
-      <div class="split">-</div>
-      <input :placeholder="placeholder[1]" />
+    <div :class="cls">
+      <div :class="`${clsBlockName}-input`">
+        <input v-model="model[0]" :placeholder="placeholder[0]" />
+        <div class="split">-</div>
+        <input v-model="model[1]" :placeholder="placeholder[1]" />
+      </div>
+
       <div :class="`${clsBlockName}-suffix`">
         <IconCalendarLine />
       </div>
@@ -25,7 +29,7 @@
 import { useNamespace } from "@birdpaper-ui/hooks";
 import BpTrigger from "@birdpaper-ui/components/trigger/index";
 import pickerPanel from "./components/picker-panel.vue";
-import { ref, provide } from "vue";
+import { ref, provide, computed } from "vue";
 import { rangeInjectionKey } from "./types";
 import { RangePickerProps, rangePickerProps } from "./props";
 
@@ -35,15 +39,13 @@ const { clsBlockName } = useNamespace("range-picker");
 const model = defineModel<string[]>({ default: [] });
 const props: RangePickerProps = defineProps({ ...rangePickerProps });
 
+const cls = computed<string[] | {}[]>(() => [clsBlockName, `${clsBlockName}-${props.size}`]);
+
 const showPopup = ref<boolean>(false);
 provide(rangeInjectionKey, {
   type: "range",
   model: model as unknown as string[],
   langs: "zh-cn",
   valueFormat: "YYYY-MM-DD",
-  onSelect: (v: string) => {
-    // model.value = v;
-    showPopup.value = false;
-  },
 });
 </script>

@@ -114,14 +114,6 @@ export const monthPickerProps = {
 
 export const rangePickerProps = {
   /**
-   * @type string
-   * @description The input name.
-   * @default ""
-   */
-  name: {
-    type: String,
-  },
-  /**
    * @type string[]
    * @description Placeholder text content.
    * @default ["",""]
@@ -145,15 +137,6 @@ export const rangePickerProps = {
    * @default false
    */
   disabled: {
-    type: Boolean,
-    default: false,
-  },
-  /**
-   * @type boolean
-   * @description Clearable or not.
-   * @default false
-   */
-  clearable: {
     type: Boolean,
     default: false,
   },

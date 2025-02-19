@@ -53,7 +53,5 @@ export interface RangePickerContext {
   valueFormat: string;
   /** 是否显示时间选择器 */
   showTime?: boolean;
-  /** 选择后触发 */
-  onSelect: (value: string, payload: object, closePopup: boolean) => void;
 }
 export const rangeInjectionKey: InjectionKey<RangePickerContext> = Symbol("RangePickerCtxKey");
