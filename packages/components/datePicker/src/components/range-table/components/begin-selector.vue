@@ -44,6 +44,7 @@ const props = defineProps({
 });
 const emits = defineEmits<{
   (e: "on-step"): void;
+  (e: "on-select"): void;
 }>();
 
 const { setDates, dates, weeks, currentYear, currentMonth, months, changeMonth, changeYear } = useDayJs(
@@ -94,6 +95,7 @@ const handleSelect = (date: DayCell) => {
   }
   if (beginModel.value) {
     endModel.value = date.value;
+    emits("on-select");
     return;
   }
   beginModel.value = date.value;

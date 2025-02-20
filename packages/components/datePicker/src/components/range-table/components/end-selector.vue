@@ -45,6 +45,7 @@ const props = defineProps({
 const emits = defineEmits<{
   (e: "on-step"): void;
   (e: "on-hover", date?: DayCell): void;
+  (e: "on-select"): void;
 }>();
 
 const { current, setDates, dates, weeks, currentYear, currentMonth, months, changeMonth, changeYear } = useDayJs(
@@ -55,8 +56,13 @@ const { current, setDates, dates, weeks, currentYear, currentMonth, months, chan
 if (!endModel.value) {
   current.value = dayjs(current.value).add(1, "month");
 }
+const isSameMonth = dayjs(beginModel.value).month() === dayjs(endModel.value).month();
 
-setDates(endModel.value ? dayjs(endModel.value) : undefined);
+if (isSameMonth) {
+  current.value = dayjs(endModel.value).add(1, "month");
+}
+
+setDates(endModel.value ? (isSameMonth ? dayjs(endModel.value).add(1, "month") : dayjs(endModel.value)) : undefined);
 
 const cellCls = (cell: DayCell) => {
   const rangeDate = endModel.value || hoverDate.value?.value;
@@ -99,6 +105,7 @@ const handleSelect = (date: DayCell) => {
   }
   if (beginModel.value) {
     endModel.value = date.value;
+    emits("on-select");
     return;
   }
   beginModel.value = date.value;

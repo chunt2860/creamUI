@@ -47,5 +47,8 @@ provide(rangeInjectionKey, {
   model: model as unknown as string[],
   langs: "zh-cn",
   valueFormat: "YYYY-MM-DD",
+  onSelect: (v: string[], payload: any, closePopup = true) => {
+    if (closePopup) showPopup.value = false;
+  },
 });
 </script>

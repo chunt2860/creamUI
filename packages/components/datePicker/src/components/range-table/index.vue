@@ -9,6 +9,7 @@
         :option-slice="beginOptionSlice"
         :langs="ctx!.langs"
         @on-step="onStep"
+        @on-select="onSelect"
       />
     </div>
 
@@ -22,6 +23,7 @@
         :langs="ctx!.langs"
         @on-step="onStep"
         @on-hover="onEndHover"
+        @on-select="onSelect"
       />
     </div>
   </div>
@@ -70,5 +72,11 @@ const onStep = () => {
 
 const onEndHover = (date?: DayCell) => {
   beginSelectorRef.value.hoverDate = date;
+};
+
+const onSelect = () => {
+  if (ctx.value) {
+    ctx.value.onSelect(ctx.value.model, {}, true);
+  }
 };
 </script>
