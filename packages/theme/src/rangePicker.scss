@@ -101,6 +101,12 @@ div[class*="trigger-wrapper"] {
   }
 }
 
+.#{$B}-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: default;
+}
+
 .#{$namespace}-range-table {
   // Placeholder cell
   @include css-var-from-global-rgb(("ranger-table", "placeholder-text-color"), ("gary", 6));

@@ -10,9 +10,9 @@
   >
     <div :class="cls">
       <div :class="`${clsBlockName}-input`">
-        <input v-model="model[0]" :placeholder="placeholder[0]" />
+        <input v-model="model[0]" :disabled :placeholder="placeholder[0]" />
         <div class="split">-</div>
-        <input v-model="model[1]" :placeholder="placeholder[1]" />
+        <input v-model="model[1]" :disabled :placeholder="placeholder[1]" />
       </div>
 
       <div :class="`${clsBlockName}-suffix`">
@@ -39,7 +39,11 @@ const { clsBlockName } = useNamespace("range-picker");
 const model = defineModel<string[]>({ default: [] });
 const props: RangePickerProps = defineProps({ ...rangePickerProps });
 
-const cls = computed<string[] | {}[]>(() => [clsBlockName, `${clsBlockName}-${props.size}`]);
+const cls = computed<string[] | {}[]>(() => [
+  clsBlockName,
+  `${clsBlockName}-${props.size}`,
+  props.disabled ? `${clsBlockName}-disabled` : "",
+]);
 
 const showPopup = ref<boolean>(false);
 provide(rangeInjectionKey, {
