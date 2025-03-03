@@ -29,3 +29,4 @@ export * from "./tooltip";
 export * from "./trigger";
 export * from "./verifyCode";
 export * from "./dropdown";
+export * from "./inputTag";

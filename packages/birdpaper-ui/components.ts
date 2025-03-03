@@ -40,6 +40,7 @@ import {
   YearPicker,
   Dropdown,
   Doption,
+  InputTag
 } from "@birdpaper-ui/components";
 
 export default [
@@ -84,4 +85,5 @@ export default [
   YearPicker,
   Dropdown,
   Doption,
+  InputTag
 ];

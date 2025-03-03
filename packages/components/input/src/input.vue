@@ -7,6 +7,7 @@
     </div>
     <input
       ref="inpRef"
+      v-if="!slots.default?.()"
       :class="`${clsBlockName}-inner`"
       :name
       :disabled
@@ -22,6 +23,7 @@
       @keypress="onKeypress"
       @keyup="onKeyup"
     />
+    <slot v-else />
     <div :class="`${clsBlockName}-suffix select-none`" v-if="innerActionIcon || innerSuffixContent || slots.suffix">
       <div :class="`${clsBlockName}-suffix-inner`" v-if="!slots.suffix">
         <component

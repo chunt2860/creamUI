@@ -1,0 +1,15 @@
+@use "common/design" as *;
+@use "mixins/var" as *;
+@use "mixins/function" as *;
+@use "mixins/mixins" as *;
+
+@include b(input-tag) {
+  .#{$namespace}-tag {
+    @include css-var-from-global-rgb(("tag", "bg-color"), ("gary", "0"));
+    @include css-var-from-global-rgb(("tag", "text-color"), ("gary", "10"));
+    @include css-var-from-global-rgb(("tag", "icon-color"), ("gary", "10"));
+
+    border-radius: 4px;
+    border: $borderSize solid var(--bp-gary-2);
+  }
+}

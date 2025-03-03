@@ -60,6 +60,10 @@ export const sidebar = {
           text: "数字输入 <span>InputNumber</span>",
           link: "/components/inputNumber/",
         },
+        {
+          text: "标签输入 <span>InputTag</span>",
+          link: "/components/inputTag/",
+        },
       ],
     },
     {
