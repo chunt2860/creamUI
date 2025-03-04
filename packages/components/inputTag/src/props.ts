@@ -1,0 +1,51 @@
+import { InputSize } from "@birdpaper-ui/components/input/src/types";
+import { ExtractPropTypes, PropType } from "vue";
+
+export const inputTagProps = {
+  /**
+   * @type string
+   * @description The input name.
+   * @default ""
+   */
+  name: {
+    type: String,
+  },
+  /**
+   * @type string
+   * @description Placeholder text content.
+   * @default ""
+   */
+  placeholder: {
+    type: String,
+    default: "",
+  },
+  /**
+   * @type InputSize
+   * @description Input sizes.
+   * @default default
+   */
+  size: {
+    type: String as PropType<InputSize>,
+    default: "default",
+  },
+  /**
+   * @type boolean
+   * @description Input is disabled or not.
+   * @default false
+   */
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  /**
+   * @type number
+   * @description The max tag count.
+   * @default 0
+   */
+  maxTagCount: {
+    type: Number,
+    default: 0,
+  },
+};
+
+export type InputTagProps = ExtractPropTypes<typeof inputTagProps>;

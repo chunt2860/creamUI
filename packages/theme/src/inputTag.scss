@@ -1,15 +1,45 @@
 @use "common/design" as *;
+@use "common/sizes" as *;
 @use "mixins/var" as *;
 @use "mixins/function" as *;
 @use "mixins/mixins" as *;
 
 @include b(input-tag) {
-  .#{$namespace}-tag {
-    @include css-var-from-global-rgb(("tag", "bg-color"), ("gary", "0"));
-    @include css-var-from-global-rgb(("tag", "text-color"), ("gary", "10"));
-    @include css-var-from-global-rgb(("tag", "icon-color"), ("gary", "10"));
+  height: auto !important;
+  padding: 4px;
 
-    border-radius: 4px;
-    border: $borderSize solid var(--bp-gary-2);
+  &-content {
+    @include flex(row, flex-start, center) {
+      width: 100%;
+      height: auto;
+      flex-wrap: wrap;
+      gap: 4px;
+      min-height: $miniHeight;
+
+      .#{$namespace}-tag {
+        @include css-var-from-global-rgb(("tag", "bg-color"), ("gary", "0"));
+        @include css-var-from-global-rgb(("tag", "text-color"), ("gary", "10"));
+        @include css-var-from-global-rgb(("tag", "icon-color"), ("gary", "10"));
+
+        border-radius: 4px;
+        border: $borderSize solid var(--bp-gary-2);
+        transition: all 0.2s ease;
+      }
+    }
+
+    &-inner {
+      min-width: 20px;
+      margin-left: 6px;
+    }
+
+    &:focus-within {
+      .#{$namespace}-tag {
+        @include css-var-from-global-rgb(("tag", "bg-color"), ("gary", "1"));
+        @include css-var-from-global-rgb(("tag", "text-color"), ("gary", "10"));
+        @include css-var-from-global-rgb(("tag", "icon-color"), ("gary", "10"));
+        border: $borderSize solid var(--bp-gary-2);
+        transition: all 0.2s ease;
+      }
+    }
   }
 }

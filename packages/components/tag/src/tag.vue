@@ -4,7 +4,7 @@
       <component :class="`${clsBlockName}-icon`" :is="icon" v-if="icon" size="16" />
       <slot />
     </div>
-    <IconCloseLine :class="`${clsBlockName}-close`" v-if="closeable" size="16" @click="handleClose" />
+    <IconCloseLine :class="`${clsBlockName}-close`" v-if="closeable" size="14" @click="handleClose" />
   </div>
 </template>
 

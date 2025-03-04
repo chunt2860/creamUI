@@ -21,22 +21,26 @@
         line-height: 1.2;
       }
     }
+
+    // & + & {
+    //   margin-left: $defaultMargin / 3;
+    // }
     
     .#{$B}-icon {
       fill: rgba(getCssVar("tag", "text-color"), 1);
       margin-right: 2px;
-      padding: 1px;
+      padding: 2px;
     }
     
     .#{$B}-close {
       fill: rgba(getCssVar("tag", "icon-color"), 0.8);
-      margin-left: 6px;
+      margin-left: 2px;
       border-radius: 50%;
-      padding: 1px;
+      padding: 2px;
       cursor: pointer;
 
       &:hover {
-        background-color: rgba(getCssVar("tag", "icon-color"), 0.2);
+        background-color: rgba(getCssVar("tag", "icon-color"), 0.05);
       }
     }
   }
