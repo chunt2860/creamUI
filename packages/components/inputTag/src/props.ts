@@ -20,15 +20,6 @@ export const inputTagProps = {
     default: "",
   },
   /**
-   * @type InputSize
-   * @description Input sizes.
-   * @default default
-   */
-  size: {
-    type: String as PropType<InputSize>,
-    default: "default",
-  },
-  /**
    * @type boolean
    * @description Input is disabled or not.
    * @default false
