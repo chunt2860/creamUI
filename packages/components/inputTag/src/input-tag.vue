@@ -2,7 +2,7 @@
   <bp-input :class="clsBlockName" @click.stop="inpRef?.focus()">
     <div :class="`${clsBlockName}-content`">
       <template v-for="(v, k) in model">
-        <bp-tag v-if="maxTagCount === 0 || k < maxTagCount" closeable @close="handleClose(k)">
+        <bp-tag v-if="maxTagCount === 0 || k < maxTagCount" :closeable="!disabled" @close="handleClose(k)">
           {{ v.toString() }}
         </bp-tag>
       </template>
@@ -13,7 +13,7 @@
         type="text"
         v-model="inpVal"
         :class="`${clsBlockName}-content-inner`"
-        :style="{ width: `${inpVal.length * 14 + 8}px` }"
+        :style="{ width: `${inpVal.length || placeholder.length * 14 + 8}px` }"
         :name
         :placeholder
         :disabled

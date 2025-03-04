@@ -1,5 +1,4 @@
-import { InputSize } from "@birdpaper-ui/components/input/src/types";
-import { ExtractPropTypes, PropType } from "vue";
+import { ExtractPropTypes } from "vue";
 
 export const inputTagProps = {
   /**
