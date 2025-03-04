@@ -1,9 +1,10 @@
 <template>
-  <bp-input :class="clsBlockName">
+  <bp-input :class="clsBlockName" @click.stop="inpRef?.focus()">
     <div :class="`${clsBlockName}-content`">
       <bp-tag v-for="(v, k) in model" closeable @close="handleClose(k)">{{ v.toString() }}</bp-tag>
 
       <input
+        ref="inpRef"
         type="text"
         v-model="inpVal"
         :class="`${clsBlockName}-content-inner`"
@@ -32,6 +33,7 @@ const model = defineModel<string[]>({ default: [] });
 const props: InputTagProps = defineProps(inputTagProps);
 
 const inpVal = ref<string>("");
+const inpRef = ref<HTMLInputElement | null>(null);
 
 const handleEnter = () => {
   if (!inpVal.value) return;
