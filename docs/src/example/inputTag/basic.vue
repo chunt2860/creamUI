@@ -1,5 +1,5 @@
 <template>
-  <bp-input-tag v-model="val" style="width: 280px"></bp-input-tag>
+  <bp-input-tag :max-tag-count="3" v-model="val" style="width: 280px"></bp-input-tag>
 </template>
 
 <script lang="ts" setup>

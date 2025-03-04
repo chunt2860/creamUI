@@ -1,7 +1,12 @@
 <template>
   <bp-input :class="clsBlockName" @click.stop="inpRef?.focus()">
     <div :class="`${clsBlockName}-content`">
-      <bp-tag v-for="(v, k) in model" closeable @close="handleClose(k)">{{ v.toString() }}</bp-tag>
+      <template v-for="(v, k) in model">
+        <bp-tag v-if="maxTagCount === 0 || k < maxTagCount" closeable @close="handleClose(k)">
+          {{ v.toString() }}
+        </bp-tag>
+      </template>
+      <bp-tag v-if="maxTagCount && model.length > maxTagCount">+{{ model.length - maxTagCount }}...</bp-tag>
 
       <input
         ref="inpRef"
