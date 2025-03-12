@@ -8,16 +8,16 @@
 
 @mixin picker-table-header {
   // Header
-  @include css-var-from-global-rgb(("date-picker", "header-text-color"), ("gary", 10));
+  @include css-var-from-global-rgb(("date-picker", "header-text-color"), ("gray", 10));
   @include css-var-from-global-rgb(("date-picker", "header-text-color-hover"), ("primary", 6));
-  @include css-var-from-global-rgb(("date-picker", "header-bg-color"), ("gary", 0));
-  @include css-var-from-global-rgb(("date-picker", "header-bg-color-hover"), ("gary", 1));
+  @include css-var-from-global-rgb(("date-picker", "header-bg-color"), ("gray", 0));
+  @include css-var-from-global-rgb(("date-picker", "header-bg-color-hover"), ("gray", 1));
 
   // Option button
-  @include css-var-from-global-rgb(("date-picker", "option-text-color"), ("gary", 6));
-  @include css-var-from-global-rgb(("date-picker", "option-text-color-hover"), ("gary", 10));
-  @include css-var-from-global-rgb(("date-picker", "option-bg-color"), ("gary", 0));
-  @include css-var-from-global-rgb(("date-picker", "option-bg-color-hover"), ("gary", 1));
+  @include css-var-from-global-rgb(("date-picker", "option-text-color"), ("gray", 6));
+  @include css-var-from-global-rgb(("date-picker", "option-text-color-hover"), ("gray", 10));
+  @include css-var-from-global-rgb(("date-picker", "option-bg-color"), ("gray", 0));
+  @include css-var-from-global-rgb(("date-picker", "option-bg-color-hover"), ("gray", 1));
 
   display: flex;
   align-items: center;

@@ -7,11 +7,11 @@ $date-picker-month-table-width: 260px;
 
 @include b(month-table) {
   // Date cell
-  @include css-var-from-global-rgb(("month-table", "month-text-color"), ("gary", 10));
+  @include css-var-from-global-rgb(("month-table", "month-text-color"), ("gray", 10));
   @include css-var-from-global-rgb(("month-table", "month-text-color-hover"), ("primary", 6));
-  @include css-var-from-global-rgb(("month-table", "month-text-color-active"), ("gary", 0));
-  @include css-var-from-global-rgb(("month-table", "month-bg-color"), ("gary", 0));
-  @include css-var-from-global-rgb(("month-table", "month-bg-color-hover"), ("gary", 1));
+  @include css-var-from-global-rgb(("month-table", "month-text-color-active"), ("gray", 0));
+  @include css-var-from-global-rgb(("month-table", "month-bg-color"), ("gray", 0));
+  @include css-var-from-global-rgb(("month-table", "month-bg-color-hover"), ("gray", 1));
   @include css-var-from-global-rgb(("month-table", "month-bg-color-active"), ("primary", 6));
 
 

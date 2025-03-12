@@ -4,7 +4,7 @@
 @use "mixins/mixins" as *;
 
 @include b(empty) {
-  @include css-var-from-global-rgb(("empty", "color"), ("gary", "4"));
+  @include css-var-from-global-rgb(("empty", "color"), ("gray", "4"));
 
   @include flex(column, center, center) {
     box-sizing: border-box;

@@ -8,11 +8,11 @@ $switchSizes: "small", "mini";
 @include b(switch) {
   --bp-switch-height-mini: 16px;
   --bp-switch-height-small: 24px;
-  @include css-var-from-global-rgb(("switch", "border"), ("gary", "2"));
-  @include css-var-from-global-rgb(("switch", "bg"), ("gary", "2"));
-  @include css-var-from-global-rgb(("switch", "inner-color"), ("gary", "6"));
-  @include css-var-from-global-rgb(("switch", "dot-bg"), ("gary", "0"));
-  @include css-var-from-global-rgb(("switch", "icon-color"), ("gary", "6"));
+  @include css-var-from-global-rgb(("switch", "border"), ("gray", "2"));
+  @include css-var-from-global-rgb(("switch", "bg"), ("gray", "2"));
+  @include css-var-from-global-rgb(("switch", "inner-color"), ("gray", "6"));
+  @include css-var-from-global-rgb(("switch", "dot-bg"), ("gray", "0"));
+  @include css-var-from-global-rgb(("switch", "icon-color"), ("gray", "6"));
 
   position: relative;
   display: inline-flex;
@@ -72,8 +72,8 @@ $switchSizes: "small", "mini";
   &-check {
     @include css-var-from-global-rgb(("switch", "border"), ("primary", "6"));
     @include css-var-from-global-rgb(("switch", "bg"), ("primary", "6"));
-    @include css-var-from-global-rgb(("switch", "icon-color"), ("gary", "7"));
-    @include css-var-from-global-rgb(("switch", "inner-color"), ("gary", "0"));
+    @include css-var-from-global-rgb(("switch", "icon-color"), ("gray", "7"));
+    @include css-var-from-global-rgb(("switch", "inner-color"), ("gray", "0"));
     transition: all 0.2s ease;
 
     .#{$B}-slider-dot {
@@ -86,16 +86,16 @@ $switchSizes: "small", "mini";
   pointer-events: none;
   cursor: default;
 
-  @include css-var-from-global-rgb(("switch", "border"), ("gary", "1"));
-  @include css-var-from-global-rgb(("switch", "bg"), ("gary", "1"));
-  @include css-var-from-global-rgb(("switch", "inner-color"), ("gary", "8"));
-  @include css-var-from-global-rgb(("switch", "dot-bg"), ("gary", "2"));
+  @include css-var-from-global-rgb(("switch", "border"), ("gray", "1"));
+  @include css-var-from-global-rgb(("switch", "bg"), ("gray", "1"));
+  @include css-var-from-global-rgb(("switch", "inner-color"), ("gray", "8"));
+  @include css-var-from-global-rgb(("switch", "dot-bg"), ("gray", "2"));
 
   .#{$B}-check {
     @include css-var-from-global-rgb(("switch", "border"), ("primary", "2"));
     @include css-var-from-global-rgb(("switch", "bg"), ("primary", "2"));
-    @include css-var-from-global-rgb(("switch", "dot-bg"), ("gary", "0"));
-    @include css-var-from-global-rgb(("switch", "icon-color"), ("gary", "7"));
+    @include css-var-from-global-rgb(("switch", "dot-bg"), ("gray", "0"));
+    @include css-var-from-global-rgb(("switch", "icon-color"), ("gray", "7"));
   }
 }
 

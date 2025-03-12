@@ -21,7 +21,7 @@ export default defineComponent({
     },
     status: {
       type: String as PropType<ButtonStatus>,
-      default: "gary",
+      default: "gray",
     },
     disabled: {
       type: Boolean,

@@ -4,11 +4,11 @@
 @use "mixins/mixins.scss" as *;
 
 @include b(checkbox) {
-  @include css-var-from-global-rgb(("checkbox", "checkbox-border"), ("gary", "6"));
+  @include css-var-from-global-rgb(("checkbox", "checkbox-border"), ("gray", "6"));
   @include css-var-from-global-rgb(("checkbox", "checkbox-border-check"), ("primary", "6"));
-  @include css-var-from-global-rgb(("checkbox", "checkbox-bg"), ("gary", "0"));
-  @include css-var-from-global-rgb(("checkbox", "label-color"), ("gary", "8"));
-  @include css-var-from-global-rgb(("checkbox", "label-color-hover"), ("gary", "10"));
+  @include css-var-from-global-rgb(("checkbox", "checkbox-bg"), ("gray", "0"));
+  @include css-var-from-global-rgb(("checkbox", "label-color"), ("gray", "8"));
+  @include css-var-from-global-rgb(("checkbox", "label-color-hover"), ("gray", "10"));
 
   @include flex(row, center, center);
   position: relative;
@@ -79,7 +79,7 @@
 
     svg[class*="-icon-"] {
       position: absolute;
-      fill: var(--bp-gary-1);
+      fill: var(--bp-gray-1);
       font-weight: normal;
       line-height: 1;
       transform: scale(0.8);
@@ -102,9 +102,9 @@
 }
 
 .#{$B}-disabled {
-  @include css-var-from-global-rgb(("checkbox", "checkbox-border"), ("gary", "3"));
-  @include css-var-from-global-rgb(("checkbox", "checkbox-bg"), ("gary", "1"));
-  @include css-var-from-global-rgb(("checkbox", "label-color"), ("gary", "4"));
+  @include css-var-from-global-rgb(("checkbox", "checkbox-border"), ("gray", "3"));
+  @include css-var-from-global-rgb(("checkbox", "checkbox-bg"), ("gray", "1"));
+  @include css-var-from-global-rgb(("checkbox", "label-color"), ("gray", "4"));
   @include css-var-from-global-rgb(("checkbox", "checkbox-border-check"), ("primary", "2"));
 
   pointer-events: none;

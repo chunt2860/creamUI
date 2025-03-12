@@ -17,18 +17,18 @@
   cursor: text;
 
   &-inner {
-    background-color: rgba(var(--bp-gary-1-rgb), 1);
+    background-color: rgba(var(--bp-gray-1-rgb), 1);
     text-align: center;
     @extend .font-input;
     transition: all 0.2s;
 
     &:hover {
-      background-color: rgba(var(--bp-gary-2-rgb), 0.5);
+      background-color: rgba(var(--bp-gray-2-rgb), 0.5);
       transition: all 0.2s;
     }
 
     &:focus-within {
-      background-color: rgba(var(--bp-gary-0-rgb), 1);
+      background-color: rgba(var(--bp-gray-0-rgb), 1);
       border: $borderSize solid var(--bp-primary-6);
       transition: all 0.2s;
     }
@@ -40,7 +40,7 @@
   cursor: default;
 
   .#{$B}-inner {
-    color: var(--bp-gary-4);
+    color: var(--bp-gray-4);
   }
 }
 

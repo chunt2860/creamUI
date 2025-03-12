@@ -91,12 +91,12 @@
         cursor: pointer;
 
         svg[class*="-icon-"] {
-          fill: var(--bp-gary-3);
+          fill: var(--bp-gray-3);
           border-radius: 10px;
 
           &:hover {
-            fill: var(--bp-gary-7);
-            background-color: var(--bp-gary-1);
+            fill: var(--bp-gray-7);
+            background-color: var(--bp-gray-1);
             transition: all 0.2s ease;
           }
         }
@@ -105,22 +105,22 @@
   }
 }
 
-$status-list: "gary", "success", "warning", "danger";
+$status-list: "gray", "success", "warning", "danger";
 
 @each $status in $status-list {
   .#{$B}-#{$status} {
-    @include css-var-from-global-rgb(("message", "icon-color"), (if($status == "gary", "primary", $status), "6"));
-    @include css-var-from-global-rgb(("message", "box-shadow"), ("gary", "2"));
-    @include css-var-from-global-rgb(("message", "bg-color"), ("gary", "0"));
-    @include css-var-from-global-rgb(("message", "border-color"), ("gary", "2"));
-    @include css-var-from-global-rgb(("message", "color"), ("gary", "10"));
+    @include css-var-from-global-rgb(("message", "icon-color"), (if($status == "gray", "primary", $status), "6"));
+    @include css-var-from-global-rgb(("message", "box-shadow"), ("gray", "2"));
+    @include css-var-from-global-rgb(("message", "bg-color"), ("gray", "0"));
+    @include css-var-from-global-rgb(("message", "border-color"), ("gray", "2"));
+    @include css-var-from-global-rgb(("message", "color"), ("gray", "10"));
   }
 
   .#{$B}-plain-#{$status} {
-    @include css-var-from-global-rgb(("message", "icon-color"), (if($status == "gary", "primary", $status), "6"));
-    @include css-var-from-global-rgb(("message", "bg-color"), ($status, if($status == "gary", "0", "1")));
-    @include css-var-from-global-rgb(("message", "border-color"), ($status, if($status == "gary", "2", "6")));
-    @include css-var-from-global-rgb(("message", "color"), ($status, if($status == "gary", "10", "6")));
+    @include css-var-from-global-rgb(("message", "icon-color"), (if($status == "gray", "primary", $status), "6"));
+    @include css-var-from-global-rgb(("message", "bg-color"), ($status, if($status == "gray", "0", "1")));
+    @include css-var-from-global-rgb(("message", "border-color"), ($status, if($status == "gray", "2", "6")));
+    @include css-var-from-global-rgb(("message", "color"), ($status, if($status == "gray", "10", "6")));
     @include css-var-from-global-rgb(("message", "box-shadow"), ($status, "1"));
   }
 }

@@ -23,7 +23,7 @@
     </div>
 
     <div v-if="!onlySelector" :class="`${clsBlockName}-footer`">
-      <bp-button size="mini" status="gary" type="secondary" @click="setNow">现在</bp-button>
+      <bp-button size="mini" status="gray" type="secondary" @click="setNow">现在</bp-button>
       <bp-button :disabled="confirmDisabled" size="mini" type="normal" status="primary" @click="handleSelect">
         确认
       </bp-button>

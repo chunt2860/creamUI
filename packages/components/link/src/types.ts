@@ -1,1 +1,1 @@
-export type LinkStatus = "gary" | "primary" | "success" | "warning" | "danger";
+export type LinkStatus = "gray" | "primary" | "success" | "warning" | "danger";

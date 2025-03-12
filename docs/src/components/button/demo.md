@@ -24,7 +24,7 @@ import Usage from "../../example/button/usage.vue";
 
 ## 按钮状态
 
-支持 5 种按钮状态，分别是 `gary` - <b>灰度</b>，`primary` - <b>主要（默认）</b>，`success` - <b>成功</b>，`warning` - <b>警示</b>，`danger` - <b>危险</b>，与按钮类型搭配使用，以增强视觉效果和明确给功能属性。
+支持 5 种按钮状态，分别是 `gray` - <b>灰度</b>，`primary` - <b>主要（默认）</b>，`success` - <b>成功</b>，`warning` - <b>警示</b>，`danger` - <b>危险</b>，与按钮类型搭配使用，以增强视觉效果和明确给功能属性。
 <demo-block src="button/status">
 
 <<< @/example/button/status.vue

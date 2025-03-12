@@ -32,7 +32,7 @@
       <div class="config-item">
         <label>Status</label>
         <bp-select size="mini" v-model="cfg.status" style="width: 80px">
-          <bp-option value="gary">Gary</bp-option>
+          <bp-option value="gray">Gary</bp-option>
           <bp-option value="primary">Primary</bp-option>
           <bp-option value="success">Success</bp-option>
           <bp-option value="warning">Warning</bp-option>

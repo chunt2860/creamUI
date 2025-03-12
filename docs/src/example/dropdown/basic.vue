@@ -1,6 +1,6 @@
 <template>
   <bp-dropdown @select="handleSelect">
-    <bp-button status="gary" type="secondary">下</bp-button>
+    <bp-button status="gray" type="secondary">下</bp-button>
 
     <template #content>
       <bp-doption value="1">选项一</bp-doption>

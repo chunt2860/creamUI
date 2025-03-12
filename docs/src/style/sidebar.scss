@@ -1,37 +1,37 @@
 @use "./var";
 
 .VPSidebar {
-  border-right: 0.5px solid var(--bp-gary-2);
-  background: var(--bp-gary-0) !important;
+  border-right: 0.5px solid var(--bp-gray-2);
+  background: var(--bp-gray-0) !important;
 
   .curtain {
-    background-color: var(--bp-gary-0);
+    background-color: var(--bp-gray-0);
   }
 
   .VPSidebarItem.level-0 > .item > .text,
   .VPSidebarItem.level-0.has-active > .item > .text {
     font-size: 12px;
     font-weight: 500;
-    color: var(--bp-gary-4);
+    color: var(--bp-gray-4);
   }
 
   .VPSidebarItem.level-1 {
     .text {
-      color: var(--bp-gary-7);
+      color: var(--bp-gray-7);
       font-size: 13px;
 
       span {
         font-family: var(--font-quick);
         font-weight: 800;
         margin-left: 8px;
-        color: var(--bp-gary-6);
+        color: var(--bp-gray-6);
       }
 
       &:hover {
-        color: var(--bp-gary-9) !important;
+        color: var(--bp-gray-9) !important;
 
         span {
-          color: var(--bp-gary-9);
+          color: var(--bp-gray-9);
           transition: all 0.4s ease;
         }
       }

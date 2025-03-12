@@ -164,7 +164,7 @@ export const modalProps = {
     type: Object as PropType<ButtonProps>,
     default: () => ({
       type: "secondary",
-      status: "gary",
+      status: "gray",
     }),
   },
   /**

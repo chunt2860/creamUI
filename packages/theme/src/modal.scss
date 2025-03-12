@@ -9,7 +9,7 @@
   max-width: 100%;
   pointer-events: auto;
   border-radius: var(--bp-size-border-radius-default);
-  background-color: var(--bp-gary-0);
+  background-color: var(--bp-gray-0);
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 
   .modal-inner {
@@ -53,7 +53,7 @@
       @include flex(row, flex-start, center);
       font-size: 14px;
       font-weight: 600;
-      color: var(--bp-gary-9);
+      color: var(--bp-gray-9);
 
       svg[class*="-icon-"] {
         margin-right: 4px;
@@ -81,8 +81,8 @@
       position: absolute;
       top: 24px;
       right: 16px;
-      fill: var(--bp-gary-6);
-      color: var(--bp-gary-6);
+      fill: var(--bp-gray-6);
+      color: var(--bp-gray-6);
       padding: 3px;
       border-radius: 4px;
       font-size: 12px;
@@ -91,9 +91,9 @@
       transition: all 0.2s;
 
       &:hover {
-        background-color: var(--bp-gary-1);
-        color: var(--bp-gary-8);
-        fill: var(--bp-gary-8);
+        background-color: var(--bp-gray-1);
+        color: var(--bp-gray-8);
+        fill: var(--bp-gray-8);
         transition: all 0.2s;
       }
     }
@@ -102,7 +102,7 @@
   &-body {
     flex: 1;
     padding: 16px;
-    color: var(--bp-gary-8);
+    color: var(--bp-gray-8);
     min-height: 40px;
     overflow-y: auto;
   }
@@ -144,11 +144,11 @@
 
   &.modal-show-border {
     .#{$B}-header {
-      border-bottom: $borderSize solid var(--bp-gary-2);
+      border-bottom: $borderSize solid var(--bp-gray-2);
     }
 
     .#{$B}-footer {
-      border-top: $borderSize solid var(--bp-gary-2);
+      border-top: $borderSize solid var(--bp-gray-2);
     }
   }
 }

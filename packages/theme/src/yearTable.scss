@@ -7,11 +7,11 @@ $date-picker-year-table-width: 260px;
 
 @include b(year-table) {
   // Date cell
-  @include css-var-from-global-rgb(("year-table", "year-text-color"), ("gary", 10));
+  @include css-var-from-global-rgb(("year-table", "year-text-color"), ("gray", 10));
   @include css-var-from-global-rgb(("year-table", "year-text-color-hover"), ("primary", 6));
-  @include css-var-from-global-rgb(("year-table", "year-text-color-active"), ("gary", 0));
-  @include css-var-from-global-rgb(("year-table", "year-bg-color"), ("gary", 0));
-  @include css-var-from-global-rgb(("year-table", "year-bg-color-hover"), ("gary", 1));
+  @include css-var-from-global-rgb(("year-table", "year-text-color-active"), ("gray", 0));
+  @include css-var-from-global-rgb(("year-table", "year-bg-color"), ("gray", 0));
+  @include css-var-from-global-rgb(("year-table", "year-bg-color-hover"), ("gray", 1));
   @include css-var-from-global-rgb(("year-table", "year-bg-color-active"), ("primary", 6));
 
   @include flex(column, center, stretch) {

@@ -19,8 +19,8 @@ export const buttonProps: PropItem[] = [
     name: "status",
     remark: "按钮状态",
     type: ["ButtonStatus"],
-    optional: ["gary", "primary", "success", "warning", "danger"],
-    default: "gary",
+    optional: ["gray", "primary", "success", "warning", "danger"],
+    default: "gray",
   },
   {
     name: "size",
@@ -61,8 +61,8 @@ export const buttonGroupProps: PropItem[] = [
     name: "status",
     remark: "按钮状态",
     type: ["ButtonStatus"],
-    optional: ["gary", "primary", "success", "warning", "danger"],
-    default: "gary",
+    optional: ["gray", "primary", "success", "warning", "danger"],
+    default: "gray",
   },
   {
     name: "size",

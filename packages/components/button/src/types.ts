@@ -6,9 +6,9 @@ import { Component } from "vue";
 export declare type ButtonType = "secondary" | "normal" | "plain" | "dashed" | "text";
 
 /**
- * @description 按钮状态 Button status，灰度-gary、主色-primary、成功-success、警示-warning、危险-danger
+ * @description 按钮状态 Button status，灰度-gray、主色-primary、成功-success、警示-warning、危险-danger
  */
-export declare type ButtonStatus = "gary" | "primary" | "success" | "warning" | "danger";
+export declare type ButtonStatus = "gray" | "primary" | "success" | "warning" | "danger";
 
 /**
  * @description 按钮元素 Type 属性，Button Native attribute，按钮-button、提交-submit、重置-reset

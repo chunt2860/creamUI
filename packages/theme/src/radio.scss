@@ -5,11 +5,11 @@
 @use "mixins/mixins.scss" as *;
 
 @include b(radio) {
-  @include css-var-from-global-rgb(("radio", "radio-border"), ("gary", "6"));
+  @include css-var-from-global-rgb(("radio", "radio-border"), ("gray", "6"));
   @include css-var-from-global-rgb(("radio", "radio-border-check"), ("primary", "6"));
-  @include css-var-from-global-rgb(("radio", "radio-bg"), ("gary", "0"));
-  @include css-var-from-global-rgb(("radio", "label-color"), ("gary", "8"));
-  @include css-var-from-global-rgb(("radio", "label-color-hover"), ("gary", "10"));
+  @include css-var-from-global-rgb(("radio", "radio-bg"), ("gray", "0"));
+  @include css-var-from-global-rgb(("radio", "label-color"), ("gray", "8"));
+  @include css-var-from-global-rgb(("radio", "label-color-hover"), ("gray", "10"));
 
   @include flex(row, center, center);
   position: relative;
@@ -79,9 +79,9 @@
 }
 
 .#{$B}-disabled {
-  @include css-var-from-global-rgb(("radio", "radio-border"), ("gary", "3"));
-  @include css-var-from-global-rgb(("radio", "radio-bg"), ("gary", "1"));
-  @include css-var-from-global-rgb(("radio", "label-color"), ("gary", "4"));
+  @include css-var-from-global-rgb(("radio", "radio-border"), ("gray", "3"));
+  @include css-var-from-global-rgb(("radio", "radio-bg"), ("gray", "1"));
+  @include css-var-from-global-rgb(("radio", "label-color"), ("gray", "4"));
   @include css-var-from-global-rgb(("radio", "radio-border-check"), ("primary", "2"));
 
   pointer-events: none;
@@ -120,8 +120,8 @@
 }
 
 .#{$B}-group-button {
-  @include css-var-from-global-rgb(("radio", "radio-button-bg"), ("gary", "1"));
-  @include css-var-from-global-rgb(("radio", "radio-button-border"), ("gary", "2"));
+  @include css-var-from-global-rgb(("radio", "radio-button-bg"), ("gray", "1"));
+  @include css-var-from-global-rgb(("radio", "radio-button-border"), ("gray", "2"));
   background-color: rgba(getCssVar("radio", "radio-button-bg"), 1);
 
   .#{$B} {
@@ -131,7 +131,7 @@
 
     &:hover {
       .#{$B}-label {
-        background-color: var(--bp-gary-0);
+        background-color: var(--bp-gray-0);
         color: rgba(getCssVar("radio", "label-color-hover"), 1);
         transition: all 0.2s;
       }
@@ -147,7 +147,7 @@
 
     &-check {
       .#{$B}-label {
-        background-color: var(--bp-gary-0);
+        background-color: var(--bp-gray-0);
         color: rgba(getCssVar("radio", "radio-border-check"), 1);
         transition: all 0.2s;
       }

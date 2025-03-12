@@ -28,14 +28,14 @@
     border-top-right-radius: 6px;
     overflow-x: auto;
     font-feature-settings: "tnum";
-    border: $borderSize solid var(--bp-gary-2);
+    border: $borderSize solid var(--bp-gray-2);
     border-bottom: none;
   }
 
   &-header {
     &-thead {
       display: table-header-group;
-      border-bottom: $borderSize solid var(--bp-gary-2);
+      border-bottom: $borderSize solid var(--bp-gray-2);
 
       tr {
         display: table-row;
@@ -47,10 +47,10 @@
         th {
           display: table-cell;
           padding: 10px 12px;
-          color: var(--bp-gary-8);
+          color: var(--bp-gray-8);
           font-size: 14px;
           font-weight: 500;
-          background-color: var(--bp-gary-1);
+          background-color: var(--bp-gray-1);
           overflow-wrap: break-word;
         }
       }
@@ -69,13 +69,13 @@
         width: 100%;
 
         &:nth-child(n) {
-          background-color: var(--bp-gary-0);
-          border-bottom: $borderSize solid var(--bp-gary-2);
+          background-color: var(--bp-gray-0);
+          border-bottom: $borderSize solid var(--bp-gray-2);
           transition: all 0.2s;
         }
 
         &:hover {
-          background-color: rgb(var(--bp-gary-1-rgb), 0.6);
+          background-color: rgb(var(--bp-gray-1-rgb), 0.6);
           transition: all 0.2s;
         }
       }
@@ -87,17 +87,17 @@
         flex-direction: column;
         padding: 20px 0;
         font-size: 13px;
-        color: var(--bp-gary-6);
+        color: var(--bp-gray-6);
 
         svg[class*="-icon-"] {
-          fill: var(--bp-gary-3);
+          fill: var(--bp-gray-3);
           margin-bottom: 4px;
         }
       }
 
       .#{$B}-column {
         display: table-cell;
-        color: var(--bp-gary-10);
+        color: var(--bp-gray-10);
         font-size: 14px;
         padding: 10px 12px;
       }
@@ -120,13 +120,13 @@
     tr {
       td {
         &:not(:nth-child(-n + 2)) {
-          border-left: $borderSize solid var(--bp-gary-2);
+          border-left: $borderSize solid var(--bp-gray-2);
         }
       }
 
       th {
         &:not(:first-child) {
-          border-left: $borderSize solid var(--bp-gary-2);
+          border-left: $borderSize solid var(--bp-gray-2);
         }
       }
     }
@@ -135,7 +135,7 @@
   &-stripe {
     tr {
       &:nth-child(2n) {
-        background-color: var(--bp-gary-1);
+        background-color: var(--bp-gray-1);
       }
     }
   }

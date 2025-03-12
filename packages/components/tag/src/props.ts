@@ -11,9 +11,9 @@ export const tagProps = {
   /**
    * @type TagStatus
    * @description Status.
-   * @default gary
+   * @default gray
    */
-  status: { type: String as PropType<TagStatus>, default: "gary" },
+  status: { type: String as PropType<TagStatus>, default: "gray" },
   /**
    * @type boolean
    * @description Whether to show the border.

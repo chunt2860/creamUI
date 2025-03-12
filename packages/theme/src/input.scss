@@ -12,8 +12,8 @@
   white-space: nowrap;
   border-style: solid;
   border-width: $borderSize;
-  border-color: var(--bp-gary-1);
-  background-color: var(--bp-gary-1);
+  border-color: var(--bp-gray-1);
+  background-color: var(--bp-gray-1);
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   cursor: text;
@@ -24,7 +24,7 @@
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: rgba(var(--bp-gary-2-rgb), 0.4);
+    background-color: rgba(var(--bp-gray-2-rgb), 0.4);
 
     .action-icon {
       opacity: 1;
@@ -33,7 +33,7 @@
   }
 
   &:focus-within {
-    background-color: var(--bp-gary-0);
+    background-color: var(--bp-gray-0);
     border: $borderSize solid var(--bp-primary-6);
     transition: all 0.2s ease;
   }
@@ -41,18 +41,18 @@
   &-inner {
     width: 100%;
     height: 100%;
-    color: var(--bp-gary-10);
+    color: var(--bp-gray-10);
     letter-spacing: 0.2px;
     padding: 0 4px;
     @extend .font-input;
 
     &::placeholder {
-      color: var(--bp-gary-5);
+      color: var(--bp-gray-5);
     }
   }
 
   svg[class*="-icon-"] {
-    fill: var(--bp-gary-6);
+    fill: var(--bp-gray-6);
   }
 
   &-suffix,
@@ -76,8 +76,8 @@
         transition: all 0.2s ease;
 
         &:hover {
-          fill: var(--bp-gary-9);
-          background-color: var(--bp-gary-2);
+          fill: var(--bp-gray-9);
+          background-color: var(--bp-gray-2);
           transition: all 0.2s ease;
         }
       }
@@ -88,7 +88,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--bp-gary-6);
+      color: var(--bp-gray-6);
     }
   }
 

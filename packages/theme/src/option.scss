@@ -8,7 +8,7 @@
   align-items: center;
   list-style: none;
   font-size: 14px;
-  color: var(--bp-gary-9);
+  color: var(--bp-gray-9);
   line-height: 36px;
   cursor: pointer;
 
@@ -17,23 +17,23 @@
   }
 
   &:hover {
-    background-color: rgba(var(--bp-gary-1-rgb), 0.8);
+    background-color: rgba(var(--bp-gray-1-rgb), 0.8);
     transition: all 0.2s;
   }
 }
 
 .#{$B}-disabled {
-  color: var(--bp-gary-5);
+  color: var(--bp-gray-5);
   cursor: not-allowed;
 }
 
 .#{$B}-active {
-  background-color: var(--bp-gary-1);
+  background-color: var(--bp-gray-1);
   transition: all 0.2s;
 
   .#{$B}-inner {
     font-weight: 500;
-    color: var(--bp-gary-10);
+    color: var(--bp-gray-10);
     transition: all 0.2s;
   }
 }

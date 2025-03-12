@@ -38,7 +38,7 @@ const iconType = {
   loading: IconLoader5Line,
 };
 
-const statusMap = { text: "gary", loading: "gary", success: "success", warning: "warning", error: "danger" };
+const statusMap = { text: "gray", loading: "gray", success: "success", warning: "warning", error: "danger" };
 const clsName = computed(() => {
   let cls = [clsBlockName];
   cls.push(props.plain ? `${clsBlockName}-plain-${statusMap[props.type]}` : `${clsBlockName}-${statusMap[props.type]}`);

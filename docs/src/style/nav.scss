@@ -5,12 +5,12 @@
   .VPLink {
     font-size: 13px;
     font-weight: 500;
-    color: var(--bp-gary-8);
+    color: var(--bp-gray-8);
   }
 
   .VPNavBar {
     .wrapper {
-      border-bottom: 0.5px solid var(--bp-gary-2);
+      border-bottom: 0.5px solid var(--bp-gray-2);
     }
 
     .title {
@@ -21,18 +21,18 @@
   .VPMenu {
     border-radius: 10px 8px;
     padding: 10px;
-    border: 0.5px solid var(--bp-gary-2);
+    border: 0.5px solid var(--bp-gray-2);
 
     .items {
       .VPMenuLink {
         .VPLink {
           font-weight: 400;
           padding: 0 10px;
-          color: var(--bp-gary-8);
+          color: var(--bp-gray-8);
 
           &:hover {
-            background-color: var(--bp-gary-1);
-            color: var(--bp-gary-9);
+            background-color: var(--bp-gray-1);
+            color: var(--bp-gray-9);
           }
         }
       }
@@ -41,7 +41,7 @@
         .title {
           font-size: 12px;
           padding: 0 8px;
-          color: var(--bp-gary-4);
+          color: var(--bp-gray-4);
         }
       }
     }
@@ -49,41 +49,41 @@
 
   .VPSocialLinks {
     .VPSocialLink {
-      color: var(--bp-gary-7);
+      color: var(--bp-gray-7);
     }
   }
 
   .VPFlyout {
     .button {
-      color: var(--bp-gary-7);
+      color: var(--bp-gray-7);
     }
   }
 
   .VPSwitch {
-    border: 1px solid var(--bp-gary-2);
-    background-color: var(--bp-gary-1);
+    border: 1px solid var(--bp-gray-2);
+    background-color: var(--bp-gray-1);
 
     .check {
-      background-color: var(--bp-gary-0);
+      background-color: var(--bp-gray-0);
 
       .icon [class^="vpi-"] {
-        color: var(--bp-gary-6);
+        color: var(--bp-gray-6);
       }
     }
 
     &:hover {
-      border-color: var(--bp-gary-2);
+      border-color: var(--bp-gray-2);
     }
   }
 
   .VPNavBarSearch {
     .DocSearch-Button {
       border: none;
-      background-color: var(--bp-gary-0);
+      background-color: var(--bp-gray-0);
       transition: all 0.2s ease;
 
       &:hover {
-        background-color: var(--bp-gary-1);
+        background-color: var(--bp-gray-1);
         transition: all 0.2s ease;
       }
     }
@@ -91,7 +91,7 @@
     .DocSearch-Button-Container {
       span {
         font-weight: 400;
-        color: var(--bp-gary-5);
+        color: var(--bp-gray-5);
       }
     }
 

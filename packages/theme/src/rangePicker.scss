@@ -11,17 +11,17 @@
   position: relative;
   width: 100%;
   min-width: 246px;
-  background-color: var(--bp-gary-1);
-  border: $borderSize solid var(--bp-gary-1);
+  background-color: var(--bp-gray-1);
+  border: $borderSize solid var(--bp-gray-1);
   transition: all 0.2s ease;
 
   &:focus-within {
-    background-color: var(--bp-gary-0);
+    background-color: var(--bp-gray-0);
     border: $borderSize solid var(--bp-primary-6);
     transition: all 0.2s ease;
 
     input {
-      background-color: var(--bp-gary-0);
+      background-color: var(--bp-gray-0);
       transition: all 0.2s ease;
     }
   }
@@ -32,7 +32,7 @@
 
     .split {
       font-size: 12px;
-      color: var(--bp-gary-6);
+      color: var(--bp-gray-6);
       margin: 0 12px;
     }
 
@@ -40,14 +40,14 @@
       min-width: 90px;
       width: 100%;
       height: 100%;
-      background-color: var(--bp-gary-1);
-      color: var(--bp-gary-10);
+      background-color: var(--bp-gray-1);
+      color: var(--bp-gray-10);
       letter-spacing: 0.2px;
       transition: all 0.2s ease;
       @extend .font-input;
 
       &::placeholder {
-        color: var(--bp-gary-5);
+        color: var(--bp-gray-5);
       }
     }
   }
@@ -61,7 +61,7 @@
     margin-left: 2px;
 
     svg[class*="-icon-"] {
-      fill: var(--bp-gary-6);
+      fill: var(--bp-gray-6);
     }
   }
 
@@ -109,17 +109,17 @@ div[class*="trigger-wrapper"] {
 
 .#{$namespace}-range-table {
   // Placeholder cell
-  @include css-var-from-global-rgb(("ranger-table", "placeholder-text-color"), ("gary", 6));
+  @include css-var-from-global-rgb(("ranger-table", "placeholder-text-color"), ("gray", 6));
 
   // Week cell
-  @include css-var-from-global-rgb(("ranger-table", "week-text-color"), ("gary", 4));
+  @include css-var-from-global-rgb(("ranger-table", "week-text-color"), ("gray", 4));
 
   // Date cell
-  @include css-var-from-global-rgb(("ranger-table", "date-text-color"), ("gary", 10));
+  @include css-var-from-global-rgb(("ranger-table", "date-text-color"), ("gray", 10));
   @include css-var-from-global-rgb(("ranger-table", "date-text-color-hover"), ("primary", 6));
-  @include css-var-from-global-rgb(("ranger-table", "date-text-color-active"), ("gary", 0));
-  @include css-var-from-global-rgb(("ranger-table", "date-bg-color"), ("gary", 0));
-  @include css-var-from-global-rgb(("ranger-table", "date-bg-color-hover"), ("gary", 1));
+  @include css-var-from-global-rgb(("ranger-table", "date-text-color-active"), ("gray", 0));
+  @include css-var-from-global-rgb(("ranger-table", "date-bg-color"), ("gray", 0));
+  @include css-var-from-global-rgb(("ranger-table", "date-bg-color-hover"), ("gray", 1));
   @include css-var-from-global-rgb(("ranger-table", "date-bg-color-active"), ("primary", 6));
 
   @include css-var-from-global-rgb(("ranger-table", "date-bg-color-range"), ("primary", 1));

@@ -64,7 +64,7 @@
   }
 }
 
-$status: "gary", "primary", "success", "warning", "danger";
+$status: "gray", "primary", "success", "warning", "danger";
 
 @each $item in $status {
   .#{$B}-#{$item} {

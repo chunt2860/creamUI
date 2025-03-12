@@ -8,5 +8,5 @@
 import { TagStatus } from "@birdpaper-ui/components";
 import { ref } from "vue";
 
-const status = ref<TagStatus[]>(["gary", "primary", "success", "warning", "danger"]);
+const status = ref<TagStatus[]>(["gray", "primary", "success", "warning", "danger"]);
 </script>

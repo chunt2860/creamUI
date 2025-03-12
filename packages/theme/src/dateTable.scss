@@ -5,17 +5,17 @@
 
 @include b(date-table) {
   // Placeholder cell
-  @include css-var-from-global-rgb(("date-table", "placeholder-text-color"), ("gary", 6));
+  @include css-var-from-global-rgb(("date-table", "placeholder-text-color"), ("gray", 6));
 
   // Week cell
-  @include css-var-from-global-rgb(("date-table", "week-text-color"), ("gary", 4));
+  @include css-var-from-global-rgb(("date-table", "week-text-color"), ("gray", 4));
 
   // Date cell
-  @include css-var-from-global-rgb(("date-table", "date-text-color"), ("gary", 10));
+  @include css-var-from-global-rgb(("date-table", "date-text-color"), ("gray", 10));
   @include css-var-from-global-rgb(("date-table", "date-text-color-hover"), ("primary", 6));
-  @include css-var-from-global-rgb(("date-table", "date-text-color-active"), ("gary", 0));
-  @include css-var-from-global-rgb(("date-table", "date-bg-color"), ("gary", 0));
-  @include css-var-from-global-rgb(("date-table", "date-bg-color-hover"), ("gary", 1));
+  @include css-var-from-global-rgb(("date-table", "date-text-color-active"), ("gray", 0));
+  @include css-var-from-global-rgb(("date-table", "date-bg-color"), ("gray", 0));
+  @include css-var-from-global-rgb(("date-table", "date-bg-color-hover"), ("gray", 1));
   @include css-var-from-global-rgb(("date-table", "date-bg-color-active"), ("primary", 6));
 
   display: flex;
@@ -35,7 +35,7 @@
         border-bottom: $borderSize solid $date-picker-border-color;
         border-top-right-radius: $date-picker-border-radius;
         font-size: 14px;
-        color: var(--bp-gary-9);
+        color: var(--bp-gray-9);
       }
     }
 
@@ -144,10 +144,10 @@
       width: 100%;
       padding: 0 10px;
       height: 48px;
-      border: $borderSize solid var(--bp-gary-3);
+      border: $borderSize solid var(--bp-gray-3);
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
-      background-color: var(--bp-gary-0);
+      background-color: var(--bp-gray-0);
     }
   }
 }

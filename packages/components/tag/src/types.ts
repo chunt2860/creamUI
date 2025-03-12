@@ -1,1 +1,1 @@
-export type TagStatus = "gary" | "primary" | "success" | "warning" | "danger";
+export type TagStatus = "gray" | "primary" | "success" | "warning" | "danger";

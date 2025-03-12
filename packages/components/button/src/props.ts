@@ -23,7 +23,7 @@ export const buttonProps = {
   /**
    * @type ButtonStatus
    * @description Button status
-   * @default gary
+   * @default gray
    */
   status: {
     type: String as PropType<ButtonStatus>,

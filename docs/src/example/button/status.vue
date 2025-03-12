@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 const buttonStatus = [
-  { name: "灰度", value: "gary" },
+  { name: "灰度", value: "gray" },
   { name: "主色", value: "primary" },
   { name: "成功", value: "success" },
   { name: "警示", value: "warning" },

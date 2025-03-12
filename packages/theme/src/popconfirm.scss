@@ -12,8 +12,8 @@
   &-inner {
     min-width: 200px;
     max-width: 400px;
-    background-color: var(--bp-gary-0);
-    border: $borderSize solid var(--bp-gary-2);
+    background-color: var(--bp-gray-0);
+    border: $borderSize solid var(--bp-gray-2);
     border-radius: 6px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 12px 10px;
@@ -47,7 +47,7 @@
 
   &-text {
     font-size: 13px;
-    color: var(--bp-gary-10);
+    color: var(--bp-gray-10);
     font-weight: normal;
     letter-spacing: 0.2px;
   }

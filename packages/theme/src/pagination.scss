@@ -21,11 +21,11 @@
       cursor: pointer;
 
       svg[class*="-icon-"] {
-        fill: var(--bp-gary-8);
+        fill: var(--bp-gray-8);
       }
 
       .page-text {
-        color: var(--bp-gary-8);
+        color: var(--bp-gray-8);
         font-weight: normal;
       }
     }
@@ -42,13 +42,13 @@
 .#{$B}-prev,
 .#{$B}-next,
 .#{$B}-pager {
-  fill: var(--bp-gary-8);
-  color: var(--bp-gary-8);
+  fill: var(--bp-gray-8);
+  color: var(--bp-gray-8);
   font-weight: normal;
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: var(--bp-gary-1);
+    background-color: var(--bp-gray-1);
     transition: all 0.2s ease;
   }
 }
