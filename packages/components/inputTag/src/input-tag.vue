@@ -12,14 +12,15 @@
         ref="inpRef"
         type="text"
         v-model="inpVal"
+        :style="`width: ${inpWidth}px`"
         :class="`${clsBlockName}-content-inner`"
-        :style="{ width: `${inpVal.length || placeholder.length * 14 + 8}px` }"
         :name
         :placeholder
         :disabled
         @keyup.enter="handleEnter"
         @keyup.backspace="handleBackspace"
       />
+      <span ref="hiddenSpan" class="hidden-span">{{ inpVal || placeholder }}</span>
     </div>
   </bp-input>
 </template>
@@ -28,7 +29,7 @@
 import bpTag from "@birdpaper-ui/components/tag";
 import bpInput from "@birdpaper-ui/components/input";
 import { useNamespace } from "@birdpaper-ui/hooks";
-import { ref } from "vue";
+import { nextTick, onMounted, ref, watch } from "vue";
 import { InputTagProps, inputTagProps } from "./props";
 
 defineOptions({ name: "InputTag" });
@@ -39,6 +40,27 @@ const props: InputTagProps = defineProps(inputTagProps);
 
 const inpVal = ref<string>("");
 const inpRef = ref<HTMLInputElement | null>(null);
+const hiddenSpan = ref<HTMLElement | null>(null);
+
+const inpWidth = ref<number>(0);
+const updateWidth = () => {
+  if (!hiddenSpan.value) {
+    inpWidth.value = 0;
+    return;
+  }
+
+  inpWidth.value = hiddenSpan.value.offsetWidth + 8;
+};
+watch(
+  () => inpVal.value,
+  () => {
+    nextTick(() => updateWidth());
+  }
+);
+
+onMounted(() => {
+  nextTick(() => updateWidth());
+});
 
 const handleEnter = () => {
   if (!inpVal.value) return;

@@ -30,6 +30,18 @@
     &-inner {
       min-width: 20px;
       margin-left: 6px;
+      width: fit-content;
+    }
+
+    .hidden-span {
+      position: absolute;
+      visibility: hidden;
+      white-space: pre;
+      font-size: inherit;
+      font-family: inherit;
+      padding: 0;
+      margin: 0;
+      border: 0;
     }
 
     &:focus-within {
