@@ -57,6 +57,10 @@ export const sidebar = {
           link: "/components/timePicker/",
         },
         {
+          text: "颜色选择 <span>ColorPicker</span>",
+          link: "/components/colorPicker/",
+        },
+        {
           text: "数字输入 <span>InputNumber</span>",
           link: "/components/inputNumber/",
         },
