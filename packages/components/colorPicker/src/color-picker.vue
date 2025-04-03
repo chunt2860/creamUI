@@ -66,7 +66,6 @@ const init = () => {
 
   const { v } = hslaToHsv(hue.value, saturation.value, lightness.value, alpha.value);
   _value.value = v;
-  console.log("_value: ", _value);
 
   colorPickerRef.value.setPosition(s, v);
   hueSliderRef.value.setPosition(h);

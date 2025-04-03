@@ -51,7 +51,7 @@ const setPosition = (s: number, v: number) => {
 
   const rect = pickBlock.value.getBoundingClientRect();
   const left = (s / 100) * rect.width - 7;
-  const top = 100 - v;
+  const top = (100 - v) * rect.height - 7;
   pointerX.value = left;
   pointerY.value = top;
 };
