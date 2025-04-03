@@ -35,7 +35,7 @@ const startDrag = (e: MouseEvent) => {
 const updatePosition = (ev: MouseEvent) => {
   const { x, v } = getSliderPosition(ev, sliderRef.value, 9);
   pointerX.value = x;
-  model.value = v;
+  model.value = parseFloat(v.toFixed(2));
 };
 
 const removeListener = () => {

@@ -5,15 +5,16 @@
 
 @include b(color-picker) {
   width: 260px;
-  // border: $borderSize solid var(--bp-gray-2);
-  border-radius: 6px;
+  border-radius: 8px;
+  border: $borderSize solid var(--bp-gray-3);
+  background-color: var(--bp-gray-0);
+  box-sizing: border-box;
 
   .color-picker-panel {
     position: relative;
-    width: 260px;
     height: 160px;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     background-color: var(--bp-primary-3);
     overflow: auto;
 
@@ -23,8 +24,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      border-top-left-radius: 6px;
-      border-top-right-radius: 6px;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
       background-image: linear-gradient(0deg, #000000, transparent),
         linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0));
     }
@@ -40,17 +41,12 @@
   }
 
   .option-area {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    border-left: $borderSize solid var(--bp-gray-2);
-    border-right: $borderSize solid var(--bp-gray-2);
-    border-bottom: $borderSize solid var(--bp-gray-2);
-    padding: 10px 16px;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
+    @include flex(row, space-between, center) {
+      width: 100%;
+      flex-wrap: nowrap;
+      flex-direction: row;
+      padding: 10px 16px;
+    }
 
     .slider {
       display: flex;
@@ -147,5 +143,37 @@
         border: 1px solid var(--bp-gray-2);
       }
     }
+  }
+
+  .input-area {
+    padding: 0 16px 10px 16px;
+    
+    &-value {
+      display: flex;
+    }
+  }
+}
+
+.#{$B}-trigger {
+  @include flex(row, center, center) {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    border: $borderSize solid var(--bp-gray-2);
+    background-color: var(--bp-gray-1);
+    cursor: pointer;
+  }
+
+  &-inner {
+    width: 22px;
+    height: 22px;
+    border-radius: 2px;
+    background-color: var(--bp-primary-5);
+  }
+}
+
+div[class*="trigger-wrapper"] {
+  .#{$B} {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 }

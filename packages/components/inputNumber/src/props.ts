@@ -29,6 +29,13 @@ export const inputNumberProps = {
     default: "default",
   },
   /**
+   * @type string
+   * @description The value unit.
+   */
+  unit:{
+    type: String,
+  },
+  /**
    * @type boolean
    * @description Hide button or not.
    * @default false

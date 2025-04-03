@@ -18,7 +18,7 @@
   -moz-box-sizing: border-box;
   cursor: text;
   opacity: 1;
-  min-width: 60px;
+  min-width: 52px;
   min-height: $miniHeight;
   width: 100%;
   transition: all 0.2s ease;
@@ -43,7 +43,6 @@
     height: 100%;
     color: var(--bp-gray-10);
     letter-spacing: 0.2px;
-    padding: 0 4px;
     @extend .font-input;
 
     &::placeholder {
@@ -109,7 +108,7 @@
   .#{$B}-#{$size} {
     height: getCssVar("size-height", $size);
     border-radius: getCssVar("size-border-radius", $size);
-    padding: 0 calc(getCssVar("size-height", $size) / 8);
+    padding: 0 calc(getCssVar("size-height", $size) / 4);
 
     svg[class*="-icon-"] {
       width: calc(getCssVar("size-height", $size) / 1.9) !important;
@@ -123,7 +122,6 @@
     .#{$B}-prefix {
       .prefix-content {
         height: getCssVar("size-height", $size);
-        padding-right: calc(getCssVar("size-height", $size) / 10);
         font-size: 12px;
       }
     }

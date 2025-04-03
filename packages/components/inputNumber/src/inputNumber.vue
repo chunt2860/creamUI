@@ -1,13 +1,26 @@
 <template>
-  <bp-input ref="inpRef" v-model="stringValue" :class="cls" :placeholder :disabled :readonly :size @input="onInput"
-    @blur="onBlur">
+  <bp-input
+    ref="inpRef"
+    v-model="stringValue"
+    :class="cls"
+    :placeholder
+    :disabled
+    :readonly
+    :size
+    @input="onInput"
+    @blur="onBlur"
+  >
     <template #suffix v-if="!hideButton && !disabled">
       <div :class="`${clsBlockName}-step`">
-        <div v-for="v in btnList" :class="[{ disabled: v.disabled }, `${clsBlockName}-step-item`]"
-          @click="handleStep(v.type)">
+        <div
+          v-for="v in btnList"
+          :class="[{ disabled: v.disabled }, `${clsBlockName}-step-item`]"
+          @click="handleStep(v.type)"
+        >
           <component :is="v.component"></component>
         </div>
       </div>
+      <span v-if="unit" :class="`${clsBlockName}-unit`">{{ unit }}</span>
     </template>
   </bp-input>
 </template>
@@ -24,7 +37,7 @@ import { useCounter, useToNumber } from "@vueuse/core";
 defineOptions({ name: "InputNumber" });
 const { clsBlockName } = useNamespace("input-number");
 
-const model = defineModel<number | ''>({ default: '' });
+const model = defineModel<number | "">({ default: "" });
 const stringValue = ref<string>("");
 
 const props: InputNumberProps = defineProps(inputNumberProps);
@@ -81,10 +94,10 @@ const inpRef = ref();
 const focus = () => inpRef.value?.focus();
 const blur = () => inpRef.value?.blur();
 const onBlur = () => {
-  if (model.value === '') {
-    stringValue.value = getStringValue()
+  if (model.value === "") {
+    stringValue.value = getStringValue();
     return emits("blur");
-  };
+  }
 
   stringValue.value =
     set(
@@ -112,9 +125,13 @@ const onInput = (e: Event) => {
   }
 };
 
-watch(() => model.value, () => {
-  stringValue.value = getStringValue();
-}, { immediate: true });
+watch(
+  () => model.value,
+  () => {
+    stringValue.value = getStringValue();
+  },
+  { immediate: true }
+);
 
 defineExpose({
   focus,

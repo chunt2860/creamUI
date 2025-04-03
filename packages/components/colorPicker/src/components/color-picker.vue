@@ -6,8 +6,8 @@
 </template>
 
 <script setup lang="ts">
-import { useEventListener } from "@vueuse/core";
 import { ref } from "vue";
+import { useEventListener } from "@vueuse/core";
 import { getPickerPosition } from "../useColor";
 
 const saturation = defineModel<number>("saturation", { default: 100 });
@@ -22,10 +22,9 @@ const props = defineProps({
 const pickBlock = ref();
 const pointerX = ref(0);
 const pointerY = ref(0);
-const POINTER_OFFSET = 7;
 
 const updatePosition = (ev: MouseEvent) => {
-  const { x, y, s, l } = getPickerPosition(ev, pickBlock.value, POINTER_OFFSET);
+  const { x, y, s, l } = getPickerPosition(ev, pickBlock.value, 7);
 
   pointerX.value = x;
   pointerY.value = y;

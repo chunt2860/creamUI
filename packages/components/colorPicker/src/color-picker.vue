@@ -1,5 +1,8 @@
 <template>
-  <bp-trigger hide-trigger>
+  <bp-trigger hide-trigger position="bottom-left" :popup-offset="10">
+    <div :class="`${clsBlockName}-trigger`">
+      <div :class="`${clsBlockName}-trigger-inner`"></div>
+    </div>
     <template #content>
       <div :class="clsBlockName">
         <color-picker :hue v-model:saturation="saturation" v-model:lightness="lightness" />
@@ -13,6 +16,8 @@
             <div class="preview" :style="`background: ${model}`"></div>
           </div>
         </div>
+
+        <input-area v-model:alpha="alpha" />
       </div>
     </template>
   </bp-trigger>
@@ -25,6 +30,7 @@ import { colorPickerProps, ColorPickerProps } from "./props";
 import colorPicker from "./components/color-picker.vue";
 import hueSlider from "./components/hue-slider.vue";
 import alphaSlider from "./components/alpha-slider.vue";
+import inputArea from "./components/input-area.vue";
 import { ref, watch } from "vue";
 import { hsvToRgb } from "./useColor";
 
@@ -34,10 +40,14 @@ const { clsBlockName } = useNamespace("color-picker");
 const model = defineModel<string>({ default: "" });
 const props: ColorPickerProps = defineProps(colorPickerProps);
 
-const saturation = ref(100);
-const lightness = ref(50);
-const alpha = ref(1);
+// 色相（范围：0 到 360）
 const hue = ref(0);
+// 饱和度（范围：0 到 100）
+const saturation = ref(100);
+// 亮度（范围：0 到 100）
+const lightness = ref(50);
+// 透明度（范围：0 到 1）
+const alpha = ref(1);
 
 const currentColor = ref<string>("");
 
@@ -47,7 +57,7 @@ const calculateColor = () => {
   model.value = `rgba(${r}, ${g}, ${b}, ${alpha.value})`;
 };
 
-const h = watch(
+watch(
   () => [saturation.value, lightness.value, alpha.value, hue.value],
   () => {
     calculateColor();
