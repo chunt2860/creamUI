@@ -4,7 +4,7 @@
 @use "mixins/mixins" as *;
 
 @include b(color-picker) {
-  width: 260px;
+  width: 264px;
   border-radius: 8px;
   border: $borderSize solid var(--bp-gray-3);
   background-color: var(--bp-gray-0);
@@ -45,7 +45,7 @@
       width: 100%;
       flex-wrap: nowrap;
       flex-direction: row;
-      padding: 10px 16px;
+      padding: 10px 16px 0px 16px;
     }
 
     .slider {
@@ -147,9 +147,22 @@
 
   .input-area {
     padding: 0 16px 10px 16px;
-    
+
     &-value {
       display: flex;
+      margin-top: 10px;
+    }
+
+    &-label {
+      margin-top: 6px;
+
+      &-inner {
+        display: block;
+        width: 52px;
+        text-align: center;
+        font-size: 13px;
+        color: var(--bp-gray-6);
+      }
     }
   }
 }

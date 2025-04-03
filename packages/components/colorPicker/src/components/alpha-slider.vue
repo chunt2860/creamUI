@@ -46,4 +46,16 @@ const onMouseMove1 = (ev: MouseEvent) => {
   ev.preventDefault();
   ev.buttons > 0 ? updatePosition(ev) : removeListener();
 };
+
+const setPosition = (a: number) => {
+  if (!sliderRef.value) return;
+
+  const rect = sliderRef.value.getBoundingClientRect();
+  const left = ((a * 100) / 100) * rect.width - 9;
+  pointerX.value = left;
+};
+
+defineExpose({
+  setPosition,
+});
 </script>

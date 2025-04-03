@@ -1,4 +1,5 @@
 import { ExtractPropTypes, PropType } from "vue";
+import { ColorPickerValueType } from "./types";
 
 export const colorPickerProps = {
   /**
@@ -9,6 +10,10 @@ export const colorPickerProps = {
   hideTrigger: {
     type: Boolean,
     default: false,
+  },
+  valueType: {
+    type: String as PropType<ColorPickerValueType>,
+    default: "hex",
   },
 } as const;
 
