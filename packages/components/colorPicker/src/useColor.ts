@@ -1,6 +1,76 @@
 import { getPercentNumber } from "@birdpaper-ui/components/utils/helper";
 
 /**
+ * 将 HSLA 颜色值字符串转换为 HEX 颜色字符串
+ * @param hsla - HSLA 颜色值字符串，例如 "hsla(360, 100%, 50%, 1)"
+ * @returns 如果是有效的 HSLA 字符串，返回 HEX 颜色字符串；否则返回 null
+ */
+export const hslaToHex = (hsla: string): string => {
+  // 验证 HSL 或 HSLA 格式
+  const hslaRegex =
+    /^hsla\(\s*(\d{1,3}(?:\.\d+)?)\s*,\s*(\d{1,3}(?:\.\d+)?)%\s*,\s*(\d{1,3}(?:\.\d+)?)%\s*,\s*(0|1|0?\.\d+)\s*\)$/;
+  const hslRegex = /^hsl\(\s*(\d{1,3}(?:\.\d+)?)\s*,\s*(\d{1,3}(?:\.\d+)?)%\s*,\s*(\d{1,3}(?:\.\d+)?)%\s*\)$/;
+  const match = hsla.match(hslaRegex) || hsla.match(hslRegex);
+  if (!match) return "000000";
+  // 提取 HSL 或 HSLA 值
+  const h = Math.min(360, parseInt(match[1], 10));
+  const s = Math.min(100, parseInt(match[2], 10));
+  const l = Math.min(100, parseInt(match[3], 10));
+  const a = match[4] !== undefined ? parseFloat(match[4]) : 1; // 如果没有透明度值，默认为 1
+
+  const lNorm = l / 100;
+  const sNorm = s / 100;
+
+  const c = (1 - Math.abs(2 * lNorm - 1)) * sNorm;
+  const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+  const m = lNorm - c / 2;
+
+  let r = 0,
+    g = 0,
+    b = 0;
+
+  if (h >= 0 && h < 60) {
+    r = c;
+    g = x;
+    b = 0;
+  } else if (h >= 60 && h < 120) {
+    r = x;
+    g = c;
+    b = 0;
+  } else if (h >= 120 && h < 180) {
+    r = 0;
+    g = c;
+    b = x;
+  } else if (h >= 180 && h < 240) {
+    r = 0;
+    g = x;
+    b = c;
+  } else if (h >= 240 && h < 300) {
+    r = x;
+    g = 0;
+    b = c;
+  } else if (h >= 300 && h <= 360) {
+    r = c;
+    g = 0;
+    b = x;
+  }
+
+  const toHex = (value: number) =>
+    Math.round((value + m) * 255)
+      .toString(16)
+      .padStart(2, "0");
+
+  const rHex = toHex(r);
+  const gHex = toHex(g);
+  const bHex = toHex(b);
+  const aHex = Math.round(a * 255)
+    .toString(16)
+    .padStart(2, "0");
+
+  return a === 1 ? `${rHex}${gHex}${bHex}` : `${rHex}${gHex}${bHex}${aHex}`;
+};
+
+/**
  * 将 HEX 颜色字符串转换为 HSLA 颜色值
  * @param hex - HEX 颜色字符串，例如 "#RRGGBB" 或 "#RRGGBBAA"
  * @returns 如果是有效的 HEX 字符串，返回 HSLA 值的对象；否则返回 null
@@ -40,10 +110,10 @@ export const hexToHsla = (hex: string): { h: number; s: number; l: number; a: nu
   const s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
 
   return {
-    h: parseFloat(h.toFixed(4)),
-    s: parseFloat((s * 100).toFixed(4)),
-    l: parseFloat((l * 100).toFixed(4)),
-    a: parseFloat(a.toFixed(4)),
+    h: Math.round(h),
+    s: Math.round(s * 100),
+    l: Math.round(l * 100),
+    a,
   };
 };
 
@@ -76,14 +146,25 @@ export const hsvToHsla = (
   v: number,
   a: number = 1
 ): { h: number; s: number; l: number; a: number } => {
-  const l = ((2 - s / 100) * v) / 2;
-  const sHsl = l === 0 || l === 100 ? 0 : (s * v) / (l < 50 ? l * 2 : 200 - l * 2);
-  return {
-    h: parseFloat(h.toFixed(4)),
-    s: parseFloat(sHsl.toFixed(4)),
-    l: parseFloat(l.toFixed(4)),
-    a: parseFloat(a.toFixed(4)),
-  };
+  s = s / 100;
+  v = v / 100;
+
+  let l = ((2 - s) * v) / 2;
+
+  if (l !== 0) {
+    if (l === 1) {
+      s = 0;
+    } else if (l < 0.5) {
+      s = (s * v) / (l * 2);
+    } else {
+      s = (s * v) / (2 - l * 2);
+    }
+  }
+
+  s = s * 100;
+  l = l * 100;
+
+  return { h, s, l, a: parseFloat(a.toFixed(4)) };
 };
 
 /**
@@ -94,36 +175,21 @@ export const hsvToHsla = (
  * @param a - 透明度（Alpha），取值范围为 0 到 1
  * @returns 一个包含 HSV 值的对象
  */
-export const hslaToHsv = (
-  h: number,
-  s: number,
-  l: number,
-  a: number = 1
-): { h: number; s: number; v: number; a: number } => {
-  const lNorm = l / 100;
-  const sNorm = s / 100;
+export const hslaToHsv = (h: number, s: number, l: number): { h: number; s: number; v: number } => {
+  s = s / 100;
+  l = l / 100;
 
-  const v = lNorm + sNorm * Math.min(lNorm, 1 - lNorm);
-  const sHsv = v === 0 ? 0 : 2 * (1 - lNorm / v);
+  let v = l + s * Math.min(l, 1 - l);
+  if (v === 0) {
+    s = 0;
+  } else {
+    s = 2 * (1 - l / v);
+  }
 
-  return {
-    h: parseFloat(h.toFixed(4)),
-    s: parseFloat((sHsv * 100).toFixed(4)),
-    v: parseFloat((v * 100).toFixed(4)),
-    a: parseFloat(a.toFixed(4)),
-  };
-};
+  s = s * 100;
+  v = v * 100;
 
-/**
- * 从 HSV 颜色空间计算亮度（Lightness）
- * @param h - 色相（Hue），取值范围为 0 到 360
- * @param s - 饱和度（Saturation），取值范围为 0 到 100
- * @param v - 明度（Value），取值范围为 0 到 100
- * @returns 亮度（Lightness），取值范围为 0 到 100
- */
-export const hsvToLightness = (h: number, s: number, v: number): number => {
-  const l = (v * (1 - s / 100)) / 2 + v / 2;
-  return Math.round(l * 100);
+  return { h, s, v };
 };
 
 /**
@@ -158,3 +224,88 @@ export const getPickerPosition = (ev: MouseEvent, pickerPanel: HTMLElement, poin
 
   return { x, y, s, v };
 };
+
+// // 十六进制转 RGB
+export function hexToRgb(hex: string): [number, number, number] {
+  hex = hex.replace(/^#/, "");
+  if (hex.length === 3) {
+    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+  }
+  const r = parseInt(hex.slice(0, 2), 16);
+  const g = parseInt(hex.slice(2, 4), 16);
+  const b = parseInt(hex.slice(4, 6), 16);
+  return [r, g, b];
+}
+
+// // RGB 转 HSL
+export function rgbToHsl(r: number, g: number, b: number) {
+  r /= 255;
+  g /= 255;
+  b /= 255;
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  let h,
+    s,
+    l = (max + min) / 2;
+
+  if (max === min) {
+    h = s = 0;
+  } else {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r:
+        h = (g - b) / d + (g < b ? 6 : 0);
+        break;
+      case g:
+        h = (b - r) / d + 2;
+        break;
+      case b:
+        h = (r - g) / d + 4;
+        break;
+    }
+    h /= 6;
+  }
+  return [h * 360, s * 100, l * 100];
+}
+
+// // HSL 转 RGB
+export function hslToRgb(h: number, s: number, l: number): [number, number, number] {
+  h /= 360;
+  s /= 100;
+  l /= 100;
+  let r: number, g: number, b: number;
+
+  if (s === 0) {
+    r = g = b = l;
+  } else {
+    const hue2rgb = (p: number, q: number, t: number): number => {
+      if (t < 0) t += 1;
+      if (t > 1) t -= 1;
+      if (t < 1 / 6) return p + (q - p) * 6 * t;
+      if (t < 1 / 2) return q;
+      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+      return p;
+    };
+    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    const p = 2 * l - q;
+    r = hue2rgb(p, q, h + 1 / 3);
+    g = hue2rgb(p, q, h);
+    b = hue2rgb(p, q, h - 1 / 3);
+  }
+
+  r = r * 255;
+  g = g * 255;
+  b = b * 255;
+  return [r, g, b];
+}
+
+// // RGB 转十六进制
+export function rgbToHex(r: number, g: number, b: number) {
+  const toHex = (x) => {
+    x = Math.round(x);
+    const hex = x.toString(16).padStart(2, "0");
+    return hex.length === 1 ? "0" + hex : hex;
+  };
+  return `${toHex(r)}${toHex(g)}${toHex(b)}`;
+}

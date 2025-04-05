@@ -5,7 +5,7 @@
     </div>
     <template #content>
       <div :class="clsBlockName">
-        <color-picker ref="colorPickerRef" :hue v-model:saturation="saturation" v-model:value="_value" />
+        <color-picker ref="colorPickerRef" :hue v-model:saturation="sv.s" v-model:value="sv.v" />
 
         <div class="option-area">
           <div class="slider">
@@ -17,7 +17,7 @@
           </div>
         </div>
 
-        <input-area v-model:alpha="alpha" :color="currentColor" />
+        <input-area v-model:alpha="alpha" :value-type="valueType" :color="currentColor" :hue :sv :sl />
       </div>
     </template>
   </bp-trigger>
@@ -32,7 +32,7 @@ import hueSlider from "./components/hue-slider.vue";
 import alphaSlider from "./components/alpha-slider.vue";
 import inputArea from "./components/input-area.vue";
 import { computed, nextTick, onMounted, ref, watch } from "vue";
-import { hexToHsla, hslaToHsv, hsvToHsla } from "./useColor";
+import { hexToHsla, hslaToHsv, hslToRgb, hsvToHsla, rgbToHsl } from "./useColor";
 
 defineOptions({ name: "ColorPicker" });
 const { clsBlockName } = useNamespace("color-picker");
@@ -43,33 +43,33 @@ const props: ColorPickerProps = defineProps(colorPickerProps);
 const colorPickerRef = ref();
 const hueSliderRef = ref();
 const alphaSliderRef = ref();
+
 // 色相（范围：0 到 360）
 const hue = ref(0);
-// 饱和度（范围：0 到 100）
-const saturation = ref(0);
-// 亮度（范围：0 到 100）
-const lightness = ref(0);
-// 明度
-const _value = ref(0);
+const sv = ref({ s: 0, v: 0 });
+const sl = ref({ s: 0, l: 0 });
+
 // 透明度（范围：0 到 1）
 const alpha = ref(1);
+
 const _typeToHslaFun = {
   hex: hexToHsla,
 };
 
+const currentColor = computed(() => `hsl(${hue.value}, ${sl.value.s}%, ${sl.value.l}%)`);
+
 const init = () => {
   const { h, s, l, a } = props.valueType && _typeToHslaFun[props.valueType](model.value);
+  sl.value = { s, l };
   hue.value = h;
-  saturation.value = s;
-  lightness.value = l;
   alpha.value = a;
 
-  const { v } = hslaToHsv(hue.value, saturation.value, lightness.value, alpha.value);
-  _value.value = v;
+  const { s: _s, v } = hslaToHsv(hue.value, sl.value.s, sl.value.l);
+  sv.value = { s: _s, v };
 
-  colorPickerRef.value.setPosition(s, v);
-  hueSliderRef.value.setPosition(h);
-  alphaSliderRef.value.setPosition(a);
+  colorPickerRef.value.setPosition(sv.value.s, sv.value.v);
+  hueSliderRef.value.setPosition(hue.value);
+  alphaSliderRef.value.setPosition(alpha.value);
 };
 
 onMounted(() => {
@@ -78,19 +78,16 @@ onMounted(() => {
   });
 });
 
-const currentColor = computed(() => {
-  return `hsl(${hue.value}, ${saturation.value}%, ${lightness.value}%)`;
-});
 const calculateColor = () => {
-  const { l } = hsvToHsla(hue.value, saturation.value, _value.value, alpha.value);
-  lightness.value = l;
+  const { s, l } = hsvToHsla(hue.value, sv.value.s, sv.value.v, alpha.value);
+  sl.value = { s, l };
 };
 
 watch(
-  () => [saturation.value, hue.value, _value.value],
+  () => [sv.value, hue.value],
   () => {
     calculateColor();
   },
-  { immediate: true }
+  { immediate: true, deep: true }
 );
 </script>
