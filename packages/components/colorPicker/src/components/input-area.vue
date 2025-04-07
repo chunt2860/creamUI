@@ -11,9 +11,9 @@
       </bp-input>
       <template v-else>
         <div class="flex">
-          <bp-input v-model="rgbValue.r" style="width: 36px" size="mini"></bp-input>
-          <bp-input v-model="rgbValue.g" style="width: 36px" size="mini"></bp-input>
-          <bp-input v-model="rgbValue.b" style="width: 36px" size="mini"></bp-input>
+          <bp-input v-model="rgbValue.r" @blur="updateByRgb" style="width: 36px" size="mini"></bp-input>
+          <bp-input v-model="rgbValue.g" @blur="updateByRgb" style="width: 36px" size="mini"></bp-input>
+          <bp-input v-model="rgbValue.b" @blur="updateByRgb" style="width: 36px" size="mini"></bp-input>
         </div>
       </template>
       <bp-input-number
@@ -70,6 +70,7 @@ const props = defineProps({
 });
 const emits = defineEmits<{
   (e: "updateByHex", val: string): void;
+  (e: "updateByRgb", rgb: { r: number; g: number; b: number }): void;
 }>();
 
 const valueTypeList: ColorPickerValueType[] = ["hex", "rgb"];
@@ -85,7 +86,19 @@ const updateByHex = () => {
   emits("updateByHex", hexValue.value);
 };
 
-const onAlphaInput = (val: number) => {
+const updateByRgb = () => {
+  let { r, g, b } = rgbValue.value;
+  if (isNaN(r)) r = 0;
+  if (isNaN(g)) g = 0;
+  if (isNaN(b)) b = 0;
+  
+  if (r < 0 || g < 0 || b < 0) return;
+  if (r > 255 || g > 255 || b > 255) return;
+
+  emits("updateByRgb", { r, g, b });
+};
+
+const onAlphaInput = () => {
   alpha.value = alphaValue.value / 100;
 };
 

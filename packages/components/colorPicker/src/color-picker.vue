@@ -18,12 +18,13 @@
         </div>
         <input-area
           v-model:alpha="alpha"
-          :value-type="valueType"
+          :type="valueType"
           :color="currentColor"
           :hue
           :sv
           :sl
           @update-by-hex="updateByHex"
+          @update-by-rgb="updateByRgb"
         />
       </div>
     </template>
@@ -39,7 +40,7 @@ import hueSlider from "./components/hue-slider.vue";
 import alphaSlider from "./components/alpha-slider.vue";
 import inputArea from "./components/input-area.vue";
 import { computed, nextTick, onMounted, ref, watch } from "vue";
-import { hexToHsla, hslaToHsv, hsvToHsla } from "./useColor";
+import { hexToHsla, hslaToHsv, hsvToHsla, rgbToHsla } from "./useColor";
 
 defineOptions({ name: "ColorPicker" });
 const { clsBlockName } = useNamespace("color-picker");
@@ -61,6 +62,7 @@ const alpha = ref(1);
 
 const _typeToHslaFun = {
   hex: hexToHsla,
+  rgb: rgbToHsla,
 };
 
 const currentColor = computed(() => `hsl(${hue.value}, ${sl.value.s}%, ${sl.value.l}%)`);
@@ -92,6 +94,10 @@ const calculateColor = () => {
 
 const updateByHex = (val: string) => {
   init("hex", `#${val}`);
+};
+const updateByRgb = (rgb: { r: number, g: number, b: number }) => {
+  console.log('rgb: ', rgb);
+  init("rgb", `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha.value})`);
 };
 
 watch(

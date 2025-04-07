@@ -7,7 +7,7 @@ import { getPercentNumber } from "@birdpaper-ui/components/utils/helper";
  */
 export const hslaToHex = (hsla: string): string => {
   const match = hsla.match(/hsla?\((\d+(\.\d+)?),\s*(\d+(\.\d+)?)%,\s*(\d+(\.\d+)?)%,?\s*(\d+(\.\d+)?)?\)/);
-  if (!match) return "000000";
+  if (!match) return "FF0000";
 
   const h = parseFloat(match[1]) / 360;
   const s = parseFloat(match[3]) / 100;
@@ -35,13 +35,14 @@ export const hslaToHex = (hsla: string): string => {
   }
 
   const toHex = (x: number): string => {
-    const hex = Math.round(x * 255).toString(16);
+    const hex = Math.round(x * 255).toString(16).toLocaleUpperCase();
     return hex.length === 1 ? "0" + hex : hex;
   };
 
   const aHex = Math.round(a * 255)
     .toString(16)
-    .padStart(2, "0");
+    .padStart(2, "0")
+    .toLocaleUpperCase();
 
   return a === 1 ? `${toHex(r)}${toHex(g)}${toHex(b)}` : `${toHex(r)}${toHex(g)}${toHex(b)}${aHex}`;
 };
@@ -51,10 +52,10 @@ export const hslaToHex = (hsla: string): string => {
  * @param hex - HEX 颜色字符串，例如 "#RRGGBB" 或 "#RRGGBBAA"
  * @returns 如果是有效的 HEX 字符串，返回 HSLA 值的对象；否则返回 null
  */
-export const hexToHsla = (hex: string): { h: number; s: number; l: number; a: number } | null => {
+export const hexToHsla = (hex: string): { h: number; s: number; l: number; a: number } => {
   // 验证 HEX 格式
   const isValidHex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$/.test(hex);
-  if (!isValidHex) return { h: 0, s: 0, l: 0, a: 1 };
+  if (!isValidHex) return { h: 0, s: 100, l: 50, a: 1 };
 
   // 提取 RGB 和 Alpha 值
   const r = parseInt(hex.slice(1, 3), 16);
@@ -201,7 +202,7 @@ export const getPickerPosition = (ev: MouseEvent, pickerPanel: HTMLElement, poin
   return { x, y, s, v };
 };
 
-// // 十六进制转 RGB
+// 十六进制转 RGB
 export function hexToRgb(hex: string): [number, number, number] {
   hex = hex.replace(/^#/, "");
   if (hex.length === 3) {
@@ -213,20 +214,25 @@ export function hexToRgb(hex: string): [number, number, number] {
   return [r, g, b];
 }
 
-// // RGB 转 HSL
-export function rgbToHsl(r: number, g: number, b: number) {
-  r /= 255;
-  g /= 255;
-  b /= 255;
+// RGB 转 HSL
+export function rgbToHsla(rgb: string): { h: number; s: number; l: number; a: number } {
+  const match = rgb.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(\.\d+)?))?\)$/);
+  if (!match) {
+    throw new Error("Invalid RGB(A) format");
+  }
+
+  const r = parseInt(match[1], 10) / 255;
+  const g = parseInt(match[2], 10) / 255;
+  const b = parseInt(match[3], 10) / 255;
+  const a = match[4] !== undefined ? parseFloat(match[4]) : 1;
+
   const max = Math.max(r, g, b);
   const min = Math.min(r, g, b);
-  let h,
-    s,
+  let h = 0,
+    s = 0,
     l = (max + min) / 2;
 
-  if (max === min) {
-    h = s = 0;
-  } else {
+  if (max !== min) {
     const d = max - min;
     s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
     switch (max) {
@@ -240,9 +246,15 @@ export function rgbToHsl(r: number, g: number, b: number) {
         h = (r - g) / d + 4;
         break;
     }
-    h /= 6;
+    h *= 60;
   }
-  return [h * 360, s * 100, l * 100];
+
+  return {
+    h: parseFloat(h.toFixed(2)),
+    s: parseFloat((s * 100).toFixed(2)),
+    l: parseFloat((l * 100).toFixed(2)),
+    a: parseFloat(a.toFixed(2)),
+  };
 }
 
 // // HSL 转 RGB
