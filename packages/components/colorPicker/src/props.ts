@@ -11,6 +11,11 @@ export const colorPickerProps = {
     type: Boolean,
     default: false,
   },
+  /**
+   * @type string
+   * @description Color Type.
+   * @default 'hex'
+   */
   valueType: {
     type: String as PropType<ColorPickerValueType>,
     default: "hex",

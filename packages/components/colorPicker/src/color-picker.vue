@@ -16,7 +16,6 @@
             <div class="preview" :style="`background: ${currentColor}; opacity:${alpha}`"></div>
           </div>
         </div>
-
         <input-area v-model:alpha="alpha" :value-type="valueType" :color="currentColor" :hue :sv :sl />
       </div>
     </template>
@@ -82,6 +81,13 @@ const calculateColor = () => {
   const { s, l } = hsvToHsla(hue.value, sv.value.s, sv.value.v, alpha.value);
   sl.value = { s, l };
 };
+
+watch(
+  () => alpha.value,
+  () => {
+    alphaSliderRef.value.setPosition(alpha.value);
+  }
+);
 
 watch(
   () => [sv.value, hue.value],

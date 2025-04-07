@@ -41,7 +41,7 @@ const model = defineModel<number | "">({ default: "" });
 const stringValue = ref<string>("");
 
 const props: InputNumberProps = defineProps(inputNumberProps);
-const emits = defineEmits(["input", "focus", "blur"]);
+const emits = defineEmits(["input", "focus", "blur", "step"]);
 
 const cls = computed<string[] | {}[]>(() => [clsBlockName, `${clsBlockName}-${props.size}`]);
 
@@ -72,6 +72,7 @@ const handleStep = (type: "up" | "down") => {
 
   stringValue.value = getStringValue(count.value);
   updateModelValue();
+  emits("step", model.value);
 };
 
 const getStringValue = (val = model.value): string => {
@@ -110,7 +111,7 @@ const onBlur = () => {
   emits("blur");
 };
 
-const onInput = (e: Event) => {
+const onInput = ({ e }) => {
   const regex = /^-?[0-9]*\.?[0-9]*$/;
   const value = (e.target as HTMLInputElement).value;
 
@@ -121,7 +122,7 @@ const onInput = (e: Event) => {
 
   stringValue.value = value;
   if (props.modelEvent === "input") {
-    updateModelValue();
+    emits("input", model.value);
   }
 };
 

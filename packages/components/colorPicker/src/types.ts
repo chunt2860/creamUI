@@ -1,1 +1,1 @@
-export type ColorPickerValueType = "hex" | "rgb" | "hsl" | "hsv";
+export type ColorPickerValueType = "hex" | "rgb";

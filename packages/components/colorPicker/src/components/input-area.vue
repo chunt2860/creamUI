@@ -4,12 +4,27 @@
       <bp-select v-model="valueType" size="mini" style="width: 52px">
         <bp-option v-for="v in valueTypeList" :value="v">{{ v.toLocaleUpperCase() }}</bp-option>
       </bp-select>
-      <bp-input v-model="inpValue" size="mini" style="width: 112px">
+      <bp-input v-model="inpValue" size="mini" style="width: 108px" v-if="valueType === 'hex'">
         <template #prefix>
-          <span v-if="valueType === 'hex'">#</span>
+          <span>#</span>
         </template>
       </bp-input>
-      <bp-input-number unit="%" size="mini" style="width: 52px" v-model="alphaValue"></bp-input-number>
+      <template v-else>
+        <div class="flex">
+          <bp-input v-model="rgbValue.r" style="width: 36px" size="mini"></bp-input>
+          <bp-input v-model="rgbValue.g" style="width: 36px" size="mini"></bp-input>
+          <bp-input v-model="rgbValue.b" style="width: 36px" size="mini"></bp-input>
+        </div>
+      </template>
+      <bp-input-number
+        unit="%"
+        size="mini"
+        style="width: 52px"
+        v-model="alphaValue"
+        :max="100"
+        :min="1"
+        @step="onAlphaInput"
+      ></bp-input-number>
     </bp-space>
   </div>
 </template>
@@ -53,12 +68,19 @@ const props = defineProps({
     default: () => ({ s: 0, l: 0 }),
   },
 });
+const emits = defineEmits<{
+  (e: "update:value", val: string): void;
+}>();
 
 const valueTypeList: ColorPickerValueType[] = ["hex", "rgb"];
 const valueType = ref<ColorPickerValueType>(props.type || "hex");
-const rgb = ref({ r: 0, g: 0, b: 0 });
 
 const inpValue = ref<string>("");
+const rgbValue = ref({ r: 0, g: 0, b: 0 });
+
+const onAlphaInput = (val: number) => {
+  alpha.value = alphaValue.value / 100;
+};
 
 watch(
   () => alpha.value,
@@ -80,8 +102,8 @@ watch(
     }
     if (valueType.value === "rgb") {
       const [r, g, b] = hslToRgb(props.hue, props.sl.s, props.sl.l);
-      rgb.value = { r: Math.round(r), g: Math.round(g), b: Math.round(b) };
-      inpValue.value = `rgb(${rgb.value.r}, ${rgb.value.g}, ${rgb.value.b})`;
+      rgbValue.value = { r: Math.round(r), g: Math.round(g), b: Math.round(b) };
+      return;
     }
   },
   { immediate: true, deep: true }

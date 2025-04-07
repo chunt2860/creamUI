@@ -7,5 +7,5 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-const val = ref("#f50000c7");
+const val = ref("#165dff");
 </script>
