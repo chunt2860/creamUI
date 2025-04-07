@@ -91,7 +91,7 @@ const calculateColor = () => {
 };
 
 const updateByHex = (val: string) => {
-  // init("hex", val);
+  init("hex", `#${val}`);
 };
 
 watch(

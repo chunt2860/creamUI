@@ -79,6 +79,9 @@ const hexValue = ref<string>("");
 const rgbValue = ref({ r: 0, g: 0, b: 0 });
 
 const updateByHex = () => {
+  if (!hexValue.value) {
+    return;
+  }
   emits("updateByHex", hexValue.value);
 };
 
@@ -99,8 +102,8 @@ watch(
     if (valueType.value === "hex") {
       hexValue.value = hslaToHex(
         props.alpha === 1
-        ? `hsl(${props.hue}, ${props.sl.s}%, ${props.sl.l}%)`
-        : `hsla(${props.hue}, ${props.sl.s}%, ${props.sl.l}%, ${props.alpha})`
+          ? `hsl(${props.hue}, ${props.sl.s}%, ${props.sl.l}%)`
+          : `hsla(${props.hue}, ${props.sl.s}%, ${props.sl.l}%, ${props.alpha})`
       );
       return;
     }
