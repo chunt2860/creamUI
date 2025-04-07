@@ -6,68 +6,44 @@ import { getPercentNumber } from "@birdpaper-ui/components/utils/helper";
  * @returns 如果是有效的 HSLA 字符串，返回 HEX 颜色字符串；否则返回 null
  */
 export const hslaToHex = (hsla: string): string => {
-  // 验证 HSL 或 HSLA 格式
-  const hslaRegex =
-    /^hsla\(\s*(\d{1,3}(?:\.\d+)?)\s*,\s*(\d{1,3}(?:\.\d+)?)%\s*,\s*(\d{1,3}(?:\.\d+)?)%\s*,\s*(0|1|0?\.\d+)\s*\)$/;
-  const hslRegex = /^hsl\(\s*(\d{1,3}(?:\.\d+)?)\s*,\s*(\d{1,3}(?:\.\d+)?)%\s*,\s*(\d{1,3}(?:\.\d+)?)%\s*\)$/;
-  const match = hsla.match(hslaRegex) || hsla.match(hslRegex);
+  const match = hsla.match(/hsla?\((\d+(\.\d+)?),\s*(\d+(\.\d+)?)%,\s*(\d+(\.\d+)?)%,?\s*(\d+(\.\d+)?)?\)/);
   if (!match) return "000000";
-  // 提取 HSL 或 HSLA 值
-  const h = Math.min(360, parseInt(match[1], 10));
-  const s = Math.min(100, parseInt(match[2], 10));
-  const l = Math.min(100, parseInt(match[3], 10));
-  const a = match[4] !== undefined ? parseFloat(match[4]) : 1; // 如果没有透明度值，默认为 1
 
-  const lNorm = l / 100;
-  const sNorm = s / 100;
+  const h = parseFloat(match[1]) / 360;
+  const s = parseFloat(match[3]) / 100;
+  const l = parseFloat(match[5]) / 100;
+  const a = match[7] !== undefined ? parseFloat(match[7]) : 1; // 如果没有透明度值，默认为 1
+  let r, g, b;
 
-  const c = (1 - Math.abs(2 * lNorm - 1)) * sNorm;
-  const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
-  const m = lNorm - c / 2;
+  if (s === 0) {
+    r = g = b = l;
+  } else {
+    const hue2rgb = (p: number, q: number, t: number): number => {
+      if (t < 0) t += 1;
+      if (t > 1) t -= 1;
+      if (t < 1 / 6) return p + (q - p) * 6 * t;
+      if (t < 1 / 2) return q;
+      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+      return p;
+    };
 
-  let r = 0,
-    g = 0,
-    b = 0;
-
-  if (h >= 0 && h < 60) {
-    r = c;
-    g = x;
-    b = 0;
-  } else if (h >= 60 && h < 120) {
-    r = x;
-    g = c;
-    b = 0;
-  } else if (h >= 120 && h < 180) {
-    r = 0;
-    g = c;
-    b = x;
-  } else if (h >= 180 && h < 240) {
-    r = 0;
-    g = x;
-    b = c;
-  } else if (h >= 240 && h < 300) {
-    r = x;
-    g = 0;
-    b = c;
-  } else if (h >= 300 && h <= 360) {
-    r = c;
-    g = 0;
-    b = x;
+    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    const p = 2 * l - q;
+    r = hue2rgb(p, q, h + 1 / 3);
+    g = hue2rgb(p, q, h);
+    b = hue2rgb(p, q, h - 1 / 3);
   }
 
-  const toHex = (value: number) =>
-    Math.round((value + m) * 255)
-      .toString(16)
-      .padStart(2, "0");
+  const toHex = (x: number): string => {
+    const hex = Math.round(x * 255).toString(16);
+    return hex.length === 1 ? "0" + hex : hex;
+  };
 
-  const rHex = toHex(r);
-  const gHex = toHex(g);
-  const bHex = toHex(b);
   const aHex = Math.round(a * 255)
     .toString(16)
     .padStart(2, "0");
 
-  return a === 1 ? `${rHex}${gHex}${bHex}` : `${rHex}${gHex}${bHex}${aHex}`;
+  return a === 1 ? `${toHex(r)}${toHex(g)}${toHex(b)}` : `${toHex(r)}${toHex(g)}${toHex(b)}${aHex}`;
 };
 
 /**
@@ -110,9 +86,9 @@ export const hexToHsla = (hex: string): { h: number; s: number; l: number; a: nu
   const s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
 
   return {
-    h: Math.round(h),
-    s: Math.round(s * 100),
-    l: Math.round(l * 100),
+    h: parseFloat(h.toFixed(2)),
+    s: parseFloat((s * 100).toFixed(2)),
+    l: parseFloat((l * 100).toFixed(2)),
     a,
   };
 };

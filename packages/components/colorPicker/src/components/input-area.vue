@@ -4,7 +4,7 @@
       <bp-select v-model="valueType" size="mini" style="width: 52px">
         <bp-option v-for="v in valueTypeList" :value="v">{{ v.toLocaleUpperCase() }}</bp-option>
       </bp-select>
-      <bp-input v-model="inpValue" size="mini" style="width: 108px" v-if="valueType === 'hex'">
+      <bp-input v-model="hexValue" size="mini" style="width: 108px" v-if="valueType === 'hex'" @blur="updateByHex">
         <template #prefix>
           <span>#</span>
         </template>
@@ -69,14 +69,18 @@ const props = defineProps({
   },
 });
 const emits = defineEmits<{
-  (e: "update:value", val: string): void;
+  (e: "updateByHex", val: string): void;
 }>();
 
 const valueTypeList: ColorPickerValueType[] = ["hex", "rgb"];
 const valueType = ref<ColorPickerValueType>(props.type || "hex");
 
-const inpValue = ref<string>("");
+const hexValue = ref<string>("");
 const rgbValue = ref({ r: 0, g: 0, b: 0 });
+
+const updateByHex = () => {
+  emits("updateByHex", hexValue.value);
+};
 
 const onAlphaInput = (val: number) => {
   alpha.value = alphaValue.value / 100;
@@ -93,10 +97,10 @@ watch(
   () => [props.hue, props.sv, props.sl, props.alpha, valueType.value],
   () => {
     if (valueType.value === "hex") {
-      inpValue.value = hslaToHex(
+      hexValue.value = hslaToHex(
         props.alpha === 1
-          ? `hsl(${props.hue}, ${props.sl.s}%, ${props.sl.l}%)`
-          : `hsla(${props.hue}, ${props.sl.s}%, ${props.sl.l}%, ${props.alpha})`
+        ? `hsl(${props.hue}, ${props.sl.s}%, ${props.sl.l}%)`
+        : `hsla(${props.hue}, ${props.sl.s}%, ${props.sl.l}%, ${props.alpha})`
       );
       return;
     }

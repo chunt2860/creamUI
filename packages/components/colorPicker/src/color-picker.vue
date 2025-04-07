@@ -16,7 +16,15 @@
             <div class="preview" :style="`background: ${currentColor}; opacity:${alpha}`"></div>
           </div>
         </div>
-        <input-area v-model:alpha="alpha" :value-type="valueType" :color="currentColor" :hue :sv :sl />
+        <input-area
+          v-model:alpha="alpha"
+          :value-type="valueType"
+          :color="currentColor"
+          :hue
+          :sv
+          :sl
+          @update-by-hex="updateByHex"
+        />
       </div>
     </template>
   </bp-trigger>
@@ -31,7 +39,7 @@ import hueSlider from "./components/hue-slider.vue";
 import alphaSlider from "./components/alpha-slider.vue";
 import inputArea from "./components/input-area.vue";
 import { computed, nextTick, onMounted, ref, watch } from "vue";
-import { hexToHsla, hslaToHsv, hslToRgb, hsvToHsla, rgbToHsl } from "./useColor";
+import { hexToHsla, hslaToHsv, hsvToHsla } from "./useColor";
 
 defineOptions({ name: "ColorPicker" });
 const { clsBlockName } = useNamespace("color-picker");
@@ -57,8 +65,8 @@ const _typeToHslaFun = {
 
 const currentColor = computed(() => `hsl(${hue.value}, ${sl.value.s}%, ${sl.value.l}%)`);
 
-const init = () => {
-  const { h, s, l, a } = props.valueType && _typeToHslaFun[props.valueType](model.value);
+const init = (type = props.valueType, value = model.value) => {
+  const { h, s, l, a } = type && _typeToHslaFun[type](value);
   sl.value = { s, l };
   hue.value = h;
   alpha.value = a;
@@ -80,6 +88,10 @@ onMounted(() => {
 const calculateColor = () => {
   const { s, l } = hsvToHsla(hue.value, sv.value.s, sv.value.v, alpha.value);
   sl.value = { s, l };
+};
+
+const updateByHex = (val: string) => {
+  // init("hex", val);
 };
 
 watch(
