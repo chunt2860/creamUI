@@ -6,9 +6,10 @@
     update-at-scroll
     transition="fade-dropdown"
     :popup-offset="10"
+    :class="`${clsBlockName}-trigger`"
   >
-    <div :class="`${clsBlockName}-trigger`">
-      <div :class="`${clsBlockName}-trigger-inner`" :style="`background: ${currentColor}; opacity:${alpha}`"></div>
+    <div :class="`${clsBlockName}-input`">
+      <div :class="`${clsBlockName}-input-inner`" :style="`background: ${currentColor}; opacity:${alpha}`"></div>
     </div>
     <template #content>
       <div :class="clsBlockName">

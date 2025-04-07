@@ -16,7 +16,6 @@
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     background-color: var(--bp-primary-3);
-    // overflow: auto;
 
     .color-picker-overlay {
       position: absolute;
@@ -168,6 +167,11 @@
 }
 
 .#{$B}-trigger {
+  display: flex;
+  width: max-content;
+}
+
+.#{$B}-input {
   @include flex(row, center, center) {
     width: 32px;
     height: 32px;

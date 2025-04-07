@@ -1,7 +1,5 @@
 <template>
-  <div style="padding: 60px">
-    <bp-color-picker v-model="val" valueType="hex"></bp-color-picker>
-  </div>
+  <bp-color-picker v-model="val" valueType="hex"></bp-color-picker>
 </template>
 
 <script setup lang="ts">
