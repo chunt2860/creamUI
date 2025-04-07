@@ -1,6 +1,5 @@
 <template>
-  {{ val }}
-  <div style="padding: 100px">
+  <div style="padding: 60px">
     <bp-color-picker v-model="val" valueType="hex"></bp-color-picker>
   </div>
 </template>

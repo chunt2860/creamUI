@@ -1,4 +1,4 @@
-import { PropType, Teleport, Transition, defineComponent, h, nextTick, onMounted, reactive, ref, watch } from "vue";
+import { PropType, Teleport, Transition, defineComponent, h, nextTick, onMounted, ref, watch } from "vue";
 import { getPosition, getPositionData, getWrapperPositionStyle, getWrapperSize } from "./core";
 import { TriggerPosition, TriggerType } from "./types";
 import { onClickOutside, useElementBounding, useEventListener, useThrottleFn, useWindowSize } from "@vueuse/core";
@@ -237,6 +237,7 @@ export default defineComponent({
       () => {
         if (!props.clickOutside || props.trigger === "hover") return;
         visible.value = false;
+        emit("update:modelValue", visible.value);
       },
       { ignore: [triggerRef] }
     );

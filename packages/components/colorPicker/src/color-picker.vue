@@ -1,7 +1,14 @@
 <template>
-  <bp-trigger hide-trigger position="bottom-left" :popup-offset="10">
+  <bp-trigger
+    v-model="isOpen"
+    :hideTrigger
+    position="bottom-left"
+    update-at-scroll
+    transition="fade-dropdown"
+    :popup-offset="10"
+  >
     <div :class="`${clsBlockName}-trigger`">
-      <div :class="`${clsBlockName}-trigger-inner`"></div>
+      <div :class="`${clsBlockName}-trigger-inner`" :style="`background: ${currentColor}; opacity:${alpha}`"></div>
     </div>
     <template #content>
       <div :class="clsBlockName">
@@ -48,6 +55,7 @@ const { clsBlockName } = useNamespace("color-picker");
 const model = defineModel<string>({ default: "#165dff" });
 const props: ColorPickerProps = defineProps(colorPickerProps);
 
+const isOpen = ref<boolean>(false);
 const colorPickerRef = ref();
 const hueSliderRef = ref();
 const alphaSliderRef = ref();
@@ -75,10 +83,6 @@ const init = (type = props.valueType || "hex", value = model.value) => {
 
   const { s: _s, v } = hslaToHsv(hue.value, sl.value.s, sl.value.l);
   sv.value = { s: _s, v };
-
-  colorPickerRef.value.setPosition(sv.value.s, sv.value.v);
-  hueSliderRef.value.setPosition(hue.value);
-  alphaSliderRef.value.setPosition(alpha.value);
 };
 
 onMounted(() => {
@@ -108,6 +112,20 @@ const updateByRgb = (rgb: { r: number; g: number; b: number }) => {
   init("rgb", `rgb(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha.value})`);
   model.value = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha.value})`;
 };
+
+watch(
+  () => isOpen.value,
+  (val) => {
+    if (val) {
+      nextTick(() => {
+        init(props.valueType, model.value);
+        colorPickerRef.value.setPosition(sv.value.s, sv.value.v);
+        hueSliderRef.value.setPosition(hue.value);
+        alphaSliderRef.value.setPosition(alpha.value);
+      });
+    }
+  }
+);
 
 watch(
   () => alpha.value,
