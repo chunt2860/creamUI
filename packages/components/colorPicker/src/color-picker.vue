@@ -40,7 +40,7 @@ import hueSlider from "./components/hue-slider.vue";
 import alphaSlider from "./components/alpha-slider.vue";
 import inputArea from "./components/input-area.vue";
 import { computed, nextTick, onMounted, ref, watch } from "vue";
-import { hexToHsla, hslaToHsv, hsvToHsla, rgbToHsla } from "./useColor";
+import { hexToHsla, hslaToHex, hslaToHsv, hslToRgb, hsvToHsla, rgbToHsla } from "./useColor";
 
 defineOptions({ name: "ColorPicker" });
 const { clsBlockName } = useNamespace("color-picker");
@@ -67,7 +67,7 @@ const _typeToHslaFun = {
 
 const currentColor = computed(() => `hsl(${hue.value}, ${sl.value.s}%, ${sl.value.l}%)`);
 
-const init = (type = props.valueType, value = model.value) => {
+const init = (type = props.valueType || "hex", value = model.value) => {
   const { h, s, l, a } = type && _typeToHslaFun[type](value);
   sl.value = { s, l };
   hue.value = h;
@@ -90,14 +90,23 @@ onMounted(() => {
 const calculateColor = () => {
   const { s, l } = hsvToHsla(hue.value, sv.value.s, sv.value.v, alpha.value);
   sl.value = { s, l };
+
+  if (props.valueType === "hex") {
+    model.value = "#" + hslaToHex(`hsla(${hue.value}, ${s}%, ${l}%, ${alpha.value})`);
+  } else {
+    const [r, g, b] = hslToRgb(hue.value, s, l);
+    model.value = `rgba(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)}, ${alpha.value})`;
+  }
 };
 
 const updateByHex = (val: string) => {
   init("hex", `#${val}`);
+  model.value = `#${val}`;
 };
-const updateByRgb = (rgb: { r: number, g: number, b: number }) => {
-  console.log('rgb: ', rgb);
-  init("rgb", `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha.value})`);
+
+const updateByRgb = (rgb: { r: number; g: number; b: number }) => {
+  init("rgb", `rgb(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha.value})`);
+  model.value = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha.value})`;
 };
 
 watch(
@@ -108,10 +117,10 @@ watch(
 );
 
 watch(
-  () => [sv.value, hue.value],
+  () => [sv.value, hue.value, alpha.value],
   () => {
     calculateColor();
   },
-  { immediate: true, deep: true }
+  { deep: true }
 );
 </script>

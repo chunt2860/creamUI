@@ -257,7 +257,7 @@ export function rgbToHsla(rgb: string): { h: number; s: number; l: number; a: nu
   };
 }
 
-// // HSL 转 RGB
+// HSL 转 RGB
 export function hslToRgb(h: number, s: number, l: number): [number, number, number] {
   h /= 360;
   s /= 100;

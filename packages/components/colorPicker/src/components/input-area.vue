@@ -94,7 +94,6 @@ const updateByRgb = () => {
   
   if (r < 0 || g < 0 || b < 0) return;
   if (r > 255 || g > 255 || b > 255) return;
-
   emits("updateByRgb", { r, g, b });
 };
 
