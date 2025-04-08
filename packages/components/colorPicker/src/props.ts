@@ -23,12 +23,21 @@ export const colorPickerProps = {
   },
   /**
    * @type InputSize
-   * @description Input sizes.
+   * @description Picker sizes.
    * @default default
    */
   size: {
     type: String as PropType<InputSize>,
     default: "default",
+  },
+  /**
+   * @type boolean
+   * @description Picker is disabled or not.
+   * @default false
+   */
+  disabled: {
+    type: Boolean,
+    default: false,
   },
 } as const;
 

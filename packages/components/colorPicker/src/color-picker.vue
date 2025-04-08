@@ -6,9 +6,16 @@
     update-at-scroll
     transition="fade-dropdown"
     :popup-offset="10"
+    :disabled
     :class="`${clsBlockName}-trigger`"
   >
-    <div :class="[`${clsBlockName}-input`, `${clsBlockName}-input-${props.size}`]">
+    <div
+      :class="[
+        `${clsBlockName}-input`,
+        `${clsBlockName}-input-${props.size}`,
+        props.disabled ? `${clsBlockName}-input-disabled` : '',
+      ]"
+    >
       <div :class="`${clsBlockName}-input-box`">
         <div :class="`${clsBlockName}-input-inner`" :style="`background: ${currentColor}; opacity:${alpha}`"></div>
       </div>
