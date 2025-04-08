@@ -8,8 +8,10 @@
     :popup-offset="10"
     :class="`${clsBlockName}-trigger`"
   >
-    <div :class="`${clsBlockName}-input`">
-      <div :class="`${clsBlockName}-input-inner`" :style="`background: ${currentColor}; opacity:${alpha}`"></div>
+    <div :class="[`${clsBlockName}-input`, `${clsBlockName}-input-${props.size}`]">
+      <div :class="`${clsBlockName}-input-box`">
+        <div :class="`${clsBlockName}-input-inner`" :style="`background: ${currentColor}; opacity:${alpha}`"></div>
+      </div>
     </div>
     <template #content>
       <div :class="clsBlockName">
@@ -33,6 +35,7 @@
           :sl
           @update-by-hex="updateByHex"
           @update-by-rgb="updateByRgb"
+          @update-alpha="updateAlpha"
         />
       </div>
     </template>
@@ -114,6 +117,11 @@ const updateByRgb = (rgb: { r: number; g: number; b: number }) => {
   model.value = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha.value})`;
 };
 
+const updateAlpha = (val: number) => {
+  alpha.value = val;
+  alphaSliderRef.value.setPosition(alpha.value);
+};
+
 watch(
   () => isOpen.value,
   (val) => {
@@ -125,13 +133,6 @@ watch(
         alphaSliderRef.value.setPosition(alpha.value);
       });
     }
-  }
-);
-
-watch(
-  () => alpha.value,
-  () => {
-    alphaSliderRef.value.setPosition(alpha.value);
   }
 );
 

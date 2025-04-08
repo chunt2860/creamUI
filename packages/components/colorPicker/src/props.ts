@@ -1,5 +1,6 @@
 import { ExtractPropTypes, PropType } from "vue";
 import { ColorPickerValueType } from "./types";
+import { InputSize } from "@birdpaper-ui/components/input/src/types";
 
 export const colorPickerProps = {
   /**
@@ -19,6 +20,15 @@ export const colorPickerProps = {
   valueType: {
     type: String as PropType<ColorPickerValueType>,
     default: "hex",
+  },
+  /**
+   * @type InputSize
+   * @description Input sizes.
+   * @default default
+   */
+  size: {
+    type: String as PropType<InputSize>,
+    default: "default",
   },
 } as const;
 

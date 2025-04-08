@@ -69,6 +69,7 @@ const props = defineProps({
   },
 });
 const emits = defineEmits<{
+  (e: "updateAlpha", val: number): void;
   (e: "updateByHex", val: string): void;
   (e: "updateByRgb", rgb: { r: number; g: number; b: number }): void;
 }>();
@@ -91,14 +92,14 @@ const updateByRgb = () => {
   if (isNaN(r)) r = 0;
   if (isNaN(g)) g = 0;
   if (isNaN(b)) b = 0;
-  
+
   if (r < 0 || g < 0 || b < 0) return;
   if (r > 255 || g > 255 || b > 255) return;
   emits("updateByRgb", { r, g, b });
 };
 
 const onAlphaInput = () => {
-  alpha.value = alphaValue.value / 100;
+  emits("updateAlpha", alphaValue.value / 100);
 };
 
 watch(
