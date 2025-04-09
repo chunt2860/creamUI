@@ -9,15 +9,9 @@
     :disabled
     :class="`${clsBlockName}-trigger`"
   >
-    <div
-      :class="[
-        `${clsBlockName}-input`,
-        `${clsBlockName}-input-${props.size}`,
-        props.disabled ? `${clsBlockName}-input-disabled` : '',
-      ]"
-    >
+    <div :class="cls">
       <div :class="`${clsBlockName}-input-box`">
-        <div :class="`${clsBlockName}-input-inner`" :style="`background: ${currentColor}; opacity:${alpha}`"></div>
+        <div :class="`${clsBlockName}-input-inner`" :style="_previewStyle"></div>
       </div>
     </div>
     <template #content>
@@ -26,17 +20,17 @@
 
         <div class="option-area">
           <div class="slider">
-            <hue-slider ref="hueSliderRef" v-model="hue" :point-color="currentColor" />
-            <alpha-slider ref="alphaSliderRef" v-model="alpha" :point-color="currentColor" />
+            <hue-slider ref="hueSliderRef" v-model="hue" :point-color="_color" />
+            <alpha-slider ref="alphaSliderRef" v-model="alpha" :point-color="_color" />
           </div>
           <div class="preview-box">
-            <div class="preview" :style="`background: ${currentColor}; opacity:${alpha}`"></div>
+            <div class="preview" :style="_previewStyle"></div>
           </div>
         </div>
         <input-area
           v-model:alpha="alpha"
           :type="valueType"
-          :color="currentColor"
+          :color="_color"
           :hue
           :sv
           :sl
@@ -71,12 +65,13 @@ const colorPickerRef = ref();
 const hueSliderRef = ref();
 const alphaSliderRef = ref();
 
-// 色相（范围：0 到 360）
+// Hue (range: 0 to 360)
 const hue = ref(0);
+// sv (saturation and value in HSV)
 const sv = ref({ s: 0, v: 0 });
+// sl (saturation and lightness in HSL)
 const sl = ref({ s: 0, l: 0 });
-
-// 透明度（范围：0 到 1）
+// Alpha (range: 0 to 1)
 const alpha = ref(1);
 
 const _typeToHslaFun = {
@@ -84,22 +79,40 @@ const _typeToHslaFun = {
   rgb: rgbToHsla,
 };
 
-const currentColor = computed(() => `hsl(${hue.value}, ${sl.value.s}%, ${sl.value.l}%)`);
+// Current color value (excluding transparency)
+const _color = computed(() => `hsl(${hue.value}, ${sl.value.s}%, ${sl.value.l}%)`);
+// Preview color value
+const _previewStyle = computed(() => `background: ${_color.value}; opacity:${alpha.value}`);
 
-const init = (type = props.valueType || "hex", value = model.value) => {
-  const { h, s, l, a } = type && _typeToHslaFun[type](value);
+const cls = computed(() => {
+  return {
+    [`${clsBlockName}-input`]: true,
+    [`${clsBlockName}-input-${props.size}`]: true,
+    [`${clsBlockName}-input-disabled`]: props.disabled,
+  };
+});
+
+const initHsla = (type = props.valueType || "hex", value = model.value) => {
+  if (!type || !_typeToHslaFun[type]) return;
+
+  const hsla = _typeToHslaFun[type](value);
+  if (!hsla) return;
+
+  const { h, s, l, a } = hsla;
   sl.value = { s, l };
   hue.value = h;
   alpha.value = a;
 
-  const { s: _s, v } = hslaToHsv(hue.value, sl.value.s, sl.value.l);
-  sv.value = { s: _s, v };
+  initHsv();
+};
+
+const initHsv = () => {
+  const { s, v } = hslaToHsv(hue.value, sl.value.s, sl.value.l);
+  sv.value = { s, v };
 };
 
 onMounted(() => {
-  nextTick(() => {
-    init();
-  });
+  nextTick(() => initHsla());
 });
 
 const calculateColor = () => {
@@ -115,13 +128,15 @@ const calculateColor = () => {
 };
 
 const updateByHex = (val: string) => {
-  init("hex", `#${val}`);
+  initHsla("hex", `#${val}`);
   model.value = `#${val}`;
 };
 
 const updateByRgb = (rgb: { r: number; g: number; b: number }) => {
-  init("rgb", `rgb(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha.value})`);
-  model.value = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha.value})`;
+  const rgbStr = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha.value})`;
+  
+  initHsla("rgb", rgbStr);
+  model.value = rgbStr;
 };
 
 const updateAlpha = (val: number) => {
@@ -131,10 +146,10 @@ const updateAlpha = (val: number) => {
 
 watch(
   () => isOpen.value,
-  (val) => {
-    if (val) {
+  (v) => {
+    if (v) {
       nextTick(() => {
-        init(props.valueType, model.value);
+        initHsla(props.valueType, model.value);
         colorPickerRef.value.setPosition(sv.value.s, sv.value.v);
         hueSliderRef.value.setPosition(hue.value);
         alphaSliderRef.value.setPosition(alpha.value);
