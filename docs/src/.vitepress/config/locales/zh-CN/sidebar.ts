@@ -76,6 +76,7 @@ export const sidebar = {
         { text: "链接 <span>Link</span>", link: "/components/link" },
         { text: "分页 <span>Pagination</span>", link: "/components/pagination" },
         { text: "下拉菜单 <span>Dropdown</span>", link: "/components/dropdown" },
+        { text: "步骤条 <span>Steps</span>", link: "/components/steps" },
       ],
     },
     {

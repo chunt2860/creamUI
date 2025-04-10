@@ -1,0 +1,31 @@
+@use "common/extend.scss" as *;
+@use "mixins/var" as *;
+@use "mixins/function" as *;
+@use "mixins/mixins.scss" as *;
+
+@include b(step) {
+  @include flex(row, flex-start, center);
+
+  &-node {
+    @include flex(row, center, center) {
+      width: 28px;
+      height: 28px;
+      background-color: var(--bp-gray-1);
+      border-radius: 50%;
+      color: var(--bp-gray-9);
+      font-size: 16px;
+      margin-right: 12px;
+    }
+  }
+
+  &-title {
+    position: relative;
+    display: inline-block;
+    padding-right: 12px;
+    font-size: 16px;
+    color: var(--bp-gray-7);
+    line-height: 28px;
+    white-space: nowrap;
+    text-align: left;
+  }
+}

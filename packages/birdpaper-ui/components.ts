@@ -41,7 +41,9 @@ import {
   Dropdown,
   Doption,
   InputTag,
-  ColorPicker
+  ColorPicker,
+  Steps,
+  Step
 } from "@birdpaper-ui/components";
 
 export default [
@@ -87,5 +89,7 @@ export default [
   Dropdown,
   Doption,
   InputTag,
-  ColorPicker
+  ColorPicker,
+  Steps,
+  Step
 ];
