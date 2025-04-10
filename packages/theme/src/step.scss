@@ -5,7 +5,7 @@
 @use "mixins/mixins.scss" as *;
 
 @include b(step) {
-  @include flex(row, flex-start, center);
+  @include flex(row, flex-start, flex-start);
 
   &-node {
     @include flex(row, center, center) {
@@ -29,6 +29,15 @@
     line-height: 28px;
     white-space: nowrap;
     text-align: left;
+  }
+
+  &-desc {
+    font-size: 12px;
+    color: var(--bp-gray-5);
+    line-height: 1;
+    max-width: 140px;
+    margin-top: 4px;
+    white-space: normal;
   }
 }
 

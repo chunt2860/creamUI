@@ -1,8 +1,8 @@
 <template>
   <bp-steps>
-    <bp-step>Succeeded</bp-step>
-    <bp-step>Processing</bp-step>
-    <bp-step>Pending</bp-step>
+    <bp-step description="Description one">Succeeded</bp-step>
+    <bp-step description="Description two">Processing</bp-step>
+    <bp-step description="Description Three">Pending</bp-step>
   </bp-steps>
 </template>
 
