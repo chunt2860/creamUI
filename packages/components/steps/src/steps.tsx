@@ -6,16 +6,23 @@ import { get } from "radash";
 export default defineComponent({
   name: "Steps",
   props: {
-    modelValue: {
-      type: Number,
-      default: 0,
-    },
+    /**
+     * @type {number}
+     * @default 0
+     */
+    modelValue: { type: Number, default: 0 },
     /**
      * @type StepsType
      * @description The type of direction.
      * @default "horizontal"
      */
     type: { type: String as PropType<"vertical" | "horizontal">, default: "horizontal" },
+    /**
+     * @type {boolean}
+     * @description Whether to hide the line between steps.
+     * @default false
+     */
+    hideLine: { type: Boolean, default: false },
   },
   setup(props, { slots }) {
     const { clsBlockName } = useNamespace("steps");
@@ -33,12 +40,14 @@ export default defineComponent({
             const isActive = props.modelValue === index;
             const status = isFinished ? "finish" : isActive ? "process" : "wait";
 
-            step.props = child.props
-              ? mergeProps(child.props, { index, status, type: props.type })
-              : { index, status, type: props.type };
+            const childProps = { index, status, ...props };
+            step.props = child.props ? mergeProps(child.props, childProps) : childProps;
+
             return (
               <Fragment key={child.key ?? `item-${index}`}>
-                <div class={[`${clsBlockName}-item`, `${itemClsBlockName}-${status}`]}>{h(step, {})}</div>
+                <div class={[`${clsBlockName}-item`, `${itemClsBlockName}-${status}`, { "hide-line": props.hideLine }]}>
+                  {h(step, {})}
+                </div>
               </Fragment>
             );
           })}

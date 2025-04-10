@@ -1,5 +1,5 @@
 <template>
-  <div v-if="type === 'vertical'" :class="`${clsBlockName}-tail`"></div>
+  <div v-if="type === 'vertical' && !hideLine" :class="`${clsBlockName}-tail`"></div>
 
   <div :class="`${clsBlockName}-node`">
     <IconCheckFill v-if="status === 'finish'" size="16" />

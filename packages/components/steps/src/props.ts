@@ -34,6 +34,12 @@ export const stepProps = {
    * @default "horizontal"
    */
   type: { type: String as PropType<"vertical" | "horizontal">, default: "horizontal" },
+  /**
+   * @type {boolean}
+   * @description Whether to hide the line between steps.
+   * @default false
+   */
+  hideLine: { type: Boolean, default: false },
 };
 
 export type StepProps = ExtractPropTypes<typeof stepProps>;

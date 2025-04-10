@@ -44,6 +44,14 @@
       }
     }
   }
+
+  .hide-line {
+    [class*="step-title"] {
+      &::after {
+        display: none;
+      }
+    }
+  }
 }
 
 .#{$B}-vertical {

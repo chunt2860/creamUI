@@ -23,9 +23,9 @@
     position: relative;
     display: inline-block;
     vertical-align: top;
-    width: 26px;
-    height: 26px;
-    line-height: 26px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
     background-color: var(--bp-gray-1);
     border: $borderSize solid var(--bp-gray-2);
     border-radius: 50%;
@@ -50,16 +50,16 @@
     position: relative;
     display: inline-block;
     padding-right: 10px;
-    font-size: 16px;
-    color: var(--bp-gray-8);
-    line-height: 28px;
+    font-size: 14px;
+    color: var(--bp-gray-9);
+    line-height: 24px;
     white-space: nowrap;
     text-align: left;
   }
 
   &-desc {
     font-size: 12px;
-    color: var(--bp-gray-5);
+    color: var(--bp-gray-4);
     line-height: 1;
     max-width: 140px;
     margin-top: 4px;
