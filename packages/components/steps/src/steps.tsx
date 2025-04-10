@@ -5,7 +5,12 @@ import { get } from "radash";
 
 export default defineComponent({
   name: "Steps",
-  props: {},
+  props: {
+    modelValue: {
+      type: Number,
+      default: 1,
+    },
+  },
   setup(props, { slots }) {
     const { clsBlockName } = useNamespace("steps");
 
@@ -16,8 +21,12 @@ export default defineComponent({
         <div class={[clsBlockName]}>
           {children.map((child, index) => {
             const step = Object.assign({}, child);
-            step.props = child.props ? mergeProps(child.props, { index }) : { index };
 
+            const isFinished = props.modelValue > index;
+            const isActive = props.modelValue === index;
+            const status = isFinished ? "finish" : isActive ? "process" : "wait";
+
+            step.props = child.props ? mergeProps(child.props, { index, status }) : { index, status };
             return (
               <Fragment key={child.key ?? `item-${index}`}>
                 <div class={`${clsBlockName}-item`}>{h(step, {})}</div>

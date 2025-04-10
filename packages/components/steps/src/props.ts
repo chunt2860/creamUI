@@ -7,6 +7,10 @@ export const stepProps = {
     default: 0,
     validator: (val: number) => val >= 0,
   },
+  status: {
+    type: String as PropType<"wait" | "process" | "finish" | "error">,
+    default: "wait",
+  },
 };
 
 export type StepProps = ExtractPropTypes<typeof stepProps>;
