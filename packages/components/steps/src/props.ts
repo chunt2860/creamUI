@@ -28,6 +28,12 @@ export const stepProps = {
   description: {
     type: String,
   },
+  /**
+   * @type StepsType
+   * @description The type of direction.
+   * @default "horizontal"
+   */
+  type: { type: String as PropType<"vertical" | "horizontal">, default: "horizontal" },
 };
 
 export type StepProps = ExtractPropTypes<typeof stepProps>;

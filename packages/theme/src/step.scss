@@ -5,18 +5,44 @@
 @use "mixins/mixins.scss" as *;
 
 @include b(step) {
-  @include flex(row, flex-start, flex-start);
+  &-tail {
+    position: absolute;
+    top: 0;
+    left: 13px;
+    box-sizing: border-box;
+    width: 1px;
+    height: 100%;
+    padding: 34px 0 6px;
+  }
+
+  &-content {
+    display: inline-block;
+  }
 
   &-node {
-    @include flex(row, center, center) {
-      width: 26px;
-      height: 26px;
-      background-color: var(--bp-gray-1);
-      border: $borderSize solid var(--bp-gray-2);
-      border-radius: 50%;
-      color: var(--bp-gray-9);
-      font-size: 14px;
-      margin-right: 10px;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    background-color: var(--bp-gray-1);
+    border: $borderSize solid var(--bp-gray-2);
+    border-radius: 50%;
+    color: var(--bp-gray-9);
+    font-size: 14px;
+    margin-right: 10px;
+    text-align: center;
+
+    svg[class*="-icon-"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      width: 16px;
+      height: 16px;
     }
   }
 
@@ -55,6 +81,12 @@
 }
 
 .#{$B}-finish {
+  .#{$B}-tail {
+    &::after {
+      background-color: var(--bp-primary-6) !important;
+    }
+  }
+
   .#{$B}-title {
     &::after {
       background-color: var(--bp-primary-6) !important;
