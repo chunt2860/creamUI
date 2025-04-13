@@ -7,5 +7,5 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-const val = ref(false);
+const val = ref(true);
 </script>

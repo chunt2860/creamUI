@@ -105,7 +105,7 @@
   @include css-var-from-global-rgb(("checkbox", "checkbox-border"), ("gray", "3"));
   @include css-var-from-global-rgb(("checkbox", "checkbox-bg"), ("gray", "1"));
   @include css-var-from-global-rgb(("checkbox", "label-color"), ("gray", "4"));
-  @include css-var-from-global-rgb(("checkbox", "checkbox-border-check"), ("primary", "2"));
+  @include css-var-from-global-rgb(("checkbox", "checkbox-border-check"), ("primary", "3"));
 
   pointer-events: none;
   cursor: default;

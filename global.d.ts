@@ -41,6 +41,10 @@ declare module "vue" {
     BpVerifyCode: typeof import("birdpaper-ui")["VerifyCode"];
     BpYearPicker: typeof import("birdpaper-ui")["YearPicker"];
     BpRangePicker: typeof import("birdpaper-ui")["RangePicker"];
+    BpColorPicker: typeof import("birdpaper-ui")["ColorPicker"];
+    BpSteps: typeof import("birdpaper-ui")["Steps"];
+    BpStep: typeof import("birdpaper-ui")["Step"];
+    BpRate: typeof import("birdpaper-ui")["Rate"];
   }
 }
 

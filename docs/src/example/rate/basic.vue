@@ -1,0 +1,3 @@
+<template>
+  <bp-rate />
+</template>

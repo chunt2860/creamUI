@@ -43,7 +43,8 @@ import {
   InputTag,
   ColorPicker,
   Steps,
-  Step
+  Step,
+  Rate
 } from "@birdpaper-ui/components";
 
 export default [
@@ -91,5 +92,6 @@ export default [
   InputTag,
   ColorPicker,
   Steps,
-  Step
+  Step,
+  Rate
 ];

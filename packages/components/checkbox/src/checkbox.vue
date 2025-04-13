@@ -69,6 +69,10 @@ watch(
   () => model.value,
   () => {
     upadteCheck();
+  },
+  {
+    immediate: true,
+    deep: true,
   }
 );
 </script>
