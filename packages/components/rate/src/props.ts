@@ -5,6 +5,10 @@ export const rateProps = {
     type: Number,
     default: 5,
   },
+  half: {
+    type: Boolean,
+    default: false,
+  },
 } as const;
 
 export type RateProps = ExtractPropTypes<typeof rateProps>;

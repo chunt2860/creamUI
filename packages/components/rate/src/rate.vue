@@ -1,7 +1,11 @@
 <template>
   <div :class="cls" @mouseleave="onMouseleave">
     <template v-for="(item, index) in props.count" :key="`rate-${index}`">
-      <rate-item :current :index @mousemove="onMousemove" @select="onSelect" />
+      <rate-item :current :index @mousemove="onMousemove" @select="onSelect">
+        <slot name="icon" :index>
+          <IconStarFill />
+        </slot>
+      </rate-item>
     </template>
   </div>
 </template>
@@ -11,6 +15,7 @@ import { computed, ref } from "vue";
 import { useNamespace } from "@birdpaper-ui/hooks";
 import { RateProps, rateProps } from "./props";
 import rateItem from "./components/rate-item.vue";
+import { IconStarFill } from "birdpaper-icon";
 
 defineOptions({ name: "Rate" });
 const { clsBlockName } = useNamespace("rate");
@@ -24,11 +29,11 @@ const cls = computed(() => {
 
 const current = ref(model.value || 0);
 const onMousemove = (index: number, isHalf: boolean) => {
-  current.value = index + (isHalf ? 0.5 : 1);
+  current.value = index + (props.half ? (isHalf ? 0.5 : 1) : 1);
 };
 
 const onSelect = (index: number, isHalf: boolean) => {
-  model.value = index + (isHalf ? 0.5 : 1);
+  model.value = index + (props.half ? (isHalf ? 0.5 : 1) : 1);
 };
 
 const onMouseleave = () => {

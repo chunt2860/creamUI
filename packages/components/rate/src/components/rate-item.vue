@@ -1,16 +1,11 @@
 <template>
   <div :class="cls" @mouseenter="onMouse" @mousemove="onMouse" @click="handleSelect">
-    <div class="rate-left">
-      <IconStarFill size="22" />
-    </div>
-    <div class="rate-right">
-      <IconStarFill size="22" />
-    </div>
+    <div class="rate-left"><slot /></div>
+    <div class="rate-right"><slot /></div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { IconStarFill } from "birdpaper-icon";
 import { useNamespace } from "@birdpaper-ui/hooks";
 import { computed, ref } from "vue";
 
@@ -28,6 +23,7 @@ const emits = defineEmits<{
   (e: "mousemove", index: number, isHalf: boolean): void;
   (e: "select", index: number, isHalf: boolean): void;
 }>();
+const slots = defineSlots();
 
 const { clsBlockName } = useNamespace("rate-item");
 const _itemWdith = 22;

@@ -6,11 +6,17 @@
 
 @include b(rate) {
   display: flex;
-  gap: 4px;
+  gap: 6px;
 
   .#{$B}-item {
     position: relative;
+    transition: all 0.2s;
     cursor: pointer;
+
+    &:hover {
+      transform: scale(1.3);
+      transition: all 0.2s;
+    }
 
     .rate-left {
       position: absolute;
@@ -25,6 +31,8 @@
     }
 
     svg[class*="-icon-"] {
+      width: 22px !important;
+      height: 22px !important;
       fill: var(--bp-gray-2);
     }
   }

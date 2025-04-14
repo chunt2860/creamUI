@@ -1,10 +1,9 @@
 <template>
-  {{ val }}
-  <bp-rate v-model="val" />
+  <bp-rate v-model="val"></bp-rate>
 </template>
 
 <script lang="ts" setup>
 import { ref } from "vue";
 
-const val = ref(0);
+const val = ref(2.5);
 </script>
