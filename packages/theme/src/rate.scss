@@ -5,4 +5,45 @@
 @use "mixins/mixins.scss" as *;
 
 @include b(rate) {
+  display: flex;
+  gap: 4px;
+
+  .#{$B}-item {
+    position: relative;
+    cursor: pointer;
+
+    .rate-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      svg[class*="-icon-"] {
+        fill: var(--bp-warning-5);
+        clip-path: inset(0 100% 0 0);
+        transition: all 0.2s;
+      }
+    }
+
+    svg[class*="-icon-"] {
+      fill: var(--bp-gray-2);
+    }
+  }
+
+  .full-active {
+    .rate-left {
+      svg[class*="-icon-"] {
+        clip-path: inset(0 0 0 0);
+        transition: all 0.2s;
+      }
+    }
+  }
+
+  .half-active {
+    .rate-left {
+      svg[class*="-icon-"] {
+        clip-path: inset(0 50% 0 0);
+        transition: all 0.2s;
+      }
+    }
+  }
 }

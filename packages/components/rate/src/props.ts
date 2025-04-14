@@ -1,4 +1,4 @@
-import { Component, ExtractPropTypes, PropType } from "vue";
+import { ExtractPropTypes, PropType } from "vue";
 
 export const rateProps = {
   count: {
