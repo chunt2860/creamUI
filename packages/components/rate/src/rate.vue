@@ -27,7 +27,7 @@ const cls = computed(() => {
   return [clsBlockName, props.disabled && `${clsBlockName}-disabled`, props.readonly && `${clsBlockName}-readonly`];
 });
 
-const current = ref(model.value || 0);
+const current = ref(props.half ? model.value : Math.round(model.value) || 0);
 const onMousemove = (index: number, isHalf: boolean) => {
   if (props.disabled || props.readonly) return;
   current.value = index + (props.half ? (isHalf ? 0.5 : 1) : 1);
