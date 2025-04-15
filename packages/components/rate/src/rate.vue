@@ -24,15 +24,17 @@ const model = defineModel({ default: 0 });
 const props: RateProps = defineProps(rateProps);
 
 const cls = computed(() => {
-  return [clsBlockName];
+  return [clsBlockName, props.disabled && `${clsBlockName}-disabled`, props.readonly && `${clsBlockName}-readonly`];
 });
 
 const current = ref(model.value || 0);
 const onMousemove = (index: number, isHalf: boolean) => {
+  if (props.disabled || props.readonly) return;
   current.value = index + (props.half ? (isHalf ? 0.5 : 1) : 1);
 };
 
 const onSelect = (index: number, isHalf: boolean) => {
+  if (props.disabled || props.readonly) return;
   model.value = index + (props.half ? (isHalf ? 0.5 : 1) : 1);
 };
 

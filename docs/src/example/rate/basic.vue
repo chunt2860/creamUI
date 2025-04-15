@@ -1,5 +1,5 @@
 <template>
-  <bp-rate v-model="val"></bp-rate>
+  <bp-rate readonly v-model="val"></bp-rate>
 </template>
 
 <script lang="ts" setup>

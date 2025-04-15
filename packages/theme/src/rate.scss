@@ -55,3 +55,14 @@
     }
   }
 }
+
+.#{$B}-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: default;
+}
+
+.#{$B}-readonly {
+  pointer-events: none;
+  cursor: default;
+}
