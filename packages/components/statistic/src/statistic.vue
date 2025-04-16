@@ -1,15 +1,15 @@
 <template>
   <div :class="clsBlockName">
-    <div :class="`${clsBlockName}-int`">{{ intText }}</div>
-    <div :class="`${clsBlockName}-dev`">{{ decText }}</div>
+    <div :class="`${clsBlockName}-int`" :style="`font-size: ${innerFontSize[0]}`">{{ intText }}</div>
+    <div :class="`${clsBlockName}-dev`" :style="`font-size: ${innerFontSize[1]}`">{{ decText }}</div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { statisticProps, StatisticProps } from "./props";
 import { useNamespace } from "@birdpaper-ui/hooks";
-import { isFloat, isNumber, toInt } from "radash";
+import { isArray, isFloat, isNumber, toInt } from "radash";
 import { formatNumberWithCommas } from "@birdpaper-ui/components/utils/number";
 
 defineOptions({ name: "Statistic" });
@@ -61,6 +61,13 @@ const getDecimalText = (value: number): string => {
 
   return `.${val}`;
 };
+
+const innerFontSize = computed(() => {
+  if (isArray(props.fontSize)) {
+    return props.fontSize;
+  }
+  return [props.fontSize, props.fontSize];
+});
 
 watch(
   () => props.value,

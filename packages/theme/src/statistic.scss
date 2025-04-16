@@ -5,14 +5,14 @@
 @use "mixins/mixins.scss" as *;
 
 @include b(statistic) {
-  display: flex;
-  font-size: 26px;
+  @include flex(row, flex-start, baseline);
   font-weight: 500;
   white-space: nowrap;
   line-height: 1.8;
 
   &-int,
   &-dec {
+    letter-spacing: 0.5px;
     color: var(--bp-gray-9);
   }
 }
