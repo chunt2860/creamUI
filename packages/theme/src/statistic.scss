@@ -1,0 +1,9 @@
+@use "common/extend.scss" as *;
+@use "common/design.scss" as *;
+@use "mixins/var" as *;
+@use "mixins/function" as *;
+@use "mixins/mixins.scss" as *;
+
+@include b(statistic) {
+  display: flex;
+}

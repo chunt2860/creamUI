@@ -44,7 +44,8 @@ import {
   ColorPicker,
   Steps,
   Step,
-  Rate
+  Rate,
+  Statistic
 } from "@birdpaper-ui/components";
 
 export default [
@@ -93,5 +94,6 @@ export default [
   ColorPicker,
   Steps,
   Step,
-  Rate
+  Rate,
+  Statistic
 ];

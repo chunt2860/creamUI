@@ -1,0 +1,3 @@
+<template>
+  <bp-statistic />
+</template>

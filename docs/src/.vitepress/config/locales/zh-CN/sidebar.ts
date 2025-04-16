@@ -87,6 +87,7 @@ export const sidebar = {
         { text: "表格 <span>Table</span>", link: "/components/table/" },
         { text: "标签 <span>Tag</span>", link: "/components/tag/" },
         { text: "图片 <span>Image</span>", link: "/components/image/" },
+        { text: "数值 <span>Statistic</span>", link: "/components/statistic/" },
         { text: "空状态 <span>Empty</span>", link: "/components/empty/" },
         { text: "加载中 <span>Spin</span>", link: "/components/spin/" },
         { text: "文字气泡 <span>Tooltip</span>", link: "/components/tooltip/" },
