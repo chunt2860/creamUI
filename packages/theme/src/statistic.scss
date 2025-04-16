@@ -11,7 +11,8 @@
   white-space: nowrap;
   line-height: 1.8;
 
-  &-inner {
+  &-int,
+  &-dec {
     color: var(--bp-gray-9);
   }
 }

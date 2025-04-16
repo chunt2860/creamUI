@@ -4,7 +4,7 @@ export const statisticProps = {
   value: {
     type: Number,
   },
-  defaultText: {
+  placeholder: {
     type: String,
     default: "--",
   },
@@ -15,6 +15,10 @@ export const statisticProps = {
   showSeparator: {
     type: Boolean,
     default: true,
+  },
+  precision: {
+    type: Number,
+    default: 0,
   },
 };
 
