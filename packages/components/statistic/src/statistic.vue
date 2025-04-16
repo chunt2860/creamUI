@@ -15,21 +15,27 @@ import { formatNumberWithCommas } from "@birdpaper-ui/components/utils/number";
 defineOptions({ name: "Statistic" });
 const { clsBlockName } = useNamespace("statistic");
 
+const model = defineModel<number>();
 const props: StatisticProps = defineProps(statisticProps);
 
 const intText = ref<string>("");
 const decText = ref<string>("");
 
 const init = () => {
-  if (props.value === undefined || props.value === null || !isNumber(props.value)) {
+  if (model.value === undefined || model.value === null || !isNumber(model.value)) {
     intText.value = props.placeholder;
     decText.value = "";
     return;
   }
 
-  intText.value = getIntText(props.value);
+  updateValue(model.value);
+  props.animation && startAnimation();
+};
+
+const updateValue = (value: number) => {
+  intText.value = getIntText(value);
   if (props.precision) {
-    decText.value = getDecimalText(props.value);
+    decText.value = getDecimalText(value);
   }
 };
 
@@ -69,8 +75,31 @@ const innerFontSize = computed(() => {
   return [props.fontSize, props.fontSize];
 });
 
+const isAnimating = ref(false);
+
+const startAnimation = () => {
+  if (isAnimating.value || !props.animation) return;
+
+  isAnimating.value = true;
+  const startValue = props.valueFrom || 0;
+  const endValue = model.value as number;
+  const duration = props.duration;
+
+  const step = (timestamp: number, startTime: number) => {
+    const progress = Math.min((timestamp - startTime) / duration, 1);
+    updateValue(startValue + (endValue - startValue) * progress);
+    if (progress < 1) {
+      requestAnimationFrame((t) => step(t, startTime));
+    } else {
+      isAnimating.value = false;
+    }
+  };
+
+  requestAnimationFrame((t) => step(t, performance.now()));
+};
+
 watch(
-  () => props.value,
+  () => model.value,
   () => {
     init();
   },

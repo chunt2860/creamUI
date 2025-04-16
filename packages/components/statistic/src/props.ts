@@ -54,6 +54,33 @@ export const statisticProps = {
     type: [String, Array],
     default: "26px",
   },
+  /**
+   * @type {boolean}
+   * @description Whether to open the animation.
+   * @default false
+   */
+  animation: {
+    type: Boolean,
+    default: false,
+  },
+  /**
+   * @type {number}
+   * @description The animation time.
+   * @default 1000
+   */
+  duration: {
+    type: Number,
+    default: 1000,
+  },
+  /**
+   * @type {number}
+   * @description The animation value from.
+   * @default 0
+   */
+  valueFrom: {
+    type: Number,
+    default: 0,
+  },
 };
 
 export type StatisticProps = ExtractPropTypes<typeof statisticProps>;
