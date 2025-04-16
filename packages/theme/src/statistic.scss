@@ -6,4 +6,12 @@
 
 @include b(statistic) {
   display: flex;
+  font-size: 26px;
+  font-weight: 500;
+  white-space: nowrap;
+  line-height: 1.8;
+
+  &-inner {
+    color: var(--bp-gray-9);
+  }
 }
