@@ -1,7 +1,11 @@
 <template>
-  <div :class="clsBlockName">
-    <div :class="`${clsBlockName}-int`" :style="`font-size: ${innerFontSize[0]}`">{{ intText }}</div>
-    <div :class="`${clsBlockName}-dev`" :style="`font-size: ${innerFontSize[1]}`">{{ decText }}</div>
+  <div :class="clsBlockName" :style="`color:${color};fill:${color}`">
+    <span v-if="slots.prefix" :class="`${clsBlockName}-prefix`">
+      <slot name="prefix"></slot>
+    </span>
+    <span :class="`${clsBlockName}-int`" :style="`font-size: ${innerFontSize[0]}`">{{ intText }}</span>
+    <span :class="`${clsBlockName}-dev`" :style="`font-size: ${innerFontSize[1]}`">{{ decText }}</span>
+    <span v-if="unit" :class="`${clsBlockName}-unit`">{{ unit }}</span>
   </div>
 </template>
 
@@ -17,6 +21,7 @@ const { clsBlockName } = useNamespace("statistic");
 
 const model = defineModel<number>();
 const props: StatisticProps = defineProps(statisticProps);
+const slots = defineSlots();
 
 const intText = ref<string>("");
 const decText = ref<string>("");

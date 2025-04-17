@@ -36,6 +36,21 @@ export const statisticProps = {
     default: false,
   },
   /**
+   * @type {string}
+   * @description The text color.
+   */
+  color: {
+    type: String,
+    default: "#2e2e30",
+  },
+  /**
+   * @type {string}
+   * @description The unit of the statistic.
+   */
+  unit: {
+    type: String,
+  },
+  /**
    * @type {number}
    * @description The number of decimal places to display.
    * @default 0
